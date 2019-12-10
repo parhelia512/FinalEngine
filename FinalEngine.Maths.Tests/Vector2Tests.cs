@@ -5,6 +5,19 @@
     public sealed class Vector2Tests
     {
         [Test]
+        public void Down_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(0, -1);
+
+            // Act
+            Vector2 actual = Vector2.Down;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Equals_Operator_Test_Should_Return_True_When_Vector2_Contains_Same_Property_Values()
         {
             // Arrange
@@ -60,6 +73,32 @@
         }
 
         [Test]
+        public void Left_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(-1, 0);
+
+            // Act
+            Vector2 actual = Vector2.Left;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void NegativeInfinity_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+
+            // Act
+            Vector2 actual = Vector2.NegativeInfinity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void NotEquals_Operator_Should_Return_True_When_Vector2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
@@ -71,6 +110,58 @@
 
             // Assert
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void One_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(1, 1);
+
+            // Act
+            Vector2 actual = Vector2.One;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PositiveInfinity_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+
+            // Act
+            Vector2 actual = Vector2.PositiveInfinity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Right_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(1, 0);
+
+            // Act
+            Vector2 actual = Vector2.Right;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Up_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(0, 1);
+
+            // Act
+            Vector2 actual = Vector2.Up;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -97,6 +188,19 @@
 
             // Assert
             Assert.AreEqual(Expected, vector.Y);
+        }
+
+        [Test]
+        public void Zero_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector2(0, 0);
+
+            // Act
+            Vector2 actual = Vector2.Zero;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }

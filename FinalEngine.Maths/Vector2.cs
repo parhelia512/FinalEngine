@@ -79,6 +79,16 @@
         /// </value>
         public float Y { get; set; }
 
+        public static implicit operator Vector2(Vector3 vector)
+        {
+            return new Vector2(vector.X, vector.Y);
+        }
+
+        public static implicit operator Vector2(Vector4 vector)
+        {
+            return new Vector2(vector.X, vector.Y);
+        }
+
         /// <summary>
         ///   Implements the operator !=.
         /// </summary>

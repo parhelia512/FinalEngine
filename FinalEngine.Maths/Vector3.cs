@@ -133,6 +133,15 @@
             return new Vector3(vector.X, vector.Y, vector.Z);
         }
 
+        public static Vector3 operator -(Vector3 left, Vector3 right)
+        {
+            float x = left.X - right.X;
+            float y = left.Y - right.Y;
+            float z = left.Z - right.Z;
+
+            return new Vector3(x, y, z);
+        }
+
         /// <summary>
         ///   Implements the operator !=.
         /// </summary>
@@ -148,6 +157,33 @@
         public static bool operator !=(Vector3 left, Vector3 right)
         {
             return !left.Equals(right);
+        }
+
+        public static Vector3 operator *(Vector3 left, Vector3 right)
+        {
+            float x = left.X * right.X;
+            float y = left.Y * right.Y;
+            float z = left.Z * right.Z;
+
+            return new Vector3(x, y, z);
+        }
+
+        public static Vector3 operator /(Vector3 left, Vector3 right)
+        {
+            float x = left.X / right.X;
+            float y = left.Y / right.Y;
+            float z = left.Z / right.Z;
+
+            return new Vector3(x, y, z);
+        }
+
+        public static Vector3 operator +(Vector3 left, Vector3 right)
+        {
+            float x = left.X + right.X;
+            float y = left.Y + right.Y;
+            float z = left.Z + right.Z;
+
+            return new Vector3(x, y, z);
         }
 
         /// <summary>

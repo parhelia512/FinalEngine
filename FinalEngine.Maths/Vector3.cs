@@ -105,6 +105,16 @@
         /// </value>
         public float Z { get; set; }
 
+        public static implicit operator Vector3(Vector2 vector)
+        {
+            return new Vector3(vector.X, vector.Y, 0);
+        }
+
+        public static implicit operator Vector3(Vector4 vector)
+        {
+            return new Vector3(vector.X, vector.Y, vector.Z);
+        }
+
         /// <summary>
         ///   Implements the operator !=.
         /// </summary>

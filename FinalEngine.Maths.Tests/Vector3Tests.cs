@@ -18,6 +18,34 @@
         }
 
         [Test]
+        public void Conversion_Operator_Test_Vector2_To_Vector3()
+        {
+            // Arrange
+            var expected = new Vector3(100, 200, 0);
+            var vector = new Vector2(expected.X, expected.Y);
+
+            // Act
+            var actual = (Vector3)vector;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Conversion_Operator_Test_Vector4_To_Vector3()
+        {
+            // Arrange
+            var expected = new Vector3(14, 30, 0);
+            var vector = new Vector4(expected.X, expected.Y, 0, 0);
+
+            // Act
+            var actual = (Vector3)vector;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Down_Readonly_Field_Test()
         {
             // Arrange

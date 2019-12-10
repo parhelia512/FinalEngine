@@ -9,7 +9,7 @@
         {
             // Arrange
             var expected = new Vector2(34, 56);
-            var vector = new Vector3(34, 56, 12);
+            var vector = new Vector3(expected.X, expected.Y, 12);
 
             // Act
             var actual = (Vector2)vector;
@@ -23,7 +23,7 @@
         {
             // Arrange
             var expected = new Vector2(34, 56);
-            var vector = new Vector4(34, 56, 12, 23);
+            var vector = new Vector4(expected.X, expected.Y, 12, 23);
 
             // Act
             var actual = (Vector2)vector;

@@ -5,6 +5,34 @@
     public sealed class Vector4Tests
     {
         [Test]
+        public void Conversion_Operator_Test_Vector2_To_Vector4()
+        {
+            // Arrange
+            var expected = new Vector4(44, 22, 0, 0);
+            var vector = new Vector2(expected.X, expected.Y);
+
+            // Act
+            var actual = (Vector4)vector;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Conversion_Operator_Test_Vector3_To_Vector4()
+        {
+            // Arrange
+            var expected = new Vector4(44, 22, 55, 0);
+            var vector = new Vector3(expected.X, expected.Y, expected.Z);
+
+            // Act
+            var actual = (Vector4)vector;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Equals_Operator_Test_Should_Return_True_When_Vector4_Contains_Same_Property_Values()
         {
             // Arrange

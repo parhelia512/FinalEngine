@@ -8,12 +8,21 @@
     /// <seealso cref="System.IEquatable{FinalEngine.Maths.Matrix3}"/>
     public struct Matrix3 : IEquatable<Matrix3>
     {
+        /// <summary>
+        ///   Represents a <see cref="Matrix3"/> that is an identity matrix.
+        /// </summary>
         public static readonly Matrix3 Identity = new Matrix3(new Vector3(1, 0, 0),
                                                               new Vector3(0, 1, 0),
                                                               new Vector3(0, 0, 1));
 
+        /// <summary>
+        ///   Represents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.One"/>.
+        /// </summary>
         public static readonly Matrix3 One = new Matrix3(Vector3.One, Vector3.One, Vector3.One);
 
+        /// <summary>
+        ///   Reperesents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.Zero"/>.
+        /// </summary>
         public static readonly Matrix3 Zero = new Matrix3(Vector3.Zero, Vector3.Zero, Vector3.Zero);
 
         /// <summary>

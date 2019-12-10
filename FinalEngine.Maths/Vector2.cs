@@ -107,6 +107,14 @@
             return new Vector2(vector.X, vector.Y);
         }
 
+        public static Vector2 operator -(Vector2 left, Vector2 right)
+        {
+            float x = left.X - right.X;
+            float y = left.Y - right.Y;
+
+            return new Vector2(x, y);
+        }
+
         /// <summary>
         ///   Implements the operator !=.
         /// </summary>
@@ -122,6 +130,30 @@
         public static bool operator !=(Vector2 left, Vector2 right)
         {
             return !left.Equals(right);
+        }
+
+        public static Vector2 operator *(Vector2 left, Vector2 right)
+        {
+            float x = left.X * right.X;
+            float y = left.Y * right.Y;
+
+            return new Vector2(x, y);
+        }
+
+        public static Vector2 operator /(Vector2 left, Vector2 right)
+        {
+            float x = left.X / right.X;
+            float y = left.Y / right.Y;
+
+            return new Vector2(x, y);
+        }
+
+        public static Vector2 operator +(Vector2 left, Vector2 right)
+        {
+            float x = left.X + right.X;
+            float y = left.Y + right.Y;
+
+            return new Vector2(x, y);
         }
 
         /// <summary>

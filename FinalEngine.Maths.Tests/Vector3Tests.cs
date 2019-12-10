@@ -5,6 +5,32 @@
     public sealed class Vector3Tests
     {
         [Test]
+        public void Back_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(0, 0, -1);
+
+            // Act
+            Vector3 actual = Vector3.Back;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Down_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(0, -1, 0);
+
+            // Act
+            Vector3 actual = Vector3.Down;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Equals_Operator_Test_Should_Return_True_When_Vector3_Contains_Same_Property_Values()
         {
             // Arrange
@@ -60,6 +86,47 @@
         }
 
         [Test]
+        public void Forward_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(0, 0, 1);
+
+            // Act
+            Vector3 actual = Vector3.Forward;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Left_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(-1, 0, 0);
+
+            // Act
+            Vector3 actual = Vector3.Left;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void NegativeInfinity_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(float.NegativeInfinity,
+                                       float.NegativeInfinity,
+                                       float.NegativeInfinity);
+
+            // Act
+            Vector3 actual = Vector3.NegativeInfinity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void NotEquals_Operator_Should_Return_True_When_Vector3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
@@ -71,6 +138,60 @@
 
             // Assert
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void One_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(1, 1, 1);
+
+            // Act
+            Vector3 actual = Vector3.One;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PositiveInfinity_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(float.PositiveInfinity,
+                                       float.PositiveInfinity,
+                                       float.PositiveInfinity);
+
+            // Act
+            Vector3 actual = Vector3.PositiveInfinity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Right_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(1, 0, 0);
+
+            // Act
+            Vector3 actual = Vector3.Right;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Up_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(0, 1, 0);
+
+            // Act
+            Vector3 actual = Vector3.Up;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -110,6 +231,19 @@
 
             // Assert
             Assert.AreEqual(Expected, vector.Z);
+        }
+
+        [Test]
+        public void Zero_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector3(0, 0, 0);
+
+            // Act
+            Vector3 actual = Vector3.Zero;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }

@@ -8,8 +8,11 @@
         public void Equals_Operator_Test_Should_Return_False_When_Matrix2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
-            var right = new Matrix2(new Vector2(0, 1), new Vector2(1, 0));
+            var left = new Matrix2(new Vector2(1, 0),
+                                   new Vector2(0, 1));
+
+            var right = new Matrix2(new Vector2(0, 1),
+                                    new Vector2(1, 0));
 
             // Act
             bool result = left == right;
@@ -22,8 +25,11 @@
         public void Equals_Operator_Test_Should_Return_True_When_Matrix2_Contains_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
-            var right = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
+            var left = new Matrix2(new Vector2(1, 0),
+                                   new Vector2(0, 1));
+
+            var right = new Matrix2(new Vector2(1, 0),
+                                    new Vector2(0, 1));
 
             // Act
             bool result = left == right;
@@ -36,8 +42,11 @@
         public void Equals_Test_Should_Return_False_When_Matrix2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(0, 1), new Vector2(1, 0));
-            var right = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
+            var left = new Matrix2(new Vector2(0, 1),
+                                   new Vector2(1, 0));
+
+            var right = new Matrix2(new Vector2(1, 0),
+                                    new Vector2(0, 1));
 
             // Act
             bool result = left.Equals(right);
@@ -63,8 +72,11 @@
         public void Equals_Test_Should_Return_True_When_Matrix2_Does_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
-            var right = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
+            var left = new Matrix2(new Vector2(1, 0),
+                                   new Vector2(0, 1));
+
+            var right = new Matrix2(new Vector2(1, 0),
+                                    new Vector2(0, 1));
 
             // Act
             bool result = left.Equals(right);
@@ -80,7 +92,8 @@
             var expected = new Vector2(1, 0);
 
             // Act
-            var matrix = new Matrix2(expected, new Vector2(0, 0));
+            var matrix = new Matrix2(expected,
+                                     new Vector2(0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row0);
@@ -93,7 +106,8 @@
             var expected = new Vector2(1, 0);
 
             // Act
-            var matrix = new Matrix2(new Vector2(0, 0), expected);
+            var matrix = new Matrix2(new Vector2(0, 0),
+                                     expected);
 
             // Assert
             Assert.AreEqual(expected, matrix.Row1);

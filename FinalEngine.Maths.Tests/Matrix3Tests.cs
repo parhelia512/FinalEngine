@@ -8,8 +8,13 @@
         public void Equals_Operator_Test_Should_Return_False_When_Matrix3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3), new Vector3(0, 1, 4), new Vector3(1, 0, 2));
-            var right = new Matrix3(new Vector3(0, 1, 4), new Vector3(1, 0, 7), new Vector3(4, 5, 6));
+            var left = new Matrix3(new Vector3(1, 0, 3),
+                                   new Vector3(0, 1, 4),
+                                   new Vector3(1, 0, 2));
+
+            var right = new Matrix3(new Vector3(0, 1, 4),
+                                    new Vector3(1, 0, 7),
+                                    new Vector3(4, 5, 6));
 
             // Act
             bool result = left == right;
@@ -22,8 +27,13 @@
         public void Equals_Operator_Test_Should_Return_True_When_Matrix3_Contains_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3), new Vector3(0, 1, 5), new Vector3(34, 56, 76));
-            var right = new Matrix3(new Vector3(1, 0, 3), new Vector3(0, 1, 5), new Vector3(34, 56, 76));
+            var left = new Matrix3(new Vector3(1, 0, 3),
+                                   new Vector3(0, 1, 5),
+                                   new Vector3(34, 56, 76));
+
+            var right = new Matrix3(new Vector3(1, 0, 3),
+                                    new Vector3(0, 1, 5),
+                                    new Vector3(34, 56, 76));
 
             // Act
             bool result = left == right;
@@ -36,8 +46,13 @@
         public void Equals_Test_Should_Return_False_When_Matrix3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3), new Vector3(0, 1, 4), new Vector3(1, 0, 2));
-            var right = new Matrix3(new Vector3(0, 1, 4), new Vector3(1, 0, 7), new Vector3(4, 5, 6));
+            var left = new Matrix3(new Vector3(1, 0, 3),
+                                   new Vector3(0, 1, 4),
+                                   new Vector3(1, 0, 2));
+
+            var right = new Matrix3(new Vector3(0, 1, 4),
+                                    new Vector3(1, 0, 7),
+                                    new Vector3(4, 5, 6));
 
             // Act
             bool result = left.Equals(right);
@@ -63,8 +78,13 @@
         public void Equals_Test_Should_Return_True_When_Matrix3_Does_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3), new Vector3(0, 1, 5), new Vector3(34, 56, 76));
-            var right = new Matrix3(new Vector3(1, 0, 3), new Vector3(0, 1, 5), new Vector3(34, 56, 76));
+            var left = new Matrix3(new Vector3(1, 0, 3),
+                                   new Vector3(0, 1, 5),
+                                   new Vector3(34, 56, 76));
+
+            var right = new Matrix3(new Vector3(1, 0, 3),
+                                    new Vector3(0, 1, 5),
+                                    new Vector3(34, 56, 76));
 
             // Act
             bool result = left.Equals(right);
@@ -80,7 +100,9 @@
             var expected = new Vector3(1, 0, 4);
 
             // Act
-            var matrix = new Matrix3(expected, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+            var matrix = new Matrix3(expected,
+                                     new Vector3(0, 0, 0),
+                                     new Vector3(0, 0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row0);
@@ -93,7 +115,9 @@
             var expected = new Vector3(1, 0, 4);
 
             // Act
-            var matrix = new Matrix3(new Vector3(0, 0, 0), expected, new Vector3(0, 0, 0));
+            var matrix = new Matrix3(new Vector3(0, 0, 0),
+                                     expected,
+                                     new Vector3(0, 0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row1);
@@ -106,7 +130,9 @@
             var expected = new Vector3(1, 0, 4);
 
             // Act
-            var matrix = new Matrix3(new Vector3(0, 0, 0), new Vector3(0, 0, 0), expected);
+            var matrix = new Matrix3(new Vector3(0, 0, 0),
+                                     new Vector3(0, 0, 0),
+                                     expected);
 
             // Assert
             Assert.AreEqual(expected, matrix.Row2);

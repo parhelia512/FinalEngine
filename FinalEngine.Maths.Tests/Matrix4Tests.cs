@@ -102,6 +102,35 @@
         }
 
         [Test]
+        public void Identity_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Matrix4(new Vector4(1, 0, 0, 0),
+                                      new Vector4(0, 1, 0, 0),
+                                      new Vector4(0, 0, 1, 0),
+                                      new Vector4(0, 0, 0, 1));
+
+            // Act
+            Matrix4 actual = Matrix4.Identity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void One_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Matrix4(Vector4.One, Vector4.One, Vector4.One, Vector4.One);
+
+            // Act
+            Matrix4 actual = Matrix4.One;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Row0_Property_Test_Should_Be_Expected_Vector4()
         {
             // Arrange
@@ -163,6 +192,19 @@
 
             // Assert
             Assert.AreEqual(expected, matrix.Row3);
+        }
+
+        [Test]
+        public void Zero_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Matrix4(Vector4.Zero, Vector4.Zero, Vector4.Zero, Vector4.Zero);
+
+            // Act
+            Matrix4 actual = Matrix4.Zero;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }

@@ -9,6 +9,24 @@
     public struct Matrix4 : IEquatable<Matrix4>
     {
         /// <summary>
+        ///   Represents a <see cref="Matrix4"/> that is an identity matrix.
+        /// </summary>
+        public static readonly Matrix4 Identity = new Matrix4(new Vector4(1, 0, 0, 0),
+                                                              new Vector4(0, 1, 0, 0),
+                                                              new Vector4(0, 0, 1, 0),
+                                                              new Vector4(0, 0, 0, 1));
+
+        /// <summary>
+        ///   Represents a <see cref="Matrix4"/> where each row is set to <see cref="Vector4.One"/>.
+        /// </summary>
+        public static readonly Matrix4 One = new Matrix4(Vector4.One, Vector4.One, Vector4.One, Vector4.One);
+
+        /// <summary>
+        ///   Represents a <see cref="Matrix4"/> where each row is set to <see cref="Vector4.Zero"/>.
+        /// </summary>
+        public static readonly Matrix4 Zero = new Matrix4(Vector4.Zero, Vector4.Zero, Vector4.Zero, Vector4.Zero);
+
+        /// <summary>
         ///   Initializes a new instance of the <see cref="Matrix4"/> struct.
         /// </summary>
         /// <param name="row0">

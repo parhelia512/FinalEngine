@@ -14,6 +14,16 @@
 
         public float Y { get; set; }
 
+        public static bool operator !=(Vector2 left, Vector2 right)
+        {
+            return !left.Equals(right);
+        }
+
+        public static bool operator ==(Vector2 left, Vector2 right)
+        {
+            return left.Equals(right);
+        }
+
         public override bool Equals(object obj)
         {
             if (!(obj is Vector2))

@@ -19,20 +19,6 @@
         }
 
         [Test]
-        public void Equals_Test_Should_Return_Fakse_When_Vector3_Does_Not_Contain_Same_Property_Values()
-        {
-            // Arrange
-            var vectorLeft = new Vector3(1, 2, 3);
-            var vectorRight = new Vector3(4, 5, 6);
-
-            // Act
-            bool result = vectorLeft.Equals(vectorRight);
-
-            // Assert
-            Assert.IsFalse(result);
-        }
-
-        [Test]
         public void Equals_Test_Should_Return_False_When_Not_Vector3()
         {
             // Arrange
@@ -40,6 +26,20 @@
 
             // Act
             bool result = vector.Equals(new object());
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void Equals_Test_Should_Return_False_When_Vector3_Does_Not_Contain_Same_Property_Values()
+        {
+            // Arrange
+            var vectorLeft = new Vector3(1, 2, 3);
+            var vectorRight = new Vector3(4, 5, 6);
+
+            // Act
+            bool result = vectorLeft.Equals(vectorRight);
 
             // Assert
             Assert.IsFalse(result);

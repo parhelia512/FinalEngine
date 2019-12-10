@@ -19,20 +19,6 @@
         }
 
         [Test]
-        public void Equals_Test_Should_Return_Fakse_When_Vector2_Does_Not_Contain_Same_Values()
-        {
-            // Arrange
-            var left = new Vector2(1, 2);
-            var right = new Vector2(2, 1);
-
-            // Act
-            bool result = left.Equals(right);
-
-            // Assert
-            Assert.IsFalse(result);
-        }
-
-        [Test]
         public void Equals_Test_Should_Return_False_When_Not_Vector2()
         {
             // Arrange
@@ -40,6 +26,20 @@
 
             // Act
             bool result = vector.Equals(new object());
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void Equals_Test_Should_Return_False_When_Vector2_Does_Not_Contain_Same_Property_Values()
+        {
+            // Arrange
+            var left = new Vector2(1, 2);
+            var right = new Vector2(2, 1);
+
+            // Act
+            bool result = left.Equals(right);
 
             // Assert
             Assert.IsFalse(result);
@@ -60,7 +60,7 @@
         }
 
         [Test]
-        public void NotEquals_Operator_Should_Return_True_When_Vector2_Does_Not_Contain_Same_Values()
+        public void NotEquals_Operator_Should_Return_True_When_Vector2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
             var left = new Vector2(1, 2);

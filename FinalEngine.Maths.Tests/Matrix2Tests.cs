@@ -5,7 +5,7 @@
     public sealed class Matrix2Tests
     {
         [Test]
-        public void Equals_Operator_Test_Should_Return_False_When_Matrix2_Parameter_Does_Not_Contain_Same_Values()
+        public void Equals_Operator_Test_Should_Return_False_When_Matrix2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
             var left = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
@@ -19,7 +19,7 @@
         }
 
         [Test]
-        public void Equals_Operator_Test_Should_Return_True_When_Matrix2_Parameter_Does_Contain_Same_Values()
+        public void Equals_Operator_Test_Should_Return_True_When_Matrix2_Contains_Same_Property_Values()
         {
             // Arrange
             var left = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
@@ -33,7 +33,7 @@
         }
 
         [Test]
-        public void Equals_Test_Should_Return_False_When_Matrix2_Parameter_Does_Not_Contain_Same_Values()
+        public void Equals_Test_Should_Return_False_When_Matrix2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
             var left = new Matrix2(new Vector2(0, 1), new Vector2(1, 0));
@@ -47,7 +47,7 @@
         }
 
         [Test]
-        public void Equals_Test_Should_Return_False_When_Matrix2_Parameter_Is_Not_Matrix2()
+        public void Equals_Test_Should_Return_False_When_Not_Matrix2()
         {
             // Arrange
             var matrix2 = new Matrix2();
@@ -60,7 +60,7 @@
         }
 
         [Test]
-        public void Equals_Test_Should_Return_True_When_Matrix2_Parameter_Does_Contain_Same_Values()
+        public void Equals_Test_Should_Return_True_When_Matrix2_Does_Contain_Same_Property_Values()
         {
             // Arrange
             var left = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
@@ -74,7 +74,7 @@
         }
 
         [Test]
-        public void Row0_Property_Test_Should_Return_Expected_Vector2()
+        public void Row0_Property_Test_Should_Be_Expected_Vector2()
         {
             // Arrange
             var expected = new Vector2(1, 0);
@@ -87,7 +87,7 @@
         }
 
         [Test]
-        public void Row1_Property_Test_Should_Return_Expected_Vector2()
+        public void Row1_Property_Test_Should_Be_Vector2()
         {
             // Arrange
             var expected = new Vector2(1, 0);

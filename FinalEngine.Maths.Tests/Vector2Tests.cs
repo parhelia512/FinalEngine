@@ -21,8 +21,8 @@
         public void Equals_Operator_Test_Should_Return_True_When_Vector2_Contains_Same_Property_Values()
         {
             // Arrange
-            var left = new Vector2(1, 2);
-            var right = new Vector2(1, 2);
+            Vector2 left = Vector2.Left;
+            Vector2 right = Vector2.Left;
 
             // Act
             bool result = left == right;
@@ -48,8 +48,8 @@
         public void Equals_Test_Should_Return_False_When_Vector2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Vector2(1, 2);
-            var right = new Vector2(2, 1);
+            Vector2 left = Vector2.Left;
+            Vector2 right = Vector2.Right;
 
             // Act
             bool result = left.Equals(right);
@@ -62,8 +62,8 @@
         public void Equals_Test_Should_Return_True_When_Vector2_Contains_Same_Property_Values()
         {
             // Arrange
-            var left = new Vector2(1, 2);
-            var right = new Vector2(1, 2);
+            Vector2 left = Vector2.Right;
+            Vector2 right = Vector2.Right;
 
             // Act
             bool result = left.Equals(right);
@@ -102,8 +102,8 @@
         public void NotEquals_Operator_Should_Return_True_When_Vector2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Vector2(1, 2);
-            var right = new Vector2(3, 4);
+            Vector2 left = Vector2.Left;
+            Vector2 right = Vector2.One;
 
             // Act
             bool result = left != right;

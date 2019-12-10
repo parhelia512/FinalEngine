@@ -8,8 +8,8 @@
         public void Equals_Operator_Test_Should_Return_True_When_Vector3_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(155, 243, 432);
-            var vectorRight = new Vector3(155, 243, 432);
+            var vectorLeft = new Vector3(1, 2, 3);
+            var vectorRight = new Vector3(1, 2, 3);
 
             // Act
             bool result = vectorLeft == vectorRight;
@@ -22,8 +22,8 @@
         public void Equals_Test_Should_Return_Fakse_When_Vector3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(1, 2, 4);
-            var vectorRight = new Vector3(2, 1, 6);
+            var vectorLeft = new Vector3(1, 2, 3);
+            var vectorRight = new Vector3(4, 5, 6);
 
             // Act
             bool result = vectorLeft.Equals(vectorRight);
@@ -46,8 +46,8 @@
         public void Equals_Test_Should_Return_True_When_Vector3_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(155, 243, 654);
-            var vectorRight = new Vector3(155, 243, 654);
+            var vectorLeft = new Vector3(1, 2, 3);
+            var vectorRight = new Vector3(1, 2, 3);
 
             // Act
             bool result = vectorLeft.Equals(vectorRight);
@@ -60,8 +60,8 @@
         public void NotEquals_Operator_Should_Return_True_When_Vector3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(155, 243, 445);
-            var vectorRight = new Vector3(156, 244, 144);
+            var vectorLeft = new Vector3(1, 2, 3);
+            var vectorRight = new Vector3(4, 5, 6);
 
             // Act
             bool result = vectorLeft != vectorRight;
@@ -71,36 +71,36 @@
         }
 
         [Test]
-        public void X_Property_Test_Should_Be_143()
+        public void X_Property_Test_Should_Be_1()
         {
             // Arrange
-            const int Expected = 143;
+            const int Expected = 1;
 
             // Arrange and act
-            var vector = new Vector3(143, 0, 0);
+            var vector = new Vector3(Expected, 0, 0);
 
             // Assert
             Assert.AreEqual(Expected, vector.X);
         }
 
         [Test]
-        public void Y_Property_Test_Should_Be_456()
+        public void Y_Property_Test_Should_Be_1()
         {
             // Arrange
-            const int Expected = 456;
+            const int Expected = 1;
 
             // Act
-            var vector = new Vector3(0, 456, 0);
+            var vector = new Vector3(0, Expected, 0);
 
             // Assert
             Assert.AreEqual(Expected, vector.Y);
         }
 
         [Test]
-        public void Z_Property_Test_Should_Be_372()
+        public void Z_Property_Test_Should_Be_1()
         {
             // Arrange
-            const int Expected = 372;
+            const int Expected = 1;
 
             // Act
             var vector = new Vector3(0, 0, Expected);

@@ -60,6 +60,22 @@
         }
 
         [Test]
+        public void NegativeInfinity_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector4(float.NegativeInfinity,
+                                       float.NegativeInfinity,
+                                       float.NegativeInfinity,
+                                       float.NegativeInfinity);
+
+            // Act
+            Vector4 actual = Vector4.NegativeInfinity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void NotEquals_Operator_Should_Return_True_When_Vector4_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
@@ -71,6 +87,35 @@
 
             // Assert
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void One_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector4(1, 1, 1, 1);
+
+            // Act
+            Vector4 actual = Vector4.One;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PositiveInfinity_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector4(float.PositiveInfinity,
+                                       float.PositiveInfinity,
+                                       float.PositiveInfinity,
+                                       float.PositiveInfinity);
+
+            // Act
+            Vector4 actual = Vector4.PositiveInfinity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -123,6 +168,19 @@
 
             // Assert
             Assert.AreEqual(Expected, vector.Z);
+        }
+
+        [Test]
+        public void Zero_Readonly_Field_Test()
+        {
+            // Arrange
+            var expected = new Vector4(0, 0, 0, 0);
+
+            // Act
+            Vector4 actual = Vector4.Zero;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }

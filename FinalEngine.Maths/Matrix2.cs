@@ -8,6 +8,12 @@
     /// <seealso cref="System.IEquatable{FinalEngine.Maths.Matrix2}"/>
     public struct Matrix2 : IEquatable<Matrix2>
     {
+        public static readonly Matrix2 Identity = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
+
+        public static readonly Matrix2 One = new Matrix2(Vector2.One, Vector2.One);
+
+        public static readonly Matrix2 Zero = new Matrix2(Vector2.Zero, Vector2.Zero);
+
         /// <summary>
         ///   Initializes a new instance of the <see cref="Matrix2"/> struct.
         /// </summary>

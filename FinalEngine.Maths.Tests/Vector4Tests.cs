@@ -5,6 +5,22 @@
     public sealed class Vector4Tests
     {
         [Test]
+        public void Addition_Operator_Test()
+        {
+            // Arrange
+            var expected = new Vector4(4, 8, 12, 25);
+
+            var left = new Vector4(1, 3, 8, 20);
+            var right = new Vector4(3, 5, 4, 5);
+
+            // Act
+            Vector4 actual = left + right;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Conversion_Operator_Test_Vector2_To_Vector4()
         {
             // Arrange
@@ -88,6 +104,22 @@
         }
 
         [Test]
+        public void Multiplication_Operator_Test()
+        {
+            // Arrange
+            var expected = new Vector4(30, 120, 72, 20);
+
+            var left = new Vector4(6, 10, 8, 5);
+            var right = new Vector4(5, 12, 9, 4);
+
+            // Act
+            Vector4 actual = left * right;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void NegativeInfinity_Readonly_Field_Test()
         {
             // Arrange
@@ -141,6 +173,22 @@
 
             // Act
             Vector4 actual = Vector4.PositiveInfinity;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Subtraction_Operator_Test()
+        {
+            // Arrange
+            var expected = new Vector4(10, 20, 30, 40);
+
+            var left = new Vector4(100, 200, 300, 400);
+            var right = new Vector4(90, 180, 270, 360);
+
+            // Act
+            Vector4 actual = left - right;
 
             // Assert
             Assert.AreEqual(expected, actual);

@@ -117,6 +117,16 @@
             return new Vector4(vector.X, vector.Y, vector.Z, 0);
         }
 
+        public static Vector4 operator -(Vector4 left, Vector4 right)
+        {
+            float x = left.X - right.X;
+            float y = left.Y - right.Y;
+            float z = left.Z - right.Z;
+            float w = left.W - right.W;
+
+            return new Vector4(x, y, z, w);
+        }
+
         /// <summary>
         ///   Implements the operator !=.
         /// </summary>
@@ -132,6 +142,36 @@
         public static bool operator !=(Vector4 left, Vector4 right)
         {
             return !left.Equals(right);
+        }
+
+        public static Vector4 operator *(Vector4 left, Vector4 right)
+        {
+            float x = left.X * right.X;
+            float y = left.Y * right.Y;
+            float z = left.Z * right.Z;
+            float w = left.W * right.W;
+
+            return new Vector4(x, y, z, w);
+        }
+
+        public static Vector4 operator /(Vector4 left, Vector4 right)
+        {
+            float x = left.X / right.X;
+            float y = left.Y / right.Y;
+            float z = left.Z / right.Z;
+            float w = left.W / right.W;
+
+            return new Vector4(x, y, z, w);
+        }
+
+        public static Vector4 operator +(Vector4 left, Vector4 right)
+        {
+            float x = left.X + right.X;
+            float y = left.Y + right.Y;
+            float z = left.Z + right.Z;
+            float w = left.W + right.W;
+
+            return new Vector4(x, y, z, w);
         }
 
         /// <summary>

@@ -35,11 +35,14 @@
         [Test]
         public void Equals_Test_Should_Return_False_When_Not_Vector4()
         {
-            // Act
+            // Arrange
             var vector = new Vector4();
 
+            // Act
+            bool result = vector.Equals(new object());
+
             // Assert
-            Assert.IsFalse(vector.Equals(new object()));
+            Assert.IsFalse(result);
         }
 
         [Test]

@@ -8,11 +8,11 @@
         public void Equals_Operator_Test_Should_Return_True_When_Vector2_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector2(1, 2);
-            var vectorRight = new Vector2(1, 2);
+            var left = new Vector2(1, 2);
+            var right = new Vector2(1, 2);
 
             // Act
-            bool result = vectorLeft == vectorRight;
+            bool result = left == right;
 
             // Assert
             Assert.IsTrue(result);
@@ -22,11 +22,11 @@
         public void Equals_Test_Should_Return_Fakse_When_Vector2_Does_Not_Contain_Same_Values()
         {
             // Arrange
-            var vectorLeft = new Vector2(1, 2);
-            var vectorRight = new Vector2(2, 1);
+            var left = new Vector2(1, 2);
+            var right = new Vector2(2, 1);
 
             // Act
-            bool result = vectorLeft.Equals(vectorRight);
+            bool result = left.Equals(right);
 
             // Assert
             Assert.IsFalse(result);
@@ -35,22 +35,25 @@
         [Test]
         public void Equals_Test_Should_Return_False_When_Not_Vector2()
         {
-            // Act
+            // Arrange
             var vector = new Vector2();
 
+            // Act
+            bool result = vector.Equals(new object());
+
             // Assert
-            Assert.IsFalse(vector.Equals(new object()));
+            Assert.IsFalse(result);
         }
 
         [Test]
         public void Equals_Test_Should_Return_True_When_Vector2_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector2(1, 2);
-            var vectorRight = new Vector2(1, 2);
+            var left = new Vector2(1, 2);
+            var right = new Vector2(1, 2);
 
             // Act
-            bool result = vectorLeft.Equals(vectorRight);
+            bool result = left.Equals(right);
 
             // Assert
             Assert.IsTrue(result);
@@ -60,11 +63,11 @@
         public void NotEquals_Operator_Should_Return_True_When_Vector2_Does_Not_Contain_Same_Values()
         {
             // Arrange
-            var vectorLeft = new Vector2(1, 2);
-            var vectorRight = new Vector2(3, 4);
+            var left = new Vector2(1, 2);
+            var right = new Vector2(3, 4);
 
             // Act
-            bool result = vectorLeft != vectorRight;
+            bool result = left != right;
 
             // Assert
             Assert.IsTrue(result);

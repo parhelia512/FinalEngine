@@ -52,10 +52,10 @@
         ///   Initializes a new instance of the <see cref="Vector2"/> struct.
         /// </summary>
         /// <param name="x">
-        ///   The X component of this <see cref="Vector2"/>.
+        ///   Specifies X component of this <see cref="Vector2"/>.
         /// </param>
         /// <param name="y">
-        ///   The y of this <see cref="Vector2"/>.
+        ///   Specifies Y component of this <see cref="Vector2"/>.
         /// </param>
         public Vector2(float x, float y)
         {
@@ -83,10 +83,10 @@
         ///   Implements the operator !=.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies right operand.
         /// </param>
         /// <returns>
         ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are not equal.
@@ -100,10 +100,10 @@
         ///   Implements the operator ==.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies right operand.
         /// </param>
         /// <returns>
         ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are equal.
@@ -117,7 +117,7 @@
         ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   Specifies the <see cref="System.Object"/> to compare with this instance.
         /// </param>
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
@@ -136,7 +136,7 @@
         ///   Determines whether the specified <paramref name="other"/> parameter, is equal to this <see cref="Vector2"/>.
         /// </summary>
         /// <param name="other">
-        ///   The <see cref="Vector2"/> to compare with this <see cref="Vector2"/>.
+        ///   Specifies the <see cref="Vector2"/> to compare with this <see cref="Vector2"/>.
         /// </param>
         /// <returns>
         ///   <c>true</c> if the specified <paramref name="other"/> parameter is equal to this <see cref="Vector2"/>; otherwise, <c>false</c>.

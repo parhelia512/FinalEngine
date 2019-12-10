@@ -5,6 +5,22 @@
     public sealed class Vector2Tests
     {
         [Test]
+        public void Addition_Operator_Test()
+        {
+            // Arrange
+            var expected = new Vector2(5, 9);
+
+            var left = new Vector2(2, 4);
+            var right = new Vector2(3, 5);
+
+            // Act
+            Vector2 actual = left + right;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Conversion_Operator_Test_Vector3_To_Vector2()
         {
             // Arrange
@@ -27,6 +43,22 @@
 
             // Act
             var actual = (Vector2)vector;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Division_Operator_Test()
+        {
+            // Arrange
+            var expected = new Vector2(1, 5);
+
+            var left = new Vector2(5, 10);
+            var right = new Vector2(5, 2);
+
+            // Act
+            Vector2 actual = left / right;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -114,6 +146,22 @@
         }
 
         [Test]
+        public void Multiplication_Operator_Test()
+        {
+            // Arrange
+            var expected = new Vector2(50, 70);
+
+            var left = new Vector2(10, 7);
+            var right = new Vector2(5, 10);
+
+            // Act
+            Vector2 actual = left * right;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void NegativeInfinity_Readonly_Field_Test()
         {
             // Arrange
@@ -174,6 +222,22 @@
 
             // Act
             Vector2 actual = Vector2.Right;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Subtraction_Operator_Test()
+        {
+            // Arrange
+            var expected = new Vector2(5, 15);
+
+            var left = new Vector2(25, 50);
+            var right = new Vector2(20, 35);
+
+            // Act
+            Vector2 actual = left - right;
 
             // Assert
             Assert.AreEqual(expected, actual);

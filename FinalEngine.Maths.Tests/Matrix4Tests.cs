@@ -71,10 +71,10 @@
         public void Equals_Test_Should_Return_False_When_Not_Matrix4()
         {
             // Arrange
-            var Matrix4 = new Matrix4();
+            var matrix = new Matrix4();
 
             // Act
-            bool result = Matrix4.Equals(new object());
+            bool result = matrix.Equals(new object());
 
             // Assert
             Assert.IsFalse(result);

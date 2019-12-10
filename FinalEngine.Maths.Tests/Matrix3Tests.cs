@@ -65,10 +65,10 @@
         public void Equals_Test_Should_Return_False_When_Not_Matrix3()
         {
             // Arrange
-            var Matrix3 = new Matrix3();
+            var matrix = new Matrix3();
 
             // Act
-            bool result = Matrix3.Equals(new object());
+            bool result = matrix.Equals(new object());
 
             // Assert
             Assert.IsFalse(result);

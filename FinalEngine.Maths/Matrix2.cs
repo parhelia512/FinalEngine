@@ -14,7 +14,7 @@
         public static readonly Matrix2 Identity = new Matrix2(new Vector2(1, 0), new Vector2(0, 1));
 
         /// <summary>
-        ///   Reperesents a <see cref="Matrix2"/> where each row is set to <see cref="Vector2.One"/>.
+        ///   Represents a <see cref="Matrix2"/> where each row is set to <see cref="Vector2.One"/>.
         /// </summary>
         public static readonly Matrix2 One = new Matrix2(Vector2.One, Vector2.One);
 

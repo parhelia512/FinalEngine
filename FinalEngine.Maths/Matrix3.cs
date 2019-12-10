@@ -21,7 +21,7 @@
         public static readonly Matrix3 One = new Matrix3(Vector3.One, Vector3.One, Vector3.One);
 
         /// <summary>
-        ///   Reperesents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.Zero"/>.
+        ///   Represents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.Zero"/>.
         /// </summary>
         public static readonly Matrix3 Zero = new Matrix3(Vector3.Zero, Vector3.Zero, Vector3.Zero);
 

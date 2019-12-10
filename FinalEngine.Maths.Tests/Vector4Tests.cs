@@ -8,8 +8,8 @@
         public void Equals_Operator_Test_Should_Return_True_When_Vector4_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector4(1, 2, 3, 4);
-            var vectorRight = new Vector4(1, 2, 3, 4);
+            Vector4 vectorLeft = Vector4.PositiveInfinity;
+            Vector4 vectorRight = Vector4.PositiveInfinity;
 
             // Act
             bool result = vectorLeft == vectorRight;
@@ -35,8 +35,8 @@
         public void Equals_Test_Should_Return_False_When_Vector4_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector4(1, 2, 3, 4);
-            var vectorRight = new Vector4(5, 6, 7, 8);
+            Vector4 vectorLeft = Vector4.PositiveInfinity;
+            Vector4 vectorRight = Vector4.Zero;
 
             // Act
             bool result = vectorLeft.Equals(vectorRight);
@@ -49,8 +49,8 @@
         public void Equals_Test_Should_Return_True_When_Vector4_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector4(1, 2, 3, 4);
-            var vectorRight = new Vector4(1, 2, 3, 4);
+            Vector4 vectorLeft = Vector4.NegativeInfinity;
+            Vector4 vectorRight = Vector4.NegativeInfinity;
 
             // Act
             bool result = vectorLeft.Equals(vectorRight);
@@ -79,8 +79,8 @@
         public void NotEquals_Operator_Should_Return_True_When_Vector4_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector4(1, 2, 3, 4);
-            var vectorRight = new Vector4(5, 6, 7, 8);
+            Vector4 vectorLeft = Vector4.PositiveInfinity;
+            Vector4 vectorRight = Vector4.One;
 
             // Act
             bool result = vectorLeft != vectorRight;

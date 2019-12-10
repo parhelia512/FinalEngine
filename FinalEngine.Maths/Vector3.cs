@@ -133,6 +133,18 @@
             return new Vector3(vector.X, vector.Y, vector.Z);
         }
 
+        /// <summary>
+        ///   Implements the operator -.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector3 operator -(Vector3 left, Vector3 right)
         {
             float x = left.X - right.X;
@@ -159,6 +171,18 @@
             return !left.Equals(right);
         }
 
+        /// <summary>
+        ///   Implements the operator *.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector3 operator *(Vector3 left, Vector3 right)
         {
             float x = left.X * right.X;
@@ -168,6 +192,18 @@
             return new Vector3(x, y, z);
         }
 
+        /// <summary>
+        ///   Implements the operator /.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector3 operator /(Vector3 left, Vector3 right)
         {
             float x = left.X / right.X;
@@ -177,6 +213,18 @@
             return new Vector3(x, y, z);
         }
 
+        /// <summary>
+        ///   Implements the operator +.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector3 operator +(Vector3 left, Vector3 right)
         {
             float x = left.X + right.X;

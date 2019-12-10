@@ -117,6 +117,18 @@
             return new Vector4(vector.X, vector.Y, vector.Z, 0);
         }
 
+        /// <summary>
+        ///   Implements the operator -.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector4 operator -(Vector4 left, Vector4 right)
         {
             float x = left.X - right.X;
@@ -144,6 +156,18 @@
             return !left.Equals(right);
         }
 
+        /// <summary>
+        ///   Implements the operator *.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector4 operator *(Vector4 left, Vector4 right)
         {
             float x = left.X * right.X;
@@ -154,6 +178,18 @@
             return new Vector4(x, y, z, w);
         }
 
+        /// <summary>
+        ///   Implements the operator /.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector4 operator /(Vector4 left, Vector4 right)
         {
             float x = left.X / right.X;
@@ -164,6 +200,18 @@
             return new Vector4(x, y, z, w);
         }
 
+        /// <summary>
+        ///   Implements the operator +.
+        /// </summary>
+        /// <param name="left">
+        ///   The left operand.
+        /// </param>
+        /// <param name="right">
+        ///   The right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static Vector4 operator +(Vector4 left, Vector4 right)
         {
             float x = left.X + right.X;

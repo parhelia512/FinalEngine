@@ -105,11 +105,29 @@
         /// </value>
         public float Z { get; set; }
 
+        /// <summary>
+        ///   Performs an implicit conversion from <see cref="Vector2"/> to <see cref="Vector3"/>.
+        /// </summary>
+        /// <param name="vector">
+        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector3"/>.
+        /// </param>
+        /// <returns>
+        ///   The result of the conversion.
+        /// </returns>
         public static implicit operator Vector3(Vector2 vector)
         {
             return new Vector3(vector.X, vector.Y, 0);
         }
 
+        /// <summary>
+        ///   Performs an implicit conversion from <see cref="Vector4"/> to <see cref="Vector3"/>.
+        /// </summary>
+        /// <param name="vector">
+        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector3"/>.
+        /// </param>
+        /// <returns>
+        ///   The result of the conversion.
+        /// </returns>
         public static implicit operator Vector3(Vector4 vector)
         {
             return new Vector3(vector.X, vector.Y, vector.Z);

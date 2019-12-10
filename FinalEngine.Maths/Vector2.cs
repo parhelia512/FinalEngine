@@ -79,11 +79,29 @@
         /// </value>
         public float Y { get; set; }
 
+        /// <summary>
+        ///   Performs an implicit conversion from <see cref="Vector3"/> to <see cref="Vector2"/>.
+        /// </summary>
+        /// <param name="vector">
+        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector2"/>.
+        /// </param>
+        /// <returns>
+        ///   The result of the conversion.
+        /// </returns>
         public static implicit operator Vector2(Vector3 vector)
         {
             return new Vector2(vector.X, vector.Y);
         }
 
+        /// <summary>
+        ///   Performs an implicit conversion from <see cref="Vector4"/> to <see cref="Vector2"/>.
+        /// </summary>
+        /// <param name="vector">
+        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector2"/>.
+        /// </param>
+        /// <returns>
+        ///   The result of the conversion.
+        /// </returns>
         public static implicit operator Vector2(Vector4 vector)
         {
             return new Vector2(vector.X, vector.Y);

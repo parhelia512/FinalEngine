@@ -34,8 +34,8 @@
         public void Equals_Operator_Test_Should_Return_True_When_Vector3_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(1, 2, 3);
-            var vectorRight = new Vector3(1, 2, 3);
+            Vector3 vectorLeft = Vector3.Forward;
+            Vector3 vectorRight = Vector3.Forward;
 
             // Act
             bool result = vectorLeft == vectorRight;
@@ -61,8 +61,8 @@
         public void Equals_Test_Should_Return_False_When_Vector3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(1, 2, 3);
-            var vectorRight = new Vector3(4, 5, 6);
+            Vector3 vectorLeft = Vector3.Forward;
+            Vector3 vectorRight = Vector3.Back;
 
             // Act
             bool result = vectorLeft.Equals(vectorRight);
@@ -75,8 +75,8 @@
         public void Equals_Test_Should_Return_True_When_Vector3_Contains_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(1, 2, 3);
-            var vectorRight = new Vector3(1, 2, 3);
+            Vector3 vectorLeft = Vector3.Right;
+            Vector3 vectorRight = Vector3.Right;
 
             // Act
             bool result = vectorLeft.Equals(vectorRight);
@@ -130,8 +130,8 @@
         public void NotEquals_Operator_Should_Return_True_When_Vector3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var vectorLeft = new Vector3(1, 2, 3);
-            var vectorRight = new Vector3(4, 5, 6);
+            Vector3 vectorLeft = Vector3.Up;
+            Vector3 vectorRight = Vector3.Down;
 
             // Act
             bool result = vectorLeft != vectorRight;

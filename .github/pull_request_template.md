@@ -1,8 +1,12 @@
 # Description
 
-Please include a summary of your changes along with relevant motivation and context. List any dependencies that are required for this change.
+Please include a summary of your changes along with relevant motivation and context.
 
 Fixes # (issue)
+
+## Dependencies
+
+Please list any dependencies that are required for this change.
 
 ## Type of change
 
@@ -10,7 +14,6 @@ Please delete any irrelevant changes.
 
 - [ ] Bug fix (non-breaking change which fixes an issue).
 - [ ] New feature (non-breaking change which adds functionality).
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected).
 - [ ] Other (please specify).
 
 ## How Has This Been Tested?
@@ -21,6 +24,18 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 * Operating System:
 * Hardware:
 * Toolchain:
+
+## Proposed Design
+
+If this PR introduces new functionality that can be considered as somewhat complex _or_ it introduces new interfaces without implementations please give a detailed overview of how it works, when to use it and any other additional information.
+
+### Pseudo Code
+
+If this PR _does_ introduce complexities or new interfaces it is advised to provide some example code to showcase it's use here.
+
+## Possible Issues
+
+Please list any possible issues that may arise from the merge of this PR.
 
 ## Checklist:
 

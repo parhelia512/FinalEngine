@@ -1,7 +1,7 @@
 ﻿namespace FinalEngine.Logging
 {
     /// <summary>
-    ///   Defines an interface that represents a log handlers.
+    ///   Defines an interface that represents a log handler.
     /// </summary>
     public interface ILogHandler
     {

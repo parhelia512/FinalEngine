@@ -44,13 +44,13 @@
         public ICollection<ILogHandler> Handlers { get; }
 
         /// <summary>
-        ///   Logs the specified <paramref name="message"/> of the specified <paramref name="type"/>.
+        ///   Logs the specified <paramref name="message"/> of the specified <paramref name="type"/> to all <see cref="Handlers"/>.
         /// </summary>
         /// <param name="type">
-        ///   Specifies the log type.
+        ///   Specifies the type of message to be logged.
         /// </param>
         /// <param name="message">
-        ///   Specifies the message.
+        ///   Specifies the message to be logged.
         /// </param>
         public void Log(LogType type, string message)
         {

@@ -34,10 +34,10 @@
         ///   Logs the specified <paramref name="message"/> of the specified <paramref name="type"/>.
         /// </summary>
         /// <param name="type">
-        ///   Specifies the log type.
+        ///   Specifies the type of message to be logged.
         /// </param>
         /// <param name="message">
-        ///   Specifies the message.
+        ///   Specifies the message to be logged.
         /// </param>
         public abstract void Log(LogType type, string message);
     }

@@ -25,4 +25,4 @@ Please list any requirements that are necessary to implement this feature (this 
 
 ## Possible Issues
 
-Please list any possible issues that may arise when attemping to implement this feature.
+Please list any possible issues that may arise when attempting to implement this feature.

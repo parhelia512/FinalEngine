@@ -23,5 +23,16 @@
             // Act and assert
             Assert.Throws<ArgumentNullException>(() => new MockLogHandler(null));
         }
+
+        [Test]
+        public void Formatter_Property_Test_Should_Not_Be_Null()
+        {
+            // Arrange
+            var mockLogFormatter = new Mock<ILogFormatter>();
+            var mockLogHandler = new MockLogHandler(mockLogFormatter.Object);
+
+            // Act and assert
+            Assert.IsNotNull(mockLogHandler.InternalFormatter);
+        }
     }
 }

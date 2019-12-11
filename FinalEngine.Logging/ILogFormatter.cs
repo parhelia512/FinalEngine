@@ -2,6 +2,6 @@
 {
     public interface ILogFormatter
     {
-        string GetFormattedLog(LogType type, int indentSize, string message);
+        string GetFormattedLog(LogType type, string message);
     }
 }

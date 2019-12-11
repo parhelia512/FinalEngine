@@ -13,7 +13,7 @@
         ///   Logs the specified <paramref name="message"/> of the specified <paramref name="type"/>.
         /// </summary>
         /// <param name="type">
-        ///   Specifies the type of message to be logegd.
+        ///   Specifies the type of message to be logged.
         /// </param>
         /// <param name="message">
         ///   Specifies the message to be logged.

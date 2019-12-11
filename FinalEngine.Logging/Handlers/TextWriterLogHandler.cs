@@ -24,7 +24,7 @@
         ///   Specifies the text writer to log too.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        ///   writer - The specified { nameof(writer) } parameter is null.
+        ///   The specified <paramref name="writer"/> parameter is null.
         /// </exception>
         public TextWriterLogHandler(ILogFormatter formatter, TextWriter writer)
             : base(formatter)

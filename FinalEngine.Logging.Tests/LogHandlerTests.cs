@@ -8,7 +8,7 @@
     public sealed class LogHandlerTests
     {
         [Test]
-        public void Constructor_Test_Should_Not_Throw_ArgumentNullException_When_LogFormatter_Is_Not_Null()
+        public void Constructor_Test_Should_Not_Throw_Exception_When_LogFormatter_Is_Not_Null()
         {
             // Arrange
             var mockLogFormatter = new Mock<ILogFormatter>();

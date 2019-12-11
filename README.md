@@ -1,6 +1,6 @@
 # Final Engine
 
-Final Engine is a *WIP* cross-platform Final Engine developed in C#.
+Final Engine is a *WIP* cross-platform Game Engine developed in C#.
 
 ## Build Instructions
 

@@ -17,8 +17,4 @@
     <ProjectReference Include="..\FinalEngine.Logging\FinalEngine.Logging.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mocks\" />
-  </ItemGroup>
-
 </Project>

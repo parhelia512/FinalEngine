@@ -1,15 +1,27 @@
 ﻿namespace FinalEngine.Logging.Tests
 {
     using System;
+    using FinalEngine.Logging.Tests.Mocks;
     using Moq;
     using NUnit.Framework;
 
     public sealed class LogHandlerTests
     {
         [Test]
-        public void Constructor_Test_Should_Throw_ArgumentNulLException_When_LogFormatter_Is_Null()
+        public void Constructor_Test_Should_Not_Throw_ArgumentNullException_When_LogFormatter_Is_Not_Null()
         {
-            Assert.Throws<ArgumentNullException>(() => new Mock<LogHandler>(null));
+            // Arrange
+            var mockLogFormatter = new Mock<ILogFormatter>();
+
+            // Act and assert
+            Assert.DoesNotThrow(() => new MockLogHandler(mockLogFormatter.Object));
+        }
+
+        [Test]
+        public void Constructor_Test_Should_Throw_ArgumentNullException_When_LogFormatter_Is_Null()
+        {
+            // Act and assert
+            Assert.Throws<ArgumentNullException>(() => new MockLogHandler(null));
         }
     }
 }

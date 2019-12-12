@@ -49,11 +49,11 @@
             var logHandler = new TextWriterLogHandler(mockLogFormatter.Object, mockTextWriter.Object);
 
             // Act
-            logHandler.Log(It.IsAny<LogType>(), It.IsAny<string>());
+            logHandler.Log(It.IsAny<LogType>(), "Some String");
 
             // Assert
             mockTextWriter.Verify(t => t.WriteLine(It.IsAny<string>()), Times.Once);
-            mockLogFormatter.Verify(f => f.GetFormattedLog(It.IsAny<LogType>(), It.IsAny<string>()), Times.Once);
+            mockLogFormatter.Verify(f => f.GetFormattedLog(It.IsAny<LogType>(), "Some String"), Times.Once);
         }
         
         [Test]

@@ -1,5 +1,6 @@
 ﻿namespace FinalEngine.Platform.Desktop
 {
+    using System;
     using System.ComponentModel;
     using System.Drawing;
 
@@ -28,6 +29,12 @@
             Width = width;
             Height = height;
             Title = title;
+
+            // TODO: this probably shouldn't be in the constructor?
+            OpenTK.Rectangle workingArea = OpenTK.DisplayDevice.Default.Bounds;
+
+            X = Math.Max(workingArea.X, workingArea.X + ((workingArea.Width - Width) / 2));
+            Y = Math.Max(workingArea.Y, workingArea.Y + ((workingArea.Height - Height) / 2));
         }
 
         /// <summary>

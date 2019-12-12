@@ -12,4 +12,11 @@
     <ProjectReference Include="..\FinalEngine.Platform\FinalEngine.Platform.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="OpenTKExtensions.cs">
+      <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+  </ItemGroup>
+
 </Project>

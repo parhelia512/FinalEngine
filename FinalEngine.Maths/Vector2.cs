@@ -9,7 +9,7 @@
     public struct Vector2 : IEquatable<Vector2>
     {
         /// <summary>
-        ///   Represents a <see cref="Vector2"/> that point down (0, -1).
+        ///   Represents a <see cref="Vector2"/> that points down (0, -1).
         /// </summary>
         public static Vector2 Down = new Vector2(0, -1);
 

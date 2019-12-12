@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel;
-    using System.Drawing;
+    using FinalEngine.Drawing;
 
     /// <summary>
     ///   Provides an <see cref="OpenTK.NativeWindow"/> implementation of an <see cref="IDisplay"/> and <see cref="IEventsProcessor"/>.
@@ -45,7 +45,7 @@
         /// </value>
         Rectangle IDisplay.ClientRectangle
         {
-            get { return new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width, ClientRectangle.Height); }
+            get { return ClientRectangle.ToRectangle(); }
         }
 
         /// <summary>
@@ -56,49 +56,33 @@
         /// </value>
         Size IDisplay.ClientSize
         {
-            get { return new Size(ClientSize.Width, ClientSize.Height); }
+            get { return ClientSize.ToSize(); }
         }
 
         /// <summary>
-        ///   Gets a <see cref="bool"/> indicating whether this <see cref="OpenTKDisplay"/> is closing.
+        ///   Gets a <see cref="T:System.Boolean"/> indicating whether this <see cref="OpenTKDisplay"/> is closing.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this <see cref="OpenTKDisplay"/> is closing; otherwise, <c>false</c>.
+        ///   <c>true</c> if this <see cref="OpenTK"/> is closing; otherwise, <c>false</c>.
         /// </value>
         public bool IsClosing { get; private set; }
 
         /// <summary>
-        ///   Gets or sets a <see cref="Point"/> structure that contains the location of this <see cref="OpenTKDisplay"/> on the desktop.
+        ///   Gets or sets a <see cref="Point"/> structure that contains the location of this window on the desktop.
         /// </summary>
         Point IDisplay.Location
         {
-            get
-            {
-                return new Point(X, Y);
-            }
-
-            set
-            {
-                X = value.X;
-                Y = value.Y;
-            }
+            get { return Location.ToPoint(); }
+            set { Location = value.ToTKPoint(); }
         }
 
         /// <summary>
-        ///   Gets or sets a <see cref="Size"/> structure that contains the external size of this <see cref="OpenTKDisplay"/>.
+        ///   Gets or sets a <see cref="Size"/> structure that contains the external size of this window.
         /// </summary>
         Size IDisplay.Size
         {
-            get
-            {
-                return new Size(Width, Height);
-            }
-
-            set
-            {
-                Width = value.Width;
-                Height = value.Height;
-            }
+            get { return Size.ToSize(); }
+            set { Size = value.ToTKSize(); }
         }
 
         /// <summary>

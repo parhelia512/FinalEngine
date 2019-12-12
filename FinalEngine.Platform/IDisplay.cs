@@ -1,7 +1,7 @@
 ﻿namespace FinalEngine.Platform
 {
     using System;
-    using System.Drawing;
+    using FinalEngine.Drawing;
 
     /// <summary>
     ///   Defines an interface that represents a display or window.

@@ -47,6 +47,7 @@
             {
                 throw new ArgumentNullException(nameof(message), $"The specified { nameof(message) } parameter is null.");
             }
+
             writer.WriteLine(Formatter.GetFormattedLog(type, message));
         }
     }

@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Represents a pair of single coordinates that defines a two dimensional point.
+    ///   Represents a pair of single precision floating-point coordinates that defines a two dimensional point.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.PointF}"/>
     public struct PointF : IEquatable<PointF>

@@ -11,15 +11,15 @@
         {
             // Arrange
             Array values = Enum.GetValues(typeof(MouseButton));
-            var Expected = (MouseButton)values.GetValue(new Random().Next(values.Length));
+            var expected = (MouseButton)values.GetValue(new Random().Next(values.Length));
 
-            var mouseButtonEventArgs = new MouseButtonEventArgs(Expected);
+            var mouseButtonEventArgs = new MouseButtonEventArgs(expected);
 
             // Act
             MouseButton actual = mouseButtonEventArgs.Button;
 
             // Assert
-            Assert.AreEqual(Expected, actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

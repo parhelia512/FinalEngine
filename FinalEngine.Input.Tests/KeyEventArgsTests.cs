@@ -12,10 +12,10 @@
         {
             // Arrange
             Array values = Enum.GetValues(typeof(LockableKeyState));
-            var Expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
+            var expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
 
             var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
-                                                Expected,
+                                                expected,
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<KeyModifier>());
@@ -24,7 +24,7 @@
             LockableKeyState actual = keyEventArgs.CapsLockState;
 
             // Assert
-            Assert.AreEqual(Expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -32,9 +32,9 @@
         {
             // Arrange
             Array values = Enum.GetValues(typeof(Key));
-            var Expected = (Key)values.GetValue(new Random().Next(values.Length));
+            var expected = (Key)values.GetValue(new Random().Next(values.Length));
 
-            var keyEventArgs = new KeyEventArgs(Expected,
+            var keyEventArgs = new KeyEventArgs(expected,
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
@@ -44,7 +44,7 @@
             Key actual = keyEventArgs.Key;
 
             // Assert
-            Assert.AreEqual(Expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -71,11 +71,11 @@
         {
             // Arrange
             Array values = Enum.GetValues(typeof(LockableKeyState));
-            var Expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
+            var expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
 
             var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
                                                 It.IsAny<LockableKeyState>(),
-                                                Expected,
+                                                expected,
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<KeyModifier>());
 
@@ -83,7 +83,7 @@
             LockableKeyState actual = keyEventArgs.NumLockState;
 
             // Assert
-            Assert.AreEqual(Expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -91,19 +91,19 @@
         {
             // Arrange
             Array values = Enum.GetValues(typeof(LockableKeyState));
-            var Expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
+            var expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
 
             var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
-                                                Expected,
+                                                expected,
                                                 It.IsAny<KeyModifier>());
 
             // Act
             LockableKeyState actual = keyEventArgs.ScrollLockState;
 
             // Assert
-            Assert.AreEqual(Expected, actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

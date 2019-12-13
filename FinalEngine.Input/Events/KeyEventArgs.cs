@@ -19,7 +19,7 @@
         ///   Specifies the state of the caps-lock key.
         /// </param>
         /// <param name="numLockState">
-        ///   Specifies the state of the num-lock key.
+        ///   Specifies the state of the number lock key.
         /// </param>
         /// <param name="scrollLockState">
         ///   Specifies the state of the scroll-lock key.
@@ -61,10 +61,10 @@
         public KeyModifier KeyModifiers { get; }
 
         /// <summary>
-        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the num-lock key for this <see cref="KeyEventArgs"/>.
+        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the number lock key for this <see cref="KeyEventArgs"/>.
         /// </summary>
         /// <value>
-        ///   The state of the num-lock key for this <see cref="KeyEventArgs"/>.
+        ///   The state of the number lock key for this <see cref="KeyEventArgs"/>.
         /// </value>
         public LockableKeyState NumLockState { get; }
 

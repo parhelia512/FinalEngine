@@ -9,7 +9,7 @@
     public enum KeyModifier
     {
         /// <summary>
-        ///   Specifies the shfit key.
+        ///   Specifies the shift key.
         /// </summary>
         Shift,
 

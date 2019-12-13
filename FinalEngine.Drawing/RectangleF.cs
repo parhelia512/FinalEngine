@@ -11,6 +11,26 @@
         /// <summary>
         ///   Initializes a new instance of the <see cref="RectangleF"/> struct.
         /// </summary>
+        /// <param name="x">
+        ///   Specifies a <see cref="float"/> that represents the X coordinate of this <see cref="RectangleF"/>.
+        /// </param>
+        /// <param name="y">
+        ///   Specifies a <see cref="float"/> that represents the Y coordinate of this <see cref="RectangleF"/>.
+        /// </param>
+        /// <param name="width">
+        ///   Specifies a <see cref="float"/> that represents the width of this <see cref="RectangleF"/>.
+        /// </param>
+        /// <param name="height">
+        ///   Specifies a <see cref="float"/> that represents the height of this <see cref="RectangleF"/>.
+        /// </param>
+        public RectangleF(float x, float y, float width, float height)
+            : this(new PointF(x, y), new SizeF(width, height))
+        {
+        }
+
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="RectangleF"/> struct.
+        /// </summary>
         /// <param name="location">
         ///   Specifies a <see cref="PointF"/> that represents the location of this <see cref="RectangleF"/>.
         /// </param>

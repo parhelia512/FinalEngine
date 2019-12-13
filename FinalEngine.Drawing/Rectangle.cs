@@ -11,6 +11,26 @@
         /// <summary>
         ///   Initializes a new instance of the <see cref="Rectangle"/> struct.
         /// </summary>
+        /// <param name="x">
+        ///   Specifies a <see cref="int"/> that represents the X coordinate of this <see cref="Rectangle"/>.
+        /// </param>
+        /// <param name="y">
+        ///   Specifies a <see cref="int"/> that represents the Y coordinate of this <see cref="Rectangle"/>.
+        /// </param>
+        /// <param name="width">
+        ///   Specifies a <see cref="int"/> that represents the width of this <see cref="Rectangle"/>.
+        /// </param>
+        /// <param name="height">
+        ///   Specifies a <see cref="int"/> that represents the height of this <see cref="Rectangle"/>.
+        /// </param>
+        public Rectangle(int x, int y, int width, int height)
+            : this(new Point(x, y), new Size(width, height))
+        {
+        }
+
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="Rectangle"/> struct.
+        /// </summary>
         /// <param name="location">
         ///   Specifies a <see cref="Point"/> that represents the location of this <see cref="Rectangle"/>.
         /// </param>

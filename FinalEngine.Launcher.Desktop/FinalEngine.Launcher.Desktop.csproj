@@ -55,10 +55,6 @@
       <Project>{ddb8ef7c-b53e-4ea7-9c75-c78bfd5fca22}</Project>
       <Name>FinalEngine.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FinalEngine.Platform.Windows\FinalEngine.Platform.Windows.csproj">
-      <Project>{b3306e8e-fd79-43fa-99fb-1a09555c533c}</Project>
-      <Name>FinalEngine.Platform.Windows</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

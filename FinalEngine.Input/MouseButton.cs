@@ -1,13 +1,28 @@
 ﻿namespace FinalEngine.Input
 {
     /// <summary>
-    ///   Enumerates the common available buttons on a standard mouse.
+    ///   Enumerates the available mouse buttons on standard mouse.
     /// </summary>
     public enum MouseButton
     {
         /// <summary>
-        ///   The specified button is unknown.
+        ///   The mouse button is unknown.
         /// </summary>
-        Unknown
+        Unknown,
+
+        /// <summary>
+        ///   The left mouse button.
+        /// </summary>
+        Left,
+
+        /// <summary>
+        ///   The right mouse button.
+        /// </summary>
+        Right,
+
+        /// <summary>
+        ///   The middle mouse button (scroll wheel).
+        /// </summary>
+        Middle
     }
 }

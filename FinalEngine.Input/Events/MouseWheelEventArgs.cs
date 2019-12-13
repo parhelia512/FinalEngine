@@ -13,7 +13,7 @@
         ///   Initializes a new instance of the <see cref="MouseWheelEventArgs"/> class.
         /// </summary>
         /// <param name="delta">
-        ///   Specifies the number of detents the mouse wheel has rotated.
+        ///   Specifies a <see cref="float"/> that represents the number of detents the scroll wheel has rotated at the time of raising the event.
         /// </param>
         public MouseWheelEventArgs(float delta)
         {
@@ -21,10 +21,10 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="float"/> that represents the number of detents the mouse wheel has rotated.
+        ///   Gets a <see cref="float"/> that represents the number of detents the scroll wheel has rotated at the time of raising the event.
         /// </summary>
         /// <value>
-        ///   The number of detents the mouse wheel has rotated.
+        ///   The number of detents the scroll wheel has rotated at the time of raising the event.
         /// </value>
         public float Delta { get; }
     }

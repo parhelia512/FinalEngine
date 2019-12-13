@@ -1,7 +1,7 @@
 ﻿namespace FinalEngine.Input
 {
     /// <summary>
-    ///   Enumerates the available keys on a standard keyboard.
+    ///   Enumerates the available keyboard key on a standard US-keyboard.
     /// </summary>
     public enum Key
     {

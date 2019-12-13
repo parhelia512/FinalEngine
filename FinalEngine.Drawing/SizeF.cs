@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Represents a pair of single precision floating-point values that defines a two dimensional space.
+    ///   Represents a pair of single-precision floating points that defines a two dimensional space.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.SizeF}"/>
     public struct SizeF : IEquatable<SizeF>
@@ -17,10 +17,10 @@
         ///   Initializes a new instance of the <see cref="SizeF"/> struct.
         /// </summary>
         /// <param name="width">
-        ///   Specifies the width of this <see cref="SizeF"/>.
+        ///   Specifies a <see cref="float"/> that represents the width of this <see cref="SizeF"/>.
         /// </param>
         /// <param name="height">
-        ///   Specifies the height of this <see cref="SizeF"/>.
+        ///   Specifies a <see cref="float"/> that represents the height of this <see cref="SizeF"/>.
         /// </param>
         public SizeF(float width, float height)
         {
@@ -37,7 +37,7 @@
         public float Height { get; set; }
 
         /// <summary>
-        ///   Gets a <see cref="bool"/> indicating whether this <see cref="SizeF"/> is empty.
+        ///   Gets a value indicating whether this <see cref="SizeF"/> is empty.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this <see cref="SizeF"/> is empty; otherwise, <c>false</c>.
@@ -81,7 +81,7 @@
         ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(SizeF other)
         {

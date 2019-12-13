@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Represents a rectangular region (represented with single precision floating-points) on a two dimensional plane.
+    ///   Represents a rectangular region (defined by four single-precision floating points) on a two dimensional plane.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.RectangleF}"/>
     public struct RectangleF : IEquatable<RectangleF>
@@ -12,10 +12,10 @@
         ///   Initializes a new instance of the <see cref="RectangleF"/> struct.
         /// </summary>
         /// <param name="location">
-        ///   Specifies the location of this <see cref="RectangleF"/>.
+        ///   Specifies a <see cref="PointF"/> that represents the location of this <see cref="RectangleF"/>.
         /// </param>
         /// <param name="size">
-        ///   Specifies the size of this <see cref="RectangleF"/>.
+        ///   Specifies a <see cref="SizeF"/> that represents the size of this <see cref="RectangleF"/>.
         /// </param>
         public RectangleF(PointF location, SizeF size)
         {
@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="bool"/> indicating whether this <see cref="RectangleF"/> is empty.
+        ///   Gets a value indicating whether this <see cref="RectangleF"/> is empty.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this <see cref="RectangleF"/> is empty; otherwise, <c>false</c>.
@@ -54,7 +54,7 @@
         public PointF Location { get; set; }
 
         /// <summary>
-        ///   Gets or sets a <see cref="Size"/> that represents the size of this <see cref="RectangleF"/>.
+        ///   Gets or sets a <see cref="SizeF"/> that represents the size of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
         ///   The size of this <see cref="RectangleF"/>.
@@ -73,10 +73,10 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="float"/> that represents the X-coordinate of this <see cref="RectangleF"/>.
+        ///   Gets a <see cref="float"/> that represents the X coordinate of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The X-coordinate of this <see cref="RectangleF"/>.
+        ///   The X coordinate of this <see cref="RectangleF"/>.
         /// </value>
         public float X
         {
@@ -84,10 +84,10 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="float"/> that represents the Y-coordinate of this <see cref="RectangleF"/>.
+        ///   Gets a <see cref="float"/> that represents the Y coordinate of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The Y-coordinate of this <see cref="RectangleF"/>.
+        ///   The Y coordinate of this <see cref="RectangleF"/>.
         /// </value>
         public float Y
         {
@@ -101,7 +101,7 @@
         ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(RectangleF other)
         {

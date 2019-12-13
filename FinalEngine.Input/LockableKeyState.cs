@@ -1,17 +1,17 @@
 ﻿namespace FinalEngine.Input
 {
     /// <summary>
-    ///   Enumerates the available states a lockable key can be in.
+    ///   Enumerates the available states of a lockable key.
     /// </summary>
     public enum LockableKeyState
     {
         /// <summary>
-        ///   Specifies the state of the key is locked.
+        ///   Specifies the key is in a locked state.
         /// </summary>
         Locked,
 
         /// <summary>
-        ///   Specifies the state of the key is unlocked.
+        ///   Specifies the key is in an unlocked state.
         /// </summary>
         Unlocked
     }

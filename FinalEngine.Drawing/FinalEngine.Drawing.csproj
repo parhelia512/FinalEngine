@@ -12,4 +12,11 @@
     <PackageReference Include="OpenTK.NetStandard" Version="1.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="PointF.cs">
+      <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+  </ItemGroup>
+
 </Project>

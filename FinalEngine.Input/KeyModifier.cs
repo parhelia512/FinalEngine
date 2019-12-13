@@ -3,23 +3,23 @@
     using System;
 
     /// <summary>
-    ///   Enumerates the available modifier keys on a standard keyboard.
+    ///   Enumerates the available modifier keys on a standard US-keyboard.
     /// </summary>
     [Flags]
     public enum KeyModifier
     {
         /// <summary>
-        ///   Specifies the shift key.
+        ///   Specifies the shift key (left or right).
         /// </summary>
         Shift,
 
         /// <summary>
-        ///   Specifies the control key.
+        ///   Specifies the control key (left or right).
         /// </summary>
         Control,
 
         /// <summary>
-        ///   Specifies the ALT key.
+        ///   Specifies the ALT key (left or right).
         /// </summary>
         Alt,
 
@@ -27,7 +27,7 @@
         ///   Specifies the OS-specific key.
         /// </summary>
         /// <remarks>
-        ///   On Windows, the modifier should be a Windows key, whereas on Macintosh it would be the Command key.
+        ///   On Windows this key is the Windows key, on Macintosh it is the Command key.
         /// </remarks>
         OS
     }

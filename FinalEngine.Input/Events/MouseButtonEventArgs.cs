@@ -13,7 +13,7 @@
         ///   Initializes a new instance of the <see cref="MouseButtonEventArgs"/> class.
         /// </summary>
         /// <param name="button">
-        ///   Specifies the button that raised this event.
+        ///   Specifies a <see cref="MouseButton"/> that represents the button that raised the event.
         /// </param>
         public MouseButtonEventArgs(MouseButton button)
         {
@@ -21,10 +21,10 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="MouseButton"/> that represents the button that raised this event.
+        ///   Gets a <see cref="MouseButton"/> that represents the button that raised the event.
         /// </summary>
         /// <value>
-        ///   The button that raised this event.
+        ///   The button that raised the event.
         /// </value>
         public MouseButton Button { get; }
     }

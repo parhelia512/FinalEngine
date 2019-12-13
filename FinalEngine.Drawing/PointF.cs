@@ -3,13 +3,13 @@
     using System;
 
     /// <summary>
-    ///   Represents a pair of single precision floating-point coordinates that defines a two dimensional point.
+    ///   Represents a pair of single-precision floating point coordinates that defines a point on a two-dimensional plane.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.PointF}"/>
     public struct PointF : IEquatable<PointF>
     {
         /// <summary>
-        ///   Represents a <see cref="PointF"/> where both coordinates have been set to zero.
+        ///   Represents a <see cref="PointF"/> where all coordinates have been set to zero.
         /// </summary>
         public static readonly PointF Empty = new PointF(0, 0);
 
@@ -17,10 +17,10 @@
         ///   Initializes a new instance of the <see cref="PointF"/> struct.
         /// </summary>
         /// <param name="x">
-        ///   Specifies the X-coordinate of this <see cref="PointF"/>.
+        ///   Specifies a <see cref="float"/> that represents the X coordinate of this <see cref="PointF"/>.
         /// </param>
         /// <param name="y">
-        ///   Specifies the Y-coordinate of this <see cref="PointF"/>.
+        ///   Specifies a <see cref="float"/> that represents the Y coordinate of this <see cref="PointF"/>.
         /// </param>
         public PointF(float x, float y)
         {
@@ -29,7 +29,7 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="bool"/> indicating whether this <see cref="PointF"/> is empty.
+        ///   Gets a value indicating whether this <see cref="PointF"/> is empty.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this <see cref="PointF"/> is empty; otherwise, <c>false</c>.
@@ -40,18 +40,18 @@
         }
 
         /// <summary>
-        ///   Gets or sets a <see cref="float"/> that represents the X-coordinate of this <see cref="PointF"/>.
+        ///   Gets or sets a <see cref="float"/> that represents the X coordinate of this <see cref="PointF"/>.
         /// </summary>
         /// <value>
-        ///   The X-coordinate of this <see cref="PointF"/>.
+        ///   The X coordinate of this <see cref="PointF"/>.
         /// </value>
         public float X { get; set; }
 
         /// <summary>
-        ///   Gets or sets a <see cref="float"/> that represents the Y-coordinate of this <see cref="PointF"/>.
+        ///   Gets or sets a <see cref="float"/> that represents the Y coordinate of this <see cref="PointF"/>.
         /// </summary>
         /// <value>
-        ///   The Y-coordinate of this <see cref="PointF"/>.
+        ///   The Y coordinate of this <see cref="PointF"/>.
         /// </value>
         public float Y { get; set; }
 
@@ -81,7 +81,7 @@
         ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(PointF other)
         {

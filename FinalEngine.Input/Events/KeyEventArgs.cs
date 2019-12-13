@@ -13,19 +13,19 @@
         ///   Initializes a new instance of the <see cref="KeyEventArgs"/> class.
         /// </summary>
         /// <param name="key">
-        ///   Specifies the key that raised this event.
+        ///   Specifies a <see cref="Key"/> that represents the key that raised the event.
         /// </param>
         /// <param name="capsLockState">
-        ///   Specifies the state of the caps-lock key.
+        ///   Specifies the state of the caps lock key at the time of raising the event.
         /// </param>
         /// <param name="numLockState">
-        ///   Specifies the state of the number lock key.
+        ///   Specifies the state of the number lock key at the time of raising the event.
         /// </param>
         /// <param name="scrollLockState">
-        ///   Specifies the state of the scroll-lock key.
+        ///   Specifies the state of the scroll lock key at the time of raising the event.
         /// </param>
         /// <param name="keyModifiers">
-        ///   Specifies any key modifiers that were when raising this event.
+        ///   Specifies a <see cref="KeyModifier"/> that represents the key modifiers that are present at the time of raising the event.
         /// </param>
         public KeyEventArgs(Key key, LockableKeyState capsLockState, LockableKeyState numLockState, LockableKeyState scrollLockState, KeyModifier keyModifiers)
         {
@@ -37,42 +37,42 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the caps-lock key for this <see cref="KeyEventArgs"/>.
+        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the caps lock key.
         /// </summary>
         /// <value>
-        ///   The state of the caps-lock key for this <see cref="KeyEventArgs"/>.
+        ///   The state of the caps-lock key.
         /// </value>
         public LockableKeyState CapsLockState { get; }
 
         /// <summary>
-        ///   Gets a <see cref="Key"/> that represents the key that raised this event.
+        ///   Gets a <see cref="Key"/> that represents the key that raised the event.
         /// </summary>
         /// <value>
-        ///   The key that raised this event.
+        ///   The key that raised the event.
         /// </value>
         public Key Key { get; }
 
         /// <summary>
-        ///   Gets a <see cref="KeyModifier"/> that represents the modifiers that were present during the creation of this <see cref="KeyEventArgs"/>.
+        ///   Gets a <see cref="KeyModifier"/> that represents the key modifiers that were present at the time of raising the event.
         /// </summary>
         /// <value>
-        ///   The modifiers that were present during the creation of this <see cref="KeyEventArgs"/>.
+        ///   The key modifiers that were present at the time of raising the event.
         /// </value>
         public KeyModifier KeyModifiers { get; }
 
         /// <summary>
-        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the number lock key for this <see cref="KeyEventArgs"/>.
+        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the number lock key.
         /// </summary>
         /// <value>
-        ///   The state of the number lock key for this <see cref="KeyEventArgs"/>.
+        ///   The state of the number lock key.
         /// </value>
         public LockableKeyState NumLockState { get; }
 
         /// <summary>
-        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the scroll-lock key for this <see cref="KeyEventArgs"/>.
+        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the scroll lock key.
         /// </summary>
         /// <value>
-        ///   The state of the scroll-lock key for this <see cref="KeyEventArgs"/>.
+        ///   The state of the scroll lock key.
         /// </value>
         public LockableKeyState ScrollLockState { get; }
     }

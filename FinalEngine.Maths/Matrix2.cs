@@ -27,10 +27,10 @@
         ///   Initializes a new instance of the <see cref="Matrix2"/> struct.
         /// </summary>
         /// <param name="row0">
-        ///   The first row of this <see cref="Matrix2"/>.
+        ///   Specifies a <see cref="Vector2"/> that represents the first row of this <see cref="Matrix2"/>.
         /// </param>
         /// <param name="row1">
-        ///   The second row of this <see cref="Matrix2"/>.
+        ///   Specifies a <see cref="Vector2"/> that represents the second row of this <see cref="Matrix2"/>.
         /// </param>
         public Matrix2(Vector2 row0, Vector2 row1)
         {
@@ -58,13 +58,13 @@
         ///   Implements the operator !=.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Matrix2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Matrix2"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are not equal.
+        ///   The result of the operator.
         /// </returns>
         public static bool operator !=(Matrix2 left, Matrix2 right)
         {
@@ -75,13 +75,13 @@
         ///   Implements the operator ==.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Matrix2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Matrix2"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are equal.
+        ///   The result of the operator.
         /// </returns>
         public static bool operator ==(Matrix2 left, Matrix2 right)
         {
@@ -92,7 +92,7 @@
         ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   Specifies the <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="System.Object"/> to compare with this instance.
         /// </param>
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
@@ -108,13 +108,13 @@
         }
 
         /// <summary>
-        ///   Determines whether the specified <paramref name="other"/> parameter, is equal to this <see cref="Matrix2"/>.
+        ///   Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">
-        ///   Specifies the <see cref="Matrix2"/> to compare with this <see cref="Matrix2"/>.
+        ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="other"/> parameter is equal to this <see cref="Matrix2"/>; otherwise, <c>false</c>.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(Matrix2 other)
         {

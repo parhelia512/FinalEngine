@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Provides an abstract representation of an <see cref="ILogHandler"/>.
+    ///   Provides an abstraction representation of an <see cref="ILogHandler"/> that provides the ability to assure correct formatting of messages.
     /// </summary>
     /// <seealso cref="FinalEngine.Logging.ILogHandler"/>
     public abstract class LogHandler : ILogHandler
@@ -12,7 +12,7 @@
         ///   Initializes a new instance of the <see cref="LogHandler"/> class.
         /// </summary>
         /// <param name="formatter">
-        ///   Specifies the formatter used to format a message before it is logged.
+        ///   Specifies a <see cref="ILogFormatter"/> that represents the formatter that will format a message before it is logged.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///   The specified <paramref name="formatter"/> parameter is null.
@@ -26,7 +26,7 @@
         ///   Gets a <see cref="ILogFormatter"/> that represents the formatter of this <see cref="LogHandler"/>.
         /// </summary>
         /// <value>
-        ///   The Formatter of this <see cref="LogHandler"/>.
+        ///   The formatter of this <see cref="LogHandler"/>.
         /// </value>
         protected ILogFormatter Formatter { get; }
 
@@ -34,11 +34,14 @@
         ///   Logs the specified <paramref name="message"/> of the specified <paramref name="type"/>.
         /// </summary>
         /// <param name="type">
-        ///   Specifies the type of message to be logged.
+        ///   Specifies a <see cref="LogType"/> that represents the type of message to be logged.
         /// </param>
         /// <param name="message">
-        ///   Specifies the message to be logged.
+        ///   Specifies a <see cref="string"/> that represents the message to be logged.
         /// </param>
+        /// <remarks>
+        ///   When implementing this method in a derived class, you should always remember to call the <see cref="ILogFormatter.GetFormattedLog(LogType, string)"/> method of the <see cref="Formatter"/> property to allow the message to be formatted before it is logged.
+        /// </remarks>
         public abstract void Log(LogType type, string message);
     }
 }

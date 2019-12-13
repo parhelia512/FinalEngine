@@ -3,13 +3,13 @@
     using System;
 
     /// <summary>
-    ///   Represents a pair of integer coordinates that defines a two dimensional point.
+    ///   Represents a pair of integer coordinates that defines a point on a two-dimensional plane.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.Point}"/>
     public struct Point : IEquatable<Point>
     {
         /// <summary>
-        ///   Represents a <see cref="Point"/> where both coordinates have been set to zero.
+        ///   Represents a <see cref="Point"/> where all coordinates have been set to zero.
         /// </summary>
         public static readonly Point Empty = new Point(0, 0);
 
@@ -17,10 +17,10 @@
         ///   Initializes a new instance of the <see cref="Point"/> struct.
         /// </summary>
         /// <param name="x">
-        ///   Specifies the X-coordinate of this <see cref="Point"/>.
+        ///   Specifies a <see cref="int"/> that represents the X coordinate of this <see cref="Point"/>.
         /// </param>
         /// <param name="y">
-        ///   Specifies the Y-coordinate of this <see cref="Point"/>.
+        ///   Specifies a <see cref="int"/> that represents the Y coordinate of this <see cref="Point"/>.
         /// </param>
         public Point(int x, int y)
         {
@@ -29,7 +29,7 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="bool"/> indicating whether this <see cref="Point"/> is empty.
+        ///   Gets a value indicating whether this <see cref="Point"/> is empty.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this <see cref="Point"/> is empty; otherwise, <c>false</c>.
@@ -40,18 +40,18 @@
         }
 
         /// <summary>
-        ///   Gets or sets a <see cref="int"/> that represents the X-coordinate of this <see cref="Point"/>.
+        ///   Gets or sets a <see cref="int"/> that represents the X coordinate of this <see cref="Point"/>.
         /// </summary>
         /// <value>
-        ///   The X-coordinate of this <see cref="Point"/>.
+        ///   The X coordinate of this <see cref="Point"/>.
         /// </value>
         public int X { get; set; }
 
         /// <summary>
-        ///   Gets or sets a <see cref="int"/> that represents the Y-coordinate of this <see cref="Point"/>.
+        ///   Gets or sets a <see cref="int"/> that represents the Y coordinate of this <see cref="Point"/>.
         /// </summary>
         /// <value>
-        ///   The Y-coordinate of this <see cref="Point"/>.
+        ///   The Y coordinate of this <see cref="Point"/>.
         /// </value>
         public int Y { get; set; }
 
@@ -81,7 +81,7 @@
         ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(Point other)
         {

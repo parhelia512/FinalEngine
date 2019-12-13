@@ -14,7 +14,7 @@
         ///   Initializes a new instance of the <see cref="MouseMoveEventArgs"/> class.
         /// </summary>
         /// <param name="location">
-        ///   Specifies the location of the cursor coordinates (in pixels) relative to the upper-left corner of a display.
+        ///   Specifies a <see cref="PointF"/> that represents the location of cursor in window pixel coordinates during the time that the event was raised.
         /// </param>
         public MouseMoveEventArgs(PointF location)
         {
@@ -22,10 +22,10 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="PointF"/> that represents the location (in pixels) of the cursor, relative to the upper-left corner of a display.
+        ///   Gets a <see cref="PointF"/> that represents the location of cursor in window pixel coordinates during the time that the event was raised.
         /// </summary>
         /// <value>
-        ///   The location (in pixels) of the cursor, relative to the upper-left corner of a display.
+        ///   The location of cursor in window pixel coordinates during the time that the event was raised.
         /// </value>
         public PointF Location { get; }
     }

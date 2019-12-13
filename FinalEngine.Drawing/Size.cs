@@ -17,10 +17,10 @@
         ///   Initializes a new instance of the <see cref="Size"/> struct.
         /// </summary>
         /// <param name="width">
-        ///   Specifies the width of this <see cref="Size"/>.
+        ///   Specifies a <see cref="int"/> that represents the width of this <see cref="Size"/>.
         /// </param>
         /// <param name="height">
-        ///   Specifies the height of this <see cref="Size"/>.
+        ///   Specifies a <see cref="int"/> that represents the height of this <see cref="Size"/>.
         /// </param>
         public Size(int width, int height)
         {
@@ -37,7 +37,7 @@
         public int Height { get; set; }
 
         /// <summary>
-        ///   Gets a <see cref="bool"/> indicating whether this <see cref="Size"/> is empty.
+        ///   Gets a value indicating whether this <see cref="Size"/> is empty.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this <see cref="Size"/> is empty; otherwise, <c>false</c>.
@@ -81,7 +81,7 @@
         ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(Size other)
         {

@@ -38,16 +38,16 @@
         ///   Initializes a new instance of the <see cref="Vector4"/> struct.
         /// </summary>
         /// <param name="x">
-        ///   The X-coordinate of this <see cref="Vector4"/>.
+        ///   Specifies a <see cref="float"/> that represents the X coordinate of this <see cref="Vector4"/>.
         /// </param>
         /// <param name="y">
-        ///   The Y-coordinate of this <see cref="Vector4"/>.
+        ///   Specifies a <see cref="float"/> that represents the Y coordinate of this <see cref="Vector4"/>..
         /// </param>
         /// <param name="z">
-        ///   The Z-coordinate of this <see cref="Vector4"/>.
+        ///   Specifies a <see cref="float"/> that represents the Z coordinate of this <see cref="Vector4"/>.
         /// </param>
         /// <param name="w">
-        ///   The W-coordinate of this <see cref="Vector4"/>.
+        ///   Specifies a <see cref="float"/> that represents the W coordinate of this <see cref="Vector4"/>.
         /// </param>
         public Vector4(float x, float y, float z, float w)
         {
@@ -58,34 +58,34 @@
         }
 
         /// <summary>
-        ///   Gets or sets a value that represent the W-coordinate of this <see cref="Vector4"/>
+        ///   Gets or sets a <see cref="float"/> that represents the W coordinate of this <see cref="Vector4"/>.
         /// </summary>
         /// <value>
-        ///   The W-coordinate of this <see cref="Vector4"/>
+        ///   The W coordinate of this <see cref="Vector4"/>.
         /// </value>
         public float W { get; set; }
 
         /// <summary>
-        ///   Gets or sets a value that represents the X-coordinate of this <see cref="Vector4"/>
+        ///   Gets or sets a <see cref="float"/> that represents the X coordinate of this <see cref="Vector4"/>.
         /// </summary>
         /// <value>
-        ///   The X-coordinate of this <see cref="Vector4"/>.
+        ///   The X coordinate of this <see cref="Vector4"/>.
         /// </value>
         public float X { get; set; }
 
         /// <summary>
-        ///   Gets or sets a value that represents the Y-coordinate of this <see cref="Vector4"/>
+        ///   Gets or sets a <see cref="float"/> that represents the Y coordinate of this <see cref="Vector4"/>.
         /// </summary>
         /// <value>
-        ///   The Y-coordinate of this <see cref="Vector4"/>.
+        ///   The Y coordinate of this <see cref="Vector4"/>.
         /// </value>
         public float Y { get; set; }
 
         /// <summary>
-        ///   Gets or sets a value that represents the Z-coordinate of this <see cref="Vector4"/>
+        ///   Gets or sets a <see cref="float"/> that represents the Z coordinate of this <see cref="Vector4"/>.
         /// </summary>
         /// <value>
-        ///   The Z-coordinate of this <see cref="Vector4"/>.
+        ///   The Z coordinate of this <see cref="Vector4"/>.
         /// </value>
         public float Z { get; set; }
 
@@ -93,7 +93,7 @@
         ///   Performs an implicit conversion from <see cref="Vector2"/> to <see cref="Vector4"/>.
         /// </summary>
         /// <param name="vector">
-        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector4"/>.
+        ///   Specifies a <see cref="Vector2"/> that represents the vector.
         /// </param>
         /// <returns>
         ///   The result of the conversion.
@@ -107,7 +107,7 @@
         ///   Performs an implicit conversion from <see cref="Vector3"/> to <see cref="Vector4"/>.
         /// </summary>
         /// <param name="vector">
-        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector4"/>.
+        ///   Specifies a <see cref="Vector3"/> that represents the vector.
         /// </param>
         /// <returns>
         ///   The result of the conversion.
@@ -121,10 +121,10 @@
         ///   Implements the operator -.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -143,13 +143,13 @@
         ///   Implements the operator !=.
         /// </summary>
         /// <param name="left">
-        ///   Specifies left operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   Specifies right operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are not equal.
+        ///   The result of the operator.
         /// </returns>
         public static bool operator !=(Vector4 left, Vector4 right)
         {
@@ -160,10 +160,10 @@
         ///   Implements the operator *.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -182,10 +182,10 @@
         ///   Implements the operator /.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -204,10 +204,10 @@
         ///   Implements the operator +.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -226,13 +226,13 @@
         ///   Implements the operator ==.
         /// </summary>
         /// <param name="left">
-        ///   Specifies left operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   Specifies right operand.
+        ///   Specifies a <see cref="Vector4"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are equal.
+        ///   The result of the operator.
         /// </returns>
         public static bool operator ==(Vector4 left, Vector4 right)
         {
@@ -243,7 +243,7 @@
         ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   Specifies the <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="System.Object"/> to compare with this instance.
         /// </param>
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
@@ -259,13 +259,13 @@
         }
 
         /// <summary>
-        ///   Determines whether the specified <paramref name="other"/> parameter, is equal to this <see cref="Vector4"/>.
+        ///   Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">
-        ///   Specifies the <see cref="Vector4"/> to compare with this <see cref="Vector4"/>.
+        ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="other"/> parameter is equal to this <see cref="Vector4"/>; otherwise, <c>false</c>.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(Vector4 other)
         {

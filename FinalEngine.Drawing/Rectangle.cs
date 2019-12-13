@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Represents a rectangular region (represented with integers) on a two dimensional plane.
+    ///   Represents a rectangular region (defined by four integers) on a two dimensional plane.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.Rectangle}"/>
     public struct Rectangle : IEquatable<Rectangle>
@@ -12,10 +12,10 @@
         ///   Initializes a new instance of the <see cref="Rectangle"/> struct.
         /// </summary>
         /// <param name="location">
-        ///   Specifies the location of this <see cref="Rectangle"/>.
+        ///   Specifies a <see cref="Point"/> that represents the location of this <see cref="Rectangle"/>.
         /// </param>
         /// <param name="size">
-        ///   Specifies the size of this <see cref="Rectangle"/>.
+        ///   Specifies a <see cref="Size"/> that represents the size of this <see cref="Rectangle"/>.
         /// </param>
         public Rectangle(Point location, Size size)
         {
@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="bool"/> indicating whether this <see cref="Rectangle"/> is empty.
+        ///   Gets a value indicating whether this <see cref="Rectangle"/> is empty.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this <see cref="Rectangle"/> is empty; otherwise, <c>false</c>.
@@ -73,10 +73,10 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="int"/> that represents the X-coordinate of this <see cref="Rectangle"/>.
+        ///   Gets a <see cref="int"/> that represents the X coordinate of this <see cref="Rectangle"/>.
         /// </summary>
         /// <value>
-        ///   The X-coordinate of this <see cref="Rectangle"/>.
+        ///   The X coordinate of this <see cref="Rectangle"/>.
         /// </value>
         public int X
         {
@@ -84,10 +84,10 @@
         }
 
         /// <summary>
-        ///   Gets a <see cref="int"/> that represents the Y-coordinate of this <see cref="Rectangle"/>.
+        ///   Gets a <see cref="int"/> that represents the Y coordinate of this <see cref="Rectangle"/>.
         /// </summary>
         /// <value>
-        ///   The Y-coordinate of this <see cref="Rectangle"/>.
+        ///   The Y coordinate of this <see cref="Rectangle"/>.
         /// </value>
         public int Y
         {
@@ -101,7 +101,7 @@
         ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(Rectangle other)
         {

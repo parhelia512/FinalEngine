@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Represents a 2D vector with two single-precision floating point numbers.
+    ///   Represents a 2D vector with two single-precision floating points.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Maths.Vector2}"/>
     public struct Vector2 : IEquatable<Vector2>
@@ -52,10 +52,10 @@
         ///   Initializes a new instance of the <see cref="Vector2"/> struct.
         /// </summary>
         /// <param name="x">
-        ///   Specifies X component of this <see cref="Vector2"/>.
+        ///   Specifies a <see cref="float"/> that represents the X coordinate of this <see cref="Vector2"/>
         /// </param>
         /// <param name="y">
-        ///   Specifies Y component of this <see cref="Vector2"/>.
+        ///   Specifies a <see cref="float"/> that represents the Y coordinate of this <see cref="Vector2"/>.
         /// </param>
         public Vector2(float x, float y)
         {
@@ -64,18 +64,18 @@
         }
 
         /// <summary>
-        ///   Gets or sets a value that represents the X-coordinate of this <see cref="Vector2"/>.
+        ///   Gets or sets a <see cref="float"/> that represents the X coordinate of this <see cref="Vector2"/>.
         /// </summary>
         /// <value>
-        ///   The X-coordinate of this <see cref="Vector2"/>.
+        ///   The X coordinate of this <see cref="Vector2"/>.
         /// </value>
         public float X { get; set; }
 
         /// <summary>
-        ///   Gets or sets a value that represents the Y-coordinate of this <see cref="Vector2"/>.
+        ///   Gets or sets a <see cref="float"/> that represents the Y coordinate of this <see cref="Vector2"/>.
         /// </summary>
         /// <value>
-        ///   The Y-coordinate of this <see cref="Vector2"/>.
+        ///   The Y coordinate of this <see cref="Vector2"/>.
         /// </value>
         public float Y { get; set; }
 
@@ -83,7 +83,7 @@
         ///   Performs an implicit conversion from <see cref="Vector3"/> to <see cref="Vector2"/>.
         /// </summary>
         /// <param name="vector">
-        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector2"/>.
+        ///   Specifies a <see cref="Vector3"/> that represents the vector.
         /// </param>
         /// <returns>
         ///   The result of the conversion.
@@ -97,7 +97,7 @@
         ///   Performs an implicit conversion from <see cref="Vector4"/> to <see cref="Vector2"/>.
         /// </summary>
         /// <param name="vector">
-        ///   The specified <paramref name="vector"/> to convert to a <see cref="Vector2"/>.
+        ///   Specifies a <see cref="Vector4"/> that represents the vector.
         /// </param>
         /// <returns>
         ///   The result of the conversion.
@@ -111,10 +111,10 @@
         ///   Implements the operator -.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -131,13 +131,13 @@
         ///   Implements the operator !=.
         /// </summary>
         /// <param name="left">
-        ///   Specifies left operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   Specifies right operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are not equal.
+        ///   The result of the operator.
         /// </returns>
         public static bool operator !=(Vector2 left, Vector2 right)
         {
@@ -148,10 +148,10 @@
         ///   Implements the operator *.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -168,10 +168,10 @@
         ///   Implements the operator /.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -188,10 +188,10 @@
         ///   Implements the operator +.
         /// </summary>
         /// <param name="left">
-        ///   The left operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   The right operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the right operand.
         /// </param>
         /// <returns>
         ///   The result of the operator.
@@ -208,13 +208,13 @@
         ///   Implements the operator ==.
         /// </summary>
         /// <param name="left">
-        ///   Specifies left operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   Specifies right operand.
+        ///   Specifies a <see cref="Vector2"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="left"/> and <paramref name="right"/> parameters are equal.
+        ///   The result of the operator.
         /// </returns>
         public static bool operator ==(Vector2 left, Vector2 right)
         {
@@ -225,7 +225,7 @@
         ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   Specifies the <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="System.Object"/> to compare with this instance.
         /// </param>
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
@@ -241,13 +241,13 @@
         }
 
         /// <summary>
-        ///   Determines whether the specified <paramref name="other"/> parameter, is equal to this <see cref="Vector2"/>.
+        ///   Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">
-        ///   Specifies the <see cref="Vector2"/> to compare with this <see cref="Vector2"/>.
+        ///   An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <paramref name="other"/> parameter is equal to this <see cref="Vector2"/>; otherwise, <c>false</c>.
+        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(Vector2 other)
         {

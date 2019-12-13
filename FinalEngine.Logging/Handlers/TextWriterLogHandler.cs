@@ -4,7 +4,7 @@
     using System.IO;
 
     /// <summary>
-    ///   Provides a log handlers that can log to a <see cref="TextWriter"/>.
+    ///   Provides an implementation of a <see cref="LogHandler"/> that logs to a <see cref="TextWriter"/>.
     /// </summary>
     /// <seealso cref="FinalEngine.Logging.LogHandler"/>
     public sealed class TextWriterLogHandler : LogHandler
@@ -18,10 +18,10 @@
         ///   Initializes a new instance of the <see cref="TextWriterLogHandler"/> class.
         /// </summary>
         /// <param name="formatter">
-        ///   Specifies the formatter used to format a message before it is logged..
+        ///   Specifies a <see cref="ILogFormatter"/> that represents the formatter that will format a message before it is logged.
         /// </param>
         /// <param name="writer">
-        ///   Specifies the text writer to log too.
+        ///   Specifies a <see cref="TextWriter"/> that represents the text writer that will be used to log messages.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///   The specified <paramref name="writer"/> parameter is null.
@@ -36,11 +36,14 @@
         ///   Logs the specified <paramref name="message"/> of the specified <paramref name="type"/>.
         /// </summary>
         /// <param name="type">
-        ///   Specifies the log type.
+        ///   Specifies a <see cref="LogType"/> that represents the type of message to be logged.
         /// </param>
         /// <param name="message">
-        ///   Specifies the message.
+        ///   Specifies a <see cref="string"/> that represents the message to be logged.
         /// </param>
+        /// <exception cref="System.ArgumentNullException">
+        ///   The specified <paramref name="message"/> parameter is null or empty.
+        /// </exception>
         public override void Log(LogType type, string message)
         {
             if (string.IsNullOrEmpty(message))

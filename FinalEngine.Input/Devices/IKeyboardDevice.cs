@@ -3,10 +3,19 @@
     using System;
     using FinalEngine.Input.Events;
 
+    /// <summary>
+    ///   Defines an interface that represents a physical or virtual keyboard device.
+    /// </summary>
     public interface IKeyboardDevice
     {
-        event EventHandler<KeyEventArgs> KeyDown;
+        /// <summary>
+        ///   Occurs when a keyboard key has been pressed.
+        /// </summary>
+        event EventHandler<KeyEventArgs> KeyPressed;
 
-        event EventHandler<KeyEventArgs> KeyUp;
+        /// <summary>
+        ///   Occurs when a keyboard key has been released.
+        /// </summary>
+        event EventHandler<KeyEventArgs> KeyReleased;
     }
 }

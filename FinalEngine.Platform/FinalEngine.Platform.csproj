@@ -1,11 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <StyleCopTreatErrorsAsWarnings>True</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\FinalEngine.Drawing\FinalEngine.Drawing.csproj" />
   </ItemGroup>
-
 </Project>

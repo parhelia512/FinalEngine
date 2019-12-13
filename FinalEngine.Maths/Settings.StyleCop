@@ -77,6 +77,11 @@
             <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
         </Rule>
+        <Rule Name="DoNotUseRegions">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">True</BooleanProperty>
+          </RuleSettings>
+        </Rule>
         <Rule Name="SplitParametersMustStartOnLineAfterDeclaration">
           <RuleSettings>
             <BooleanProperty Name="Enabled">False</BooleanProperty>

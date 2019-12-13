@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Represents a rectangular region (defined by four single precision floating-points) on a two dimensional plane.
+    ///   Represents a rectangular region (defined by four single-precision floating points) on a two dimensional plane.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.RectangleF}"/>
     public struct RectangleF : IEquatable<RectangleF>

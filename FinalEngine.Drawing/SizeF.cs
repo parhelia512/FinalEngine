@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Represents a pair of single precision floating-points that defines a two dimensional space.
+    ///   Represents a pair of single-precision floating points that defines a two dimensional space.
     /// </summary>
     /// <seealso cref="System.IEquatable{FinalEngine.Drawing.SizeF}"/>
     public struct SizeF : IEquatable<SizeF>

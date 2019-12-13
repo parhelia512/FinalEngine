@@ -9,12 +9,12 @@
     public interface IKeyboardDevice
     {
         /// <summary>
-        ///   Occurs when a keyboard key has been pressed.
+        ///   Occurs when a key of this <see cref="IKeyboardDevice"/> has been pressed.
         /// </summary>
         event EventHandler<KeyEventArgs> KeyPressed;
 
         /// <summary>
-        ///   Occurs when a keyboard key has been released.
+        ///   Occurs when a key of this <see cref="IKeyboardDevice"/> has been released.
         /// </summary>
         event EventHandler<KeyEventArgs> KeyReleased;
     }

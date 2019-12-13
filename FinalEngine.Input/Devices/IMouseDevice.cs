@@ -3,14 +3,29 @@
     using System;
     using FinalEngine.Input.Events;
 
+    /// <summary>
+    ///   Defines an interface that represents a physical or virtual mouse device.
+    /// </summary>
     public interface IMouseDevice
     {
-        event EventHandler<MouseButtonEventArgs> ButtonDown;
+        /// <summary>
+        ///   Occurs when a mouse button on this <see cref="IMouseDevice"/> has been pressed.
+        /// </summary>
+        event EventHandler<MouseButtonEventArgs> ButtonPressed;
 
-        event EventHandler<MouseButtonEventArgs> ButtonUp;
+        /// <summary>
+        ///   Occurs when the mouse button on this <see cref="IMouseDevice"/> has been released.
+        /// </summary>
+        event EventHandler<MouseButtonEventArgs> ButtonReleased;
 
-        event EventHandler<MouseMoveEventArgs> MouseMove;
+        /// <summary>
+        ///   Occurs when the mouse position of this <see cref="IMouseDevice"/> has changed.
+        /// </summary>
+        event EventHandler<MouseMoveEventArgs> PositionChanged;
 
-        event EventHandler<MouseMoveEventArgs> MouseWheel;
+        /// <summary>
+        ///   Occurs when the mouse wheel position of this <see cref="IMouseDevice"/> has changed.
+        /// </summary>
+        event EventHandler<MouseMoveEventArgs> WheelPositionChanged;
     }
 }

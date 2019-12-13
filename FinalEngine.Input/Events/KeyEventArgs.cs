@@ -45,10 +45,10 @@
         public LockableKeyState CapsLockState { get; }
 
         /// <summary>
-        ///   Gets a <see cref="Key"/> that represents the key of this <see cref="KeyEventArgs"/>.
+        ///   Gets a <see cref="Key"/> that represents the key that raised this event.
         /// </summary>
         /// <value>
-        ///   The Key of this <see cref="KeyEventArgs"/>.
+        ///   The key that raised this event.
         /// </value>
         public Key Key { get; }
 

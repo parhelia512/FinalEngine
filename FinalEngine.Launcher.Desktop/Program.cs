@@ -7,8 +7,14 @@
     using FinalEngine.Logging.Handlers;
     using FinalEngine.Platform.Windows;
 
+    /// <summary>
+    ///   The main program.
+    /// </summary>
     internal static class Program
     {
+        /// <summary>
+        ///   Defines the entry point of the application.
+        /// </summary>
         private static void Main()
         {
             Logger.Instance.Handlers.Add(new TextWriterLogHandler(new StandardLogFormatter(), Console.Out));

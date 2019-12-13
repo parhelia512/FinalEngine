@@ -68,6 +68,10 @@
         /// </value>
         string Title { get; set; }
 
+        int Width { get; set; }
+
+        int Height { get; set; }
+
         /// <summary>
         ///   Gets or sets a value indicating whether this <see cref="IDisplay"/> is visible.
         /// </summary>

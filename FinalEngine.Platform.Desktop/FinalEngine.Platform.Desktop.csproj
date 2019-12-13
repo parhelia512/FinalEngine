@@ -2,10 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="OpenTK.NetStandard" Version="1.0.4" />
+    <PackageReference Include="SimpleInjector" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,33 +4,47 @@
     using FinalEngine.Logging;
     using FinalEngine.Logging.Formatters;
     using FinalEngine.Logging.Handlers;
+    using FinalEngine.Platform;
     using FinalEngine.Platform.Desktop;
+    using SimpleInjector;
 
     internal static class Program
     {
+        private static Container _container;
+
         private static void Main()
         {
+            InitIoC();
+
             ILogger logger = Logger.Instance;
 
             // Log to the console, maybe we should make a ConsoleLogHandler, that'll color code the console?
             logger.Handlers.Add(new TextWriterLogHandler(new StandardLogFormatter(), Console.Out));
             logger.Log(LogType.Information, "Final Engine is starting...");
 
-            var display = new OpenTKDisplay(1024, 768, "Final Engine")
-            {
-                Visible = true
-            };
+            Game game = _container.GetInstance<Game>();
+
+            game.Run();
 
             logger.Log(LogType.Information, "Entering game loop...");
 
-            while (!display.IsClosing)
-            {
-                display.ProcessEvents();
-            }
 
             logger.Log(LogType.Information, "Disposing of resources...");
 
-            display.Dispose();
+            game.Dispose();
+        }
+
+
+        private static void InitIoC()
+        {
+            _container = new Container();
+
+            _container.Register<IDisplay, OpenTKDisplay>();
+
+            _container.Register<Game>(() =>
+            {
+                return new Game(_container.GetInstance<IDisplay>(), 1024, 768, "Final Engine");
+            }, Lifestyle.Singleton);
         }
     }
 }

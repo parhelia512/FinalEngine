@@ -2,7 +2,13 @@
 {
     using System;
     using System.ComponentModel;
+    using OpenTK;
     using FinalEngine.Drawing;
+    using FESize = Drawing.Size;
+    using FEPoint = Drawing.Point;
+    using FERectangle = Drawing.Rectangle;
+    using System.Diagnostics.CodeAnalysis;
+
 
     /// <summary>
     ///   Provides an OpenTK implementation of <see cref="IDisplay"/> and <see cref="IEventsProcessor"/>.
@@ -10,8 +16,15 @@
     /// <seealso cref="OpenTK.NativeWindow"/>
     /// <seealso cref="FinalEngine.Platform.IDisplay"/>
     /// <seealso cref="FinalEngine.Platform.IEventsProcessor"/>
-    public sealed class OpenTKDisplay : OpenTK.NativeWindow, IDisplay, IEventsProcessor
+    [ExcludeFromCodeCoverage]
+    public sealed class OpenTKDisplay : IDisplay, IEventsProcessor
     {
+        #region Private Fields
+        private readonly NativeWindow _nativeWindow;
+        #endregion
+
+
+        #region Constructors
         /// <summary>
         ///   Initializes a new instance of the <see cref="OpenTKDisplay"/> class.
         /// </summary>
@@ -24,28 +37,31 @@
         /// <param name="title">
         ///   Specifies a <see cref="string"/> that represents the title of this <see cref="OpenTKDisplay"/>
         /// </param>
-        public OpenTKDisplay(int width, int height, string title)
+        public OpenTKDisplay()
         {
-            Width = width;
-            Height = height;
-            Title = title;
+            _nativeWindow = new NativeWindow();
+
+            _nativeWindow.Closing += _nativeWindow_Closing;
 
             // TODO: Centering the window like this is just ugly, let's maybe abstract this into a IDisplay.Center() method?
-            OpenTK.Rectangle workingArea = OpenTK.DisplayDevice.Default.Bounds;
+            OpenTK.Rectangle workingArea = DisplayDevice.Default.Bounds;
 
-            X = Math.Max(workingArea.X, workingArea.X + ((workingArea.Width - Width) / 2));
-            Y = Math.Max(workingArea.Y, workingArea.Y + ((workingArea.Height - Height) / 2));
+            _nativeWindow.X = Math.Max(workingArea.X, workingArea.X + ((workingArea.Width - Width) / 2));
+            _nativeWindow.Y = Math.Max(workingArea.Y, workingArea.Y + ((workingArea.Height - Height) / 2));
         }
+        #endregion
 
+
+        #region Props
         /// <summary>
         ///   Gets a <see cref="Rectangle"/> that represents the internal bounds of this <see cref="OpenTKDisplay"/>.
         /// </summary>
         /// <value>
         ///   The client rectangle of this <see cref="OpenTKDisplay"/>.
         /// </value>
-        Rectangle IDisplay.ClientRectangle
+        FERectangle IDisplay.ClientRectangle
         {
-            get { return new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientSize.Width, ClientSize.Height); }
+            get { return new FERectangle(ClientRectangle.X, ClientRectangle.Y, ClientSize.Width, ClientSize.Height); }
         }
 
         /// <summary>
@@ -54,9 +70,9 @@
         /// <value>
         ///   The internal size of this <see cref="OpenTKDisplay"/>.
         /// </value>
-        Size IDisplay.ClientSize
+        FESize IDisplay.ClientSize
         {
-            get { return new Size(ClientSize.Width, ClientSize.Height); }
+            get { return new FESize(ClientSize.Width, ClientSize.Height); }
         }
 
         /// <summary>
@@ -73,10 +89,10 @@
         /// <value>
         ///   The location of this <see cref="IDisplay"/>.
         /// </value>
-        Point IDisplay.Location
+        FEPoint IDisplay.Location
         {
-            get { return new Point(Location.X, Location.Y); }
-            set { Location = new OpenTK.Point(value.X, value.Y); }
+            get { return new FEPoint(Location.X, Location.Y); }
+            set { Location = new FEPoint(value.X, value.Y); }
         }
 
         /// <summary>
@@ -88,23 +104,94 @@
         /// <remarks>
         ///   The size of an <see cref="IDisplay"/> can include anything that is outside the drawing area, including any title bars, status strips or anything of the like.
         /// </remarks>
-        Size IDisplay.Size
+        FESize IDisplay.Size
         {
-            get { return new Size(Size.Width, Size.Height); }
-            set { Size = new OpenTK.Size(value.Width, value.Height); }
+            get { return new FESize(Size.Width, Size.Height); }
+            set { Size = new FESize(value.Width, value.Height); }
         }
 
+        public FERectangle ClientRectangle { get; }
+
+        public FESize ClientSize { get; }
+
+        public bool Focused { get; }
+
+        public FEPoint Location { get; set; }
+
+        public FESize Size { get; set; }
+
+        public string Title
+        {
+            get => _nativeWindow.Title;
+            set => _nativeWindow.Title = value;
+        }
+
+        public bool Visible
+        {
+            get => _nativeWindow.Visible;
+            set => _nativeWindow.Visible = value;
+        }
+
+        public int X
+        {
+            get => _nativeWindow.X;
+            set => _nativeWindow.X = value;
+        }
+
+        public int Y
+        {
+            get => _nativeWindow.Y;
+            set => _nativeWindow.Y = value;
+        }
+
+        public int Width
+        {
+            get => _nativeWindow.Width;
+            set => _nativeWindow.Width = value;
+        }
+
+        public int Height
+        {
+            get => _nativeWindow.Height;
+            set => _nativeWindow.Height = value;
+        }
+        #endregion
+
+
+        #region Public Mehtods
+        /// <summary>
+        ///   Processes the events that are currently in the message queue.
+        /// </summary>
+        public void ProcessEvents()
+        {
+            //TODO: Add Code Here
+        }
+
+
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+
+        #region Private Methods
         /// <summary>
         ///   Called when the <see cref="OpenTK.NativeWindow"/> is about to close.
         /// </summary>
         /// <param name="e">
         ///   The <see cref="CancelEventArgs"/> for this event. Set e.Cancel to true in order to stop the NativeWindow from closing.
         /// </param>
-        protected override void OnClosing(CancelEventArgs e)
+        private void _nativeWindow_Closing(object sender, CancelEventArgs e)
         {
             IsClosing = !e.Cancel;
-
-            base.OnClosing(e);
         }
+        #endregion
     }
 }

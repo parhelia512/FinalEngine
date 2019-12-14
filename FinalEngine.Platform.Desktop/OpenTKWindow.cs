@@ -16,6 +16,10 @@
 
             // Set CurrentScreen to primrary.
             TryChangeCurrentScreen(0);
+
+            // Center the window to the current screen.
+            X = (CurrentScreen.Size.Width - Width) / 2;
+            Y = (CurrentScreen.Size.Height - Height) / 2;
         }
 
         Rectangle IWindow.ClientRectangle

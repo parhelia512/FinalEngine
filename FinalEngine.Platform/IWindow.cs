@@ -25,6 +25,15 @@
         /// </value>
         Size ClientSize { get; }
 
+        /// <summary>
+        ///   Gets a <see cref="Screen"/> that represents the current screen of this <see cref="IWindow"/>.
+        /// </summary>
+        /// <value>
+        ///   The current screen of this <see cref="IWindow"/>.
+        /// </value>
+        /// <remarks>
+        ///   If you want to change the screen that an <see cref="IWindow"/> is on, see <see cref="TryChangeCurrentScreen(uint)"/>.
+        /// </remarks>
         Screen CurrentScreen { get; }
 
         /// <summary>
@@ -83,6 +92,18 @@
         /// </summary>
         void Close();
 
+        /// <summary>
+        ///   Tries to change the <see cref="CurrentScreen"/> to the screen represented by the specified <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">
+        ///   Specifies a <see cref="uint"/> that represents the indexical-location of screen.
+        /// </param>
+        /// <remarks>
+        ///   On all platforms, you should be able to set the specified <paramref name="index"/> parameter to 0 to access the primary <see cref="Screen"/> on the underlying platform.
+        /// </remarks>
+        /// <returns>
+        ///   <c>true</c> if the <see cref="CurrentScreen"/> changed to the a screen located at the specific <paramref name="index"/>; otherwise, <c>false</c>.
+        /// </returns>
         bool TryChangeCurrentScreen(uint index);
     }
 }

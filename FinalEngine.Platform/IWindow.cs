@@ -96,7 +96,7 @@
         ///   Tries to change the <see cref="CurrentScreen"/> to the screen represented by the specified <paramref name="index"/>.
         /// </summary>
         /// <param name="index">
-        ///   Specifies a <see cref="uint"/> that represents the indexical-location of screen.
+        ///   Specifies a <see cref="uint"/> that represents the indexical-location of the <see cref="Screen"/>.
         /// </param>
         /// <remarks>
         ///   On all platforms, you should be able to set the specified <paramref name="index"/> parameter to 0 to access the primary <see cref="Screen"/> on the underlying platform.

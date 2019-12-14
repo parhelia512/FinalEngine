@@ -8,7 +8,7 @@
 
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             ILogger logger = Logger.Instance;
             logger.Handlers.Add(new TextWriterLogHandler(new StandardLogFormatter(), Console.Out));

@@ -9,7 +9,7 @@
         ///   Tries to get a <see cref="Screen"/> represented by the specified <paramref name="index"/> location.
         /// </summary>
         /// <param name="index">
-        ///   Specifies a <see cref="UInt32"/> that represents the index.
+        ///   Specifies a <see cref="uint"/> that represents the index.
         /// </param>
         /// <param name="screen">
         ///   Specifies a <see cref="Screen"/> that represents the screen.

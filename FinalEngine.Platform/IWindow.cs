@@ -25,6 +25,8 @@
         /// </value>
         Size ClientSize { get; }
 
+        Screen CurrentScreen { get; }
+
         /// <summary>
         ///   Gets a value indicating whether this <see cref="IWindow"/> is focused.
         /// </summary>
@@ -80,5 +82,7 @@
         ///   Closes this <see cref="IWindow"/>.
         /// </summary>
         void Close();
+
+        bool TryChangeCurrentScreen(uint index);
     }
 }

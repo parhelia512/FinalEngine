@@ -4,6 +4,7 @@
     using FinalEngine.Input.Devices;
     using FinalEngine.Input.Events;
     using OpenTK;
+    using OpenTK.Input;
 
     public sealed class OpenTKKeyboardDevice : IKeyboardDevice
     {
@@ -27,12 +28,12 @@
 
         public event EventHandler<KeyEventArgs> KeyReleased;
 
-        private void NativeWindow_KeyDown(object sender, OpenTK.Input.KeyboardKeyEventArgs e)
+        private void NativeWindow_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        private void NativeWindow_KeyUp(object sender, OpenTK.Input.KeyboardKeyEventArgs e)
+        private void NativeWindow_KeyUp(object sender, KeyboardKeyEventArgs e)
         {
             throw new NotImplementedException();
         }

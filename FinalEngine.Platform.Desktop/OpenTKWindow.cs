@@ -50,6 +50,13 @@
 
         public bool TryChangeCurrentScreen(uint index)
         {
+            if (OpenTKScreenManager.Instance.TryGetScreenByIndex(index, out Screen screen))
+            {
+                CurrentScreen = screen;
+                return true;
+            }
+
+            return false;
         }
 
         protected override void OnClosing(CancelEventArgs e)

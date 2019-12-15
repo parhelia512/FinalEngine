@@ -6,6 +6,11 @@
     public enum LockableKeyState
     {
         /// <summary>
+        ///   Specifies the key is in an unknown state.
+        /// </summary>
+        Unknown,
+
+        /// <summary>
         ///   Specifies the key is in a locked state.
         /// </summary>
         Locked,

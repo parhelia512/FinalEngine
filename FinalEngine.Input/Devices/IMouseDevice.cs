@@ -26,6 +26,6 @@
         /// <summary>
         ///   Occurs when the position of the scroll wheel on this <see cref="IMouseDevice"/> has changed.
         /// </summary>
-        event EventHandler<MouseMoveEventArgs> WheelPositionChanged;
+        event EventHandler<MouseWheelEventArgs> WheelPositionChanged;
     }
 }

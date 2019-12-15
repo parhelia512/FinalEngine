@@ -8,6 +8,22 @@
     public sealed class KeyEventArgsTests
     {
         [Test]
+        public void AltModifier_Test_Should_Be_True()
+        {
+            // Act
+            var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
+                                                It.IsAny<LockableKeyState>(),
+                                                It.IsAny<LockableKeyState>(),
+                                                It.IsAny<LockableKeyState>(),
+                                                It.IsAny<bool>(),
+                                                true,
+                                                It.IsAny<bool>());
+
+            // Assert
+            Assert.IsTrue(keyEventArgs.AltModifier);
+        }
+
+        [Test]
         public void CapsLockState_Property_Test()
         {
             // Arrange
@@ -18,13 +34,31 @@
                                                 expected,
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
-                                                It.IsAny<KeyModifier>());
+                                                It.IsAny<bool>(),
+                                                It.IsAny<bool>(),
+                                                It.IsAny<bool>());
 
             // Act
             LockableKeyState actual = keyEventArgs.CapsLockState;
 
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ControlModifier_Test_Should_Be_True()
+        {
+            // Act
+            var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
+                                                It.IsAny<LockableKeyState>(),
+                                                It.IsAny<LockableKeyState>(),
+                                                It.IsAny<LockableKeyState>(),
+                                                It.IsAny<bool>(),
+                                                It.IsAny<bool>(),
+                                                true);
+
+            // Assert
+            Assert.IsTrue(keyEventArgs.ControlModifier);
         }
 
         [Test]
@@ -38,7 +72,9 @@
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
-                                                It.IsAny<KeyModifier>());
+                                                It.IsAny<bool>(),
+                                                It.IsAny<bool>(),
+                                                It.IsAny<bool>());
 
             // Act
             Key actual = keyEventArgs.Key;
@@ -48,62 +84,19 @@
         }
 
         [Test]
-        public void KeyModifiers_Property_Test_Should_Be_Control_And_Alt()
+        public void ShiftModifier_Test_Should_Be_True()
         {
-            // Arrange
-            const KeyModifier Expected = KeyModifier.Control | KeyModifier.Alt;
-
+            // Act
             var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
                                                 It.IsAny<LockableKeyState>(),
-                                                Expected);
-
-            // Act
-            KeyModifier actual = keyEventArgs.KeyModifiers;
-
-            // Assert
-            Assert.AreEqual(Expected, actual);
-        }
-
-        [Test]
-        public void NumLockState_Property_Test()
-        {
-            // Arrange
-            Array values = Enum.GetValues(typeof(LockableKeyState));
-            var expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
-
-            var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
-                                                It.IsAny<LockableKeyState>(),
-                                                expected,
-                                                It.IsAny<LockableKeyState>(),
-                                                It.IsAny<KeyModifier>());
-
-            // Act
-            LockableKeyState actual = keyEventArgs.NumLockState;
+                                                true,
+                                                It.IsAny<bool>(),
+                                                It.IsAny<bool>());
 
             // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void ScrollLockState_Property_Test()
-        {
-            // Arrange
-            Array values = Enum.GetValues(typeof(LockableKeyState));
-            var expected = (LockableKeyState)values.GetValue(new Random().Next(values.Length));
-
-            var keyEventArgs = new KeyEventArgs(It.IsAny<Key>(),
-                                                It.IsAny<LockableKeyState>(),
-                                                It.IsAny<LockableKeyState>(),
-                                                expected,
-                                                It.IsAny<KeyModifier>());
-
-            // Act
-            LockableKeyState actual = keyEventArgs.ScrollLockState;
-
-            // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(keyEventArgs.ShiftModifier);
         }
     }
 }

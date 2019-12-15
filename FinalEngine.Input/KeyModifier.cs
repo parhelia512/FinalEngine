@@ -21,14 +21,6 @@
         /// <summary>
         ///   Specifies the ALT key (left or right).
         /// </summary>
-        Alt,
-
-        /// <summary>
-        ///   Specifies the OS-specific key.
-        /// </summary>
-        /// <remarks>
-        ///   On Windows this key is the Windows key, on Macintosh it is the Command key.
-        /// </remarks>
-        OS
+        Alt
     }
 }

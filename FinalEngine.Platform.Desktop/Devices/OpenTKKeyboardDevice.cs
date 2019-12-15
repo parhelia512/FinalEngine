@@ -11,8 +11,20 @@
 
     public sealed class OpenTKKeyboardDevice : IKeyboardDevice
     {
+        /// <summary>
+        ///   The native window.
+        /// </summary>
         private readonly INativeWindow nativeWindow;
 
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="OpenTKKeyboardDevice"/> class.
+        /// </summary>
+        /// <param name="nativeWindow">
+        ///   Specifies a <see cref="INativeWindow"/> that represents the native window that will be used to hook onto mouse related events.
+        /// </param>
+        /// <exception cref="System.ArgumentNullException">
+        ///   The specified <paramref name="nativeWindow"/> parameter is null.
+        /// </exception>
         public OpenTKKeyboardDevice(INativeWindow nativeWindow)
         {
             this.nativeWindow = nativeWindow ?? throw new ArgumentNullException(nameof(nativeWindow), $"The specified { nameof(nativeWindow) } parameter is null.");
@@ -21,16 +33,34 @@
             nativeWindow.KeyUp += NativeWindow_KeyUp;
         }
 
+        /// <summary>
+        ///   Finalizes an instance of the <see cref="OpenTKKeyboardDevice"/> class.
+        /// </summary>
         ~OpenTKKeyboardDevice()
         {
             nativeWindow.KeyDown -= NativeWindow_KeyDown;
             nativeWindow.KeyUp -= NativeWindow_KeyUp;
         }
 
+        /// <summary>
+        ///   Occurs when a keyboard key on this <see cref="OpenTKKeyboardDevice"/> has been pressed.
+        /// </summary>
         public event EventHandler<KeyEventArgs> KeyPressed;
 
+        /// <summary>
+        ///   Occurs when a keyboard key on this <see cref="OpenTKKeyboardDevice"/> has been released.
+        /// </summary>
         public event EventHandler<KeyEventArgs> KeyReleased;
 
+        /// <summary>
+        ///   Converts the specified <paramref name="key"/> to it's corresponding <see cref="Key"/>.
+        /// </summary>
+        /// <param name="key">
+        ///   Specifies a <see cref="TKKey"/> that represents the key to convert.
+        /// </param>
+        /// <returns>
+        ///   The specified <paramref name="key"/>, converted to a <see cref="Key"/>.
+        /// </returns>
         private Key ConvertToNativeKey(TKKey key)
         {
             switch (key)
@@ -433,6 +463,15 @@
             }
         }
 
+        /// <summary>
+        ///   Handles the KeyDown event of the <see cref="INativeWindow"/> control.
+        /// </summary>
+        /// <param name="sender">
+        ///   The source of the event.
+        /// </param>
+        /// <param name="e">
+        ///   Specifies the <see cref="KeyboardKeyEventArgs"/> instance containing the event data.
+        /// </param>
         private void NativeWindow_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
             KeyPressed?.Invoke(this, new KeyEventArgs(ConvertToNativeKey(e.Key),
@@ -442,6 +481,15 @@
                                                       e.Shift, e.Alt, e.Control));
         }
 
+        /// <summary>
+        ///   Handles the KeyUp event of the <see cref="INativeWindow"/> control.
+        /// </summary>
+        /// <param name="sender">
+        ///   The source of the event.
+        /// </param>
+        /// <param name="e">
+        ///   Specifies the <see cref="KeyboardKeyEventArgs"/> instance containing the event data.
+        /// </param>
         private void NativeWindow_KeyUp(object sender, KeyboardKeyEventArgs e)
         {
             KeyReleased?.Invoke(this, new KeyEventArgs(ConvertToNativeKey(e.Key),

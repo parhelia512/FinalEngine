@@ -6,6 +6,7 @@
     using OpenTK;
     using MouseButton = Input.MouseButton;
     using PointF = Drawing.PointF;
+    using TKMouseButton = OpenTK.Input.MouseButton;
 
     public sealed class OpenTKMouseDevice : IMouseDevice
     {
@@ -37,11 +38,19 @@
 
         public event EventHandler<MouseWheelEventArgs> WheelPositionChanged;
 
-        private MouseButton ConvertToNativeMouseButton(OpenTK.Input.MouseButton mouseButton)
+        private MouseButton ConvertToNativeMouseButton(TKMouseButton mouseButton)
         {
             switch (mouseButton)
             {
-                // TODO: Fill this.
+                case TKMouseButton.Left:
+                    return MouseButton.Left;
+
+                case TKMouseButton.Right:
+                    return MouseButton.Right;
+
+                case TKMouseButton.Middle:
+                    return MouseButton.Middle;
+
                 default:
                     return MouseButton.Unknown;
             }

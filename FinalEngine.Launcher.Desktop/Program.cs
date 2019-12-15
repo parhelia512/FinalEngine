@@ -20,12 +20,23 @@
             };
 
             var keyboardDevice = new OpenTKKeyboardDevice(window);
+            var mouseDevice = new OpenTKMouseDevice(window);
 
             keyboardDevice.KeyReleased += (s, e) =>
             {
                 Console.WriteLine($"SHIFT: { e.ShiftModifier }");
                 Console.WriteLine($"CNTRL: { e.ControlModifier }");
                 Console.WriteLine($"ALT { e.AltModifier }");
+            };
+
+            mouseDevice.ButtonReleased += (s, e) =>
+            {
+                Console.WriteLine($"Button: { e.Button }");
+            };
+
+            mouseDevice.PositionChanged += (s, e) =>
+            {
+                Console.WriteLine($"POSITION: { e.Location.ToString() }");
             };
 
             while (!window.IsClosing)

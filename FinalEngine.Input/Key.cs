@@ -401,7 +401,7 @@
         KeypadMultiply,
 
         /// <summary>
-        ///   Specifies the keeypad Subtract key.
+        ///   Specifies the keypad Subtract key.
         /// </summary>
         KeypadSubtract,
 

@@ -478,13 +478,15 @@
         /// </param>
         private void NativeWindow_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
-            KeyPressed?.Invoke(this, new KeyEventArgs(ConvertToNativeKey(e.Key),
-                                                      LockableKeyState.Unknown,
-                                                      LockableKeyState.Unknown,
-                                                      LockableKeyState.Unknown,
-                                                      e.Shift,
-                                                      e.Alt,
-                                                      e.Control));
+            var keyEventsArgs = new KeyEventArgs(ConvertToNativeKey(e.Key),
+                                                 LockableKeyState.Unknown,
+                                                 LockableKeyState.Unknown,
+                                                 LockableKeyState.Unknown,
+                                                 e.Shift,
+                                                 e.Alt,
+                                                 e.Control);
+
+            KeyPressed?.Invoke(this, keyEventsArgs);
         }
 
         /// <summary>
@@ -498,13 +500,15 @@
         /// </param>
         private void NativeWindow_KeyUp(object sender, KeyboardKeyEventArgs e)
         {
-            KeyReleased?.Invoke(this, new KeyEventArgs(ConvertToNativeKey(e.Key),
-                                                       LockableKeyState.Unknown,
-                                                       LockableKeyState.Unknown,
-                                                       LockableKeyState.Unknown,
-                                                       e.Shift,
-                                                       e.Alt,
-                                                       e.Control));
+            var keyEventsArgs = new KeyEventArgs(ConvertToNativeKey(e.Key),
+                                                 LockableKeyState.Unknown,
+                                                 LockableKeyState.Unknown,
+                                                 LockableKeyState.Unknown,
+                                                 e.Shift,
+                                                 e.Alt,
+                                                 e.Control);
+
+            KeyReleased?.Invoke(this, keyEventsArgs);
         }
     }
 }

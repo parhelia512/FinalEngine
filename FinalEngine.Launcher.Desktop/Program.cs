@@ -30,6 +30,9 @@
 
             keyboardDevice.KeyPressed += (s, e) =>
             {
+                Console.WriteLine($"SHIFT: { e.ShiftModifier }");
+                Console.WriteLine($"CNTRL: { e.ControlModifier }");
+                Console.WriteLine($"ALT { e.AltModifier }");
             };
 
             while (!window.IsClosing)

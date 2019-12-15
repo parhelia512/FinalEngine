@@ -30,15 +30,9 @@
                 Console.WriteLine($"ALT { e.AltModifier }");
             };
 
-            mouseDevice.ButtonReleased += (s, e) =>
-            {
-                Console.WriteLine($"Button: { e.Button }");
-            };
+            mouseDevice.ButtonReleased += (s, e) => Console.WriteLine($"Button: { e.Button }");
 
-            mouseDevice.PositionChanged += (s, e) =>
-            {
-                Console.WriteLine($"POSITION: { e.Location.ToString() }");
-            };
+            mouseDevice.PositionChanged += (s, e) => Console.WriteLine($"POSITION: { e.Location.ToString() }");
 
             while (!window.IsClosing)
             {

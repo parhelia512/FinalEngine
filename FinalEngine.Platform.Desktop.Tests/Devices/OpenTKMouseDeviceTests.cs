@@ -18,10 +18,7 @@
 
             bool eventWasCalled = false;
 
-            mouseDevice.ButtonPressed += (s, e) =>
-            {
-                eventWasCalled = true;
-            };
+            mouseDevice.ButtonPressed += (s, e) => eventWasCalled = true;
 
             // Act
             mockNativeWindow.Raise(x => x.MouseDown += null, new MouseButtonEventArgs());
@@ -39,10 +36,7 @@
 
             bool eventWasCalled = false;
 
-            mouseDevice.ButtonReleased += (s, e) =>
-            {
-                eventWasCalled = true;
-            };
+            mouseDevice.ButtonReleased += (s, e) => eventWasCalled = true;
 
             // Act
             mockNativeWindow.Raise(x => x.MouseUp += null, new MouseButtonEventArgs());
@@ -137,10 +131,7 @@
 
             bool eventWasCalled = false;
 
-            mouseDevice.PositionChanged += (s, e) =>
-            {
-                eventWasCalled = true;
-            };
+            mouseDevice.PositionChanged += (s, e) => eventWasCalled = true;
 
             // Act
             mockNativeWindow.Raise(x => x.MouseMove += null, new MouseMoveEventArgs());
@@ -158,10 +149,7 @@
 
             bool eventWasCalled = false;
 
-            mouseDevice.WheelPositionChanged += (s, e) =>
-            {
-                eventWasCalled = true;
-            };
+            mouseDevice.WheelPositionChanged += (s, e) => eventWasCalled = true;
 
             // Act
             mockNativeWindow.Raise(x => x.MouseWheel += null, new MouseWheelEventArgs());

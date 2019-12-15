@@ -65,10 +65,7 @@
 
             bool eventWasCalled = false;
 
-            keyboardDevice.KeyPressed += (s, e) =>
-            {
-                eventWasCalled = true;
-            };
+            keyboardDevice.KeyPressed += (s, e) => eventWasCalled = true;
 
             // Act
             mockNativeWindow.Raise(x => x.KeyDown += null, new KeyboardKeyEventArgs());
@@ -86,10 +83,7 @@
 
             bool eventWasCalled = false;
 
-            keyboardDevice.KeyReleased += (s, e) =>
-            {
-                eventWasCalled = true;
-            };
+            keyboardDevice.KeyReleased += (s, e) => eventWasCalled = true;
 
             // Act
             mockNativeWindow.Raise(x => x.KeyUp += null, new KeyboardKeyEventArgs());

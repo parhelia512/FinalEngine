@@ -1,8 +1,6 @@
 ﻿namespace FinalEngine.Launcher.Desktop
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using FinalEngine.Platform.Desktop;
     using FinalEngine.Platform.Desktop.Devices;
 
@@ -11,11 +9,6 @@
     /// </summary>
     internal static class Program
     {
-        public static IEnumerable<Enum> GetFlags(this Enum e)
-        {
-            return Enum.GetValues(e.GetType()).Cast<Enum>().Where(e.HasFlag);
-        }
-
         /// <summary>
         ///   Defines the entry point of the application.
         /// </summary>
@@ -28,7 +21,7 @@
 
             var keyboardDevice = new OpenTKKeyboardDevice(window);
 
-            keyboardDevice.KeyPressed += (s, e) =>
+            keyboardDevice.KeyReleased += (s, e) =>
             {
                 Console.WriteLine($"SHIFT: { e.ShiftModifier }");
                 Console.WriteLine($"CNTRL: { e.ControlModifier }");

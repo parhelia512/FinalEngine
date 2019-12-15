@@ -34,31 +34,10 @@
         {
             switch (key)
             {
+                // TODO: Fill this.
                 default:
                     return Key.Unknown;
             }
-        }
-
-        private KeyModifier ConvertToNativeModifiers(bool control, bool alt, bool shift)
-        {
-            KeyModifier result = default;
-
-            if (control)
-            {
-                result |= KeyModifier.Control;
-            }
-
-            if (alt)
-            {
-                result |= KeyModifier.Alt;
-            }
-
-            if (shift)
-            {
-                result |= KeyModifier.Shift;
-            }
-
-            return result;
         }
 
         private void NativeWindow_KeyDown(object sender, KeyboardKeyEventArgs e)
@@ -67,7 +46,7 @@
                                                       LockableKeyState.Unknown,
                                                       LockableKeyState.Unknown,
                                                       LockableKeyState.Unknown,
-                                                      ConvertToNativeModifiers(e.Control, e.Alt, e.Shift)));
+                                                      e.Shift, e.Alt, e.Control));
         }
 
         private void NativeWindow_KeyUp(object sender, KeyboardKeyEventArgs e)
@@ -76,7 +55,7 @@
                                                        LockableKeyState.Unknown,
                                                        LockableKeyState.Unknown,
                                                        LockableKeyState.Unknown,
-                                                       ConvertToNativeModifiers(e.Control, e.Alt, e.Shift)));
+                                                      e.Shift, e.Alt, e.Control));
         }
     }
 }

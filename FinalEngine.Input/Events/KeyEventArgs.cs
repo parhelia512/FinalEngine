@@ -24,17 +24,27 @@
         /// <param name="scrollLockState">
         ///   Specifies the state of the scroll lock key at the time of raising the event.
         /// </param>
-        /// <param name="keyModifiers">
-        ///   Specifies a <see cref="KeyModifier"/> that represents the key modifiers that are present at the time of raising the event.
+        /// <param name="shiftModifier">
+        ///   Specifies the state of the shift modifier key (was it present at the time of raising the event).
         /// </param>
-        public KeyEventArgs(Key key, LockableKeyState capsLockState, LockableKeyState numLockState, LockableKeyState scrollLockState, KeyModifier keyModifiers)
+        /// <param name="altModifier">
+        ///   Specifies the state of the ALT modifier key (was it present at the time of raising the event).
+        /// </param>
+        /// <param name="controlModifier">
+        ///   Specifies the state of the control modifier key (was it present at the time of raising the event).
+        /// </param>
+        public KeyEventArgs(Key key, LockableKeyState capsLockState, LockableKeyState numLockState, LockableKeyState scrollLockState, bool shiftModifier, bool altModifier, bool controlModifier)
         {
             Key = key;
             CapsLockState = capsLockState;
             NumLockState = numLockState;
             ScrollLockState = scrollLockState;
-            KeyModifiers = keyModifiers;
+            ShiftModifier = shiftModifier;
+            AltModifier = altModifier;
+            ControlModifier = controlModifier;
         }
+
+        public bool AltModifier { get; }
 
         /// <summary>
         ///   Gets a <see cref="LockableKeyState"/> that represents the state of the caps lock key.
@@ -44,6 +54,8 @@
         /// </value>
         public LockableKeyState CapsLockState { get; }
 
+        public bool ControlModifier { get; }
+
         /// <summary>
         ///   Gets a <see cref="Key"/> that represents the key that raised the event.
         /// </summary>
@@ -51,14 +63,6 @@
         ///   The key that raised the event.
         /// </value>
         public Key Key { get; }
-
-        /// <summary>
-        ///   Gets a <see cref="KeyModifier"/> that represents the key modifiers that were present at the time of raising the event.
-        /// </summary>
-        /// <value>
-        ///   The key modifiers that were present at the time of raising the event.
-        /// </value>
-        public KeyModifier KeyModifiers { get; }
 
         /// <summary>
         ///   Gets a <see cref="LockableKeyState"/> that represents the state of the number lock key.
@@ -75,5 +79,7 @@
         ///   The state of the scroll lock key.
         /// </value>
         public LockableKeyState ScrollLockState { get; }
+
+        public bool ShiftModifier { get; }
     }
 }

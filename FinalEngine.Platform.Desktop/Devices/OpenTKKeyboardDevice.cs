@@ -9,6 +9,10 @@
     using Key = Input.Key;
     using TKKey = OpenTK.Input.Key;
 
+    /// <summary>
+    ///   Provides an OpenTK implementation of an <see cref="IKeyboardDevice"/>.
+    /// </summary>
+    /// <seealso cref="FinalEngine.Input.Devices.IKeyboardDevice"/>
     public sealed class OpenTKKeyboardDevice : IKeyboardDevice
     {
         /// <summary>
@@ -478,7 +482,9 @@
                                                       LockableKeyState.Unknown,
                                                       LockableKeyState.Unknown,
                                                       LockableKeyState.Unknown,
-                                                      e.Shift, e.Alt, e.Control));
+                                                      e.Shift,
+                                                      e.Alt,
+                                                      e.Control));
         }
 
         /// <summary>
@@ -496,7 +502,9 @@
                                                        LockableKeyState.Unknown,
                                                        LockableKeyState.Unknown,
                                                        LockableKeyState.Unknown,
-                                                      e.Shift, e.Alt, e.Control));
+                                                       e.Shift,
+                                                       e.Alt,
+                                                       e.Control));
         }
     }
 }

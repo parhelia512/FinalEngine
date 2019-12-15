@@ -9,7 +9,7 @@
     using TKMouseButton = OpenTK.Input.MouseButton;
 
     /// <summary>
-    ///   Provides an OpenTK implementaiton of an <see cref="IMouseDevice"/>.
+    ///   Provides an OpenTK implementation of an <see cref="IMouseDevice"/>.
     /// </summary>
     /// <seealso cref="FinalEngine.Input.Devices.IMouseDevice"/>
     public sealed class OpenTKMouseDevice : IMouseDevice

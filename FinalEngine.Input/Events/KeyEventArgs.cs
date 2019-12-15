@@ -44,6 +44,12 @@
             ControlModifier = controlModifier;
         }
 
+        /// <summary>
+        ///   Gets a value indicating whether the ALT key modifier was down during the time the event was raised.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the ALT key modifier was down during the time the event was raised; otherwise, <c>false</c>.
+        /// </value>
         public bool AltModifier { get; }
 
         /// <summary>
@@ -54,6 +60,12 @@
         /// </value>
         public LockableKeyState CapsLockState { get; }
 
+        /// <summary>
+        ///   Gets a value indicating whether the control key modifier was down during the time the event was raised.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the control key modifier was down during the time the event was raised; otherwise, <c>false</c>.
+        /// </value>
         public bool ControlModifier { get; }
 
         /// <summary>
@@ -80,6 +92,12 @@
         /// </value>
         public LockableKeyState ScrollLockState { get; }
 
+        /// <summary>
+        ///   Gets a value indicating whether the shift key modifier was down during the time the event was raised.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the shift key modifier was down during the time the event was raised; otherwise, <c>false</c>.
+        /// </value>
         public bool ShiftModifier { get; }
     }
 }

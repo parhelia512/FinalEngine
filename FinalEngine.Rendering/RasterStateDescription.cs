@@ -2,8 +2,6 @@
 {
     public enum FaceCullMode
     {
-        None,
-
         Front,
 
         Back

@@ -12,4 +12,11 @@
     <ProjectReference Include="..\FinalEngine.Rendering\FinalEngine.Rendering.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="OpenGLExtensions.cs">
+      <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+  </ItemGroup>
+
 </Project>

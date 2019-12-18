@@ -40,6 +40,10 @@
             {
                 invoker.Disable(EnableCap.CullFace);
             }
+
+            invoker.CullFace(description.FaceCullMode.ToOpenGL());
+            invoker.FrontFace(description.WindingDirection.ToOpenGL());
+            invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenGL());
         }
 
         /// <summary>

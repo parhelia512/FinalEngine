@@ -7,6 +7,8 @@
     /// </summary>
     public interface IOpenGLInvoker
     {
+        void CullFace(CullFaceMode mode);
+
         /// <summary>
         ///   Disables the specified graphics library server-side capibility, <paramref name="cap"/>.
         /// </summary>
@@ -22,6 +24,8 @@
         ///   Specifies a <see cref="EnableCap"/> that represents a symbolic constant indicating a graphics library capability.
         /// </param>
         void Enable(EnableCap cap);
+
+        void FrontFace(FrontFaceDirection direction);
 
         /// <summary>
         ///   Controls the interpretation of polygons for rasterization.

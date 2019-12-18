@@ -8,6 +8,14 @@
     public interface IOpenGLInvoker
     {
         /// <summary>
+        ///   Disables the specified graphics library server-side capibility, <paramref name="cap"/>.
+        /// </summary>
+        /// <param name="cap">
+        ///   Specifies a <see cref="EnableCap"/> that represents a symbolic constant indicating a graphics library capability..
+        /// </param>
+        void Disable(EnableCap cap);
+
+        /// <summary>
         ///   Enables the specified graphics library server-side capibility, <paramref name="cap"/>.
         /// </summary>
         /// <param name="cap">

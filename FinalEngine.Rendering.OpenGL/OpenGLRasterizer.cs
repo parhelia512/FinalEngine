@@ -27,6 +27,8 @@
         public OpenGLRasterizer(IOpenGLInvoker invoker)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified { nameof(invoker) } parameter is null.");
+
+            SetRasterState(RasterStateDescription.Default);
         }
 
         /// <summary>

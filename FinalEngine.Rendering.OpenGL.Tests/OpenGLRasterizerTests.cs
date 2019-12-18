@@ -1,11 +1,10 @@
-﻿using OpenTK.Graphics.OpenGL;
-
-namespace FinalEngine.Rendering.OpenGL.Tests
+﻿namespace FinalEngine.Rendering.OpenGL.Tests
 {
     using System;
     using FinalEngine.Rendering.OpenGL.Invoking;
     using Moq;
     using NUnit.Framework;
+    using OpenTK.Graphics.OpenGL;
 
     public sealed class OpenGLRasterizerTests
     {

@@ -36,8 +36,6 @@
         {
             this.device = device ?? throw new ArgumentNullException(nameof(device), $"The specified { nameof(device) } parameter is null.");
             this.deviceContext = deviceContext ?? throw new ArgumentNullException(nameof(deviceContext), $"The specified { nameof(deviceContext) } parameter is null.");
-
-            SetRasterState(RasterStateDescription.Default);
         }
 
         /// <summary>
@@ -57,7 +55,7 @@
 
             deviceContext.RSSetState(state);
 
-            state.Dispose();
+            state.Release();
         }
 
         /// <summary>

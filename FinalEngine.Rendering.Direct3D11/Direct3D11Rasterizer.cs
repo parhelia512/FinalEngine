@@ -48,7 +48,7 @@
         {
             ID3D11RasterizerState state = device.CreateRasterizerState(new RasterizerDescription()
             {
-                CullMode = !description.CullEnabled ? CullMode.None : description.FaceCullMode.ToDirect3D(),
+                CullMode = description.CullEnabled ? description.FaceCullMode.ToDirect3D() : CullMode.None,
                 FillMode = description.FillMode.ToDirect3D(),
                 FrontCounterClockwise = description.WindingDirection == WindingDirection.Clockwise
             });

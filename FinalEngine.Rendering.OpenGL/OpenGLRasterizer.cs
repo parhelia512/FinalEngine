@@ -29,6 +29,12 @@
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified { nameof(invoker) } parameter is null.");
         }
 
+        /// <summary>
+        ///   Sets the rasterization state, specified by <paramref name="description"/> to the rasterization stage of the rendering pipeline.
+        /// </summary>
+        /// <param name="description">
+        ///   Specifies a <see cref="RasterStateDescription"/> that represents the description of the rasterization state.
+        /// </param>
         public void SetRasterState(RasterStateDescription description)
         {
             OpenTK.Graphics.OpenGL.GL.PolygonMode(MaterialFace.Back, PolygonMode.Fill);

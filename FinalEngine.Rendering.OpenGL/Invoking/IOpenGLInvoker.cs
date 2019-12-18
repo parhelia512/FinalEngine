@@ -8,6 +8,14 @@
     public interface IOpenGLInvoker
     {
         /// <summary>
+        ///   Enables the specified graphics library server-side capibility, <paramref name="cap"/>.
+        /// </summary>
+        /// <param name="cap">
+        ///   Specifies a <see cref="EnableCap"/> that represents a symbolic constant indicating a graphics library capability.
+        /// </param>
+        void Enable(EnableCap cap);
+
+        /// <summary>
         ///   Specifies the affine transformation of <paramref name="x"/> and <paramref name="y"/> from normalized device coordinates to window coordinates.
         /// </summary>
         /// <param name="x">

@@ -28,6 +28,10 @@
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified { nameof(invoker) } parameter is null.");
         }
 
+        public void SetRasterState(RasterStateDescription description)
+        {
+        }
+
         /// <summary>
         ///   Binds the viewport, specified by the <paramref name="x"/>, <paramref name="y"/>, <paramref name="width"/> and <paramref name="height"/> parameters to the rasterization stage of the rendering pipeline.
         /// </summary>

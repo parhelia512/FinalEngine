@@ -4,7 +4,7 @@
 
     public sealed class OpenGLInvoker : IOpenGLInvoker
     {
-        public void SetViewport(int x, int y, int width, int height)
+        public void Viewport(int x, int y, int width, int height)
         {
             GL.Viewport(x, y, width, height);
         }

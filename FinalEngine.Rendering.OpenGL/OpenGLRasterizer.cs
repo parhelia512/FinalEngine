@@ -14,7 +14,7 @@
 
         public void SetViewport(int x, int y, int width, int height)
         {
-            invoker.SetViewport(x, y, width, height);
+            invoker.Viewport(x, y, width, height);
         }
     }
 }

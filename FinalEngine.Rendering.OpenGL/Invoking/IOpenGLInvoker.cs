@@ -2,6 +2,6 @@
 {
     public interface IOpenGLInvoker
     {
-        void SetViewport(int x, int y, int width, int height);
+        void Viewport(int x, int y, int width, int height);
     }
 }

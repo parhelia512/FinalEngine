@@ -20,10 +20,10 @@
         }
 
         /// <summary>
-        ///   Disables the specified graphics library server-side capibility, <paramref name="cap"/>.
+        ///   Disables the specified graphics library server-side capability, <paramref name="cap"/>.
         /// </summary>
         /// <param name="cap">
-        ///   Specifies a <see cref="EnableCap"/> that represents a symbolic constant indicating a graphics library capability..
+        ///   Specifies a <see cref="EnableCap"/> that represents a symbolic constant indicating a graphics library capability.
         /// </param>
         public void Disable(EnableCap cap)
         {
@@ -31,7 +31,7 @@
         }
 
         /// <summary>
-        ///   Enables the specified graphics library server-side capibility, <paramref name="cap"/>.
+        ///   Enables the specified graphics library server-side capability, <paramref name="cap"/>.
         /// </summary>
         /// <param name="cap">
         ///   Specifies a <see cref="EnableCap"/> that represents a symbolic constant indicating a graphics library capability.

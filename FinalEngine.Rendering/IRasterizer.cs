@@ -5,6 +5,12 @@
     /// </summary>
     public interface IRasterizer
     {
+        /// <summary>
+        ///   Sets the rasterization state, specified by <paramref name="description"/> to the rasterization stage of the rendering pipeline.
+        /// </summary>
+        /// <param name="description">
+        ///   Specifies a <see cref="RasterStateDescription"/> that represents the description of the rasterization state.
+        /// </param>
         void SetRasterState(RasterStateDescription description);
 
         /// <summary>

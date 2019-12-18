@@ -16,7 +16,6 @@
 
         public void SetRasterState(RasterStateDescription description)
         {
-            throw new System.NotImplementedException();
         }
 
         public void SetViewport(int x, int y, int width, int height)

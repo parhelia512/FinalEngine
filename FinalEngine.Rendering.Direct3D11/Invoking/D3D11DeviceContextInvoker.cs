@@ -12,6 +12,11 @@
             this.deviceContext = deviceContext ?? throw new ArgumentNullException(nameof(deviceContext), $"The specified { nameof(deviceContext) } parameter is null.");
         }
 
+        public void RSSetState(ID3D11RasterizerState state)
+        {
+            deviceContext.RSSetState(state);
+        }
+
         public void RSSetViewport(float x, float y, float width, float height)
         {
             deviceContext.RSSetViewport(x, y, width, height);

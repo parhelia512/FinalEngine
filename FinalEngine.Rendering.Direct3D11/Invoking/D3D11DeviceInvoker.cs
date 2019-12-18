@@ -1,8 +1,8 @@
-﻿using System;
-using Vortice.Direct3D11;
-
-namespace FinalEngine.Rendering.Direct3D11.Invoking
+﻿namespace FinalEngine.Rendering.Direct3D11.Invoking
 {
+    using System;
+    using Vortice.Direct3D11;
+
     public sealed class D3D11DeviceInvoker : ID3D11DeviceInvoker
     {
         private readonly ID3D11Device device;

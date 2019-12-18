@@ -37,7 +37,6 @@
         /// </param>
         public void SetRasterState(RasterStateDescription description)
         {
-            OpenTK.Graphics.OpenGL.GL.PolygonMode(MaterialFace.Back, PolygonMode.Fill);
             if (description.CullEnabled)
             {
                 invoker.Enable(EnableCap.CullFace);

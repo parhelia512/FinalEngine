@@ -14,7 +14,7 @@
 
         public void SetViewport(int x, int y, int width, int height)
         {
-            throw new System.NotImplementedException();
+            invoker.SetViewport(x, y, width, height);
         }
     }
 }

@@ -19,16 +19,16 @@
         ///   Binds an array of viewports to the rasterizer stage of the pipeline.
         /// </summary>
         /// <param name="x">
-        ///   Specifies a <see cref="Single"/> that represents the X coordinate, in pixels.
+        ///   Specifies a <see cref="float"/> that represents the X coordinate, in pixels.
         /// </param>
         /// <param name="y">
-        ///   Specifies a <see cref="Single"/> that represents the Y coordinate, in pixels.
+        ///   Specifies a <see cref="float"/> that represents the Y coordinate, in pixels.
         /// </param>
         /// <param name="width">
-        ///   Specifies a <see cref="Single"/> that represents the width, in pixels.
+        ///   Specifies a <see cref="float"/> that represents the width, in pixels.
         /// </param>
         /// <param name="height">
-        ///   Specifies a <see cref="Single"/> that represents the height, in pixels.
+        ///   Specifies a <see cref="float"/> that represents the height, in pixels.
         /// </param>
         void RSSetViewport(float x, float y, float width, float height);
     }

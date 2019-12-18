@@ -54,6 +54,26 @@
     public struct RasterStateDescription
     {
         /// <summary>
+        ///   Gets a <see cref="RasterStateDescription"/> that represents the default state of a rasterizer.
+        /// </summary>
+        /// <value>
+        ///   The default state of a rasterizer.
+        /// </value>
+        public static RasterStateDescription Default
+        {
+            get
+            {
+                return new RasterStateDescription()
+                {
+                    CullEnabled = false,
+                    FaceCullMode = FaceCullMode.Back,
+                    FillMode = RasterMode.Solid,
+                    WindingDirection = WindingDirection.CounterClockwise
+                };
+            }
+        }
+
+        /// <summary>
         ///   Gets or sets a value indicating whether culling is enabled for the rasterizer.
         /// </summary>
         /// <value>

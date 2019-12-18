@@ -14,7 +14,7 @@
         void SetRasterState(RasterStateDescription description);
 
         /// <summary>
-        ///   Binds the viewport, specified by the <paramref name="x"/>, <paramref name="y"/>, <paramref name="width"/> and <paramref name="height"/> parameters to the rasterization stage of the rendering pipeline.
+        ///   Sets the viewport, specified by the <paramref name="x"/>, <paramref name="y"/>, <paramref name="width"/> and <paramref name="height"/> parameters to the rasterization stage of the rendering pipeline.
         /// </summary>
         /// <param name="x">
         ///   Specifies a <see cref="int"/> that represents the X-coordinate of the viewport, in pixels.

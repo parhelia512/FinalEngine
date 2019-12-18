@@ -52,7 +52,7 @@
         }
 
         /// <summary>
-        ///   Binds the viewport, specified by the <paramref name="x"/>, <paramref name="y"/>, <paramref name="width"/> and <paramref name="height"/> parameters to the rasterization stage of the rendering pipeline.
+        ///   Sets the viewport, specified by the <paramref name="x"/>, <paramref name="y"/>, <paramref name="width"/> and <paramref name="height"/> parameters to the rasterization stage of the rendering pipeline.
         /// </summary>
         /// <param name="x">
         ///   Specifies a <see cref="int"/> that represents the X-coordinate of the viewport, in pixels.
@@ -66,6 +66,9 @@
         /// <param name="height">
         ///   Specifies a <see cref="int"/> that represents the height of the viewport, in pixels.
         /// </param>
+        /// <remarks>
+        ///   In OpenGL, the origin of the specified <paramref name="y"/> coordinate is located at the bottom left of the view.
+        /// </remarks>
         public void SetViewport(int x, int y, int width, int height)
         {
             invoker.Viewport(x, y, width, height);

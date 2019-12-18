@@ -4,7 +4,7 @@
     using OpenTK.Graphics.OpenGL;
     using GLFaceCullMode = OpenTK.Graphics.OpenGL.CullFaceMode;
 
-    public static class OpenGLExtensions
+    internal static class OpenGLExtensions
     {
         public static FrontFaceDirection ToOpenGL(this WindingDirection direction)
         {

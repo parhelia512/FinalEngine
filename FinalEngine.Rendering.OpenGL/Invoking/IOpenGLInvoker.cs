@@ -24,6 +24,17 @@
         void Enable(EnableCap cap);
 
         /// <summary>
+        ///   Controls the interpretation of polygons for rasterization.
+        /// </summary>
+        /// <param name="face">
+        ///   Specifies a <see cref="MaterialFace"/> that represents the face of a polygon that the specified <paramref name="mode"/> applies too.
+        /// </param>
+        /// <param name="mode">
+        ///   Specifies a <see cref="PolygonMode"/> that represents how polygons will be rasterized.
+        /// </param>
+        void PolygonMode(MaterialFace face, PolygonMode mode);
+
+        /// <summary>
         ///   Specifies the affine transformation of <paramref name="x"/> and <paramref name="y"/> from normalized device coordinates to window coordinates.
         /// </summary>
         /// <param name="x">

@@ -2,6 +2,7 @@
 {
     using System;
     using FinalEngine.Rendering.OpenGL.Invoking;
+    using OpenTK.Graphics.OpenGL;
 
     /// <summary>
     ///   Provides an OpenGL implementation of an <see cref="IRasterizer"/>.
@@ -30,6 +31,15 @@
 
         public void SetRasterState(RasterStateDescription description)
         {
+            OpenTK.Graphics.OpenGL.GL.PolygonMode(MaterialFace.Back, PolygonMode.Fill);
+            if (description.CullEnabled)
+            {
+                invoker.Enable(EnableCap.CullFace);
+            }
+            else
+            {
+                invoker.Disable(EnableCap.CullFace);
+            }
         }
 
         /// <summary>

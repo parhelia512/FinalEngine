@@ -55,7 +55,7 @@
 
             deviceContext.RSSetState(state);
 
-            state.Release();
+            state.Dispose();
         }
 
         /// <summary>

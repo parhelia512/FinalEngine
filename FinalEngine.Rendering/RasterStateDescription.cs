@@ -1,7 +1,7 @@
 ﻿namespace FinalEngine.Rendering
 {
     /// <summary>
-    ///   Enumerates the available modes that determine which primitives will not be drawn by a rasterizer.
+    ///   Enumerates the available modes used to determine which primitives will not be drawn by a rasterizer.
     /// </summary>
     public enum FaceCullMode
     {
@@ -17,7 +17,7 @@
     }
 
     /// <summary>
-    ///   Enumerates the available modes that determine how a rasterizer will draw polygons.
+    ///   Enumerates the available modes used to determine how a rasterizer will draw polygons.
     /// </summary>
     public enum RasterMode
     {
@@ -33,7 +33,7 @@
     }
 
     /// <summary>
-    ///   Enumerates the available directions used to determine the front face of a primitve.
+    ///   Enumerates the available directions used to determine the front face of a primitive.
     /// </summary>
     public enum WindingDirection
     {
@@ -48,14 +48,41 @@
         CounterClockwise
     }
 
+    /// <summary>
+    ///   Represents a description of the internal state of the rasterization stage of a rendering pipeline.
+    /// </summary>
     public struct RasterStateDescription
     {
+        /// <summary>
+        ///   Gets or sets a value indicating whether culling is enabled for the rasterizer.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if culling is enabled for the rasterizer; otherwise, <c>false</c>.
+        /// </value>
         public bool CullEnabled { get; set; }
 
+        /// <summary>
+        ///   Gets or sets a <see cref="FaceCullMode"/> that represents which primitives will not be drawn by the rasterizer.
+        /// </summary>
+        /// <value>
+        ///   Which primitives will not be drawn by the rasterizer.
+        /// </value>
         public FaceCullMode FaceCullMode { get; set; }
 
+        /// <summary>
+        ///   Gets or sets a <see cref="RasterMode"/> that represents how the rasterizer will draw polygons.
+        /// </summary>
+        /// <value>
+        ///   How the rasterizer will draw polygons.
+        /// </value>
         public RasterMode FillMode { get; set; }
 
+        /// <summary>
+        ///   Gets or sets a <see cref="WindingDirection"/> that represents the front face of a primitive.
+        /// </summary>
+        /// <value>
+        ///   The front face of a primitive.
+        /// </value>
         public WindingDirection WindingDirection { get; set; }
     }
 }

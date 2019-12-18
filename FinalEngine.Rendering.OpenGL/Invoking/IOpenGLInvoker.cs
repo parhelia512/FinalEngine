@@ -7,6 +7,12 @@
     /// </summary>
     public interface IOpenGLInvoker
     {
+        /// <summary>
+        ///   Specifies whether front or back facing facets are culled.
+        /// </summary>
+        /// <param name="mode">
+        ///   Specifies a <see cref="CullFaceMode"/> that represents the faces that will be culled.
+        /// </param>
         void CullFace(CullFaceMode mode);
 
         /// <summary>
@@ -25,6 +31,12 @@
         /// </param>
         void Enable(EnableCap cap);
 
+        /// <summary>
+        ///   Defines front and back facing primitives by their winding direction.
+        /// </summary>
+        /// <param name="direction">
+        ///   Specifies a <see cref="FrontFaceDirection"/> that represents the orientation of front-facing polygons.
+        /// </param>
         void FrontFace(FrontFaceDirection direction);
 
         /// <summary>

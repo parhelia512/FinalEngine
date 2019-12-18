@@ -37,7 +37,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Launcher", "Launcher", "{D1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Launcher.Desktop", "FinalEngine.Launcher.Desktop\FinalEngine.Launcher.Desktop.csproj", "{190DC703-421C-45D9-8AE9-6DFD666FF5CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Platform.Desktop.Tests", "FinalEngine.Platform.Desktop.Tests\FinalEngine.Platform.Desktop.Tests.csproj", "{94EC5016-60A2-4A3A-8542-BFB77759473A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Platform.Desktop.Tests", "FinalEngine.Platform.Desktop.Tests\FinalEngine.Platform.Desktop.Tests.csproj", "{94EC5016-60A2-4A3A-8542-BFB77759473A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rendering", "Rendering", "{2AF7ECCE-3FB1-47A1-8219-05D0C84E5FB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Rendering", "FinalEngine.Rendering\FinalEngine.Rendering.csproj", "{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -205,6 +209,18 @@ Global
 		{94EC5016-60A2-4A3A-8542-BFB77759473A}.Release|x64.Build.0 = Release|Any CPU
 		{94EC5016-60A2-4A3A-8542-BFB77759473A}.Release|x86.ActiveCfg = Release|Any CPU
 		{94EC5016-60A2-4A3A-8542-BFB77759473A}.Release|x86.Build.0 = Release|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Debug|x64.Build.0 = Debug|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Debug|x86.Build.0 = Debug|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Release|x64.ActiveCfg = Release|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Release|x64.Build.0 = Release|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Release|x86.ActiveCfg = Release|Any CPU
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,6 +241,7 @@ Global
 		{C646E88C-A647-4D69-8827-92AB74317952} = {F352E63D-4DFC-488A-A41E-A066C4994AA8}
 		{190DC703-421C-45D9-8AE9-6DFD666FF5CA} = {D1D49267-1893-4604-9FD4-5024C7451E5E}
 		{94EC5016-60A2-4A3A-8542-BFB77759473A} = {D7513568-2A6F-4AC8-B1E6-023E11CAF503}
+		{4DA24D4F-40CA-4C64-8A87-A7F49B2E04AC} = {2AF7ECCE-3FB1-47A1-8219-05D0C84E5FB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A278B383-0D14-41B3-A71C-4505E1D503DF}

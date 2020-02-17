@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering.Direct3D11.Invoking
+﻿// <copyright file="ID3D11DeviceContextInvoker.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.Direct3D11.Invoking
 {
     using Vortice.Direct3D11;
 

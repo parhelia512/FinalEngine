@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering.Direct3D11.Tests
+﻿// <copyright file="Direct3D11RasterizerTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.Direct3D11.Tests
 {
     using System;
     using FinalEngine.Rendering.Direct3D11.Invoking;

@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging.Tests
+﻿// <copyright file="LogHandlerTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging.Tests
 {
     using System;
     using FinalEngine.Logging.Tests.Mocks;

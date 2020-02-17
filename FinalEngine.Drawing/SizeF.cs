@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Drawing
+﻿// <copyright file="SizeF.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Drawing
 {
     using System;
 
     /// <summary>
     ///   Represents a pair of single-precision floating points that defines a two dimensional space.
     /// </summary>
-    /// <seealso cref="System.IEquatable{FinalEngine.Drawing.SizeF}"/>
+    /// <seealso cref="IEquatable{SizeF}"/>
     public struct SizeF : IEquatable<SizeF>
     {
         /// <summary>
@@ -24,8 +28,8 @@
         /// </param>
         public SizeF(float width, float height)
         {
-            Width = width;
-            Height = height;
+            this.Width = width;
+            this.Height = height;
         }
 
         /// <summary>
@@ -44,7 +48,7 @@
         /// </value>
         public bool IsEmpty
         {
-            get { return Equals(Empty); }
+            get { return this.Equals(Empty); }
         }
 
         /// <summary>
@@ -56,13 +60,13 @@
         public float Width { get; set; }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -71,7 +75,7 @@
                 return false;
             }
 
-            return Equals((SizeF)obj);
+            return this.Equals((SizeF)obj);
         }
 
         /// <summary>
@@ -85,8 +89,8 @@
         /// </returns>
         public bool Equals(SizeF other)
         {
-            return Width == other.Width &&
-                   Height == other.Height;
+            return this.Width == other.Width &&
+                   this.Height == other.Height;
         }
 
         /// <summary>
@@ -97,18 +101,18 @@
         /// </returns>
         public override int GetHashCode()
         {
-            return new { Width, Height }.GetHashCode();
+            return new { this.Width, this.Height }.GetHashCode();
         }
 
         /// <summary>
         ///   Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="System.String"/> that represents this instance.
+        ///   A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return $"({ Width }, { Height })";
+            return $"({this.Width}, {this.Height})";
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging.Tests.Handlers
+﻿// <copyright file="TextWriterLogHandlerTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging.Tests.Handlers
 {
     using System;
     using System.IO;
@@ -55,20 +59,7 @@
             mockTextWriter.Verify(t => t.WriteLine(It.IsAny<string>()), Times.Once);
             mockLogFormatter.Verify(f => f.GetFormattedLog(It.IsAny<LogType>(), "Some String"), Times.Once);
         }
-        
-        [Test]
-        public void Log_Test_Should_Throw_ArgumentNullException_When_Message_Is_Null()
-        {
-            // Arrange
-            var mockLogFormatter = new Mock<ILogFormatter>();
-            var mockTextWriter = new Mock<TextWriter>();
 
-            var logHandler = new TextWriterLogHandler(mockLogFormatter.Object, mockTextWriter.Object);
-            
-            // Act and assert
-            Assert.Throws<ArgumentNullException>(() => logHandler.Log(It.IsAny<LogType>(), null));
-        }
-        
         [Test]
         public void Log_Test_Should_Throw_ArgumentNullException_When_Message_Is_Empty()
         {
@@ -77,9 +68,22 @@
             var mockTextWriter = new Mock<TextWriter>();
 
             var logHandler = new TextWriterLogHandler(mockLogFormatter.Object, mockTextWriter.Object);
-            
+
             // Act and assert
             Assert.Throws<ArgumentNullException>(() => logHandler.Log(It.IsAny<LogType>(), string.Empty));
+        }
+
+        [Test]
+        public void Log_Test_Should_Throw_ArgumentNullException_When_Message_Is_Null()
+        {
+            // Arrange
+            var mockLogFormatter = new Mock<ILogFormatter>();
+            var mockTextWriter = new Mock<TextWriter>();
+
+            var logHandler = new TextWriterLogHandler(mockLogFormatter.Object, mockTextWriter.Object);
+
+            // Act and assert
+            Assert.Throws<ArgumentNullException>(() => logHandler.Log(It.IsAny<LogType>(), null));
         }
     }
 }

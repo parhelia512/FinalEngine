@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Platform
+﻿// <copyright file="IScreenManager.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform
 {
     /// <summary>
     ///   Defines an interface that provides methods for accessing and potentially changing the state of a display device.

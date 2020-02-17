@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Platform.Desktop.Tests.Devices
+﻿// <copyright file="OpenTKMouseDeviceTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform.Desktop.Tests.Devices
 {
     using System;
     using FinalEngine.Platform.Desktop.Devices;

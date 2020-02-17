@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Maths.Tests
+﻿// <copyright file="Matrix4Tests.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths.Tests
 {
     using NUnit.Framework;
 
@@ -8,15 +12,17 @@
         public void Equals_Operator_Test_Should_Return_False_When_Matrix4_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix4(new Vector4(1, 0, 3, 4),
-                                   new Vector4(0, 1, 4, 3),
-                                   new Vector4(1, 0, 2, 1),
-                                   new Vector4(0, 3, 4, 5));
+            var left = new Matrix4(
+                new Vector4(1, 0, 3, 4),
+                new Vector4(0, 1, 4, 3),
+                new Vector4(1, 0, 2, 1),
+                new Vector4(0, 3, 4, 5));
 
-            var right = new Matrix4(new Vector4(0, 1, 4, 5),
-                                    new Vector4(1, 0, 7, 3),
-                                    new Vector4(4, 5, 6, 1),
-                                    new Vector4(4, 5, 6, 7));
+            var right = new Matrix4(
+                new Vector4(0, 1, 4, 5),
+                new Vector4(1, 0, 7, 3),
+                new Vector4(4, 5, 6, 1),
+                new Vector4(4, 5, 6, 7));
 
             // Act
             bool result = left == right;
@@ -29,15 +35,17 @@
         public void Equals_Operator_Test_Should_Return_True_When_Matrix4_Contains_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix4(new Vector4(1, 0, 3, 4),
-                                   new Vector4(0, 1, 5, 55),
-                                   new Vector4(34, 56, 76, 29),
-                                   new Vector4(45, 66, 123, 4573));
+            var left = new Matrix4(
+                new Vector4(1, 0, 3, 4),
+                new Vector4(0, 1, 5, 55),
+                new Vector4(34, 56, 76, 29),
+                new Vector4(45, 66, 123, 4573));
 
-            var right = new Matrix4(new Vector4(1, 0, 3, 4),
-                                   new Vector4(0, 1, 5, 55),
-                                   new Vector4(34, 56, 76, 29),
-                                   new Vector4(45, 66, 123, 4573));
+            var right = new Matrix4(
+                new Vector4(1, 0, 3, 4),
+                new Vector4(0, 1, 5, 55),
+                new Vector4(34, 56, 76, 29),
+                new Vector4(45, 66, 123, 4573));
 
             // Act
             bool result = left == right;
@@ -50,15 +58,17 @@
         public void Equals_Test_Should_Return_False_When_Matrix4_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix4(new Vector4(1, 0, 3, 4),
-                                   new Vector4(0, 1, 4, 3),
-                                   new Vector4(1, 0, 2, 1),
-                                   new Vector4(0, 3, 4, 5));
+            var left = new Matrix4(
+                new Vector4(1, 0, 3, 4),
+                new Vector4(0, 1, 4, 3),
+                new Vector4(1, 0, 2, 1),
+                new Vector4(0, 3, 4, 5));
 
-            var right = new Matrix4(new Vector4(0, 1, 4, 5),
-                                    new Vector4(1, 0, 7, 3),
-                                    new Vector4(4, 5, 6, 1),
-                                    new Vector4(4, 5, 6, 7));
+            var right = new Matrix4(
+                new Vector4(0, 1, 4, 5),
+                new Vector4(1, 0, 7, 3),
+                new Vector4(4, 5, 6, 1),
+                new Vector4(4, 5, 6, 7));
 
             // Act
             bool result = left.Equals(right);
@@ -71,7 +81,7 @@
         public void Equals_Test_Should_Return_False_When_Not_Matrix4()
         {
             // Arrange
-            var matrix = new Matrix4();
+            var matrix = default(Matrix4);
 
             // Act
             bool result = matrix.Equals(new object());
@@ -84,15 +94,17 @@
         public void Equals_Test_Should_Return_True_When_Matrix4_Does_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix4(new Vector4(1, 0, 3, 4),
-                                   new Vector4(0, 1, 5, 55),
-                                   new Vector4(34, 56, 76, 29),
-                                   new Vector4(45, 66, 123, 4573));
+            var left = new Matrix4(
+                new Vector4(1, 0, 3, 4),
+                new Vector4(0, 1, 5, 55),
+                new Vector4(34, 56, 76, 29),
+                new Vector4(45, 66, 123, 4573));
 
-            var right = new Matrix4(new Vector4(1, 0, 3, 4),
-                                   new Vector4(0, 1, 5, 55),
-                                   new Vector4(34, 56, 76, 29),
-                                   new Vector4(45, 66, 123, 4573));
+            var right = new Matrix4(
+                new Vector4(1, 0, 3, 4),
+                new Vector4(0, 1, 5, 55),
+                new Vector4(34, 56, 76, 29),
+                new Vector4(45, 66, 123, 4573));
 
             // Act
             bool result = left.Equals(right);
@@ -105,10 +117,11 @@
         public void Identity_Readonly_Field_Test()
         {
             // Arrange
-            var expected = new Matrix4(new Vector4(1, 0, 0, 0),
-                                      new Vector4(0, 1, 0, 0),
-                                      new Vector4(0, 0, 1, 0),
-                                      new Vector4(0, 0, 0, 1));
+            var expected = new Matrix4(
+                new Vector4(1, 0, 0, 0),
+                new Vector4(0, 1, 0, 0),
+                new Vector4(0, 0, 1, 0),
+                new Vector4(0, 0, 0, 1));
 
             // Act
             Matrix4 actual = Matrix4.Identity;
@@ -137,10 +150,11 @@
             var expected = new Vector4(1, 0, 4, 4);
 
             // Act
-            var matrix = new Matrix4(expected,
-                                     new Vector4(0, 0, 0, 0),
-                                     new Vector4(0, 0, 0, 0),
-                                     new Vector4(0, 0, 0, 0));
+            var matrix = new Matrix4(
+                expected,
+                new Vector4(0, 0, 0, 0),
+                new Vector4(0, 0, 0, 0),
+                new Vector4(0, 0, 0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row0);
@@ -153,10 +167,11 @@
             var expected = new Vector4(1, 0, 4, 1);
 
             // Act
-            var matrix = new Matrix4(new Vector4(0, 0, 0, 0),
-                                     expected,
-                                     new Vector4(0, 0, 0, 0),
-                                     new Vector4(0, 0, 0, 0));
+            var matrix = new Matrix4(
+                new Vector4(0, 0, 0, 0),
+                expected,
+                new Vector4(0, 0, 0, 0),
+                new Vector4(0, 0, 0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row1);
@@ -169,10 +184,11 @@
             var expected = new Vector4(1, 0, 4, 455);
 
             // Act
-            var matrix = new Matrix4(new Vector4(0, 0, 0, 0),
-                                     new Vector4(0, 0, 0, 0),
-                                     expected,
-                                     new Vector4(0, 0, 0, 0));
+            var matrix = new Matrix4(
+                new Vector4(0, 0, 0, 0),
+                new Vector4(0, 0, 0, 0),
+                expected,
+                new Vector4(0, 0, 0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row2);
@@ -185,10 +201,11 @@
             var expected = new Vector4(1, 0, 4, 455);
 
             // Act
-            var matrix = new Matrix4(new Vector4(0, 0, 0, 0),
-                                     new Vector4(0, 0, 0, 0),
-                                     new Vector4(0, 0, 0, 0),
-                                     expected);
+            var matrix = new Matrix4(
+                new Vector4(0, 0, 0, 0),
+                new Vector4(0, 0, 0, 0),
+                new Vector4(0, 0, 0, 0),
+                expected);
 
             // Assert
             Assert.AreEqual(expected, matrix.Row3);

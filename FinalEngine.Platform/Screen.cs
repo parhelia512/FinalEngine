@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Platform
+﻿// <copyright file="Screen.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform
 {
     using FinalEngine.Drawing;
 
@@ -15,7 +19,7 @@
         /// </param>
         public Screen(Size size)
         {
-            Size = size;
+            this.Size = size;
         }
 
         /// <summary>

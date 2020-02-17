@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input.Devices
+﻿// <copyright file="IMouseDevice.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input.Devices
 {
     using System;
     using FinalEngine.Input.Events;

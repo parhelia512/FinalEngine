@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Platform.Tests
+﻿// <copyright file="ScreenTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform.Tests
 {
     using FinalEngine.Drawing;
     using NUnit.Framework;

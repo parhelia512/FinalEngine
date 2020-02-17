@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Maths.Tests
+﻿// <copyright file="Vector3Tests.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths.Tests
 {
     using NUnit.Framework;
 
@@ -108,7 +112,7 @@
         public void Equals_Test_Should_Return_False_When_Not_Vector3()
         {
             // Arrange
-            var vector = new Vector3();
+            var vector = default(Vector3);
 
             // Act
             bool result = vector.Equals(new object());
@@ -191,9 +195,10 @@
         public void NegativeInfinity_Readonly_Field_Test()
         {
             // Arrange
-            var expected = new Vector3(float.NegativeInfinity,
-                                       float.NegativeInfinity,
-                                       float.NegativeInfinity);
+            var expected = new Vector3(
+                float.NegativeInfinity,
+                float.NegativeInfinity,
+                float.NegativeInfinity);
 
             // Act
             Vector3 actual = Vector3.NegativeInfinity;
@@ -233,9 +238,10 @@
         public void PositiveInfinity_Readonly_Field_Test()
         {
             // Arrange
-            var expected = new Vector3(float.PositiveInfinity,
-                                       float.PositiveInfinity,
-                                       float.PositiveInfinity);
+            var expected = new Vector3(
+                float.PositiveInfinity,
+                float.PositiveInfinity,
+                float.PositiveInfinity);
 
             // Act
             Vector3 actual = Vector3.PositiveInfinity;

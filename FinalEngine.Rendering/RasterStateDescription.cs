@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering
+﻿// <copyright file="RasterStateDescription.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering
 {
     /// <summary>
     ///   Enumerates the available modes used to determine which primitives will not be drawn by a rasterizer.
@@ -13,7 +17,7 @@
         /// <summary>
         ///   Specifies that back facing primitives will not be drawn.
         /// </summary>
-        Back
+        Back,
     }
 
     /// <summary>
@@ -29,7 +33,7 @@
         /// <summary>
         ///   Specifies the polygons will be drawn as wireframe meshes.
         /// </summary>
-        Wireframe
+        Wireframe,
     }
 
     /// <summary>
@@ -45,7 +49,7 @@
         /// <summary>
         ///   Specifies a counter clockwise winding order.
         /// </summary>
-        CounterClockwise
+        CounterClockwise,
     }
 
     /// <summary>
@@ -68,7 +72,7 @@
                     CullEnabled = false,
                     FaceCullMode = FaceCullMode.Back,
                     FillMode = RasterMode.Solid,
-                    WindingDirection = WindingDirection.CounterClockwise
+                    WindingDirection = WindingDirection.CounterClockwise,
                 };
             }
         }

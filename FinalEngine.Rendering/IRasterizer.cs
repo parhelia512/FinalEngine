@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering
+﻿// <copyright file="IRasterizer.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering
 {
     /// <summary>
     ///   Defines an interface that represents the rasterization stage of a rendering pipeline.

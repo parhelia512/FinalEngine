@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Maths
+﻿// <copyright file="Vector2.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths
 {
     using System;
 
     /// <summary>
     ///   Represents a 2D vector with two single-precision floating points.
     /// </summary>
-    /// <seealso cref="System.IEquatable{FinalEngine.Maths.Vector2}"/>
+    /// <seealso cref="IEquatable{Vector2}"/>
     public struct Vector2 : IEquatable<Vector2>
     {
         /// <summary>
@@ -52,15 +56,15 @@
         ///   Initializes a new instance of the <see cref="Vector2"/> struct.
         /// </summary>
         /// <param name="x">
-        ///   Specifies a <see cref="float"/> that represents the X coordinate of this <see cref="Vector2"/>
+        ///   Specifies a <see cref="float"/> that represents the X coordinate of this <see cref="Vector2"/>.
         /// </param>
         /// <param name="y">
         ///   Specifies a <see cref="float"/> that represents the Y coordinate of this <see cref="Vector2"/>.
         /// </param>
         public Vector2(float x, float y)
         {
-            X = x;
-            Y = y;
+            this.X = x;
+            this.Y = y;
         }
 
         /// <summary>
@@ -222,13 +226,13 @@
         }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -237,7 +241,7 @@
                 return false;
             }
 
-            return Equals((Vector2)obj);
+            return this.Equals((Vector2)obj);
         }
 
         /// <summary>
@@ -251,8 +255,8 @@
         /// </returns>
         public bool Equals(Vector2 other)
         {
-            return X == other.X &&
-                   Y == other.Y;
+            return this.X == other.X &&
+                   this.Y == other.Y;
         }
 
         /// <summary>
@@ -263,18 +267,18 @@
         /// </returns>
         public override int GetHashCode()
         {
-            return new { X, Y }.GetHashCode();
+            return new { this.X, this.Y }.GetHashCode();
         }
 
         /// <summary>
         ///   Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="System.String"/> that represents this instance.
+        ///   A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return $"({ X }, { Y })";
+            return $"({this.X}, {this.Y})";
         }
     }
 }

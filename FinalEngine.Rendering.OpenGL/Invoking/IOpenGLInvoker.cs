@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering.OpenGL.Invoking
+﻿// <copyright file="IOpenGLInvoker.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.OpenGL.Invoking
 {
     using OpenTK.Graphics.OpenGL;
 

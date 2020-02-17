@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering.OpenGL
+﻿// <copyright file="OpenGLExtensions.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using OpenTK.Graphics.OpenGL;
@@ -17,7 +21,7 @@
                     return FrontFaceDirection.Ccw;
 
                 default:
-                    throw new NotSupportedException($"The specified { nameof(direction) } parameter is not supported in the OpenGL backend.");
+                    throw new NotSupportedException($"The specified {nameof(direction)} parameter is not supported in the OpenGL backend.");
             }
         }
 
@@ -32,7 +36,7 @@
                     return GLFaceCullMode.Front;
 
                 default:
-                    throw new NotSupportedException($"The specified { nameof(mode) } parameter is not supported in the OpenGL backend.");
+                    throw new NotSupportedException($"The specified {nameof(mode)} parameter is not supported in the OpenGL backend.");
             }
         }
 
@@ -47,7 +51,7 @@
                     return PolygonMode.Line;
 
                 default:
-                    throw new NotSupportedException($"The specified { nameof(mode) } parameter is not supported in the OpenGL backend.");
+                    throw new NotSupportedException($"The specified {nameof(mode)} parameter is not supported in the OpenGL backend.");
             }
         }
     }

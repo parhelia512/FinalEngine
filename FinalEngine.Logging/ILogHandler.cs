@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging
+﻿// <copyright file="ILogHandler.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging
 {
     /// <summary>
     ///   Defines an interface that represents a handler that writes sequential information to a singular destination.

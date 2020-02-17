@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Launcher.Desktop
+﻿// <copyright file="Program.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Launcher.Desktop
 {
     using FinalEngine.Platform.Desktop;
 
@@ -14,7 +18,7 @@
         {
             var window = new OpenTKWindow(1024, 768, "Final Engine")
             {
-                Visible = true
+                Visible = true,
             };
 
             while (!window.IsClosing)

@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Rendering.OpenGL.Invoking
+﻿// <copyright file="OpenGLInvoker.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.OpenGL.Invoking
 {
     using OpenTK.Graphics.OpenGL;
 
     /// <summary>
     ///   Provides an OpenGL implementation of an <see cref="IOpenGLInvoker"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Rendering.OpenGL.Invoking.IOpenGLInvoker"/>
+    /// <seealso cref="IOpenGLInvoker"/>
     public sealed class OpenGLInvoker : IOpenGLInvoker
     {
         /// <summary>

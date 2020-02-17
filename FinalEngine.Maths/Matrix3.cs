@@ -1,19 +1,24 @@
-﻿namespace FinalEngine.Maths
+﻿// <copyright file="Matrix3.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths
 {
     using System;
 
     /// <summary>
     ///   Represents a 3x3 matrix.
     /// </summary>
-    /// <seealso cref="System.IEquatable{FinalEngine.Maths.Matrix3}"/>
+    /// <seealso cref="IEquatable{Matrix3}"/>
     public struct Matrix3 : IEquatable<Matrix3>
     {
         /// <summary>
         ///   Represents a <see cref="Matrix3"/> that is an identity matrix.
         /// </summary>
-        public static readonly Matrix3 Identity = new Matrix3(new Vector3(1, 0, 0),
-                                                              new Vector3(0, 1, 0),
-                                                              new Vector3(0, 0, 1));
+        public static readonly Matrix3 Identity = new Matrix3(
+            new Vector3(1, 0, 0),
+            new Vector3(0, 1, 0),
+            new Vector3(0, 0, 1));
 
         /// <summary>
         ///   Represents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.One"/>.
@@ -39,9 +44,9 @@
         /// </param>
         public Matrix3(Vector3 row0, Vector3 row1, Vector3 row2)
         {
-            Row0 = row0;
-            Row1 = row1;
-            Row2 = row2;
+            this.Row0 = row0;
+            this.Row1 = row1;
+            this.Row2 = row2;
         }
 
         /// <summary>
@@ -103,13 +108,13 @@
         }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -118,7 +123,7 @@
                 return false;
             }
 
-            return Equals((Matrix3)obj);
+            return this.Equals((Matrix3)obj);
         }
 
         /// <summary>
@@ -132,9 +137,9 @@
         /// </returns>
         public bool Equals(Matrix3 other)
         {
-            return Row0 == other.Row0 &&
-                   Row1 == other.Row1 &&
-                   Row2 == other.Row2;
+            return this.Row0 == other.Row0 &&
+                   this.Row1 == other.Row1 &&
+                   this.Row2 == other.Row2;
         }
 
         /// <summary>
@@ -145,18 +150,18 @@
         /// </returns>
         public override int GetHashCode()
         {
-            return new { Row0, Row1, Row2 }.GetHashCode();
+            return new { this.Row0, this.Row1, this.Row2 }.GetHashCode();
         }
 
         /// <summary>
         ///   Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="System.String"/> that represents this instance.
+        ///   A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return $"({ Row0 }\n{ Row1 }\n{ Row2 })";
+            return $"({this.Row0}\n{this.Row1}\n{this.Row2})";
         }
     }
 }

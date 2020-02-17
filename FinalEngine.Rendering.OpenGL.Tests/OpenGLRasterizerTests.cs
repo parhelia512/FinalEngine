@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering.OpenGL.Tests
+﻿// <copyright file="OpenGLRasterizerTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.OpenGL.Tests
 {
     using System;
     using FinalEngine.Rendering.OpenGL.Invoking;
@@ -37,7 +41,7 @@
                 CullEnabled = true,
                 FaceCullMode = FaceCullMode.Back,
                 FillMode = RasterMode.Solid,
-                WindingDirection = WindingDirection.Clockwise
+                WindingDirection = WindingDirection.Clockwise,
             };
 
             // Act
@@ -62,7 +66,7 @@
                 CullEnabled = false,
                 FaceCullMode = FaceCullMode.Front,
                 FillMode = RasterMode.Wireframe,
-                WindingDirection = WindingDirection.CounterClockwise
+                WindingDirection = WindingDirection.CounterClockwise,
             };
 
             // Act

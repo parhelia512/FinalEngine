@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Logging
+﻿// <copyright file="LogHandler.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging
 {
     using System;
 
     /// <summary>
     ///   Provides an abstraction representation of an <see cref="ILogHandler"/> that provides the ability to assure correct formatting of messages.
     /// </summary>
-    /// <seealso cref="FinalEngine.Logging.ILogHandler"/>
+    /// <seealso cref="ILogHandler"/>
     public abstract class LogHandler : ILogHandler
     {
         /// <summary>
@@ -14,12 +18,12 @@
         /// <param name="formatter">
         ///   Specifies a <see cref="ILogFormatter"/> that represents the formatter that will format a message before it is logged.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="formatter"/> parameter is null.
         /// </exception>
         protected LogHandler(ILogFormatter formatter)
         {
-            Formatter = formatter ?? throw new ArgumentNullException(nameof(formatter), $"The specified { nameof(formatter) } parameter is null.");
+            this.Formatter = formatter ?? throw new ArgumentNullException(nameof(formatter), $"The specified {nameof(formatter)} parameter is null.");
         }
 
         /// <summary>

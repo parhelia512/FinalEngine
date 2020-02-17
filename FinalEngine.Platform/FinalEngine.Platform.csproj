@@ -4,6 +4,15 @@
     <StyleCopTreatErrorsAsWarnings>True</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
   <ItemGroup>
+    <AdditionalFiles Include="..\Styling\StyleCop\Other\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\FinalEngine.Drawing\FinalEngine.Drawing.csproj" />
   </ItemGroup>
 </Project>

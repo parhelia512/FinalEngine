@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input
+﻿// <copyright file="LockableKeyState.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input
 {
     /// <summary>
     ///   Enumerates the available states of a lockable key.
@@ -18,6 +22,6 @@
         /// <summary>
         ///   Specifies the key is in an unlocked state.
         /// </summary>
-        Unlocked
+        Unlocked,
     }
 }

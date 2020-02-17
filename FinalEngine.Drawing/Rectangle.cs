@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Drawing
+﻿// <copyright file="Rectangle.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Drawing
 {
     using System;
 
     /// <summary>
     ///   Represents a rectangular region (defined by four integers) on a two dimensional plane.
     /// </summary>
-    /// <seealso cref="System.IEquatable{FinalEngine.Drawing.Rectangle}"/>
+    /// <seealso cref="IEquatable{Rectangle}"/>
     public struct Rectangle : IEquatable<Rectangle>
     {
         /// <summary>
@@ -19,8 +23,8 @@
         /// </param>
         public Rectangle(Point location, Size size)
         {
-            Location = location;
-            Size = size;
+            this.Location = location;
+            this.Size = size;
         }
 
         /// <summary>
@@ -31,7 +35,7 @@
         /// </value>
         public int Height
         {
-            get { return Size.Height; }
+            get { return this.Size.Height; }
         }
 
         /// <summary>
@@ -42,7 +46,7 @@
         /// </value>
         public bool IsEmpty
         {
-            get { return Location.IsEmpty && Size.IsEmpty; }
+            get { return this.Location.IsEmpty && this.Size.IsEmpty; }
         }
 
         /// <summary>
@@ -69,7 +73,7 @@
         /// </value>
         public int Width
         {
-            get { return Size.Width; }
+            get { return this.Size.Width; }
         }
 
         /// <summary>
@@ -80,7 +84,7 @@
         /// </value>
         public int X
         {
-            get { return Location.X; }
+            get { return this.Location.X; }
         }
 
         /// <summary>
@@ -91,7 +95,7 @@
         /// </value>
         public int Y
         {
-            get { return Location.Y; }
+            get { return this.Location.Y; }
         }
 
         /// <summary>
@@ -105,17 +109,17 @@
         /// </returns>
         public bool Equals(Rectangle other)
         {
-            return Location.Equals(other.Location) && Size.Equals(other.Size);
+            return this.Location.Equals(other.Location) && this.Size.Equals(other.Size);
         }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -124,7 +128,7 @@
                 return false;
             }
 
-            return Equals((Rectangle)obj);
+            return this.Equals((Rectangle)obj);
         }
 
         /// <summary>
@@ -135,18 +139,18 @@
         /// </returns>
         public override int GetHashCode()
         {
-            return new { Location, Size }.GetHashCode();
+            return new { this.Location, this.Size }.GetHashCode();
         }
 
         /// <summary>
         ///   Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="System.String"/> that represents this instance.
+        ///   A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return $"({ Location }, { Size }";
+            return $"({this.Location}, {this.Size}";
         }
     }
 }

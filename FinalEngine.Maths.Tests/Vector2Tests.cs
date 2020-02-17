@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Maths.Tests
+﻿// <copyright file="Vector2Tests.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths.Tests
 {
     using NUnit.Framework;
 
@@ -95,7 +99,7 @@
         public void Equals_Test_Should_Return_False_When_Not_Vector2()
         {
             // Arrange
-            var vector = new Vector2();
+            Vector2 vector = default;
 
             // Act
             bool result = vector.Equals(new object());

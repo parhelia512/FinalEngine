@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Maths.Tests
+﻿// <copyright file="Matrix3Tests.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths.Tests
 {
     using NUnit.Framework;
 
@@ -8,13 +12,15 @@
         public void Equals_Operator_Test_Should_Return_False_When_Matrix3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3),
-                                   new Vector3(0, 1, 4),
-                                   new Vector3(1, 0, 2));
+            var left = new Matrix3(
+                new Vector3(1, 0, 3),
+                new Vector3(0, 1, 4),
+                new Vector3(1, 0, 2));
 
-            var right = new Matrix3(new Vector3(0, 1, 4),
-                                    new Vector3(1, 0, 7),
-                                    new Vector3(4, 5, 6));
+            var right = new Matrix3(
+                new Vector3(0, 1, 4),
+                new Vector3(1, 0, 7),
+                new Vector3(4, 5, 6));
 
             // Act
             bool result = left == right;
@@ -27,13 +33,15 @@
         public void Equals_Operator_Test_Should_Return_True_When_Matrix3_Contains_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3),
-                                   new Vector3(0, 1, 5),
-                                   new Vector3(34, 56, 76));
+            var left = new Matrix3(
+                new Vector3(1, 0, 3),
+                new Vector3(0, 1, 5),
+                new Vector3(34, 56, 76));
 
-            var right = new Matrix3(new Vector3(1, 0, 3),
-                                    new Vector3(0, 1, 5),
-                                    new Vector3(34, 56, 76));
+            var right = new Matrix3(
+                new Vector3(1, 0, 3),
+                new Vector3(0, 1, 5),
+                new Vector3(34, 56, 76));
 
             // Act
             bool result = left == right;
@@ -46,13 +54,15 @@
         public void Equals_Test_Should_Return_False_When_Matrix3_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3),
-                                   new Vector3(0, 1, 4),
-                                   new Vector3(1, 0, 2));
+            var left = new Matrix3(
+                new Vector3(1, 0, 3),
+                new Vector3(0, 1, 4),
+                new Vector3(1, 0, 2));
 
-            var right = new Matrix3(new Vector3(0, 1, 4),
-                                    new Vector3(1, 0, 7),
-                                    new Vector3(4, 5, 6));
+            var right = new Matrix3(
+                new Vector3(0, 1, 4),
+                new Vector3(1, 0, 7),
+                new Vector3(4, 5, 6));
 
             // Act
             bool result = left.Equals(right);
@@ -65,7 +75,7 @@
         public void Equals_Test_Should_Return_False_When_Not_Matrix3()
         {
             // Arrange
-            var matrix = new Matrix3();
+            var matrix = default(Matrix3);
 
             // Act
             bool result = matrix.Equals(new object());
@@ -78,13 +88,15 @@
         public void Equals_Test_Should_Return_True_When_Matrix3_Does_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix3(new Vector3(1, 0, 3),
-                                   new Vector3(0, 1, 5),
-                                   new Vector3(34, 56, 76));
+            var left = new Matrix3(
+                new Vector3(1, 0, 3),
+                new Vector3(0, 1, 5),
+                new Vector3(34, 56, 76));
 
-            var right = new Matrix3(new Vector3(1, 0, 3),
-                                    new Vector3(0, 1, 5),
-                                    new Vector3(34, 56, 76));
+            var right = new Matrix3(
+                new Vector3(1, 0, 3),
+                new Vector3(0, 1, 5),
+                new Vector3(34, 56, 76));
 
             // Act
             bool result = left.Equals(right);
@@ -97,9 +109,10 @@
         public void Identity_Readonly_Field_Test()
         {
             // Arrange
-            var expected = new Matrix3(new Vector3(1, 0, 0),
-                                       new Vector3(0, 1, 0),
-                                       new Vector3(0, 0, 1));
+            var expected = new Matrix3(
+                new Vector3(1, 0, 0),
+                new Vector3(0, 1, 0),
+                new Vector3(0, 0, 1));
 
             // Act
             Matrix3 actual = Matrix3.Identity;
@@ -128,9 +141,10 @@
             var expected = new Vector3(1, 0, 4);
 
             // Act
-            var matrix = new Matrix3(expected,
-                                     new Vector3(0, 0, 0),
-                                     new Vector3(0, 0, 0));
+            var matrix = new Matrix3(
+                expected,
+                new Vector3(0, 0, 0),
+                new Vector3(0, 0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row0);
@@ -143,9 +157,10 @@
             var expected = new Vector3(1, 0, 4);
 
             // Act
-            var matrix = new Matrix3(new Vector3(0, 0, 0),
-                                     expected,
-                                     new Vector3(0, 0, 0));
+            var matrix = new Matrix3(
+                new Vector3(0, 0, 0),
+                expected,
+                new Vector3(0, 0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row1);
@@ -158,9 +173,10 @@
             var expected = new Vector3(1, 0, 4);
 
             // Act
-            var matrix = new Matrix3(new Vector3(0, 0, 0),
-                                     new Vector3(0, 0, 0),
-                                     expected);
+            var matrix = new Matrix3(
+                new Vector3(0, 0, 0),
+                new Vector3(0, 0, 0),
+                expected);
 
             // Assert
             Assert.AreEqual(expected, matrix.Row2);

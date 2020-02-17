@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Maths.Tests
+﻿// <copyright file="Matrix2Tests.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths.Tests
 {
     using NUnit.Framework;
 
@@ -8,11 +12,13 @@
         public void Equals_Operator_Test_Should_Return_False_When_Matrix2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(1, 0),
-                                   new Vector2(0, 1));
+            var left = new Matrix2(
+                new Vector2(1, 0),
+                new Vector2(0, 1));
 
-            var right = new Matrix2(new Vector2(0, 1),
-                                    new Vector2(1, 0));
+            var right = new Matrix2(
+                new Vector2(0, 1),
+                new Vector2(1, 0));
 
             // Act
             bool result = left == right;
@@ -25,11 +31,13 @@
         public void Equals_Operator_Test_Should_Return_True_When_Matrix2_Contains_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(1, 0),
-                                   new Vector2(0, 1));
+            var left = new Matrix2(
+                new Vector2(1, 0),
+                new Vector2(0, 1));
 
-            var right = new Matrix2(new Vector2(1, 0),
-                                    new Vector2(0, 1));
+            var right = new Matrix2(
+                new Vector2(1, 0),
+                new Vector2(0, 1));
 
             // Act
             bool result = left == right;
@@ -42,11 +50,13 @@
         public void Equals_Test_Should_Return_False_When_Matrix2_Does_Not_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(0, 1),
-                                   new Vector2(1, 0));
+            var left = new Matrix2(
+                new Vector2(0, 1),
+                new Vector2(1, 0));
 
-            var right = new Matrix2(new Vector2(1, 0),
-                                    new Vector2(0, 1));
+            var right = new Matrix2(
+                new Vector2(1, 0),
+                new Vector2(0, 1));
 
             // Act
             bool result = left.Equals(right);
@@ -59,7 +69,7 @@
         public void Equals_Test_Should_Return_False_When_Not_Matrix2()
         {
             // Arrange
-            var matrix2 = new Matrix2();
+            var matrix2 = default(Matrix2);
 
             // Act
             bool result = matrix2.Equals(new object());
@@ -72,11 +82,13 @@
         public void Equals_Test_Should_Return_True_When_Matrix2_Does_Contain_Same_Property_Values()
         {
             // Arrange
-            var left = new Matrix2(new Vector2(1, 0),
-                                   new Vector2(0, 1));
+            var left = new Matrix2(
+                new Vector2(1, 0),
+                new Vector2(0, 1));
 
-            var right = new Matrix2(new Vector2(1, 0),
-                                    new Vector2(0, 1));
+            var right = new Matrix2(
+                new Vector2(1, 0),
+                new Vector2(0, 1));
 
             // Act
             bool result = left.Equals(right);
@@ -118,8 +130,9 @@
             var expected = new Vector2(1, 0);
 
             // Act
-            var matrix = new Matrix2(expected,
-                                     new Vector2(0, 0));
+            var matrix = new Matrix2(
+                expected,
+                new Vector2(0, 0));
 
             // Assert
             Assert.AreEqual(expected, matrix.Row0);
@@ -132,8 +145,9 @@
             var expected = new Vector2(1, 0);
 
             // Act
-            var matrix = new Matrix2(new Vector2(0, 0),
-                                     expected);
+            var matrix = new Matrix2(
+                new Vector2(0, 0),
+                expected);
 
             // Assert
             Assert.AreEqual(expected, matrix.Row1);

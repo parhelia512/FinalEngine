@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;OPENTK</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
+    <NoWarn>1701;1702;SA0001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

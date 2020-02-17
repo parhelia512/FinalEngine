@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging
+﻿// <copyright file="LogType.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging
 {
     /// <summary>
     ///   Enumerates the available types of messages that can be logged.
@@ -23,6 +27,6 @@
         /// <summary>
         ///   Specifies the log message is meant to be treated as debug information.
         /// </summary>
-        Debug
+        Debug,
     }
 }

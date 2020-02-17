@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Platform
+﻿// <copyright file="IEventsProcessor.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform
 {
     /// <summary>
     ///   Defines an interface that provides a method for processing OS-specific events in a message queue.

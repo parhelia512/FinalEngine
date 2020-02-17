@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging.Tests.Formatters
+﻿// <copyright file="StandardLogFormatterTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging.Tests.Formatters
 {
     using FinalEngine.Logging.Formatters;
     using NUnit.Framework;
@@ -10,7 +14,7 @@
         {
             // Arrange
             var logFormatter = new StandardLogFormatter();
-            string expected = "[DEBUG] This Is A Test";
+            const string expected = "[DEBUG] This Is A Test";
 
             // Act
             string actual = logFormatter.GetFormattedLog(LogType.Debug, "This Is A Test");
@@ -24,7 +28,7 @@
         {
             // Arrange
             var logFormatter = new StandardLogFormatter();
-            string expected = "[ERROR] This Is A Test";
+            const string expected = "[ERROR] This Is A Test";
 
             // Act
             string actual = logFormatter.GetFormattedLog(LogType.Error, "This Is A Test");
@@ -38,7 +42,7 @@
         {
             // Arrange
             var logFormatter = new StandardLogFormatter();
-            string expected = "[INFORMATION] This Is A Test";
+            const string expected = "[INFORMATION] This Is A Test";
 
             // Act
             string actual = logFormatter.GetFormattedLog(LogType.Information, "This Is A Test");
@@ -52,7 +56,7 @@
         {
             // Arrange
             var logFormatter = new StandardLogFormatter();
-            string expected = "[WARNING] This Is A Test";
+            const string expected = "[WARNING] This Is A Test";
 
             // Act
             string actual = logFormatter.GetFormattedLog(LogType.Warning, "This Is A Test");

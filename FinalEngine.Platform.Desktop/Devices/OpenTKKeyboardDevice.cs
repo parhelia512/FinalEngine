@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Platform.Desktop.Devices
+﻿// <copyright file="OpenTKKeyboardDevice.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform.Desktop.Devices
 {
     using System;
     using FinalEngine.Input;
@@ -6,13 +10,13 @@
     using FinalEngine.Input.Events;
     using OpenTK;
     using OpenTK.Input;
-    using Key = Input.Key;
+    using Key = FinalEngine.Input.Key;
     using TKKey = OpenTK.Input.Key;
 
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IKeyboardDevice"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Input.Devices.IKeyboardDevice"/>
+    /// <seealso cref="IKeyboardDevice"/>
     public sealed class OpenTKKeyboardDevice : IKeyboardDevice
     {
         /// <summary>
@@ -26,15 +30,15 @@
         /// <param name="nativeWindow">
         ///   Specifies a <see cref="INativeWindow"/> that represents the native window that will be used to hook onto mouse related events.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="nativeWindow"/> parameter is null.
         /// </exception>
         public OpenTKKeyboardDevice(INativeWindow nativeWindow)
         {
-            this.nativeWindow = nativeWindow ?? throw new ArgumentNullException(nameof(nativeWindow), $"The specified { nameof(nativeWindow) } parameter is null.");
+            this.nativeWindow = nativeWindow ?? throw new ArgumentNullException(nameof(nativeWindow), $"The specified {nameof(nativeWindow)} parameter is null.");
 
-            nativeWindow.KeyDown += NativeWindow_KeyDown;
-            nativeWindow.KeyUp += NativeWindow_KeyUp;
+            nativeWindow.KeyDown += this.NativeWindow_KeyDown;
+            nativeWindow.KeyUp += this.NativeWindow_KeyUp;
         }
 
         /// <summary>
@@ -42,8 +46,8 @@
         /// </summary>
         ~OpenTKKeyboardDevice()
         {
-            nativeWindow.KeyDown -= NativeWindow_KeyDown;
-            nativeWindow.KeyUp -= NativeWindow_KeyUp;
+            this.nativeWindow.KeyDown -= this.NativeWindow_KeyDown;
+            this.nativeWindow.KeyUp -= this.NativeWindow_KeyUp;
         }
 
         /// <summary>
@@ -478,15 +482,16 @@
         /// </param>
         private void NativeWindow_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
-            var keyEventsArgs = new KeyEventArgs(ConvertToNativeKey(e.Key),
-                                                 LockableKeyState.Unknown,
-                                                 LockableKeyState.Unknown,
-                                                 LockableKeyState.Unknown,
-                                                 e.Shift,
-                                                 e.Alt,
-                                                 e.Control);
+            var keyEventsArgs = new KeyEventArgs(
+                this.ConvertToNativeKey(e.Key),
+                LockableKeyState.Unknown,
+                LockableKeyState.Unknown,
+                LockableKeyState.Unknown,
+                e.Shift,
+                e.Alt,
+                e.Control);
 
-            KeyPressed?.Invoke(this, keyEventsArgs);
+            this.KeyPressed?.Invoke(this, keyEventsArgs);
         }
 
         /// <summary>
@@ -500,15 +505,16 @@
         /// </param>
         private void NativeWindow_KeyUp(object sender, KeyboardKeyEventArgs e)
         {
-            var keyEventsArgs = new KeyEventArgs(ConvertToNativeKey(e.Key),
-                                                 LockableKeyState.Unknown,
-                                                 LockableKeyState.Unknown,
-                                                 LockableKeyState.Unknown,
-                                                 e.Shift,
-                                                 e.Alt,
-                                                 e.Control);
+            var keyEventsArgs = new KeyEventArgs(
+                this.ConvertToNativeKey(e.Key),
+                LockableKeyState.Unknown,
+                LockableKeyState.Unknown,
+                LockableKeyState.Unknown,
+                e.Shift,
+                e.Alt,
+                e.Control);
 
-            KeyReleased?.Invoke(this, keyEventsArgs);
+            this.KeyReleased?.Invoke(this, keyEventsArgs);
         }
     }
 }

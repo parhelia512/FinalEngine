@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Drawing.Tests
+﻿// <copyright file="PointTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Drawing.Tests
 {
     using NUnit.Framework;
 

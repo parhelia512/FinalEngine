@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Drawing
+﻿// <copyright file="Point.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Drawing
 {
     using System;
 
     /// <summary>
     ///   Represents a pair of integer coordinates that defines a point on a two-dimensional plane.
     /// </summary>
-    /// <seealso cref="System.IEquatable{FinalEngine.Drawing.Point}"/>
+    /// <seealso cref="IEquatable{Point}"/>
     public struct Point : IEquatable<Point>
     {
         /// <summary>
@@ -24,8 +28,8 @@
         /// </param>
         public Point(int x, int y)
         {
-            X = x;
-            Y = y;
+            this.X = x;
+            this.Y = y;
         }
 
         /// <summary>
@@ -36,7 +40,7 @@
         /// </value>
         public bool IsEmpty
         {
-            get { return Equals(Empty); }
+            get { return this.Equals(Empty); }
         }
 
         /// <summary>
@@ -56,13 +60,13 @@
         public int Y { get; set; }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -71,7 +75,7 @@
                 return false;
             }
 
-            return Equals((Point)obj);
+            return this.Equals((Point)obj);
         }
 
         /// <summary>
@@ -85,8 +89,8 @@
         /// </returns>
         public bool Equals(Point other)
         {
-            return X == other.X &&
-                   Y == other.Y;
+            return this.X == other.X &&
+                   this.Y == other.Y;
         }
 
         /// <summary>
@@ -97,18 +101,18 @@
         /// </returns>
         public override int GetHashCode()
         {
-            return new { X, Y }.GetHashCode();
+            return new { this.X, this.Y }.GetHashCode();
         }
 
         /// <summary>
         ///   Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="System.String"/> that represents this instance.
+        ///   A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return $"({ X }, { Y })";
+            return $"({this.X}, {this.Y})";
         }
     }
 }

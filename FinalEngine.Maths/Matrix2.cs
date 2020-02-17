@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Maths
+﻿// <copyright file="Matrix2.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths
 {
     using System;
 
     /// <summary>
     ///   Represents a 2x2 matrix.
     /// </summary>
-    /// <seealso cref="System.IEquatable{FinalEngine.Maths.Matrix2}"/>
+    /// <seealso cref="IEquatable{Matrix2}"/>
     public struct Matrix2 : IEquatable<Matrix2>
     {
         /// <summary>
@@ -34,8 +38,8 @@
         /// </param>
         public Matrix2(Vector2 row0, Vector2 row1)
         {
-            Row0 = row0;
-            Row1 = row1;
+            this.Row0 = row0;
+            this.Row1 = row1;
         }
 
         /// <summary>
@@ -89,13 +93,13 @@
         }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -104,7 +108,7 @@
                 return false;
             }
 
-            return Equals((Matrix2)obj);
+            return this.Equals((Matrix2)obj);
         }
 
         /// <summary>
@@ -118,8 +122,8 @@
         /// </returns>
         public bool Equals(Matrix2 other)
         {
-            return Row0 == other.Row0 &&
-                   Row1 == other.Row1;
+            return this.Row0 == other.Row0 &&
+                   this.Row1 == other.Row1;
         }
 
         /// <summary>
@@ -130,18 +134,18 @@
         /// </returns>
         public override int GetHashCode()
         {
-            return new { Row0, Row1 }.GetHashCode();
+            return new { this.Row0, this.Row1 }.GetHashCode();
         }
 
         /// <summary>
         ///   Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="System.String"/> that represents this instance.
+        ///   A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return $"({ Row0 }\n{ Row1 })";
+            return $"({this.Row0}\n{this.Row1})";
         }
     }
 }

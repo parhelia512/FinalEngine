@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Drawing.Tests
+﻿// <copyright file="RectangleTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Drawing.Tests
 {
     using NUnit.Framework;
 
@@ -8,7 +12,7 @@
         public void Equals_Test_Should_Be_False_When_Not_Rectangle()
         {
             // Arrange
-            var rectangle = new Rectangle();
+            var rectangle = default(Rectangle);
             object obj = new object();
 
             // Act

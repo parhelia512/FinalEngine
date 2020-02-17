@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input.Events
+﻿// <copyright file="MouseWheelEventArgs.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input.Events
 {
     using System;
     using FinalEngine.Input.Devices;
@@ -6,7 +10,7 @@
     /// <summary>
     ///   Provides event data for the <see cref="IMouseDevice.WheelPositionChanged"/> event.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public sealed class MouseWheelEventArgs : EventArgs
     {
         /// <summary>
@@ -17,7 +21,7 @@
         /// </param>
         public MouseWheelEventArgs(float delta)
         {
-            Delta = delta;
+            this.Delta = delta;
         }
 
         /// <summary>

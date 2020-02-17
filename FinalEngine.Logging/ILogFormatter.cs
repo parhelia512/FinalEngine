@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging
+﻿// <copyright file="ILogFormatter.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging
 {
     /// <summary>
     ///   Defines an interface that provides a method for formatting the information given from a log entry to a <c>string</c>.

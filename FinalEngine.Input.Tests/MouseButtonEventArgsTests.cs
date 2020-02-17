@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input.Tests
+﻿// <copyright file="MouseButtonEventArgsTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input.Tests
 {
     using System;
     using FinalEngine.Input.Events;

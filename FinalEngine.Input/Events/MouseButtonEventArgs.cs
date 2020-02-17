@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input.Events
+﻿// <copyright file="MouseButtonEventArgs.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input.Events
 {
     using System;
     using FinalEngine.Input.Devices;
@@ -6,7 +10,7 @@
     /// <summary>
     ///   Provides event data for the <see cref="IMouseDevice.ButtonPressed"/> and <see cref="IMouseDevice.ButtonReleased"/> events.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public sealed class MouseButtonEventArgs : EventArgs
     {
         /// <summary>
@@ -17,7 +21,7 @@
         /// </param>
         public MouseButtonEventArgs(MouseButton button)
         {
-            Button = button;
+            this.Button = button;
         }
 
         /// <summary>

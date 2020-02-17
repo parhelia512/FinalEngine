@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Rendering.OpenGL
+﻿// <copyright file="OpenGLRasterizer.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using FinalEngine.Rendering.OpenGL.Invoking;
@@ -7,7 +11,7 @@
     /// <summary>
     ///   Provides an OpenGL implementation of an <see cref="IRasterizer"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Rendering.IRasterizer"/>
+    /// <seealso cref="IRasterizer"/>
     public sealed class OpenGLRasterizer : IRasterizer
     {
         /// <summary>
@@ -21,12 +25,12 @@
         /// <param name="invoker">
         ///   Specifies a <see cref="IOpenGLInvoker"/> that represents the OpenGL invoker.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="invoker"/> parameter is null.
         /// </exception>
         public OpenGLRasterizer(IOpenGLInvoker invoker)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified { nameof(invoker) } parameter is null.");
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter is null.");
         }
 
         /// <summary>
@@ -39,16 +43,16 @@
         {
             if (description.CullEnabled)
             {
-                invoker.Enable(EnableCap.CullFace);
+                this.invoker.Enable(EnableCap.CullFace);
             }
             else
             {
-                invoker.Disable(EnableCap.CullFace);
+                this.invoker.Disable(EnableCap.CullFace);
             }
 
-            invoker.CullFace(description.FaceCullMode.ToOpenGL());
-            invoker.FrontFace(description.WindingDirection.ToOpenGL());
-            invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenGL());
+            this.invoker.CullFace(description.FaceCullMode.ToOpenGL());
+            this.invoker.FrontFace(description.WindingDirection.ToOpenGL());
+            this.invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenGL());
         }
 
         /// <summary>
@@ -71,7 +75,7 @@
         /// </remarks>
         public void SetViewport(int x, int y, int width, int height)
         {
-            invoker.Viewport(x, y, width, height);
+            this.invoker.Viewport(x, y, width, height);
         }
     }
 }

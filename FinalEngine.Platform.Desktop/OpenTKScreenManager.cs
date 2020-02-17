@@ -1,12 +1,16 @@
-﻿namespace FinalEngine.Platform.Desktop
+﻿// <copyright file="OpenTKScreenManager.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform.Desktop
 {
     using OpenTK;
-    using Size = Drawing.Size;
+    using Size = FinalEngine.Drawing.Size;
 
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IScreenManager"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Platform.IScreenManager"/>
+    /// <seealso cref="IScreenManager"/>
     public sealed class OpenTKScreenManager : IScreenManager
     {
         /// <summary>

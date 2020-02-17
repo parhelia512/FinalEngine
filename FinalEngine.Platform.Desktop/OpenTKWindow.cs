@@ -1,17 +1,21 @@
-﻿namespace FinalEngine.Platform.Desktop
+﻿// <copyright file="OpenTKWindow.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform.Desktop
 {
     using System.ComponentModel;
     using OpenTK;
-    using Point = Drawing.Point;
-    using Rectangle = Drawing.Rectangle;
-    using Size = Drawing.Size;
+    using Point = FinalEngine.Drawing.Point;
+    using Rectangle = FinalEngine.Drawing.Rectangle;
+    using Size = FinalEngine.Drawing.Size;
 
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IWindow"/> and <see cref="IEventsProcessor"/>.
     /// </summary>
-    /// <seealso cref="OpenTK.NativeWindow"/>
-    /// <seealso cref="FinalEngine.Platform.IWindow"/>
-    /// <seealso cref="FinalEngine.Platform.IEventsProcessor"/>
+    /// <seealso cref="NativeWindow"/>
+    /// <seealso cref="IWindow"/>
+    /// <seealso cref="IEventsProcessor"/>
     public sealed class OpenTKWindow : NativeWindow, IWindow, IEventsProcessor
     {
         /// <summary>
@@ -28,16 +32,16 @@
         /// </param>
         public OpenTKWindow(int width, int height, string title)
         {
-            Width = width;
-            Height = height;
-            Title = title;
+            this.Width = width;
+            this.Height = height;
+            this.Title = title;
 
             // Set CurrentScreen to primrary.
-            TryChangeCurrentScreen(0);
+            this.TryChangeCurrentScreen(0);
 
             // Center the window to the current screen.
-            X = (CurrentScreen.Size.Width - Width) / 2;
-            Y = (CurrentScreen.Size.Height - Height) / 2;
+            this.X = (this.CurrentScreen.Size.Width - this.Width) / 2;
+            this.Y = (this.CurrentScreen.Size.Height - this.Height) / 2;
         }
 
         /// <summary>
@@ -50,8 +54,9 @@
         {
             get
             {
-                return new Rectangle(new Point(ClientRectangle.X, ClientRectangle.Y),
-                                     new Size(ClientSize.Width, ClientSize.Height));
+                return new Rectangle(
+                    new Point(this.ClientRectangle.X, this.ClientRectangle.Y),
+                    new Size(this.ClientSize.Width, this.ClientSize.Height));
             }
         }
 
@@ -63,7 +68,7 @@
         /// </value>
         Size IWindow.ClientSize
         {
-            get { return new Size(ClientSize.Width, ClientSize.Height); }
+            get { return new Size(this.ClientSize.Width, this.ClientSize.Height); }
         }
 
         /// <summary>
@@ -93,8 +98,8 @@
         /// </value>
         Point IWindow.Location
         {
-            get { return new Point(Location.X, Location.Y); }
-            set { Location = new OpenTK.Point(value.X, value.Y); }
+            get { return new Point(this.Location.X, this.Location.Y); }
+            set { this.Location = new OpenTK.Point(value.X, value.Y); }
         }
 
         /// <summary>
@@ -108,8 +113,8 @@
         /// </remarks>
         Size IWindow.Size
         {
-            get { return new Size(Size.Width, Size.Height); }
-            set { Size = new OpenTK.Size(value.Width, value.Height); }
+            get { return new Size(this.Size.Width, this.Size.Height); }
+            set { this.Size = new OpenTK.Size(value.Width, value.Height); }
         }
 
         /// <summary>
@@ -128,7 +133,7 @@
         {
             if (OpenTKScreenManager.Instance.TryGetScreenByIndex(index, out Screen screen))
             {
-                CurrentScreen = screen;
+                this.CurrentScreen = screen;
                 return true;
             }
 
@@ -143,7 +148,7 @@
         /// </param>
         protected override void OnClosing(CancelEventArgs e)
         {
-            IsClosing = !e.Cancel;
+            this.IsClosing = !e.Cancel;
 
             base.OnClosing(e);
         }

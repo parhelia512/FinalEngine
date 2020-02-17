@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input
+﻿// <copyright file="Key.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input
 {
     /// <summary>
     ///   Enumerates the available keyboard key on a standard US-keyboard.
@@ -658,6 +662,6 @@
         /// <summary>
         ///   Specifies the Non-US Back Slash key.
         /// </summary>
-        NonUSBackSlash
+        NonUSBackSlash,
     }
 }

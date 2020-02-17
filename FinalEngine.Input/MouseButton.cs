@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input
+﻿// <copyright file="MouseButton.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input
 {
     /// <summary>
     ///   Enumerates the available mouse buttons on standard mouse.
@@ -23,6 +27,6 @@
         /// <summary>
         ///   The middle mouse button (scroll wheel).
         /// </summary>
-        Middle
+        Middle,
     }
 }

@@ -1,4 +1,10 @@
-﻿namespace FinalEngine.Rendering.Direct3D11
+﻿// <copyright file="Direct3DExtensions.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+#pragma warning disable SA1600 // Elements should be documented
+
+namespace FinalEngine.Rendering.Direct3D11
 {
     using System;
     using Vortice.Direct3D11;
@@ -16,7 +22,7 @@
                     return CullMode.Front;
 
                 default:
-                    throw new NotSupportedException($"The specified { nameof(mode) } parameter is not supported in the Direct3D 11 backend.");
+                    throw new NotSupportedException($"The specified {nameof(mode)} parameter is not supported in the Direct3D 11 backend.");
             }
         }
 
@@ -31,8 +37,10 @@
                     return FillMode.Wireframe;
 
                 default:
-                    throw new NotSupportedException($"The specified { nameof(mode) } parameter is not supported in the Direct3D 11 backend.");
+                    throw new NotSupportedException($"The specified {nameof(mode)} parameter is not supported in the Direct3D 11 backend.");
             }
         }
     }
 }
+
+#pragma warning restore SA1600 // Elements should be documented

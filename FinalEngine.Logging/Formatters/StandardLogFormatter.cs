@@ -1,9 +1,13 @@
-﻿namespace FinalEngine.Logging.Formatters
+﻿// <copyright file="StandardLogFormatter.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging.Formatters
 {
     /// <summary>
     ///   Provides an implementation of an <see cref="ILogFormatter"/> that formats log entries to be easily read in a standard text format.
     /// </summary>
-    /// <seealso cref="FinalEngine.Logging.ILogFormatter"/>
+    /// <seealso cref="ILogFormatter"/>
     public sealed class StandardLogFormatter : ILogFormatter
     {
         /// <summary>
@@ -23,7 +27,7 @@
         /// </returns>
         public string GetFormattedLog(LogType type, string message)
         {
-            return $"[{ type.ToString().ToUpper() }] { message }";
+            return $"[{type.ToString().ToUpper()}] {message}";
         }
     }
 }

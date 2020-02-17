@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Maths
+﻿// <copyright file="Vector3.cs" company="MTO Software">
+//     Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Maths
 {
     using System;
 
     /// <summary>
     ///   Represents a 3D vector with three single-precision floating points.
     /// </summary>
-    /// <seealso cref="System.IEquatable{FinalEngine.Maths.Vector3}"/>
+    /// <seealso cref="IEquatable{Vector3}"/>
     public struct Vector3 : IEquatable<Vector3>
     {
         /// <summary>
@@ -31,9 +35,10 @@
         /// <summary>
         ///   Represent a <see cref="Vector3"/> where each component is set to <see cref="float.NegativeInfinity"/>.
         /// </summary>
-        public static readonly Vector3 NegativeInfinity = new Vector3(float.NegativeInfinity,
-                                                                      float.NegativeInfinity,
-                                                                      float.NegativeInfinity);
+        public static readonly Vector3 NegativeInfinity = new Vector3(
+            float.NegativeInfinity,
+            float.NegativeInfinity,
+            float.NegativeInfinity);
 
         /// <summary>
         ///   Represents a <see cref="Vector3"/> where each component is set to one.
@@ -43,9 +48,10 @@
         /// <summary>
         ///   Represents a <see cref="Vector3"/> where each component is set to <see cref="float.PositiveInfinity"/>.
         /// </summary>
-        public static readonly Vector3 PositiveInfinity = new Vector3(float.PositiveInfinity,
-                                                                      float.PositiveInfinity,
-                                                                      float.PositiveInfinity);
+        public static readonly Vector3 PositiveInfinity = new Vector3(
+            float.PositiveInfinity,
+            float.PositiveInfinity,
+            float.PositiveInfinity);
 
         /// <summary>
         ///   Represents a <see cref="Vector3"/> that points right (1, 0, 0).
@@ -76,9 +82,9 @@
         /// </param>
         public Vector3(float x, float y, float z)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
         }
 
         /// <summary>
@@ -252,13 +258,13 @@
         }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="System.Object"/> to compare with this instance.
+        ///   The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -267,7 +273,7 @@
                 return false;
             }
 
-            return Equals((Vector3)obj);
+            return this.Equals((Vector3)obj);
         }
 
         /// <summary>
@@ -281,9 +287,9 @@
         /// </returns>
         public bool Equals(Vector3 other)
         {
-            return X == other.X &&
-                   Y == other.Y &&
-                   Z == other.Z;
+            return this.X == other.X &&
+                   this.Y == other.Y &&
+                   this.Z == other.Z;
         }
 
         /// <summary>
@@ -294,18 +300,18 @@
         /// </returns>
         public override int GetHashCode()
         {
-            return new { X, Y, Z }.GetHashCode();
+            return new { this.X, this.Y, this.Z }.GetHashCode();
         }
 
         /// <summary>
         ///   Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="System.String"/> that represents this instance.
+        ///   A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return $"({ X }, { Y }, { Z })";
+            return $"({this.X}, {this.Y}, {this.Z})";
         }
     }
 }

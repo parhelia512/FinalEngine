@@ -11,6 +11,3 @@ jobs:
       - run:
           name: Build
           command: dotnet build --no-restore
-      - run:
-          name: Test
-          command: dotnet test --no-restore

@@ -5,18 +5,19 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;OPENTK</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
+    <NoWarn>1701;1702;SA0001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenTK.NetStandard" Version="1.0.4" />
+    <AdditionalFiles Include="..\Styling\StyleCop\Other\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="PointF.cs">
-      <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
+    <PackageReference Include="OpenTK.NetStandard" Version="1.0.4" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
-
 </Project>

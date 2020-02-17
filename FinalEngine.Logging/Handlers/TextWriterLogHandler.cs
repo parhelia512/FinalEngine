@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging.Handlers
+﻿// <copyright file="TextWriterLogHandler.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging.Handlers
 {
     using System;
     using System.IO;
@@ -6,7 +10,7 @@
     /// <summary>
     ///   Provides an implementation of a <see cref="LogHandler"/> that logs to a <see cref="TextWriter"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Logging.LogHandler"/>
+    /// <seealso cref="LogHandler"/>
     public sealed class TextWriterLogHandler : LogHandler
     {
         /// <summary>
@@ -23,13 +27,13 @@
         /// <param name="writer">
         ///   Specifies a <see cref="TextWriter"/> that represents the text writer that will be used to log messages.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="writer"/> parameter is null.
         /// </exception>
         public TextWriterLogHandler(ILogFormatter formatter, TextWriter writer)
             : base(formatter)
         {
-            this.writer = writer ?? throw new ArgumentNullException(nameof(writer), $"The specified { nameof(writer) } parameter is null.");
+            this.writer = writer ?? throw new ArgumentNullException(nameof(writer), $"The specified {nameof(writer)} parameter is null.");
         }
 
         /// <summary>
@@ -41,17 +45,17 @@
         /// <param name="message">
         ///   Specifies a <see cref="string"/> that represents the message to be logged.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="message"/> parameter is null or empty.
         /// </exception>
         public override void Log(LogType type, string message)
         {
             if (string.IsNullOrEmpty(message))
             {
-                throw new ArgumentNullException(nameof(message), $"The specified { nameof(message) } parameter is null.");
+                throw new ArgumentNullException(nameof(message), $"The specified {nameof(message)} parameter is null.");
             }
 
-            writer.WriteLine(Formatter.GetFormattedLog(type, message));
+            this.writer.WriteLine(this.Formatter.GetFormattedLog(type, message));
         }
     }
 }

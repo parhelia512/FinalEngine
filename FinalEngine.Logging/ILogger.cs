@@ -1,11 +1,15 @@
-﻿namespace FinalEngine.Logging
+﻿// <copyright file="ILogger.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging
 {
     using System.Collections.Generic;
 
     /// <summary>
     ///   Defines an interface that represents a central logger.
     /// </summary>
-    /// <seealso cref="FinalEngine.Logging.ILogHandler"/>
+    /// <seealso cref="ILogHandler"/>
     public interface ILogger : ILogHandler
     {
         /// <summary>

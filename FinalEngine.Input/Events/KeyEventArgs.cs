@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input.Events
+﻿// <copyright file="KeyEventArgs.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input.Events
 {
     using System;
     using FinalEngine.Input.Devices;
@@ -6,7 +10,7 @@
     /// <summary>
     ///   Provides event data for the <see cref="IKeyboardDevice.KeyPressed"/> and <see cref="IKeyboardDevice.KeyReleased"/> events.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public sealed class KeyEventArgs : EventArgs
     {
         /// <summary>
@@ -35,13 +39,13 @@
         /// </param>
         public KeyEventArgs(Key key, LockableKeyState capsLockState, LockableKeyState numLockState, LockableKeyState scrollLockState, bool shiftModifier, bool altModifier, bool controlModifier)
         {
-            Key = key;
-            CapsLockState = capsLockState;
-            NumLockState = numLockState;
-            ScrollLockState = scrollLockState;
-            ShiftModifier = shiftModifier;
-            AltModifier = altModifier;
-            ControlModifier = controlModifier;
+            this.Key = key;
+            this.CapsLockState = capsLockState;
+            this.NumLockState = numLockState;
+            this.ScrollLockState = scrollLockState;
+            this.ShiftModifier = shiftModifier;
+            this.AltModifier = altModifier;
+            this.ControlModifier = controlModifier;
         }
 
         /// <summary>

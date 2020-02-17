@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Input.Events
+﻿// <copyright file="MouseMoveEventArgs.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Input.Events
 {
     using System;
     using FinalEngine.Drawing;
@@ -7,7 +11,7 @@
     /// <summary>
     ///   Provides event data for the <see cref="IMouseDevice.PositionChanged"/> event.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public sealed class MouseMoveEventArgs : EventArgs
     {
         /// <summary>
@@ -18,7 +22,7 @@
         /// </param>
         public MouseMoveEventArgs(PointF location)
         {
-            Location = location;
+            this.Location = location;
         }
 
         /// <summary>

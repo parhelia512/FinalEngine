@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Logging.Tests
+﻿// <copyright file="LoggerTests.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Logging.Tests
 {
     using Moq;
     using NUnit.Framework;

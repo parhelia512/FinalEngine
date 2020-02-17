@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Platform
+﻿// <copyright file="IWindow.cs" company="MTO Software">
+// Copyright (c) MTO Software. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Platform
 {
     using System;
     using FinalEngine.Drawing;
@@ -6,7 +10,7 @@
     /// <summary>
     ///   Defines an interface that represents a display or window.
     /// </summary>
-    /// <seealso cref="System.IDisposable"/>
+    /// <seealso cref="IDisposable"/>
     public interface IWindow : IDisposable
     {
         /// <summary>

@@ -49,9 +49,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ED66C9CD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering.OpenGL.Tests", "FinalEngine.Rendering.OpenGL.Tests\FinalEngine.Rendering.OpenGL.Tests.csproj", "{5444AE2E-DB88-4AE8-BBAA-762A96C7D433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Rendering.Direct3D11", "FinalEngine.Rendering.Direct3D11\FinalEngine.Rendering.Direct3D11.csproj", "{CCFA5321-B2B8-47DC-AFDE-3C1FBC42F89B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering.Direct3D11", "FinalEngine.Rendering.Direct3D11\FinalEngine.Rendering.Direct3D11.csproj", "{CCFA5321-B2B8-47DC-AFDE-3C1FBC42F89B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Rendering.Direct3D11.Tests", "FinalEngine.Rendering.Direct3D.Tests\FinalEngine.Rendering.Direct3D11.Tests.csproj", "{F374D015-E5B0-48A0-9AB9-A521A1550069}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering.Direct3D11.Tests", "FinalEngine.Rendering.Direct3D.Tests\FinalEngine.Rendering.Direct3D11.Tests.csproj", "{F374D015-E5B0-48A0-9AB9-A521A1550069}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14909D16-2584-4EB6-8656-7DA0C1DD540F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

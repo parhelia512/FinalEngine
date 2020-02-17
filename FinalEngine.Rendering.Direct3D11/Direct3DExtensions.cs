@@ -1,6 +1,8 @@
 ﻿// <copyright file="Direct3DExtensions.cs" company="MTO Software">
-// Copyright (c) MTO Software. All rights reserved.
+//     Copyright (c) MTO Software. All rights reserved.
 // </copyright>
+
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace FinalEngine.Rendering.Direct3D11
 {
@@ -40,3 +42,5 @@ namespace FinalEngine.Rendering.Direct3D11
         }
     }
 }
+
+#pragma warning restore SA1600 // Elements should be documented

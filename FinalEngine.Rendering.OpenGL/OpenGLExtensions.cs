@@ -1,6 +1,8 @@
 ﻿// <copyright file="OpenGLExtensions.cs" company="MTO Software">
-// Copyright (c) MTO Software. All rights reserved.
+//     Copyright (c) MTO Software. All rights reserved.
 // </copyright>
+
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace FinalEngine.Rendering.OpenGL
 {
@@ -56,3 +58,5 @@ namespace FinalEngine.Rendering.OpenGL
         }
     }
 }
+
+#pragma warning restore SA1600 // Elements should be documented

@@ -1,5 +1,5 @@
-﻿// <copyright file="IOpenGLInvoker.cs" company="MTO Software">
-// Copyright (c) MTO Software. All rights reserved.
+﻿// <copyright file="IOpenGLInvoker.cs" company="Software Antics">
+// Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Rendering.OpenGL.Invoking

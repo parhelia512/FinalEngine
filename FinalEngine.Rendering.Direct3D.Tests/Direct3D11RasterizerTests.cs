@@ -1,5 +1,5 @@
-﻿// <copyright file="Direct3D11RasterizerTests.cs" company="MTO Software">
-// Copyright (c) MTO Software. All rights reserved.
+﻿// <copyright file="Direct3D11RasterizerTests.cs" company="Software Antics">
+// Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Rendering.Direct3D11.Tests

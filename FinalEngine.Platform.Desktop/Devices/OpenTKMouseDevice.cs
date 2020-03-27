@@ -1,5 +1,5 @@
-﻿// <copyright file="OpenTKMouseDevice.cs" company="MTO Software">
-//     Copyright (c) MTO Software. All rights reserved.
+﻿// <copyright file="OpenTKMouseDevice.cs" company="Software Antics">
+// Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Platform.Desktop.Devices

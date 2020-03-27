@@ -1,5 +1,5 @@
-﻿// <copyright file="PointFTests.cs" company="MTO Software">
-// Copyright (c) MTO Software. All rights reserved.
+﻿// <copyright file="PointFTests.cs" company="Software Antics">
+// Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Drawing.Tests

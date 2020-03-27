@@ -1,5 +1,5 @@
-﻿// <copyright file="Direct3DExtensions.cs" company="MTO Software">
-//     Copyright (c) MTO Software. All rights reserved.
+﻿// <copyright file="Direct3DExtensions.cs" company="Software Antics">
+// Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 #pragma warning disable SA1600 // Elements should be documented

@@ -1,5 +1,5 @@
 ﻿// <copyright file="RasterStateDescription.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Rendering
@@ -58,24 +58,24 @@ namespace FinalEngine.Rendering
     public struct RasterStateDescription
     {
         /// <summary>
-        ///   Gets a <see cref="RasterStateDescription"/> that represents the default state of a rasterizer.
+        ///   Indicates whether culling is enabled for the rasterizer.
         /// </summary>
-        /// <value>
-        ///   The default state of a rasterizer.
-        /// </value>
-        public static RasterStateDescription Default
-        {
-            get
-            {
-                return new RasterStateDescription()
-                {
-                    CullEnabled = false,
-                    FaceCullMode = FaceCullMode.Back,
-                    FillMode = RasterMode.Solid,
-                    WindingDirection = WindingDirection.CounterClockwise,
-                };
-            }
-        }
+        private bool? cullEnabled;
+
+        /// <summary>
+        ///   Represents which primitives will not be drawn by the rasterizer.
+        /// </summary>
+        private FaceCullMode? faceCullMode;
+
+        /// <summary>
+        ///   Represents how the rasterizer will draw polygons.
+        /// </summary>
+        private RasterMode? fillMode;
+
+        /// <summary>
+        ///   Reprsents the front face of a primitive (the winding draw-order).
+        /// </summary>
+        private WindingDirection? windingDirection;
 
         /// <summary>
         ///   Gets or sets a value indicating whether culling is enabled for the rasterizer.
@@ -83,7 +83,11 @@ namespace FinalEngine.Rendering
         /// <value>
         ///   <c>true</c> if culling is enabled for the rasterizer; otherwise, <c>false</c>.
         /// </value>
-        public bool CullEnabled { get; set; }
+        public bool CullEnabled
+        {
+            get { return this.cullEnabled ?? false; }
+            set { this.cullEnabled = value; }
+        }
 
         /// <summary>
         ///   Gets or sets a <see cref="FaceCullMode"/> that represents which primitives will not be drawn by the rasterizer.
@@ -91,7 +95,11 @@ namespace FinalEngine.Rendering
         /// <value>
         ///   Which primitives will not be drawn by the rasterizer.
         /// </value>
-        public FaceCullMode FaceCullMode { get; set; }
+        public FaceCullMode FaceCullMode
+        {
+            get { return this.faceCullMode ?? FaceCullMode.Back; }
+            set { this.faceCullMode = value; }
+        }
 
         /// <summary>
         ///   Gets or sets a <see cref="RasterMode"/> that represents how the rasterizer will draw polygons.
@@ -99,14 +107,22 @@ namespace FinalEngine.Rendering
         /// <value>
         ///   How the rasterizer will draw polygons.
         /// </value>
-        public RasterMode FillMode { get; set; }
+        public RasterMode FillMode
+        {
+            get { return this.fillMode ?? RasterMode.Solid; }
+            set { this.fillMode = value; }
+        }
 
         /// <summary>
         ///   Gets or sets a <see cref="WindingDirection"/> that represents the front face of a primitive.
         /// </summary>
         /// <value>
-        ///   The front face of a primitive.
+        ///   The front face of a primitive (the winding draw-order).
         /// </value>
-        public WindingDirection WindingDirection { get; set; }
+        public WindingDirection WindingDirection
+        {
+            get { return this.windingDirection ?? WindingDirection.CounterClockwise; }
+            set { this.windingDirection = value; }
+        }
     }
 }

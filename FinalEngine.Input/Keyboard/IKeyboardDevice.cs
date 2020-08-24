@@ -1,11 +1,11 @@
 ﻿// <copyright file="IKeyboardDevice.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Input.Devices
 {
     using System;
-    using FinalEngine.Input.Events;
+    using FinalEngine.Input.Keyboard;
 
     /// <summary>
     ///   Defines an interface that represents a (physical or virtual) keyboard device.

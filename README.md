@@ -8,7 +8,7 @@ Below is a list of prerequisites and build instructions.
 
 ### Prerequisites
 
-- [.NET Core SDK](https://dotnet.microsoft.com/download).
+- [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download).
 
 ### Windows, Mac and Linux
 

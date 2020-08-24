@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FinalEngine.Logging\FinalEngine.Logging.csproj" />
-    <ProjectReference Include="..\FinalEngine.Platform.Desktop\FinalEngine.Platform.Desktop.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 ﻿// <copyright file="KeyEventArgs.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Input.Events
@@ -37,7 +37,7 @@ namespace FinalEngine.Input.Events
         /// <param name="controlModifier">
         ///   Specifies the state of the control modifier key (was it present at the time of raising the event).
         /// </param>
-        public KeyEventArgs(Key key, LockableKeyState capsLockState, LockableKeyState numLockState, LockableKeyState scrollLockState, bool shiftModifier, bool altModifier, bool controlModifier)
+        public KeyEventArgs(Key key, bool capsLockState, bool numLockState, bool scrollLockState, bool shiftModifier, bool altModifier, bool controlModifier)
         {
             this.Key = key;
             this.CapsLockState = capsLockState;
@@ -57,12 +57,12 @@ namespace FinalEngine.Input.Events
         public bool AltModifier { get; }
 
         /// <summary>
-        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the caps lock key.
+        ///   Gets a value indicating whether the caps lock key is pressed.
         /// </summary>
         /// <value>
         ///   The state of the caps-lock key.
         /// </value>
-        public LockableKeyState CapsLockState { get; }
+        public bool CapsLockState { get; }
 
         /// <summary>
         ///   Gets a value indicating whether the control key modifier was down during the time the event was raised.
@@ -81,20 +81,20 @@ namespace FinalEngine.Input.Events
         public Key Key { get; }
 
         /// <summary>
-        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the number lock key.
+        ///   Gets a value indicating whether the number lock key is pressed.
         /// </summary>
         /// <value>
         ///   The state of the number lock key.
         /// </value>
-        public LockableKeyState NumLockState { get; }
+        public bool NumLockState { get; }
 
         /// <summary>
-        ///   Gets a <see cref="LockableKeyState"/> that represents the state of the scroll lock key.
+        ///   Gets a value indicating whether the scroll lock key is down.
         /// </summary>
         /// <value>
         ///   The state of the scroll lock key.
         /// </value>
-        public LockableKeyState ScrollLockState { get; }
+        public bool ScrollLockState { get; }
 
         /// <summary>
         ///   Gets a value indicating whether the shift key modifier was down during the time the event was raised.

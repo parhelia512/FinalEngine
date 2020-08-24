@@ -1,8 +1,8 @@
 ﻿// <copyright file="Key.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace FinalEngine.Input
+namespace FinalEngine.Input.Keyboard
 {
     /// <summary>
     ///   Enumerates the available keyboard key on a standard US-keyboard.

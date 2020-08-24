@@ -2,10 +2,9 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace FinalEngine.Input.Devices
+namespace FinalEngine.Input.Keyboard
 {
     using System;
-    using FinalEngine.Input.Keyboard;
 
     /// <summary>
     ///   Defines an interface that represents a (physical or virtual) keyboard device.

@@ -1,10 +1,10 @@
 ﻿// <copyright file="MouseWheelEventArgsTests.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Input.Tests
 {
-    using FinalEngine.Input.Events;
+    using FinalEngine.Input.Mouse;
     using NUnit.Framework;
 
     public sealed class MouseWheelEventArgsTests

@@ -11,7 +11,7 @@ namespace FinalEngine.Input.Keyboard
     /// <summary>
     ///   Provides event data for the <see cref="IKeyboardDevice.KeyPressed"/> and <see cref="IKeyboardDevice.KeyReleased"/> events.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public sealed class KeyEventArgs : EventArgs
     {
         /// <summary>

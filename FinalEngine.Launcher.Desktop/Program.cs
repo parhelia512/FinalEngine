@@ -28,7 +28,7 @@ namespace FinalEngine.Launcher.Desktop
                 Visible = true,
             };
 
-            var eventsProcessor = new WinFormsEventProcessor(window);
+            var eventsProcessor = new WinFormsEventsProcessor(window);
 
             Logger.Instance.Log(LogType.Information, "Starting game loop...");
 

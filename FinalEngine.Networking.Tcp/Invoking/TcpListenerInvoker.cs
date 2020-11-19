@@ -8,6 +8,17 @@ namespace FinalEngine.Networking.Tcp.Invoking
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Sockets;
 
+    public interface ITcpListenerInvoker
+    {
+        ISocketInvoker Server { get; }
+
+        ITcpClientInvoker AcceptTcpClient();
+
+        void Start();
+
+        void Stop();
+    }
+
     [ExcludeFromCodeCoverage]
     public class TcpListenerInvoker : ITcpListenerInvoker
     {
@@ -16,6 +27,11 @@ namespace FinalEngine.Networking.Tcp.Invoking
         public TcpListenerInvoker(TcpListener listener)
         {
             this.listener = listener ?? throw new ArgumentNullException(nameof(listener));
+        }
+
+        public ISocketInvoker Server
+        {
+            get { return new SocketInvoker(this.listener.Server); }
         }
 
         public ITcpClientInvoker AcceptTcpClient()

@@ -7,6 +7,7 @@
 namespace FinalEngine.Core
 {
     using System;
+    using System.Threading;
 
     /// <summary>
     ///     Provides an abstract representation of an <see cref="IGame"/>.
@@ -115,7 +116,7 @@ namespace FinalEngine.Core
             {
                 if (!processor.CanProcessNextFrame())
                 {
-                    continue;
+                    Thread.Sleep(1);
                 }
 
                 this.Update(gameTime);

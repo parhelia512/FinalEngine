@@ -6,19 +6,21 @@ namespace Game.Host
 {
     using System;
     using FinalEngine.Core;
-    using FinalEngine.Networking.Tcp;
+    using FinalEngine.Networking;
 
     public class GameServer : GameContainer
     {
-        private readonly TcpServer server;
+        private readonly IServer server;
 
-        public GameServer(TcpServer server)
+        public GameServer(IServer server)
         {
             this.server = server ?? throw new ArgumentNullException(nameof(server));
         }
 
         protected override void Initialize()
         {
+            this.server.Start();
+
             base.Initialize();
         }
     }

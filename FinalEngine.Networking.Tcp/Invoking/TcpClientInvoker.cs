@@ -7,6 +7,11 @@ namespace FinalEngine.Networking.Tcp.Invoking
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Sockets;
 
+    public interface ITcpClientInvoker
+    {
+        ISocketInvoker Client { get; }
+    }
+
     [ExcludeFromCodeCoverage]
     public class TcpClientInvoker : ITcpClientInvoker
     {
@@ -15,6 +20,11 @@ namespace FinalEngine.Networking.Tcp.Invoking
         public TcpClientInvoker(TcpClient client)
         {
             this.client = client ?? throw new ArgumentNullException(nameof(client));
+        }
+
+        public ISocketInvoker Client
+        {
+            get { return new SocketInvoker(this.client.Client); }
         }
     }
 }

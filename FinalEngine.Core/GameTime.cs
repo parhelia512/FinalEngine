@@ -41,6 +41,11 @@ namespace FinalEngine.Core
         private double lastTime;
 
         /// <summary>
+        ///     The last time the FPS was logged.
+        /// </summary>
+        private double lastTimeFPS;
+
+        /// <summary>
         ///     Initializes a new instance of the <see cref="GameTime"/> class.
         /// </summary>
         /// <remarks>
@@ -128,6 +133,16 @@ namespace FinalEngine.Core
             }
 
             double currentTime = this.watch.Elapsed.TotalMilliseconds;
+
+#if DEBUG
+            if (currentTime >= this.lastTimeFPS + Second)
+            {
+                Console.WriteLine($"FPS: {this.FPS}");
+                Console.WriteLine($"Delta: {this.Delta}");
+
+                this.lastTimeFPS = currentTime;
+            }
+#endif
 
             if (currentTime >= this.lastTime + this.waitTime)
             {

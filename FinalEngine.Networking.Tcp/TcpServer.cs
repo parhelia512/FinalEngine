@@ -5,6 +5,8 @@
 namespace FinalEngine.Networking.Tcp
 {
     using System;
+    using FinalEngine.Logging;
+    using FinalEngine.Networking.Tcp.Extensions;
     using FinalEngine.Networking.Tcp.Invoking;
 
     public class TcpServer : IServer
@@ -21,6 +23,11 @@ namespace FinalEngine.Networking.Tcp
 
         public bool IsRunning { get; private set; }
 
+        public int Port
+        {
+            get { return this.listener.Server.GetLocalPort(); }
+        }
+
         public void Start()
         {
             if (this.IsRunning)
@@ -29,8 +36,12 @@ namespace FinalEngine.Networking.Tcp
             }
 
             this.IsRunning = true;
-
             this.listener.Start();
+
+#if DEBUG
+            Logger.Instance.Log(LogType.Debug, $"Server listening on port: {this.Port}");
+#endif
+
             this.handler.Handle(this);
         }
 

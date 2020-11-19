@@ -34,15 +34,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Core.Tests", "F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Networking", "Networking", "{74BEF3E1-2E44-4D15-AF77-7A79BC3D76A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Networking", "FinalEngine.Networking\FinalEngine.Networking.csproj", "{CEB617AD-823D-49BA-AAED-E5001A0B3E22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Networking", "FinalEngine.Networking\FinalEngine.Networking.csproj", "{CEB617AD-823D-49BA-AAED-E5001A0B3E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Networking.Tcp", "FinalEngine.Networking.Tcp\FinalEngine.Networking.Tcp.csproj", "{7C2CE7DE-25CB-4D7F-966F-B040A3310D6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Networking.Tcp", "FinalEngine.Networking.Tcp\FinalEngine.Networking.Tcp.csproj", "{7C2CE7DE-25CB-4D7F-966F-B040A3310D6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game.Host", "Game.Host\Game.Host.csproj", "{A79AC8D9-AC93-4101-ACBC-F92ABA0C39F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Host", "Game.Host\Game.Host.csproj", "{A79AC8D9-AC93-4101-ACBC-F92ABA0C39F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0AB4C876-DB6A-4A53-A903-DC400FFD856E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Networking.Tests", "FinalEngine.Networking.Tests\FinalEngine.Networking.Tests.csproj", "{289E8773-F417-4367-B682-040CC934768C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Networking.Tcp.Tests", "FinalEngine.Networking.Tests\FinalEngine.Networking.Tcp.Tests.csproj", "{289E8773-F417-4367-B682-040CC934768C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,6 +8,8 @@ namespace FinalEngine.Networking
     {
         bool IsRunning { get; }
 
+        int Port { get; }
+
         void Start();
 
         void Stop();

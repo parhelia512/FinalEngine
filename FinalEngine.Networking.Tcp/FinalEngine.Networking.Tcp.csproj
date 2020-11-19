@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FinalEngine.Core\FinalEngine.Core.csproj" />
     <ProjectReference Include="..\FinalEngine.Logging\FinalEngine.Logging.csproj" />
     <ProjectReference Include="..\FinalEngine.Networking\FinalEngine.Networking.csproj" />
   </ItemGroup>

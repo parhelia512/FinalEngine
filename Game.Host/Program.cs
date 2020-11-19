@@ -24,8 +24,7 @@ namespace Game.Host
 
             var listener = new TcpListener(IPAddress.Parse(Address), Port);
 
-            var factory = new TcpClientInvokerFactory();
-            var invoker = new TcpListenerInvoker(listener, factory);
+            var invoker = new TcpListenerInvoker(listener);
             var handler = new TcpConnectionHandler(invoker);
 
             var server = new TcpServer(invoker, handler);

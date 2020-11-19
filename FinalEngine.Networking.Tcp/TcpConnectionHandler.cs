@@ -5,7 +5,9 @@
 namespace FinalEngine.Networking.Tcp
 {
     using System;
+    using FinalEngine.Logging;
     using FinalEngine.Networking;
+    using FinalEngine.Networking.Tcp.Extensions;
     using FinalEngine.Networking.Tcp.Invoking;
 
     public class TcpConnectionHandler : IConnectionHandler
@@ -24,8 +26,15 @@ namespace FinalEngine.Networking.Tcp
                 throw new ArgumentNullException(nameof(server));
             }
 
+            //// TODO: Right now the server runs on the main thread, and accepting clients is blocking.
+
             while (server.IsRunning)
             {
+                ITcpClientInvoker client = this.listener.AcceptTcpClient();
+
+#if DEBUG
+                Logger.Instance.Log(LogType.Debug, $"Client Connected: {client.GetRemoteAddress()}:{client.GetRemotePort()}");
+#endif
             }
         }
     }

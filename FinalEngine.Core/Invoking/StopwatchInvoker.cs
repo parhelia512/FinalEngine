@@ -9,11 +9,11 @@ namespace FinalEngine.Core.Invoking
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    ///     Provides a <see cref="Stopwatch"/> implementation of the <see cref="IStopwatch"/> interface.
+    ///     Provides a <see cref="Stopwatch"/> implementation of the <see cref="IStopwatchInvoker"/> interface.
     /// </summary>
-    /// <seealso cref="FinalEngine.Core.Invoking.IStopwatch"/>
+    /// <seealso cref="FinalEngine.Core.Invoking.IStopwatchInvoker"/>
     [ExcludeFromCodeCoverage]
-    public class StopwatchInvoker : IStopwatch
+    public class StopwatchInvoker : IStopwatchInvoker
     {
         /// <summary>
         ///     The stopwatch.
@@ -51,7 +51,7 @@ namespace FinalEngine.Core.Invoking
         /// <value>
         ///     The total elapsed time measured by the current instance.
         /// </value>
-        public ITimeSpan Elapsed
+        public ITimeSpanInvoker Elapsed
         {
             get { return new TimeSpanInvoker(this.watch.Elapsed); }
         }

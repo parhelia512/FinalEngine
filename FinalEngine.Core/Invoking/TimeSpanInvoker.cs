@@ -8,11 +8,11 @@ namespace FinalEngine.Core.Invoking
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    ///     Provides a <see cref="TimeSpan"/> implementation of the <see cref="ITimeSpan"/> interface.
+    ///     Provides a <see cref="TimeSpan"/> implementation of the <see cref="ITimeSpanInvoker"/> interface.
     /// </summary>
-    /// <seealso cref="FinalEngine.Core.Invoking.ITimeSpan"/>
+    /// <seealso cref="FinalEngine.Core.Invoking.ITimeSpanInvoker"/>
     [ExcludeFromCodeCoverage]
-    public class TimeSpanInvoker : ITimeSpan
+    public class TimeSpanInvoker : ITimeSpanInvoker
     {
         /// <summary>
         ///     The time span.

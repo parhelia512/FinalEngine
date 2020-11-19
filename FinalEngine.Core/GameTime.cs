@@ -33,7 +33,7 @@ namespace FinalEngine.Core
         /// <summary>
         ///     The watch invoker.
         /// </summary>
-        private readonly IStopwatch watch;
+        private readonly IStopwatchInvoker watch;
 
         /// <summary>
         ///     The last time a frame was processed.
@@ -82,7 +82,7 @@ namespace FinalEngine.Core
         /// <exception cref="System.DivideByZeroException">
         ///     The specified <paramref name="frameCap"/> parameter must be greater than zero.
         /// </exception>
-        public GameTime(IStopwatch watch, double frameCap)
+        public GameTime(IStopwatchInvoker watch, double frameCap)
         {
             if (watch == null)
             {

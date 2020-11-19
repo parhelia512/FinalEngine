@@ -1,4 +1,4 @@
-﻿// <copyright file="IStopwatch.cs" company="Software Antics">
+﻿// <copyright file="IStopwatchInvoker.cs" company="Software Antics">
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
@@ -11,7 +11,7 @@ namespace FinalEngine.Core.Invoking
     /// <remarks>
     ///     This interface exists to provide easier abstraction and unit testing capabilities.
     /// </remarks>
-    public interface IStopwatch
+    public interface IStopwatchInvoker
     {
         /// <summary>
         ///     Gets the total elapsed time measured by the current instance.
@@ -19,7 +19,7 @@ namespace FinalEngine.Core.Invoking
         /// <value>
         ///     The total elapsed time measured by the current instance.
         /// </value>
-        ITimeSpan Elapsed { get; }
+        ITimeSpanInvoker Elapsed { get; }
 
         /// <summary>
         ///     Gets a value indicating whether the timer is running.

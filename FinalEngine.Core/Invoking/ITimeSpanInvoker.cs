@@ -10,7 +10,7 @@ namespace FinalEngine.Core.Invoking
     /// <remarks>
     ///     This interface exists to provide easier abstraction and unit testing capabilities.
     /// </remarks>
-    public interface ITimeSpan
+    public interface ITimeSpanInvoker
     {
         /// <summary>
         ///     Gets the value of the current System.TimeSpan structure expressed in whole and

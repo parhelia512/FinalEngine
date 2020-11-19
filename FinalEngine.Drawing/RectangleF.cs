@@ -7,19 +7,20 @@ namespace FinalEngine.Drawing
     using System;
 
     /// <summary>
-    ///   Represents a rectangular region (defined by four single-precision floating points) on a two dimensional plane.
+    ///     Represents a rectangular region (defined by four single-precision floating points) on a
+    ///     two dimensional plane.
     /// </summary>
     /// <seealso cref="IEquatable{RectangleF}"/>
     public struct RectangleF : IEquatable<RectangleF>
     {
         /// <summary>
-        ///   Initializes a new instance of the <see cref="RectangleF"/> struct.
+        ///     Initializes a new instance of the <see cref="RectangleF"/> struct.
         /// </summary>
         /// <param name="location">
-        ///   Specifies a <see cref="PointF"/> that represents the location of this <see cref="RectangleF"/>.
+        ///     Specifies a <see cref="PointF"/> that represents the location of this <see cref="RectangleF"/>.
         /// </param>
         /// <param name="size">
-        ///   Specifies a <see cref="SizeF"/> that represents the size of this <see cref="RectangleF"/>.
+        ///     Specifies a <see cref="SizeF"/> that represents the size of this <see cref="RectangleF"/>.
         /// </param>
         public RectangleF(PointF location, SizeF size)
         {
@@ -28,10 +29,10 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Gets a <see cref="float"/> that represents the height of this <see cref="RectangleF"/>.
+        ///     Gets a <see cref="float"/> that represents the height of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The height of this <see cref="RectangleF"/>.
+        ///     The height of this <see cref="RectangleF"/>.
         /// </value>
         public float Height
         {
@@ -39,10 +40,10 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Gets a value indicating whether this <see cref="RectangleF"/> is empty.
+        ///     Gets a value indicating whether this <see cref="RectangleF"/> is empty.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this <see cref="RectangleF"/> is empty; otherwise, <c>false</c>.
+        ///     <c>true</c> if this <see cref="RectangleF"/> is empty; otherwise, <c>false</c>.
         /// </value>
         public bool IsEmpty
         {
@@ -50,26 +51,26 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Gets or sets a <see cref="PointF"/> that represents the location of this <see cref="RectangleF"/>.
+        ///     Gets or sets a <see cref="PointF"/> that represents the location of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The location of this <see cref="RectangleF"/>.
+        ///     The location of this <see cref="RectangleF"/>.
         /// </value>
         public PointF Location { get; set; }
 
         /// <summary>
-        ///   Gets or sets a <see cref="SizeF"/> that represents the size of this <see cref="RectangleF"/>.
+        ///     Gets or sets a <see cref="SizeF"/> that represents the size of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The size of this <see cref="RectangleF"/>.
+        ///     The size of this <see cref="RectangleF"/>.
         /// </value>
         public SizeF Size { get; set; }
 
         /// <summary>
-        ///   Gets a <see cref="float"/> that represents the width of this <see cref="RectangleF"/>.
+        ///     Gets a <see cref="float"/> that represents the width of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The width of this <see cref="RectangleF"/>.
+        ///     The width of this <see cref="RectangleF"/>.
         /// </value>
         public float Width
         {
@@ -77,10 +78,10 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Gets a <see cref="float"/> that represents the X coordinate of this <see cref="RectangleF"/>.
+        ///     Gets a <see cref="float"/> that represents the X coordinate of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The X coordinate of this <see cref="RectangleF"/>.
+        ///     The X coordinate of this <see cref="RectangleF"/>.
         /// </value>
         public float X
         {
@@ -88,10 +89,10 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Gets a <see cref="float"/> that represents the Y coordinate of this <see cref="RectangleF"/>.
+        ///     Gets a <see cref="float"/> that represents the Y coordinate of this <see cref="RectangleF"/>.
         /// </summary>
         /// <value>
-        ///   The Y coordinate of this <see cref="RectangleF"/>.
+        ///     The Y coordinate of this <see cref="RectangleF"/>.
         /// </value>
         public float Y
         {
@@ -99,13 +100,14 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Indicates whether the current object is equal to another object of the same type.
+        ///     Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">
-        ///   An object to compare with this object.
+        ///     An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
+        ///     <c>true</c> if the current object is equal to the <paramref
+        ///     name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(RectangleF other)
         {
@@ -113,13 +115,14 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
+        ///     Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="object"/> to compare with this instance.
+        ///     The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified <see cref="object"/> is equal to this instance;
+        ///     otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -132,10 +135,11 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Returns a hash code for this instance.
+        ///     Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        ///   A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        ///     A hash code for this instance, suitable for use in hashing algorithms and data
+        ///     structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {
@@ -143,10 +147,10 @@ namespace FinalEngine.Drawing
         }
 
         /// <summary>
-        ///   Converts to string.
+        ///     Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="string"/> that represents this instance.
+        ///     A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {

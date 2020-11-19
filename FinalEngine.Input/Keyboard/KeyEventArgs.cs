@@ -6,37 +6,38 @@ namespace FinalEngine.Input.Keyboard
 {
     using System;
 
-    //// TODO: Unit Test TONIGHT
+    //// TODO: Unit Test
 
     /// <summary>
-    ///   Provides event data for the <see cref="IKeyboardDevice.KeyPressed"/> and <see cref="IKeyboardDevice.KeyReleased"/> events.
+    ///     Provides event data for the <see cref="IKeyboardDevice.KeyPressed"/> and <see
+    ///     cref="IKeyboardDevice.KeyReleased"/> events.
     /// </summary>
     /// <seealso cref="EventArgs"/>
     public sealed class KeyEventArgs : EventArgs
     {
         /// <summary>
-        ///   Initializes a new instance of the <see cref="KeyEventArgs"/> class.
+        ///     Initializes a new instance of the <see cref="KeyEventArgs"/> class.
         /// </summary>
         /// <param name="key">
-        ///   Specifies a <see cref="Key"/> that represents the key that raised this event.
+        ///     Specifies a <see cref="Key"/> that represents the key that raised this event.
         /// </param>
         /// <param name="isAltDown">
-        ///   Specifies a value that indicates whether the ALT key is down.
+        ///     Specifies a value that indicates whether the ALT key is down.
         /// </param>
         /// <param name="isShiftDown">
-        ///   Specifies a value that indicates whether the shift key is down.
+        ///     Specifies a value that indicates whether the shift key is down.
         /// </param>
         /// <param name="isControlDown">
-        ///   Specifies a value that indicates whether the control key is down.
+        ///     Specifies a value that indicates whether the control key is down.
         /// </param>
         /// <param name="isCapsLocked">
-        ///   Specifies a value that indicates whether the CAPS key is locked.
+        ///     Specifies a value that indicates whether the CAPS key is locked.
         /// </param>
         /// <param name="isNumLocked">
-        ///   Specifies a value that indicates whether the NUM key is locked.
+        ///     Specifies a value that indicates whether the NUM key is locked.
         /// </param>
         /// <param name="isScrollLocked">
-        ///   Specifies a value that indicates whether the SCROLL key is locked.
+        ///     Specifies a value that indicates whether the SCROLL key is locked.
         /// </param>
         public KeyEventArgs(
             Key key,
@@ -57,58 +58,58 @@ namespace FinalEngine.Input.Keyboard
         }
 
         /// <summary>
-        ///   Gets a value indicating whether the ALT key is down.
+        ///     Gets a value indicating whether the ALT key is down.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the ALT key is down; otherwise, <c>false</c>.
+        ///     <c>true</c> if the ALT key is down; otherwise, <c>false</c>.
         /// </value>
         public bool IsAltDown { get; }
 
         /// <summary>
-        ///   Gets a value indicating whether the CAPS key is locked.
+        ///     Gets a value indicating whether the CAPS key is locked.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the CAPS key is locked; otherwise, <c>false</c>.
+        ///     <c>true</c> if the CAPS key is locked; otherwise, <c>false</c>.
         /// </value>
         public bool IsCapsLocked { get; }
 
         /// <summary>
-        ///   Gets a value indicating whether the control key is down.
+        ///     Gets a value indicating whether the control key is down.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the control key is down; otherwise, <c>false</c>.
+        ///     <c>true</c> if the control key is down; otherwise, <c>false</c>.
         /// </value>
         public bool IsControlDown { get; }
 
         /// <summary>
-        ///   Gets a value indicating whether the NUM key is locked.
+        ///     Gets a value indicating whether the NUM key is locked.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the NUM key is locked; otherwise, <c>false</c>.
+        ///     <c>true</c> if the NUM key is locked; otherwise, <c>false</c>.
         /// </value>
         public bool IsNumLocked { get; }
 
         /// <summary>
-        ///   Gets a value indicating whether the SCROLL key is locked.
+        ///     Gets a value indicating whether the SCROLL key is locked.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the SCROLL key is locked; otherwise, <c>false</c>.
+        ///     <c>true</c> if the SCROLL key is locked; otherwise, <c>false</c>.
         /// </value>
         public bool IsScrollLocked { get; }
 
         /// <summary>
-        ///   Gets a value indicating whether the shift key is down.
+        ///     Gets a value indicating whether the shift key is down.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if the shift key is down; otherwise, <c>false</c>.
+        ///     <c>true</c> if the shift key is down; otherwise, <c>false</c>.
         /// </value>
         public bool IsShiftDown { get; }
 
         /// <summary>
-        ///   Gets the key that raised this event.
+        ///     Gets the key that raised this event.
         /// </summary>
         /// <value>
-        ///   The key that raised this event.
+        ///     The key that raised this event.
         /// </value>
         public Key Key { get; }
     }

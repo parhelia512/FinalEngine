@@ -7,13 +7,13 @@ namespace FinalEngine.Maths
     using System;
 
     /// <summary>
-    ///   Represents a 3x3 matrix.
+    ///     Represents a 3x3 matrix.
     /// </summary>
     /// <seealso cref="IEquatable{Matrix3}"/>
     public struct Matrix3 : IEquatable<Matrix3>
     {
         /// <summary>
-        ///   Represents a <see cref="Matrix3"/> that is an identity matrix.
+        ///     Represents a <see cref="Matrix3"/> that is an identity matrix.
         /// </summary>
         public static readonly Matrix3 Identity = new Matrix3(
             new Vector3(1, 0, 0),
@@ -21,26 +21,26 @@ namespace FinalEngine.Maths
             new Vector3(0, 0, 1));
 
         /// <summary>
-        ///   Represents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.One"/>.
+        ///     Represents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.One"/>.
         /// </summary>
         public static readonly Matrix3 One = new Matrix3(Vector3.One, Vector3.One, Vector3.One);
 
         /// <summary>
-        ///   Represents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.Zero"/>.
+        ///     Represents a <see cref="Matrix3"/> where each row is set to <see cref="Vector3.Zero"/>.
         /// </summary>
         public static readonly Matrix3 Zero = new Matrix3(Vector3.Zero, Vector3.Zero, Vector3.Zero);
 
         /// <summary>
-        ///   Initializes a new instance of the <see cref="Matrix3"/> struct.
+        ///     Initializes a new instance of the <see cref="Matrix3"/> struct.
         /// </summary>
         /// <param name="row0">
-        ///   Specifies a <see cref="Vector3"/> that represents the first row of this <see cref="Matrix3"/>.
+        ///     Specifies a <see cref="Vector3"/> that represents the first row of this <see cref="Matrix3"/>.
         /// </param>
         /// <param name="row1">
-        ///   Specifies a <see cref="Vector3"/> that represents the second row of this <see cref="Matrix3"/>.
+        ///     Specifies a <see cref="Vector3"/> that represents the second row of this <see cref="Matrix3"/>.
         /// </param>
         /// <param name="row2">
-        ///   Specifies a <see cref="Vector3"/> that represents the third row of this <see cref="Matrix3"/>.
+        ///     Specifies a <see cref="Vector3"/> that represents the third row of this <see cref="Matrix3"/>.
         /// </param>
         public Matrix3(Vector3 row0, Vector3 row1, Vector3 row2)
         {
@@ -50,40 +50,40 @@ namespace FinalEngine.Maths
         }
 
         /// <summary>
-        ///   Gets or sets a <see cref="Vector3"/> that represents the first row of this <see cref="Matrix3"/>.
+        ///     Gets or sets a <see cref="Vector3"/> that represents the first row of this <see cref="Matrix3"/>.
         /// </summary>
         /// <value>
-        ///   The first row of this <see cref="Matrix3"/>.
+        ///     The first row of this <see cref="Matrix3"/>.
         /// </value>
         public Vector3 Row0 { get; set; }
 
         /// <summary>
-        ///   Gets or sets a <see cref="Vector3"/> that represents the second row of this <see cref="Matrix3"/>.
+        ///     Gets or sets a <see cref="Vector3"/> that represents the second row of this <see cref="Matrix3"/>.
         /// </summary>
         /// <value>
-        ///   The second row of this <see cref="Matrix3"/>.
+        ///     The second row of this <see cref="Matrix3"/>.
         /// </value>
         public Vector3 Row1 { get; set; }
 
         /// <summary>
-        ///   Gets or sets a <see cref="Vector3"/> that represents the third row of this <see cref="Matrix3"/>.
+        ///     Gets or sets a <see cref="Vector3"/> that represents the third row of this <see cref="Matrix3"/>.
         /// </summary>
         /// <value>
-        ///   The third row of this <see cref="Matrix3"/>.
+        ///     The third row of this <see cref="Matrix3"/>.
         /// </value>
         public Vector3 Row2 { get; set; }
 
         /// <summary>
-        ///   Implements the operator !=.
+        ///     Implements the operator !=.
         /// </summary>
         /// <param name="left">
-        ///   Specifies a <see cref="Matrix3"/> that represents the left operand.
+        ///     Specifies a <see cref="Matrix3"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   Specifies a <see cref="Matrix3"/> that represents the right operand.
+        ///     Specifies a <see cref="Matrix3"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   The result of the operator.
+        ///     The result of the operator.
         /// </returns>
         public static bool operator !=(Matrix3 left, Matrix3 right)
         {
@@ -91,16 +91,16 @@ namespace FinalEngine.Maths
         }
 
         /// <summary>
-        ///   Implements the operator ==.
+        ///     Implements the operator ==.
         /// </summary>
         /// <param name="left">
-        ///   Specifies a <see cref="Matrix3"/> that represents the left operand.
+        ///     Specifies a <see cref="Matrix3"/> that represents the left operand.
         /// </param>
         /// <param name="right">
-        ///   Specifies a <see cref="Matrix3"/> that represents the right operand.
+        ///     Specifies a <see cref="Matrix3"/> that represents the right operand.
         /// </param>
         /// <returns>
-        ///   The result of the operator.
+        ///     The result of the operator.
         /// </returns>
         public static bool operator ==(Matrix3 left, Matrix3 right)
         {
@@ -108,13 +108,14 @@ namespace FinalEngine.Maths
         }
 
         /// <summary>
-        ///   Determines whether the specified <see cref="object"/>, is equal to this instance.
+        ///     Determines whether the specified <see cref="object"/>, is equal to this instance.
         /// </summary>
         /// <param name="obj">
-        ///   The <see cref="object"/> to compare with this instance.
+        ///     The <see cref="object"/> to compare with this instance.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified <see cref="object"/> is equal to this instance;
+        ///     otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -127,13 +128,14 @@ namespace FinalEngine.Maths
         }
 
         /// <summary>
-        ///   Indicates whether the current object is equal to another object of the same type.
+        ///     Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <param name="other">
-        ///   An object to compare with this object.
+        ///     An object to compare with this object.
         /// </param>
         /// <returns>
-        ///   <c>true</c> if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, <c>false</c>.
+        ///     <c>true</c> if the current object is equal to the <paramref
+        ///     name="other">other</paramref> parameter; otherwise, <c>false</c>.
         /// </returns>
         public bool Equals(Matrix3 other)
         {
@@ -143,10 +145,11 @@ namespace FinalEngine.Maths
         }
 
         /// <summary>
-        ///   Returns a hash code for this instance.
+        ///     Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        ///   A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        ///     A hash code for this instance, suitable for use in hashing algorithms and data
+        ///     structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {
@@ -154,10 +157,10 @@ namespace FinalEngine.Maths
         }
 
         /// <summary>
-        ///   Converts to string.
+        ///     Converts to string.
         /// </summary>
         /// <returns>
-        ///   A <see cref="string"/> that represents this instance.
+        ///     A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {

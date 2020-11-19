@@ -22,7 +22,7 @@ namespace FinalEngine.Core
         private readonly ITaskScheduler scheduler;
 
         public GameContainer()
-            : this(new Threading.TaskScheduler())
+            : this(new TaskScheduler())
         {
         }
 

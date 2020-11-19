@@ -39,8 +39,8 @@ namespace FinalEngine.Networking.Tcp
             }
 
             this.IsRunning = true;
-            this.listener.Start();
 
+            this.listener.Start();
             this.handler.Handle(this);
         }
 

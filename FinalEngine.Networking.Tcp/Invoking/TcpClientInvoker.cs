@@ -9,7 +9,9 @@ namespace FinalEngine.Networking.Tcp.Invoking
 
     public interface ITcpClientInvoker
     {
-        ISocketInvoker Client { get; }
+        ISocketInvoker Socket { get; }
+
+        void Close();
     }
 
     [ExcludeFromCodeCoverage]
@@ -22,9 +24,14 @@ namespace FinalEngine.Networking.Tcp.Invoking
             this.client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public ISocketInvoker Client
+        public ISocketInvoker Socket
         {
             get { return new SocketInvoker(this.client.Client); }
+        }
+
+        public void Close()
+        {
+            this.client.Close();
         }
     }
 }

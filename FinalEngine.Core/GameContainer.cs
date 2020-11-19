@@ -7,7 +7,7 @@
 namespace FinalEngine.Core
 {
     using System;
-    using System.Threading;
+    using FinalEngine.Core.Threading;
 
     /// <summary>
     ///     Provides an abstract representation of an <see cref="IGame"/>.
@@ -19,6 +19,18 @@ namespace FinalEngine.Core
     /// <seealso cref="System.IDisposable"/>
     public abstract class GameContainer : IGame, IDisposable
     {
+        private readonly ITaskScheduler scheduler;
+
+        public GameContainer()
+            : this(new Threading.TaskScheduler())
+        {
+        }
+
+        public GameContainer(ITaskScheduler scheduler)
+        {
+            this.scheduler = scheduler ?? throw new ArgumentNullException(nameof(scheduler));
+        }
+
         /// <summary>
         ///     Finalizes an instance of the <see cref="GameContainer"/> class.
         /// </summary>
@@ -99,7 +111,7 @@ namespace FinalEngine.Core
         /// <exception cref="System.ArgumentNullException">
         ///     The specified <paramref name="factory"/> parameter is null.
         /// </exception>
-        public void Run(IGameTimeFactory factory, double frameCap)
+        public async void Run(IGameTimeFactory factory, double frameCap)
         {
             if (factory == null)
             {
@@ -116,7 +128,16 @@ namespace FinalEngine.Core
             {
                 if (!processor.CanProcessNextFrame())
                 {
-                    Thread.Sleep(1);
+                    ////this.scheduler.Sleep(1);
+                    ////await Task.Delay(1);
+
+                    /*
+                        It seems like there's an issue with how I'm managing time within the engine.
+                        I really don't know what I'm supposed to do, I don't think it can be resolved
+                        without designing an entirely new system for time management.
+                    */
+
+                    continue;
                 }
 
                 this.Update(gameTime);

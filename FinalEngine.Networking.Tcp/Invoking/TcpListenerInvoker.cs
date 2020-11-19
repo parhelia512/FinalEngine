@@ -6,6 +6,7 @@ namespace FinalEngine.Networking.Tcp.Invoking
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Net;
     using System.Net.Sockets;
 
     public interface ITcpListenerInvoker
@@ -23,6 +24,16 @@ namespace FinalEngine.Networking.Tcp.Invoking
     public class TcpListenerInvoker : ITcpListenerInvoker
     {
         private readonly TcpListener listener;
+
+        public TcpListenerInvoker(string address, int port)
+            : this(IPAddress.Parse(address), port)
+        {
+        }
+
+        public TcpListenerInvoker(IPAddress address, int port)
+            : this(new TcpListener(address, port))
+        {
+        }
 
         public TcpListenerInvoker(TcpListener listener)
         {

@@ -6,13 +6,21 @@ namespace FinalEngine.Networking.Tcp.Invoking
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Net;
     using System.Net.Sockets;
+
+    public enum AreaCode
+    {
+        Local,
+
+        Remote
+    }
 
     public interface ISocketInvoker
     {
-        IEndPointInvoker LocalEndPoint { get; }
+        string GetAddress(AreaCode code);
 
-        IEndPointInvoker RemoteEndPoint { get; }
+        int GetPort(AreaCode code);
     }
 
     [ExcludeFromCodeCoverage]
@@ -25,14 +33,28 @@ namespace FinalEngine.Networking.Tcp.Invoking
             this.socket = socket ?? throw new ArgumentNullException(nameof(socket));
         }
 
-        public IEndPointInvoker LocalEndPoint
+        public string GetAddress(AreaCode code)
         {
-            get { return new EndPointInvoker(this.socket.LocalEndPoint); }
+            return (this.GetEndPoint(code) as IPEndPoint).Address.ToString();
         }
 
-        public IEndPointInvoker RemoteEndPoint
+        public int GetPort(AreaCode code)
         {
-            get { return new EndPointInvoker(this.socket.RemoteEndPoint); }
+            return (this.GetEndPoint(code) as IPEndPoint).Port;
+        }
+
+        private EndPoint GetEndPoint(AreaCode code)
+        {
+            switch (code)
+            {
+                case AreaCode.Local:
+                    return this.socket.LocalEndPoint;
+
+                case AreaCode.Remote:
+                    return this.socket.RemoteEndPoint;
+            }
+
+            return null;
         }
     }
 }

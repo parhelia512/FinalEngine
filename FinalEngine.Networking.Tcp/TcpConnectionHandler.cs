@@ -2,21 +2,33 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
+//// TODO: Unit Test
+
 namespace FinalEngine.Networking.Tcp
 {
     using System;
-    using FinalEngine.Logging;
+    using FinalEngine.Core.Threading;
     using FinalEngine.Networking;
-    using FinalEngine.Networking.Tcp.Extensions;
     using FinalEngine.Networking.Tcp.Invoking;
 
     public class TcpConnectionHandler : IConnectionHandler
     {
+        private readonly ITcpConnectionFactory factory;
+
         private readonly ITcpListenerInvoker listener;
 
+        private readonly ITaskScheduler scheduler;
+
         public TcpConnectionHandler(ITcpListenerInvoker listener)
+            : this(listener, new TaskScheduler(), new TcpConnectionFactory())
+        {
+        }
+
+        public TcpConnectionHandler(ITcpListenerInvoker listener, ITaskScheduler scheduler, ITcpConnectionFactory factory)
         {
             this.listener = listener ?? throw new ArgumentNullException(nameof(listener));
+            this.scheduler = scheduler ?? throw new ArgumentNullException(nameof(scheduler));
+            this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         public void Handle(IServer server)
@@ -26,16 +38,25 @@ namespace FinalEngine.Networking.Tcp
                 throw new ArgumentNullException(nameof(server));
             }
 
-            //// TODO: Right now the server runs on the main thread, and accepting clients is blocking.
-
-            while (server.IsRunning)
+            this.scheduler.Execute(() =>
             {
-                ITcpClientInvoker client = this.listener.AcceptTcpClient();
+                while (server.IsRunning)
+                {
+                    ITcpClientInvoker client = this.listener.AcceptTcpClient();
+                    TcpConnection connection = this.factory.CreateTcpConnection(client, Guid.NewGuid());
 
-#if DEBUG
-                Logger.Instance.Log(LogType.Debug, $"Client Connected: {client.GetRemoteAddress()}:{client.GetRemotePort()}");
-#endif
-            }
+                    Console.WriteLine("Client Connected");
+
+                    this.scheduler.Execute(() => this.SetupConnection(connection));
+                }
+            });
+        }
+
+        private void SetupConnection(IConnection connection)
+        {
+            connection.Disconnect();
+
+            Console.WriteLine("Client Disconnected");
         }
     }
 }

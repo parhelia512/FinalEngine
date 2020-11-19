@@ -5,8 +5,6 @@
 namespace Game.Host
 {
     using System;
-    using System.Net;
-    using System.Net.Sockets;
     using FinalEngine.Logging;
     using FinalEngine.Logging.Formatters;
     using FinalEngine.Logging.Handlers;
@@ -19,14 +17,8 @@ namespace Game.Host
         {
             Logger.Instance.Handlers.Add(new TextWriterLogHandler(new StandardLogFormatter(), Console.Out));
 
-            const int Port = 43594;
-            const string Address = "127.0.0.1";
-
-            var listener = new TcpListener(IPAddress.Parse(Address), Port);
-
-            var invoker = new TcpListenerInvoker(listener);
+            var invoker = new TcpListenerInvoker("127.0.0.1", 43594);
             var handler = new TcpConnectionHandler(invoker);
-
             var server = new TcpServer(invoker, handler);
 
             using (var game = new GameServer(server))

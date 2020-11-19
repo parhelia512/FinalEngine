@@ -138,7 +138,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             var listener = new Mock<ITcpListenerInvoker>();
             var handler = new Mock<IConnectionHandler>();
 
-            var server = new TcpServer(listener.Object, handler.Object); ;
+            var server = new TcpServer(listener.Object, handler.Object);
 
             // Act
             server.Stop();

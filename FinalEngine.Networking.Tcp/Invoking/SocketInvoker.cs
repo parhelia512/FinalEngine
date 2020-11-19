@@ -13,7 +13,7 @@ namespace FinalEngine.Networking.Tcp.Invoking
     {
         Local,
 
-        Remote
+        Remote,
     }
 
     public interface ISocketInvoker

@@ -23,7 +23,7 @@ namespace Game.Host
 
             using (var game = new GameServer(server))
             {
-                game.Run(60.0d);
+                game.Run();
             }
         }
     }

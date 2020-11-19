@@ -128,7 +128,9 @@ namespace FinalEngine.Core
             {
                 if (!processor.CanProcessNextFrame())
                 {
-                    ////this.scheduler.Sleep(1);
+                    //// TODO: This is a temporary fix!
+
+                    this.scheduler.Sleep(1);
                     ////await Task.Delay(1);
 
                     /*

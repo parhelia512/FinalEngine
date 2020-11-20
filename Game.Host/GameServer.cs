@@ -34,6 +34,17 @@ namespace Game.Host
             base.Initialize();
         }
 
+        protected override void Update(IGameTime gameTime)
+        {
+            Console.WriteLine("Press any key to stop the server...");
+            Console.ReadKey();
+
+            this.server.Stop();
+            this.Exit();
+
+            base.Update(gameTime);
+        }
+
         private void Handler_ClientConnected(object sender, ClientConnectionEventArgs e)
         {
             Logger.Instance.Log(LogType.Debug, $"Client Connected: {e.Connection.Guid}:{e.Connection.IPAddress}:{e.Connection.Port}");

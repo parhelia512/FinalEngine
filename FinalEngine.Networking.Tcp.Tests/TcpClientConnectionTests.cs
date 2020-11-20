@@ -23,6 +23,37 @@ namespace FinalEngine.Networking.Tcp.Tests
         }
 
         [Test]
+        public void Disconnect_Test_Should_Invoke_Client_Close()
+        {
+            // Arrange
+            var client = new Mock<ITcpClientInvoker>();
+            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+
+            // Act
+            connection.Disconnect();
+
+            // Assert
+            client.Verify(i => i.Close(), Times.Once);
+        }
+
+        [Test]
+        public void Disconnect_Test_Should_Raise_Disconnect_Event()
+        {
+            // Arrange
+            var client = new Mock<ITcpClientInvoker>();
+            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+
+            connection.Disconnected += (s, e) =>
+            {
+                // Assert
+                Assert.AreSame(connection, e.Connection);
+            };
+
+            // Act
+            connection.Disconnect();
+        }
+
+        [Test]
         public void Guid_Test_Should_Not_Return_Default()
         {
             // Arrange

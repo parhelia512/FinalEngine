@@ -6,9 +6,9 @@ namespace FinalEngine.Networking
 {
     using System;
 
-    public class ClientConnectedEventArgs : EventArgs
+    public class ClientConnectionEventArgs : EventArgs
     {
-        public ClientConnectedEventArgs(IClientConnection connection)
+        public ClientConnectionEventArgs(IClientConnection connection)
         {
             this.Connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }

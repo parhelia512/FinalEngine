@@ -17,6 +17,8 @@ namespace FinalEngine.Networking.Tcp
             this.Guid = guid;
         }
 
+        public event EventHandler<ClientConnectionEventArgs> Disconnected;
+
         public Guid Guid { get; }
 
         public string IPAddress
@@ -27,6 +29,12 @@ namespace FinalEngine.Networking.Tcp
         public int Port
         {
             get { return this.client.Socket.GetPort(AreaCode.Remote); }
+        }
+
+        public void Disconnect()
+        {
+            this.client.Close();
+            this.Disconnected?.Invoke(this, new ClientConnectionEventArgs(this));
         }
     }
 }

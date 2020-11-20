@@ -13,5 +13,7 @@ namespace FinalEngine.Networking
         string IPAddress { get; }
 
         int Port { get; }
+
+        void Disconnect();
     }
 }

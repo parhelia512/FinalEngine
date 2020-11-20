@@ -12,6 +12,32 @@ namespace FinalEngine.Networking.Tcp.Tests
     public class TcpConnectionHandlerTests
     {
         [Test]
+        public void Client_Disconnect_Should_Raise_ClientDisconnected_Event()
+        {
+            // Arrange
+            var listener = new Mock<ITcpListenerInvoker>();
+            var factory = new Mock<ITcpClientConnectionFactory>();
+            var client = new Mock<ITcpClientInvoker>();
+            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+
+            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
+
+            var handler = new TcpConnectionHandler(listener.Object, factory.Object);
+
+            handler.ClientDisconnected += (s, e) =>
+            {
+                // Assert
+                Assert.AreSame(connection, e.Connection);
+            };
+
+            handler.Handle();
+
+            // Act
+            client.Object.Close();
+        }
+
+        [Test]
         public void Constructor_Test_Should_Not_Throw_Exception()
         {
             // Arrange
@@ -45,7 +71,51 @@ namespace FinalEngine.Networking.Tcp.Tests
         }
 
         [Test]
-        public void Handle_Test_Should_Invoke_ClientConnected_Event()
+        public void Handle_Test_Should_Invoke_Factory_CreateClientConnection()
+        {
+            // Arrange
+            var listener = new Mock<ITcpListenerInvoker>();
+            var factory = new Mock<ITcpClientConnectionFactory>();
+
+            var client = new Mock<ITcpClientInvoker>();
+            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+
+            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
+
+            var handler = new TcpConnectionHandler(listener.Object, factory.Object);
+
+            // Act
+            handler.Handle();
+
+            // Assert
+            factory.Verify(i => i.CreateClientConnection(client.Object), Times.Once);
+        }
+
+        [Test]
+        public void Handle_Test_Should_Invoke_Listener_AcceptTcpClient()
+        {
+            // Arrange
+            var listener = new Mock<ITcpListenerInvoker>();
+            var factory = new Mock<ITcpClientConnectionFactory>();
+
+            var client = new Mock<ITcpClientInvoker>();
+            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+
+            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
+
+            var handler = new TcpConnectionHandler(listener.Object, factory.Object);
+
+            // Act
+            handler.Handle();
+
+            // Assert
+            listener.Verify(i => i.AcceptTcpClient(), Times.Once);
+        }
+
+        [Test]
+        public void Handle_Test_Should_Raise_ClientConnected_Event()
         {
             // Arrange
             var listener = new Mock<ITcpListenerInvoker>();
@@ -69,38 +139,19 @@ namespace FinalEngine.Networking.Tcp.Tests
         }
 
         [Test]
-        public void Handle_Test_Should_Invoke_Factory_CreateClientConnection()
+        public void Handle_Test_Should_Throw_Exception_When_Factory_CreateClientConnection_Returns_Null()
         {
             // Arrange
             var listener = new Mock<ITcpListenerInvoker>();
             var factory = new Mock<ITcpClientConnectionFactory>();
-
             var client = new Mock<ITcpClientInvoker>();
+
             listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
 
             var handler = new TcpConnectionHandler(listener.Object, factory.Object);
 
-            // Act
-            handler.Handle();
-
-            // Assert
-            factory.Verify(i => i.CreateClientConnection(client.Object), Times.Once);
-        }
-
-        [Test]
-        public void Handle_Test_Should_Invoke_Listener_AcceptTcpClient()
-        {
-            // Arrange
-            var listener = new Mock<ITcpListenerInvoker>();
-            var factory = new Mock<ITcpClientConnectionFactory>();
-
-            var handler = new TcpConnectionHandler(listener.Object, factory.Object);
-
-            // Act
-            handler.Handle();
-
-            // Assert
-            listener.Verify(i => i.AcceptTcpClient(), Times.Once);
+            // Act and assert
+            Assert.Throws<Exception>(() => handler.Handle());
         }
     }
 }

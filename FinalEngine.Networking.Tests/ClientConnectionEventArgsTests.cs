@@ -8,14 +8,14 @@ namespace FinalEngine.Networking.Tests
     using Moq;
     using NUnit.Framework;
 
-    public class ClientConnectedEventArgsTests
+    public class ClientConnectionEventArgsTests
     {
         [Test]
         public void Connection_Property_Test_Should_Not_Return_Same_As_Input()
         {
             // Arrange
             IClientConnection connection = new Mock<IClientConnection>().Object;
-            var eventArgs = new ClientConnectedEventArgs(connection);
+            var eventArgs = new ClientConnectionEventArgs(connection);
 
             // Act
             IClientConnection actual = eventArgs.Connection;
@@ -28,14 +28,14 @@ namespace FinalEngine.Networking.Tests
         public void Constructor_Test_Should_Not_Throw_Exception()
         {
             // Arrange, act and assert
-            Assert.DoesNotThrow(() => new ClientConnectedEventArgs(new Mock<IClientConnection>().Object));
+            Assert.DoesNotThrow(() => new ClientConnectionEventArgs(new Mock<IClientConnection>().Object));
         }
 
         [Test]
         public void Constructor_Test_Should_Throw_ArgumentNullException_When_Client_Is_Null()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new ClientConnectedEventArgs(null));
+            Assert.Throws<ArgumentNullException>(() => new ClientConnectionEventArgs(null));
         }
     }
 }

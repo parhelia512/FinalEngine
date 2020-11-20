@@ -8,7 +8,9 @@ namespace FinalEngine.Networking
 
     public interface IConnectionHandler
     {
-        event EventHandler<ClientConnectedEventArgs> ClientConnected;
+        event EventHandler<ClientConnectionEventArgs> ClientConnected;
+
+        event EventHandler<ClientConnectionEventArgs> ClientDisconnected;
 
         void Handle();
     }

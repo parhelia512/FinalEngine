@@ -33,8 +33,8 @@ namespace FinalEngine.Networking.Tcp
 
         public void Disconnect()
         {
-            this.client.Close();
             this.Disconnected?.Invoke(this, new ClientConnectionEventArgs(this));
+            this.client.Close();
         }
     }
 }

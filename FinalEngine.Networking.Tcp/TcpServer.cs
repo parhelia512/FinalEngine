@@ -5,7 +5,6 @@
 namespace FinalEngine.Networking.Tcp
 {
     using System;
-    using System.Threading;
     using FinalEngine.Core.Threading;
     using FinalEngine.Networking.Tcp.Invoking;
 
@@ -46,7 +45,8 @@ namespace FinalEngine.Networking.Tcp
             this.IsRunning = true;
 
             this.listener.Start();
-            this.executer.Execute(new ThreadStart(this.handler.Handle));
+
+            this.executer.Execute(() => this.handler.Handle(this));
         }
 
         public void Stop()

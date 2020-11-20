@@ -23,19 +23,27 @@ namespace FinalEngine.Networking.Tcp
 
         public event EventHandler<ClientConnectionEventArgs> ClientDisconnected;
 
-        public void Handle()
+        public void Handle(IServer server)
         {
-            ITcpClientInvoker client = this.listener.AcceptTcpClient();
-            TcpClientConnection connection = this.factory.CreateClientConnection(client);
-
-            if (connection == null)
+            if (server == null)
             {
-                throw new Exception($"The {nameof(this.factory)} could not successfully create a client connection.");
+                throw new ArgumentNullException(nameof(server));
             }
 
-            connection.Disconnected += this.Connection_Disconnected;
+            while (server.IsRunning)
+            {
+                ITcpClientInvoker client = this.listener.AcceptTcpClient();
+                TcpClientConnection connection = this.factory.CreateClientConnection(client);
 
-            this.ClientConnected?.Invoke(this, new ClientConnectionEventArgs(connection));
+                if (connection == null)
+                {
+                    throw new Exception($"The {nameof(this.factory)} could not successfully create a client connection.");
+                }
+
+                connection.Disconnected += this.Connection_Disconnected;
+
+                this.ClientConnected?.Invoke(this, new ClientConnectionEventArgs(connection));
+            }
         }
 
         private void Connection_Disconnected(object sender, ClientConnectionEventArgs e)

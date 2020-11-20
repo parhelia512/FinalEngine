@@ -12,6 +12,6 @@ namespace FinalEngine.Networking
 
         event EventHandler<ClientConnectionEventArgs> ClientDisconnected;
 
-        void Handle();
+        void Handle(IServer server);
     }
 }

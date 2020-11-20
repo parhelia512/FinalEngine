@@ -181,7 +181,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             server.Start();
 
             // Assert
-            executer.Verify(i => i.Execute(new ThreadStart(handler.Object.Handle)), Times.Once);
+            executer.Verify(i => i.Execute(It.IsAny<ThreadStart>()), Times.Once);
         }
 
         [Test]
@@ -198,7 +198,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             server.Start();
 
             // Assert
-            executer.Verify(i => i.Execute(new ThreadStart(handler.Object.Handle)), Times.Once);
+            executer.Verify(i => i.Execute(It.IsAny<ThreadStart>()), Times.Once);
         }
 
         [Test]

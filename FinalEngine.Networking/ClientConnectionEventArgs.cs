@@ -1,4 +1,4 @@
-﻿// <copyright file="ClientConnectedEventArgs.cs" company="Software Antics">
+﻿// <copyright file="ClientConnectionEventArgs.cs" company="Software Antics">
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 

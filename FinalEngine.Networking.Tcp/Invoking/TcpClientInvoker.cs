@@ -7,13 +7,6 @@ namespace FinalEngine.Networking.Tcp.Invoking
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Sockets;
 
-    public interface ITcpClientInvoker
-    {
-        ISocketInvoker Socket { get; }
-
-        void Close();
-    }
-
     [ExcludeFromCodeCoverage]
     public class TcpClientInvoker : ITcpClientInvoker
     {

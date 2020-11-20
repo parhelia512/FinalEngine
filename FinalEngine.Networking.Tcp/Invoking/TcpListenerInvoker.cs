@@ -9,17 +9,6 @@ namespace FinalEngine.Networking.Tcp.Invoking
     using System.Net;
     using System.Net.Sockets;
 
-    public interface ITcpListenerInvoker
-    {
-        ISocketInvoker Server { get; }
-
-        ITcpClientInvoker AcceptTcpClient();
-
-        void Start();
-
-        void Stop();
-    }
-
     [ExcludeFromCodeCoverage]
     public class TcpListenerInvoker : ITcpListenerInvoker
     {

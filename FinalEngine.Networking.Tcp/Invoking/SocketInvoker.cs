@@ -16,13 +16,6 @@ namespace FinalEngine.Networking.Tcp.Invoking
         Remote,
     }
 
-    public interface ISocketInvoker
-    {
-        string GetAddress(AreaCode code);
-
-        int GetPort(AreaCode code);
-    }
-
     [ExcludeFromCodeCoverage]
     public class SocketInvoker : ISocketInvoker
     {

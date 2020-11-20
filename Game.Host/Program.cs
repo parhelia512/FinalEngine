@@ -34,6 +34,8 @@ namespace Game.Host
 
                 game.Run(gameTime, processor);
             }
+
+            Console.ReadLine();
         }
     }
 }

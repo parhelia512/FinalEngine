@@ -5,6 +5,7 @@
 namespace FinalEngine.Networking.Tcp.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using FinalEngine.Networking.Tcp.Invoking;
     using Moq;
     using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace FinalEngine.Networking.Tcp.Tests
     public class TcpConnectionHandlerTests
     {
         [Test]
-        public void Client_Disconnect_Should_Raise_ClientDisconnected_Event()
+        public async Task Client_Disconnect_Should_Raise_ClientDisconnected_Event()
         {
             // Arrange
             var listener = new Mock<ITcpListenerInvoker>();
@@ -22,7 +23,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             var server = new Mock<IServer>();
 
             server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);
-            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            listener.Setup(i => i.AcceptTcpClientAsync()).Returns(Task.FromResult(client.Object));
             factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
 
             var handler = new TcpConnectionHandler(listener.Object, factory.Object);
@@ -33,7 +34,7 @@ namespace FinalEngine.Networking.Tcp.Tests
                 Assert.AreSame(connection, e.Connection);
             };
 
-            handler.Handle(server.Object);
+            await handler.Handle(server.Object);
 
             // Act
             client.Object.Close();
@@ -73,7 +74,7 @@ namespace FinalEngine.Networking.Tcp.Tests
         }
 
         [Test]
-        public void Handle_Test_Should_Invoke_Factory_CreateClientConnection()
+        public async Task Handle_Test_Should_Invoke_Factory_CreateClientConnection()
         {
             // Arrange
             var listener = new Mock<ITcpListenerInvoker>();
@@ -85,20 +86,20 @@ namespace FinalEngine.Networking.Tcp.Tests
             var server = new Mock<IServer>();
 
             server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);
-            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            listener.Setup(i => i.AcceptTcpClientAsync()).Returns(Task.FromResult(client.Object));
             factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
 
             var handler = new TcpConnectionHandler(listener.Object, factory.Object);
 
             // Act
-            handler.Handle(server.Object);
+            await handler.Handle(server.Object);
 
             // Assert
             factory.Verify(i => i.CreateClientConnection(client.Object), Times.Once);
         }
 
         [Test]
-        public void Handle_Test_Should_Invoke_Listener_AcceptTcpClient()
+        public async Task Handle_Test_Should_Invoke_Listener_AcceptTcpClient()
         {
             // Arrange
             var listener = new Mock<ITcpListenerInvoker>();
@@ -110,20 +111,20 @@ namespace FinalEngine.Networking.Tcp.Tests
             var server = new Mock<IServer>();
 
             server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);
-            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            listener.Setup(i => i.AcceptTcpClientAsync()).Returns(Task.FromResult(client.Object));
             factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
 
             var handler = new TcpConnectionHandler(listener.Object, factory.Object);
 
             // Act
-            handler.Handle(server.Object);
+            await handler.Handle(server.Object);
 
             // Assert
-            listener.Verify(i => i.AcceptTcpClient(), Times.Once);
+            listener.Verify(i => i.AcceptTcpClientAsync(), Times.Once);
         }
 
         [Test]
-        public void Handle_Test_Should_Raise_ClientConnected_Event()
+        public async Task Handle_Test_Should_Raise_ClientConnected_Event()
         {
             // Arrange
             var listener = new Mock<ITcpListenerInvoker>();
@@ -134,7 +135,7 @@ namespace FinalEngine.Networking.Tcp.Tests
 
             server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);
 
-            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            listener.Setup(i => i.AcceptTcpClientAsync()).Returns(Task.FromResult(client.Object));
             factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
 
             var handler = new TcpConnectionHandler(listener.Object, factory.Object);
@@ -146,7 +147,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             };
 
             // Act
-            handler.Handle(server.Object);
+            await handler.Handle(server.Object);
         }
 
         [Test]
@@ -158,7 +159,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             var handler = new TcpConnectionHandler(listener.Object, factory.Object);
 
             // Act and assert
-            Assert.Throws<ArgumentNullException>(() => handler.Handle(null));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await handler.Handle(null));
         }
 
         [Test]
@@ -171,12 +172,12 @@ namespace FinalEngine.Networking.Tcp.Tests
             var server = new Mock<IServer>();
 
             server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);
-            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            listener.Setup(i => i.AcceptTcpClientAsync()).Returns(Task.FromResult(client.Object));
 
             var handler = new TcpConnectionHandler(listener.Object, factory.Object);
 
             // Act and assert
-            Assert.Throws<Exception>(() => handler.Handle(server.Object));
+            Assert.ThrowsAsync<Exception>(async () => await handler.Handle(server.Object));
         }
     }
 }

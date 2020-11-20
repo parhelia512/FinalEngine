@@ -10,11 +10,15 @@ namespace FinalEngine.Networking.Tcp
 
     public class TcpServer : IServer
     {
+        private readonly object @lock = new object();
+
         private readonly ITaskExecuter executer;
 
         private readonly IConnectionHandler handler;
 
         private readonly ITcpListenerInvoker listener;
+
+        private bool isRunning;
 
         public TcpServer(ITcpListenerInvoker listener, ITaskExecuter executer, IConnectionHandler handler)
         {
@@ -28,7 +32,24 @@ namespace FinalEngine.Networking.Tcp
             get { return this.listener.Server.GetAddress(AreaCode.Local); }
         }
 
-        public bool IsRunning { get; private set; }
+        public bool IsRunning
+        {
+            get
+            {
+                lock (this.@lock)
+                {
+                    return this.isRunning;
+                }
+            }
+
+            set
+            {
+                lock (this.@lock)
+                {
+                    this.isRunning = value;
+                }
+            }
+        }
 
         public int Port
         {

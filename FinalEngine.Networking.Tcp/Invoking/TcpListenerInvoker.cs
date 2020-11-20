@@ -8,6 +8,7 @@ namespace FinalEngine.Networking.Tcp.Invoking
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Net.Sockets;
+    using System.Threading.Tasks;
 
     [ExcludeFromCodeCoverage]
     public class TcpListenerInvoker : ITcpListenerInvoker
@@ -34,9 +35,9 @@ namespace FinalEngine.Networking.Tcp.Invoking
             get { return new SocketInvoker(this.listener.Server); }
         }
 
-        public ITcpClientInvoker AcceptTcpClient()
+        public async Task<ITcpClientInvoker> AcceptTcpClientAsync()
         {
-            return new TcpClientInvoker(this.listener.AcceptTcpClient());
+            return new TcpClientInvoker(await this.listener.AcceptTcpClientAsync());
         }
 
         public void Start()

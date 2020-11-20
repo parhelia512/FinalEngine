@@ -4,11 +4,13 @@
 
 namespace FinalEngine.Networking.Tcp.Invoking
 {
+    using System.Threading.Tasks;
+
     public interface ITcpListenerInvoker
     {
         ISocketInvoker Server { get; }
 
-        ITcpClientInvoker AcceptTcpClient();
+        Task<ITcpClientInvoker> AcceptTcpClientAsync();
 
         void Start();
 

@@ -5,6 +5,7 @@
 namespace FinalEngine.Networking.Tcp
 {
     using System;
+    using System.Threading.Tasks;
     using FinalEngine.Networking.Tcp.Invoking;
 
     public class TcpConnectionHandler : IConnectionHandler
@@ -23,7 +24,7 @@ namespace FinalEngine.Networking.Tcp
 
         public event EventHandler<ClientConnectionEventArgs> ClientDisconnected;
 
-        public void Handle(IServer server)
+        public async Task Handle(IServer server)
         {
             if (server == null)
             {
@@ -32,7 +33,7 @@ namespace FinalEngine.Networking.Tcp
 
             while (server.IsRunning)
             {
-                ITcpClientInvoker client = this.listener.AcceptTcpClient();
+                ITcpClientInvoker client = await this.listener.AcceptTcpClientAsync();
                 TcpClientConnection connection = this.factory.CreateClientConnection(client);
 
                 if (connection == null)

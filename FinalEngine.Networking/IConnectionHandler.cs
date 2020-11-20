@@ -1,10 +1,11 @@
 ﻿// <copyright file="IConnectionHandler.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Networking
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IConnectionHandler
     {
@@ -12,6 +13,6 @@ namespace FinalEngine.Networking
 
         event EventHandler<ClientConnectionEventArgs> ClientDisconnected;
 
-        void Handle(IServer server);
+        Task Handle(IServer server);
     }
 }

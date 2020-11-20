@@ -6,6 +6,6 @@ namespace FinalEngine.Networking
 {
     public interface IConnectionHandler
     {
-        void Handle(IServer server);
+        void Handle();
     }
 }

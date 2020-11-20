@@ -6,10 +6,8 @@ namespace FinalEngine.Core.Threading
 {
     using System.Threading;
 
-    public interface ITaskScheduler
+    public interface ITaskExecuter
     {
         void Execute(ThreadStart start);
-
-        void Sleep(int ms);
     }
 }

@@ -19,14 +19,14 @@ namespace FinalEngine.Core
     /// <seealso cref="System.IDisposable"/>
     public abstract class GameContainer : IGame, IDisposable
     {
-        private readonly ITaskScheduler scheduler;
+        private readonly ITaskExecuter scheduler;
 
         public GameContainer()
-            : this(new TaskScheduler())
+            : this(new TaskExecuter())
         {
         }
 
-        public GameContainer(ITaskScheduler scheduler)
+        public GameContainer(ITaskExecuter scheduler)
         {
             this.scheduler = scheduler ?? throw new ArgumentNullException(nameof(scheduler));
         }
@@ -111,7 +111,7 @@ namespace FinalEngine.Core
         /// <exception cref="System.ArgumentNullException">
         ///     The specified <paramref name="factory"/> parameter is null.
         /// </exception>
-        public async void Run(IGameTimeFactory factory, double frameCap)
+        public void Run(IGameTimeFactory factory, double frameCap)
         {
             if (factory == null)
             {
@@ -129,8 +129,6 @@ namespace FinalEngine.Core
                 if (!processor.CanProcessNextFrame())
                 {
                     //// TODO: This is a temporary fix!
-
-                    this.scheduler.Sleep(1);
                     ////await Task.Delay(1);
 
                     /*

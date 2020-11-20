@@ -4,22 +4,16 @@
 
 namespace FinalEngine.Core.Threading
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
 
     [ExcludeFromCodeCoverage]
-    public class TaskScheduler : ITaskScheduler
+    public class TaskExecuter : ITaskExecuter
     {
         public void Execute(ThreadStart start)
         {
             var thread = new Thread(start);
             thread.Start();
-        }
-
-        public void Sleep(int ms)
-        {
-            Thread.Sleep(TimeSpan.FromMilliseconds(ms));
         }
     }
 }

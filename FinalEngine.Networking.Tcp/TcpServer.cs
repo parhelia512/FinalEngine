@@ -5,21 +5,26 @@
 namespace FinalEngine.Networking.Tcp
 {
     using System;
+    using System.Threading;
+    using FinalEngine.Core.Threading;
     using FinalEngine.Networking.Tcp.Invoking;
 
     public class TcpServer : IServer
     {
+        private readonly ITaskExecuter executer;
+
         private readonly IConnectionHandler handler;
 
         private readonly ITcpListenerInvoker listener;
 
-        public TcpServer(ITcpListenerInvoker listener, IConnectionHandler handler)
+        public TcpServer(ITcpListenerInvoker listener, ITaskExecuter executer, IConnectionHandler handler)
         {
             this.listener = listener ?? throw new ArgumentNullException(nameof(listener));
+            this.executer = executer ?? throw new ArgumentNullException(nameof(executer));
             this.handler = handler ?? throw new ArgumentNullException(nameof(handler));
         }
 
-        public string Address
+        public string IPAddress
         {
             get { return this.listener.Server.GetAddress(AreaCode.Local); }
         }
@@ -41,7 +46,7 @@ namespace FinalEngine.Networking.Tcp
             this.IsRunning = true;
 
             this.listener.Start();
-            this.handler.Handle(this);
+            this.executer.Execute(new ThreadStart(this.handler.Handle));
         }
 
         public void Stop()
@@ -52,6 +57,7 @@ namespace FinalEngine.Networking.Tcp
             }
 
             this.IsRunning = false;
+
             this.listener.Stop();
         }
     }

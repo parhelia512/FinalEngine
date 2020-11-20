@@ -4,8 +4,12 @@
 
 namespace FinalEngine.Networking
 {
+    using System;
+
     public interface IClientConnection
     {
+        Guid Guid { get; }
+
         string IPAddress { get; }
 
         int Port { get; }

@@ -4,10 +4,8 @@
 
 namespace FinalEngine.Core.Threading
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
 
-    [ExcludeFromCodeCoverage]
     public class TaskExecuter : ITaskExecuter
     {
         public void Execute(ThreadStart start)

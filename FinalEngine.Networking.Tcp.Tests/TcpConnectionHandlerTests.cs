@@ -45,6 +45,30 @@ namespace FinalEngine.Networking.Tcp.Tests
         }
 
         [Test]
+        public void Handle_Test_Should_Invoke_ClientConnected_Event()
+        {
+            // Arrange
+            var listener = new Mock<ITcpListenerInvoker>();
+            var factory = new Mock<ITcpClientConnectionFactory>();
+            var client = new Mock<ITcpClientInvoker>();
+            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+
+            listener.Setup(i => i.AcceptTcpClient()).Returns(client.Object);
+            factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection);
+
+            var handler = new TcpConnectionHandler(listener.Object, factory.Object);
+
+            handler.ClientConnected += (s, e) =>
+            {
+                // Assert
+                Assert.AreSame(connection, e.Connection);
+            };
+
+            // Act
+            handler.Handle();
+        }
+
+        [Test]
         public void Handle_Test_Should_Invoke_Factory_CreateClientConnection()
         {
             // Arrange

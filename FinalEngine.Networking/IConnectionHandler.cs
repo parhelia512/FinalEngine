@@ -4,8 +4,12 @@
 
 namespace FinalEngine.Networking
 {
+    using System;
+
     public interface IConnectionHandler
     {
+        event EventHandler<ClientConnectedEventArgs> ClientConnected;
+
         void Handle();
     }
 }

@@ -19,13 +19,16 @@ namespace FinalEngine.Networking.Tcp
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
+        public event EventHandler<ClientConnectedEventArgs> ClientConnected;
+
         public void Handle()
         {
             ITcpClientInvoker client = this.listener.AcceptTcpClient();
             TcpClientConnection connection = this.factory.CreateClientConnection(client);
 
             //// TODO: Hook onto disconnection and packet received events.
-            //// TODO: Raise client connected event here, will be helpful for ECS?
+
+            this.ClientConnected?.Invoke(this, new ClientConnectedEventArgs(connection));
         }
     }
 }

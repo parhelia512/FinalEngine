@@ -5,6 +5,7 @@
 namespace Game.Host
 {
     using System;
+    using FinalEngine.Core;
     using FinalEngine.Core.Threading;
     using FinalEngine.Logging;
     using FinalEngine.Logging.Formatters;
@@ -28,7 +29,10 @@ namespace Game.Host
 
             using (var game = new GameServer(server, handler))
             {
-                game.Run();
+                var gameTime = new GameTime(120.0d);
+                var processor = gameTime as IGameTimeProcessor;
+
+                game.Run(gameTime, processor);
             }
         }
     }

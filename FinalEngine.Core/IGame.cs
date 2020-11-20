@@ -1,11 +1,11 @@
 ﻿// <copyright file="IGame.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Core
 {
     public interface IGame
     {
-        void Run(double frameCap);
+        void Run(IGameTime gameTime, IGameTimeProcessor processor);
     }
 }

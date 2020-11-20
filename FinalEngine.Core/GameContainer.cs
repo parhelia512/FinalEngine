@@ -29,24 +29,17 @@ namespace FinalEngine.Core
             this.IsRunning = false;
         }
 
-        public void Run()
+        public void Run(IGameTime gameTime, IGameTimeProcessor processor)
         {
-            this.Run(120.0d);
-        }
-
-        public void Run(double frameCap)
-        {
-            this.Run(new GameTimeFactory(), frameCap);
-        }
-
-        public void Run(IGameTimeFactory factory, double frameCap)
-        {
-            if (factory == null)
+            if (gameTime == null)
             {
-                throw new ArgumentNullException(nameof(factory));
+                throw new ArgumentOutOfRangeException(nameof(gameTime));
             }
 
-            factory.CreateGameTime(frameCap, out IGameTime gameTime, out IGameTimeProcessor processor);
+            if (processor == null)
+            {
+                throw new ArgumentNullException(nameof(processor));
+            }
 
             this.Initialize();
 

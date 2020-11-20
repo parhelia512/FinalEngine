@@ -5,6 +5,7 @@
 namespace FinalEngine.Core
 {
     using System;
+    using System.Threading;
 
     public abstract class GameContainer : IGame, IDisposable
     {
@@ -55,7 +56,8 @@ namespace FinalEngine.Core
             {
                 if (!processor.CanProcessNextFrame())
                 {
-                    continue;
+                    // TODO: This is a temporary fix to the CPU cycles issue.
+                    Thread.Sleep(1);
                 }
 
                 this.Update(gameTime);

@@ -24,6 +24,8 @@ namespace FinalEngine.Networking.Tcp
 
         public event EventHandler<ClientConnectionEventArgs> ClientDisconnected;
 
+        public event EventHandler<PacketReceivedEventArgs> PacketReceived;
+
         public async Task Handle(IServer server)
         {
             if (server == null)
@@ -34,7 +36,7 @@ namespace FinalEngine.Networking.Tcp
             while (server.IsRunning)
             {
                 ITcpClientInvoker client = await this.listener.AcceptTcpClientAsync();
-                TcpClientConnection connection = this.factory.CreateClientConnection(client);
+                ITcpClientConnection connection = this.factory.CreateClientConnection(client);
 
                 if (connection == null)
                 {
@@ -42,6 +44,7 @@ namespace FinalEngine.Networking.Tcp
                 }
 
                 connection.Disconnected += this.Connection_Disconnected;
+                connection.PacketReceived += this.Connection_PacketReceived;
 
                 this.ClientConnected?.Invoke(this, new ClientConnectionEventArgs(connection));
             }
@@ -50,6 +53,11 @@ namespace FinalEngine.Networking.Tcp
         private void Connection_Disconnected(object sender, ClientConnectionEventArgs e)
         {
             this.ClientDisconnected?.Invoke(this, new ClientConnectionEventArgs(e.Connection));
+        }
+
+        private void Connection_PacketReceived(object sender, PacketReceivedEventArgs e)
+        {
+            this.PacketReceived?.Invoke(this, e);
         }
     }
 }

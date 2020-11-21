@@ -13,6 +13,8 @@ namespace FinalEngine.Networking
 
         event EventHandler<ClientConnectionEventArgs> ClientDisconnected;
 
+        event EventHandler<PacketReceivedEventArgs> PacketReceived;
+
         Task Handle(IServer server);
     }
 }

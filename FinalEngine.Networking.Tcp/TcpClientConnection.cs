@@ -7,7 +7,7 @@ namespace FinalEngine.Networking.Tcp
     using System;
     using FinalEngine.Networking.Tcp.Invoking;
 
-    public class TcpClientConnection : IClientConnection
+    public class TcpClientConnection : ITcpClientConnection
     {
         private readonly ITcpClientInvoker client;
 
@@ -18,6 +18,8 @@ namespace FinalEngine.Networking.Tcp
         }
 
         public event EventHandler<ClientConnectionEventArgs> Disconnected;
+
+        public event EventHandler<PacketReceivedEventArgs> PacketReceived;
 
         public Guid Guid { get; }
 

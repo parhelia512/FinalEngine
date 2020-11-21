@@ -8,6 +8,6 @@ namespace FinalEngine.Networking.Tcp
 
     public interface ITcpClientConnectionFactory
     {
-        TcpClientConnection CreateClientConnection(ITcpClientInvoker client);
+        ITcpClientConnection CreateClientConnection(ITcpClientInvoker client);
     }
 }

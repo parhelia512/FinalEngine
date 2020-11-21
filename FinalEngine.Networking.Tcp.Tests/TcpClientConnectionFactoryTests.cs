@@ -26,7 +26,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             var client = new Mock<ITcpClientInvoker>();
 
             // Act
-            TcpClientConnection actual = factory.CreateClientConnection(client.Object);
+            ITcpClientConnection actual = factory.CreateClientConnection(client.Object);
 
             // Assert
             Assert.NotNull(actual);

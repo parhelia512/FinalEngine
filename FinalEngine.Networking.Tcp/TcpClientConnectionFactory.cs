@@ -9,7 +9,7 @@ namespace FinalEngine.Networking.Tcp
 
     public class TcpClientConnectionFactory : ITcpClientConnectionFactory
     {
-        public TcpClientConnection CreateClientConnection(ITcpClientInvoker client)
+        public ITcpClientConnection CreateClientConnection(ITcpClientInvoker client)
         {
             if (client == null)
             {

@@ -19,7 +19,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             var listener = new Mock<ITcpListenerInvoker>();
             var factory = new Mock<ITcpClientConnectionFactory>();
             var client = new Mock<ITcpClientInvoker>();
-            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+            ITcpClientConnection connection = new Mock<ITcpClientConnection>().Object;
             var server = new Mock<IServer>();
 
             server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);
@@ -38,6 +38,37 @@ namespace FinalEngine.Networking.Tcp.Tests
 
             // Act
             client.Object.Close();
+        }
+
+        [Test]
+        public async Task Client_PacketReceived_Event_Should_Raise_PacketReceived_Event()
+        {
+            // Arrange
+            var listener = new Mock<ITcpListenerInvoker>();
+            var factory = new Mock<ITcpClientConnectionFactory>();
+            var client = new Mock<ITcpClientInvoker>();
+            var connection = new Mock<ITcpClientConnection>();
+            var server = new Mock<IServer>();
+
+            byte[] bytes = new byte[] { 1, 2, 3, 4, 5 };
+
+            server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);
+            listener.Setup(i => i.AcceptTcpClientAsync()).Returns(Task.FromResult(client.Object));
+            factory.Setup(i => i.CreateClientConnection(client.Object)).Returns(connection.Object);
+
+            var handler = new TcpConnectionHandler(listener.Object, factory.Object);
+
+            handler.PacketReceived += (s, e) =>
+            {
+                // Assert
+                Assert.AreSame(connection.Object, e.Connection);
+                Assert.AreSame(bytes, e.Bytes);
+            };
+
+            await handler.Handle(server.Object);
+
+            // Act
+            connection.Raise(i => i.PacketReceived += null, new PacketReceivedEventArgs(connection.Object, bytes));
         }
 
         [Test]
@@ -81,7 +112,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             var factory = new Mock<ITcpClientConnectionFactory>();
 
             var client = new Mock<ITcpClientInvoker>();
-            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+            ITcpClientConnection connection = new Mock<ITcpClientConnection>().Object;
 
             var server = new Mock<IServer>();
 
@@ -99,14 +130,14 @@ namespace FinalEngine.Networking.Tcp.Tests
         }
 
         [Test]
-        public async Task Handle_Test_Should_Invoke_Listener_AcceptTcpClient()
+        public async Task Handle_Test_Should_Invoke_Listener_AcceptTcpClientAsync()
         {
             // Arrange
             var listener = new Mock<ITcpListenerInvoker>();
             var factory = new Mock<ITcpClientConnectionFactory>();
 
             var client = new Mock<ITcpClientInvoker>();
-            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+            ITcpClientConnection connection = new Mock<ITcpClientConnection>().Object;
 
             var server = new Mock<IServer>();
 
@@ -130,7 +161,7 @@ namespace FinalEngine.Networking.Tcp.Tests
             var listener = new Mock<ITcpListenerInvoker>();
             var factory = new Mock<ITcpClientConnectionFactory>();
             var client = new Mock<ITcpClientInvoker>();
-            var connection = new TcpClientConnection(client.Object, Guid.NewGuid());
+            ITcpClientConnection connection = new Mock<ITcpClientConnection>().Object;
             var server = new Mock<IServer>();
 
             server.SetupSequence(i => i.IsRunning).Returns(true).Returns(false);

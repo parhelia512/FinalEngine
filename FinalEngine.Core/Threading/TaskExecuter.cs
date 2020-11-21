@@ -10,6 +10,8 @@ namespace FinalEngine.Core.Threading
     {
         public void Execute(ThreadStart start)
         {
+            //// TODO: fiiiiiiiiiiix this
+
             var thread = new Thread(start);
             thread.Start();
         }

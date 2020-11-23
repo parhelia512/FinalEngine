@@ -8,7 +8,7 @@ namespace FinalEngine.Logging
 
     public sealed class Logger : ILogger
     {
-        private static ILogger instance;
+        private static ILogger? instance;
 
         public Logger()
         {
@@ -19,7 +19,7 @@ namespace FinalEngine.Logging
         {
             get
             {
-                return instance ?? (instance = new Logger());
+                return instance ??= new Logger();
             }
         }
 

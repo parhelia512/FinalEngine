@@ -4,10 +4,14 @@
 
 namespace FinalEngine.Core.Threading
 {
+    using System;
     using System.Threading;
+    using System.Threading.Tasks;
 
     public interface ITaskExecuter
     {
-        void Execute(ThreadStart start);
+        Task Create(Action action, CancellationToken token);
+
+        Task CreateAndRun(Action action, CancellationToken token);
     }
 }

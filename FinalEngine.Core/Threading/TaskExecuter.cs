@@ -4,16 +4,30 @@
 
 namespace FinalEngine.Core.Threading
 {
+    using System;
     using System.Threading;
+    using System.Threading.Tasks;
 
     public class TaskExecuter : ITaskExecuter
     {
-        public void Execute(ThreadStart start)
+        public Task Create(Action action, CancellationToken token)
         {
-            //// TODO: fiiiiiiiiiiix this
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
 
-            var thread = new Thread(start);
-            thread.Start();
+            return new Task(action, token);
+        }
+
+        public Task CreateAndRun(Action action, CancellationToken token)
+        {
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            return Task.Run(action, token);
         }
     }
 }

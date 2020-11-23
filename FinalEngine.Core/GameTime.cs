@@ -5,7 +5,6 @@
 namespace FinalEngine.Core
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Core.Invoking;
 
     public class GameTime : IGameTime, IGameTimeProcessor
@@ -17,18 +16,6 @@ namespace FinalEngine.Core
         private readonly IStopwatchInvoker watch;
 
         private double lastTime;
-
-        [ExcludeFromCodeCoverage]
-        public GameTime()
-            : this(120.0d)
-        {
-        }
-
-        [ExcludeFromCodeCoverage]
-        public GameTime(double frameCap)
-            : this(new StopwatchInvoker(), frameCap)
-        {
-        }
 
         public GameTime(IStopwatchInvoker watch, double frameCap)
         {

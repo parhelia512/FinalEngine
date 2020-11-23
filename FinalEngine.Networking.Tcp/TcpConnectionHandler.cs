@@ -53,7 +53,7 @@ namespace FinalEngine.Networking.Tcp
 
         private void Connection_Disconnected(object sender, ClientConnectionEventArgs e)
         {
-            this.ClientDisconnected?.Invoke(this, new ClientConnectionEventArgs(e.Connection));
+            this.ClientDisconnected?.Invoke(this, e);
         }
 
         private void Connection_PacketReceived(object sender, PacketReceivedEventArgs e)

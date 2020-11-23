@@ -38,12 +38,6 @@ namespace FinalEngine.Networking.Tcp
                 ITcpClientInvoker client = await this.listener.AcceptTcpClientAsync();
                 ITcpClientConnection connection = this.factory.CreateClientConnection(client);
 
-                // TODO: Should I really be checking for null here? probably not... I really need to document my code.
-                if (connection == null)
-                {
-                    throw new Exception($"The {nameof(this.factory)} could not successfully create a client connection.");
-                }
-
                 connection.Disconnected += this.Connection_Disconnected;
                 connection.PacketReceived += this.Connection_PacketReceived;
 

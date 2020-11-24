@@ -10,9 +10,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Goal.txt = Goal.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{8500D452-62BA-4DAE-BA1D-5A51632955EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Platform", "FinalEngine.Platform\FinalEngine.Platform.csproj", "{025F4A45-6953-4A11-871E-D034E9C61B0A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{025F4A45-6953-4A11-871E-D034E9C61B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{025F4A45-6953-4A11-871E-D034E9C61B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{025F4A45-6953-4A11-871E-D034E9C61B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{025F4A45-6953-4A11-871E-D034E9C61B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{025F4A45-6953-4A11-871E-D034E9C61B0A} = {8500D452-62BA-4DAE-BA1D-5A51632955EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A278B383-0D14-41B3-A71C-4505E1D503DF}

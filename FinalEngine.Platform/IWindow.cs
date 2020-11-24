@@ -4,10 +4,13 @@
 
 namespace FinalEngine.Platform
 {
+    using System;
+
     /// <summary>
     ///     Defines an interface that represents a display or window.
     /// </summary>
-    public interface IWindow
+    /// <seealso cref="System.IDisposable"/>
+    public interface IWindow : IDisposable
     {
         /// <summary>
         ///     Gets a value indicating whether this <see cref="IWindow"/> is exiting.
@@ -32,5 +35,10 @@ namespace FinalEngine.Platform
         ///     <c>true</c> if this <see cref="IWindow"/> is visible; otherwise, <c>false</c>.
         /// </value>
         bool Visible { get; set; }
+
+        /// <summary>
+        ///     Closes this <see cref="IWindow"/>, disposing of it's resources.
+        /// </summary>
+        void Close();
     }
 }

@@ -26,11 +26,11 @@ namespace FinalEngine.Platform
         string Title { get; set; }
 
         /// <summary>
-        ///     Gets a value indicating whether this <see cref="IWindow"/> is visible.
+        ///     Gets or sets a value indicating whether this <see cref="IWindow"/> is visible.
         /// </summary>
         /// <value>
         ///     <c>true</c> if this <see cref="IWindow"/> is visible; otherwise, <c>false</c>.
         /// </value>
-        bool Visible { get; }
+        bool Visible { get; set; }
     }
 }

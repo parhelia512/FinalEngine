@@ -38,4 +38,4 @@ If you do not follow the steps below, it is unlikely your PR will be merged.
 - [Learn OpenGL](https://learnopengl.com/)
 - [DirectX Tutorials](http://www.directxtutorial.com/)
 - [TheBennyBox](https://www.youtube.com/user/thebennybox)
-- [Thin Matrix](https://www.youtube.com/user/ThinMatrix)
+- [ThinMatrix](https://www.youtube.com/user/ThinMatrix)

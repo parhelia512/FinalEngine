@@ -31,7 +31,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
     /// };
     ///
     /// // Instantiate a native window invoker based on the settings provided.
-    /// var nativeWindow = new NativeWindowInvoker(new NativeWindow(settings));
+    /// var nativeWindow = new NativeWindowInvoker(settings);
     ///
     /// // Instantiate an OpenTK Window that uses the invoker.
     /// var window = new OpenTKWindow(nativeWindow);

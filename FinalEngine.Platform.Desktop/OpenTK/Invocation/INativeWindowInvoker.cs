@@ -5,6 +5,7 @@
 namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
 {
     using System;
+    using global::OpenTK.Windowing.Common;
     using global::OpenTK.Windowing.Desktop;
 
     /// <summary>
@@ -12,6 +13,10 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
     /// </summary>
     public interface INativeWindowInvoker : IDisposable
     {
+        event Action<KeyboardKeyEventArgs> KeyDown;
+
+        event Action<KeyboardKeyEventArgs> KeyUp;
+
         /// <summary>
         /// Gets a value indicating whether this instance is disposed.
         /// </summary>

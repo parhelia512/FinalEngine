@@ -27,6 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\FinalEngine.Input\FinalEngine.Input.csproj" />
 		<ProjectReference Include="..\FinalEngine.Platform\FinalEngine.Platform.csproj" />
 	</ItemGroup>
 </Project>

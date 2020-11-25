@@ -181,7 +181,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// Processes the events that are currently in the message queue.
         /// </summary>
         /// <remarks>
-        /// This method is not safe and should only be executed on the main thread.
+        /// This method is not thread safe and should only be executed on the main thread.
         /// </remarks>
         /// <exception cref="System.ObjectDisposedException">
         /// The underlying native window is dispsoed.

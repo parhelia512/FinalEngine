@@ -36,6 +36,17 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NativeWindowInvoker"/> class.
+        /// </summary>
+        /// <param name="settings">
+        /// Specifies a <see cref="NativeWindowSettings"/> that represents the settings used to create a <see cref="NativeWindow"/>, internally.
+        /// </param>
+        public NativeWindowInvoker(NativeWindowSettings settings)
+            : this(new NativeWindow(settings))
+        {
+        }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is disposed.
         /// </summary>
         /// <value>

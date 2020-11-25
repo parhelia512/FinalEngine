@@ -4,12 +4,13 @@
 
 namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
 {
+    using System;
     using global::OpenTK.Windowing.Desktop;
 
     /// <summary>
     /// Defines an interface that provides methods for invocation of a <see cref="NativeWindow"/>.
     /// </summary>
-    public interface INativeWindowInvoker
+    public interface INativeWindowInvoker : IDisposable
     {
         /// <summary>
         /// Gets a value indicating whether this instance is disposed.
@@ -50,12 +51,6 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
         /// Closes this window.
         /// </summary>
         void Close();
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting
-        /// unmanaged resources.
-        /// </summary>
-        void Dispose();
 
         /// <summary>
         /// Processes pending window events.

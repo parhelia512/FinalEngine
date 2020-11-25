@@ -5,11 +5,13 @@
 namespace FinalEngine.Platform.Desktop.Tests.OpenTK
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using Moq;
     using NUnit.Framework;
 
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is down in TearDown.")]
     public class OpenTKWindowTests
     {
         private Mock<INativeWindowInvoker> nativeWindow;

@@ -1,25 +1,45 @@
-﻿using FinalEngine.Platform.Desktop.OpenTK;
-using FinalEngine.Platform.Desktop.OpenTK.Invocation;
-using OpenTK.Mathematics;
-using OpenTK.Windowing.Common;
-using OpenTK.Windowing.Desktop;
+﻿// <copyright file="Program.cs" company="Software Antics">
+// Copyright (c) Software Antics. All rights reserved.
+// </copyright>
 
-var settings = new NativeWindowSettings()
+namespace TestGame
 {
-    WindowBorder = WindowBorder.Fixed,
-    WindowState = WindowState.Normal,
+    using FinalEngine.Platform.Desktop.OpenTK;
+    using FinalEngine.Platform.Desktop.OpenTK.Invocation;
+    using OpenTK.Mathematics;
+    using OpenTK.Windowing.Common;
+    using OpenTK.Windowing.Desktop;
 
-    Size = new Vector2i(1024, 768),
+    /// <summary>
+    /// The main program.
+    /// </summary>
+    internal static class Program
+    {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        private static void Main()
+        {
+            var settings = new NativeWindowSettings()
+            {
+                WindowBorder = WindowBorder.Fixed,
+                WindowState = WindowState.Normal,
 
-    StartVisible = true
-};
+                Size = new Vector2i(1024, 768),
 
-var nativeWindow = new NativeWindowInvoker(new NativeWindow(settings));
-var window = new OpenTKWindow(nativeWindow);
+                StartVisible = true,
+            };
 
-while (!window.IsExiting)
-{
-    window.ProcessEvents();
+            var nativeWindow = new NativeWindowInvoker(settings);
+            var window = new OpenTKWindow(nativeWindow);
+
+            while (!window.IsExiting)
+            {
+                window.ProcessEvents();
+            }
+
+            window.Dispose();
+            nativeWindow.Dispose();
+        }
+    }
 }
-
-window.Dispose();

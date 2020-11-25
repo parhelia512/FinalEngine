@@ -63,7 +63,7 @@
 
 A great tip for below is to include [Roslynator 2019](https://marketplace.visualstudio.com/items?itemName=josefpihrt.Roslynator2019) in your project(s). 
 
-- [ ] Any new files have bee named consistently and spelt correctly.
+- [ ] Any new files have been named consistently and spelt correctly.
 - [ ] Any and all members have been named simply and if possible, short and to the point (prefer `isMatch` over `isPatternMatched`).
 - [ ] There is _no_ commented out code.
 - [ ] All changes follow the styling and coding conventions of the repository, to ensure:
@@ -98,8 +98,9 @@ A great tip for below is to include [Roslynator 2019](https://marketplace.visual
 
 - [ ] There are unit tests provided to accommodate the changes.
 - [ ] The provided unit tests have a code coverage of _at least_ 80%.
-- [ ] The tests follow the correct styling (MethodName_Should_ExpectedBehaviour_When_StateUnderTest)
+- [ ] The tests follow the correct styling (MethodNameShouldExpectedBehaviourWhenStateUnderTest)
 - [ ] The tests follow the AAA (Arrange, act and assert) methodology and are clearly commented.
+- [ ] Classes that should be excluded from code coverage are marked with the `ExcludeFromCodeCoverage` attribute.
 - [ ] All tests pass locally on your machine
 - [ ] All tests pass on CI.
 

@@ -17,6 +17,14 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
 
         event Action<KeyboardKeyEventArgs> KeyUp;
 
+        event Action<MouseButtonEventArgs> MouseDown;
+
+        event Action<MouseMoveEventArgs> MouseMove;
+
+        event Action<MouseButtonEventArgs> MouseUp;
+
+        event Action<MouseWheelEventArgs> MouseWheel;
+
         /// <summary>
         /// Gets a value indicating whether this instance is disposed.
         /// </summary>

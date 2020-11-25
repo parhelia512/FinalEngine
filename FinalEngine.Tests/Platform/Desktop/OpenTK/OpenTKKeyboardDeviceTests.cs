@@ -16,30 +16,22 @@ namespace FinalEngine.Tests.Core.Platform.Desktop.OpenTK
 
     public class OpenTKKeyboardDeviceTests
     {
+        private OpenTKKeyboardDevice keyboardDevice;
+
+        private Mock<INativeWindowInvoker> nativeWindow;
+
         [Test]
         public void ConstructorShouldHookOntoNativeWindowKeyDownEventWhenNativeWindowIsNotNull()
         {
-            // Arrange
-            var nativeWindow = new Mock<INativeWindowInvoker>();
-
-            // Act
-            _ = new OpenTKKeyboardDevice(nativeWindow.Object);
-
             // Assert
-            nativeWindow.VerifyAdd(x => x.KeyDown += It.IsAny<Action<TKKeyboardKeyEventArgs>>(), Times.Once);
+            this.nativeWindow.VerifyAdd(x => x.KeyDown += It.IsAny<Action<TKKeyboardKeyEventArgs>>(), Times.Once);
         }
 
         [Test]
         public void ConstructorShouldHookOntoNativeWindowKeyUpEventWhenNativeWindowIsNotNull()
         {
-            // Arrange
-            var nativeWindow = new Mock<INativeWindowInvoker>();
-
-            // Act
-            _ = new OpenTKKeyboardDevice(nativeWindow.Object);
-
             // Assert
-            nativeWindow.VerifyAdd(x => x.KeyUp += It.IsAny<Action<TKKeyboardKeyEventArgs>>(), Times.Once);
+            this.nativeWindow.VerifyAdd(x => x.KeyUp += It.IsAny<Action<TKKeyboardKeyEventArgs>>(), Times.Once);
         }
 
         [Test]
@@ -59,37 +51,38 @@ namespace FinalEngine.Tests.Core.Platform.Desktop.OpenTK
         [Test]
         public void NativeWindowKeyDownEventShouldRaiseKeyDownEventWhenRaised()
         {
-            // Arrange
-            var nativeWindow = new Mock<INativeWindowInvoker>();
-            var keyboardDevice = new OpenTKKeyboardDevice(nativeWindow.Object);
-
-            keyboardDevice.KeyDown += (s, e) =>
+            // Assert
+            this.keyboardDevice.KeyDown += (s, e) =>
             {
-                Assert.AreEqual(s, keyboardDevice);
+                Assert.AreSame(s, this.keyboardDevice);
                 Assert.AreEqual(Key.A, e.Key);
                 Assert.AreEqual(KeyModifiers.Alt, e.Modifiers);
             };
 
             // Act
-            nativeWindow.Raise(x => x.KeyDown += null, new TKKeyboardKeyEventArgs(TKKeys.A, 0, TKModifiers.Alt, false));
+            this.nativeWindow.Raise(x => x.KeyDown += null, new TKKeyboardKeyEventArgs(TKKeys.A, 0, TKModifiers.Alt, false));
         }
 
         [Test]
         public void NativeWindowKeyUpEventShouldRaiseKeyUpEventWhenRaised()
         {
-            // Arrange
-            var nativeWindow = new Mock<INativeWindowInvoker>();
-            var keyboardDevice = new OpenTKKeyboardDevice(nativeWindow.Object);
-
-            keyboardDevice.KeyUp += (s, e) =>
+            // Assert
+            this.keyboardDevice.KeyUp += (s, e) =>
             {
-                Assert.AreEqual(s, keyboardDevice);
+                Assert.AreEqual(s, this.keyboardDevice);
                 Assert.AreEqual(Key.A, e.Key);
                 Assert.AreEqual(KeyModifiers.Alt, e.Modifiers);
             };
 
             // Act
-            nativeWindow.Raise(x => x.KeyUp += null, new TKKeyboardKeyEventArgs(TKKeys.A, 0, TKModifiers.Alt, false));
+            this.nativeWindow.Raise(x => x.KeyUp += null, new TKKeyboardKeyEventArgs(TKKeys.A, 0, TKModifiers.Alt, false));
+        }
+
+        [OneTimeSetUp]
+        public void Setup()
+        {
+            this.nativeWindow = new Mock<INativeWindowInvoker>();
+            this.keyboardDevice = new OpenTKKeyboardDevice(this.nativeWindow.Object);
         }
     }
 }

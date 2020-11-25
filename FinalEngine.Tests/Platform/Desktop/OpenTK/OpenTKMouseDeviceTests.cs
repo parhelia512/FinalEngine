@@ -1,4 +1,8 @@
-﻿namespace FinalEngine.Tests.Platform.Desktop.OpenTK
+﻿// <copyright file="OpenTKMouseDeviceTests.cs" company="Software Antics">
+// Copyright (c) Software Antics. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 {
     using System;
     using System.Drawing;
@@ -111,7 +115,7 @@
             this.mouseDevice.Scroll += (s, e) =>
             {
                 Assert.AreSame(this.mouseDevice, s);
-                Assert.AreEqual(10, e.Delta);
+                Assert.AreEqual(10, e.Offset);
             };
 
             // Act
@@ -121,6 +125,7 @@
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.nativeWindow = new Mock<INativeWindowInvoker>();
             this.mouseDevice = new OpenTKMouseDevice(this.nativeWindow.Object);
         }

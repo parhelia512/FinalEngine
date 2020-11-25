@@ -71,7 +71,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
             this.Scroll?.Invoke(this, new MouseScrollEventArgs()
             {
                 // TODO: Is this right?
-                Delta = args.OffsetY,
+                Offset = args.OffsetY,
             });
         }
     }

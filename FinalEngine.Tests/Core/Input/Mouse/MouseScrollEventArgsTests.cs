@@ -10,7 +10,7 @@ namespace FinalEngine.Tests.Core.Input.Mouse
     public class MouseScrollEventArgsTests
     {
         [Test]
-        public void DeltaShouldReturnSameAsInputWhenSet()
+        public void OffsetShouldReturnSameAsInputWhenSet()
         {
             // Arrange
             const double Expected = 124.0d;
@@ -18,11 +18,11 @@ namespace FinalEngine.Tests.Core.Input.Mouse
             // Act
             var eventArgs = new MouseScrollEventArgs()
             {
-                Delta = Expected,
+                Offset = Expected,
             };
 
             // Assert
-            Assert.AreEqual(Expected, eventArgs.Delta);
+            Assert.AreEqual(Expected, eventArgs.Offset);
         }
     }
 }

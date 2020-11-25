@@ -8,6 +8,6 @@ namespace FinalEngine.Input.Mouse
 
     public class MouseScrollEventArgs : EventArgs
     {
-        public double Delta { get; init; }
+        public double Offset { get; init; }
     }
 }

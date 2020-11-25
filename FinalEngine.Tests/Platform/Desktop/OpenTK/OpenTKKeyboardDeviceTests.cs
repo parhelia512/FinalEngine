@@ -81,6 +81,7 @@ namespace FinalEngine.Tests.Core.Platform.Desktop.OpenTK
         [OneTimeSetUp]
         public void Setup()
         {
+            // Arrange
             this.nativeWindow = new Mock<INativeWindowInvoker>();
             this.keyboardDevice = new OpenTKKeyboardDevice(this.nativeWindow.Object);
         }

@@ -21,6 +21,9 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
         [Test]
         public void CloseShouldInvokeNativeWindowCloseWhenNativeWindowIsNotDisposed()
         {
+            // Arrange
+            this.nativeWindow.SetupGet(x => x.IsDisposed).Returns(false);
+
             // Act
             this.window.Close();
 

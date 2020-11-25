@@ -37,7 +37,7 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
         }
 
         [Test]
-        public void ConstructorShouldNotThrowException()
+        public void ConstructorShouldNotThrowExceptionWhenNativeWindowIsNotNull()
         {
             // Arrange, act and assert
             Assert.DoesNotThrow(() => new OpenTKWindow(new Mock<INativeWindowInvoker>().Object));
@@ -50,14 +50,21 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
             Assert.Throws<ArgumentNullException>(() => new OpenTKWindow(null));
         }
 
-        [OneTimeTearDown]
-        public void Dispose()
+        [Test]
+        public void DisposeShouldInvokeNativeWindowDisposeWhenNotDisposed()
         {
+            // Arrange
+            this.nativeWindow.Setup(x => x.IsDisposed).Returns(false);
+
+            // Act
             this.window.Dispose();
+
+            // Assert
+            this.nativeWindow.Verify(x => x.Dispose(), Times.Once);
         }
 
         [Test]
-        public void IsExitingShouldInvokeNativeWindowIsExiting()
+        public void IsExitingShouldInvokeNativeWindowIsExitingWhenRead()
         {
             // Act
             _ = this.window.IsExiting;
@@ -67,7 +74,7 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
         }
 
         [Test]
-        public void IsExitingShouldReturnSameAsNativeWindowIsExiting()
+        public void IsExitingShouldReturnSameAsNativeWindowIsExitingWhenRead()
         {
             // Arrange
             this.nativeWindow.SetupGet(x => x.IsExiting).Returns(true);
@@ -105,12 +112,19 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
         [OneTimeSetUp]
         public void Setup()
         {
+            // Arrange
             this.nativeWindow = new Mock<INativeWindowInvoker>();
             this.window = new OpenTKWindow(this.nativeWindow.Object);
         }
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            this.window.Dispose();
+        }
+
         [Test]
-        public void TitleGetShouldInvokeNativeWindowTitle()
+        public void TitleGetShouldInvokeNativeWindowTitleWhenRead()
         {
             // Act
             _ = this.window.Title;
@@ -144,7 +158,7 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
         }
 
         [Test]
-        public void VisibleGetShouldInvokeNativeWindowIsVisible()
+        public void VisibleGetShouldInvokeNativeWindowIsVisibleWhenRead()
         {
             // Act
             _ = this.window.Visible;
@@ -154,7 +168,7 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
         }
 
         [Test]
-        public void VisibleSetShouldSetNativeWindwoIsVisibleWhenNativeWindowIsNotDisposed()
+        public void VisibleSetShouldSetNativeWindowIsVisibleWhenNativeWindowIsNotDisposed()
         {
             // Arrange
             const bool Expected = true;

@@ -171,7 +171,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
                 return;
             }
 
-            if (disposing)
+            if (disposing && !this.nativeWindow.IsDisposed)
             {
                 this.nativeWindow.Dispose();
             }

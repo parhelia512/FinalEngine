@@ -13,16 +13,34 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
     /// </summary>
     public interface INativeWindowInvoker : IDisposable
     {
+        /// <summary>
+        /// Occurs whenever a keyboard key is pressed.
+        /// </summary>
         event Action<KeyboardKeyEventArgs> KeyDown;
 
+        /// <summary>
+        /// Occurs whenever a keyboard key is released.
+        /// </summary>
         event Action<KeyboardKeyEventArgs> KeyUp;
 
+        /// <summary>
+        /// Occurs whenever a mouse button is clicked.
+        /// </summary>
         event Action<MouseButtonEventArgs> MouseDown;
 
+        /// <summary>
+        /// Occurs whenever the mouse cursor is moved;
+        /// </summary>
         event Action<MouseMoveEventArgs> MouseMove;
 
+        /// <summary>
+        /// Occurs whenever a mouse button is released.
+        /// </summary>
         event Action<MouseButtonEventArgs> MouseUp;
 
+        /// <summary>
+        /// Occurs whenever a mouse wheel is moved;
+        /// </summary>
         event Action<MouseWheelEventArgs> MouseWheel;
 
         /// <summary>

@@ -53,25 +53,13 @@ namespace TestGame
                 Console.WriteLine($"Modifiers Released: {e.Modifiers}");
             };
 
-            mouseDevice.ButtonUp += (s, e) =>
-            {
-                Console.WriteLine(e.Button);
-            };
+            mouseDevice.ButtonUp += (s, e) => Console.WriteLine(e.Button);
 
-            mouseDevice.ButtonDown += (s, e) =>
-            {
-                Console.WriteLine(e.Button);
-            };
+            mouseDevice.ButtonDown += (s, e) => Console.WriteLine(e.Button);
 
-            mouseDevice.Scroll += (s, e) =>
-            {
-                Console.WriteLine(e.Offset);
-            };
+            mouseDevice.Scroll += (s, e) => Console.WriteLine(e.Offset);
 
-            mouseDevice.Move += (s, e) =>
-            {
-                Console.WriteLine(e.Location);
-            };
+            mouseDevice.Move += (s, e) => Console.WriteLine(e.Location);
 
             while (!window.IsExiting)
             {

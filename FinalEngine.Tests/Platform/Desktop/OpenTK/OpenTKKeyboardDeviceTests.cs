@@ -2,7 +2,7 @@
 // Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace FinalEngine.Tests.Core.Platform.Desktop.OpenTK
+namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 {
     using System;
     using FinalEngine.Input.Keyboard;

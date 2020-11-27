@@ -4,8 +4,14 @@
 
 namespace FinalEngine.Input.Mouse
 {
+    using System.Drawing;
+
     public interface IMouse
     {
+        PointF Location { get; set; }
+
+        double WheelOffset { get; }
+
         bool IsButtonDown(MouseButton button);
 
         bool IsButtonPressed(MouseButton button);

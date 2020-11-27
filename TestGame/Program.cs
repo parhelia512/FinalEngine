@@ -6,6 +6,7 @@ namespace TestGame
 {
     using System;
     using FinalEngine.Input.Keyboard;
+    using FinalEngine.Input.Mouse;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using OpenTK.Mathematics;
@@ -39,6 +40,7 @@ namespace TestGame
             var mouseDevice = new OpenTKMouseDevice(nativeWindow);
 
             var keyboard = new Keyboard(keyboardDevice);
+            var mouse = new Mouse(mouseDevice);
 
             while (!window.IsExiting)
             {
@@ -57,7 +59,26 @@ namespace TestGame
                     Console.WriteLine("A is released");
                 }
 
+                if (mouse.IsButtonDown(MouseButton.Left))
+                {
+                    Console.WriteLine("Left is down");
+                }
+
+                if (mouse.IsButtonPressed(MouseButton.Right))
+                {
+                    Console.WriteLine("Right is pressed.");
+                }
+
+                if (mouse.IsButtonReleased(MouseButton.Right))
+                {
+                    Console.WriteLine("Right is released.");
+
+                    Console.WriteLine(mouse.Location);
+                    Console.WriteLine(mouse.WheelOffset);
+                }
+
                 keyboard.Update();
+                mouse.Update();
 
                 window.ProcessEvents();
             }

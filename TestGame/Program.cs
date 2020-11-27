@@ -38,7 +38,7 @@ namespace TestGame
             var keyboardDevice = new OpenTKKeyboardDevice(nativeWindow);
             var mouseDevice = new OpenTKMouseDevice(nativeWindow);
 
-            var keyboard = Keyboard.Create(keyboardDevice);
+            var keyboard = new Keyboard(keyboardDevice);
 
             while (!window.IsExiting)
             {

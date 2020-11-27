@@ -1,5 +1,5 @@
 ﻿// <copyright file="Program.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace TestGame
@@ -13,12 +13,12 @@ namespace TestGame
     using OpenTK.Windowing.Desktop;
 
     /// <summary>
-    /// The main program.
+    ///     The main program.
     /// </summary>
     internal static class Program
     {
         /// <summary>
-        /// Defines the entry point of the application.
+        ///     Defines the entry point of the application.
         /// </summary>
         private static void Main()
         {

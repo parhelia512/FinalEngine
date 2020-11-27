@@ -1,5 +1,5 @@
 ﻿// <copyright file="MouseScrollEventArgs.cs" company="Software Antics">
-// Copyright (c) Software Antics. All rights reserved.
+//     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
 namespace FinalEngine.Input.Mouse
@@ -7,16 +7,16 @@ namespace FinalEngine.Input.Mouse
     using System;
 
     /// <summary>
-    /// Provides event data for the <see cref="IMouseDevice.Scroll"/> event.
+    ///     Provides event data for the <see cref="IMouseDevice.Scroll"/> event.
     /// </summary>
-    /// <seealso cref="System.EventArgs" />
+    /// <seealso cref="System.EventArgs"/>
     public class MouseScrollEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets the Y-offset of the scroll wheel.
+        ///     Gets the Y-offset of the scroll wheel.
         /// </summary>
         /// <value>
-        /// The Y-offset of the scroll wheel.
+        ///     The Y-offset of the scroll wheel.
         /// </value>
         public double Offset { get; init; }
     }

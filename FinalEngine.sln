@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Input", "FinalE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E9320D29-CE2F-4A99-8F58-8E52E89E0147}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Tests", "FinalEngine.Tests\FinalEngine.Tests.csproj", "{9835B6B5-0A5F-4645-82B6-3B34F0DA91E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Tests", "FinalEngine.Tests\FinalEngine.Tests.csproj", "{9835B6B5-0A5F-4645-82B6-3B34F0DA91E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -49,7 +49,7 @@ namespace TestGame
 
                 if (keyboard.IsKeyPressed(Key.B))
                 {
-                    Console.WriteLine("A is pressed");
+                    Console.WriteLine("B is pressed");
                 }
 
                 if (keyboard.IsKeyReleased(Key.A))
@@ -58,6 +58,7 @@ namespace TestGame
                 }
 
                 keyboard.Update();
+
                 window.ProcessEvents();
             }
 

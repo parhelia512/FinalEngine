@@ -43,7 +43,7 @@ namespace FinalEngine.Input.Keyboard
 
         public bool IsKeyPressed(Key key)
         {
-            return this.keysDown.Contains(key); // && !this.keysDownLast.Contains(key);
+            return this.keysDown.Contains(key) && !this.keysDownLast.Contains(key);
         }
 
         public bool IsKeyReleased(Key key)

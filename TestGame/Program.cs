@@ -38,36 +38,27 @@ namespace TestGame
             var keyboardDevice = new OpenTKKeyboardDevice(nativeWindow);
             var mouseDevice = new OpenTKMouseDevice(nativeWindow);
 
-            Keyboard.Initialize(keyboardDevice);
-
-            mouseDevice.ButtonUp += (s, e) => Console.WriteLine(e.Button);
-
-            mouseDevice.ButtonDown += (s, e) => Console.WriteLine(e.Button);
-
-            mouseDevice.Scroll += (s, e) => Console.WriteLine(e.Offset);
-
-            mouseDevice.Move += (s, e) => Console.WriteLine(e.Location);
+            var keyboard = Keyboard.Create(keyboardDevice);
 
             while (!window.IsExiting)
             {
-                window.ProcessEvents();
-
-                if (Keyboard.IsKeyDown(Key.A))
+                if (keyboard.IsKeyDown(Key.A))
                 {
                     Console.WriteLine("A is down");
                 }
 
-                if (Keyboard.IsKeyReleased(Key.A))
+                if (keyboard.IsKeyPressed(Key.B))
+                {
+                    Console.WriteLine("A is pressed");
+                }
+
+                if (keyboard.IsKeyReleased(Key.A))
                 {
                     Console.WriteLine("A is released");
                 }
 
-                if (Keyboard.IsKeyPressed(Key.B))
-                {
-                    Console.WriteLine("B is pressed.");
-                }
-
-                Keyboard.Update();
+                keyboard.Update();
+                window.ProcessEvents();
             }
 
             window.Dispose();

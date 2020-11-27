@@ -6,97 +6,109 @@ namespace FinalEngine.Input.Keyboard
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
-    public static class Keyboard
+    public class Keyboard : IKeyboard
     {
-        private static IList<Key>? keysDown;
+        private readonly IKeyboardDevice? device;
 
-        private static IList<Key>? keysDownLast;
+        private readonly IList<Key>? keysDown;
 
-        public static bool IsKeyDown(Key key)
-        {
-            if (keysDown == null)
-            {
-                return false;
-            }
+        private IReadOnlyCollection<Key>? keysDownLast;
 
-            return keysDown.Contains(key);
-        }
-
-        public static bool IsKeyPressed(Key key)
-        {
-            if (keysDown == null)
-            {
-                return false;
-            }
-
-            if (keysDownLast == null)
-            {
-                throw new NullReferenceException($"The {nameof(keysDownLast)} field is null. Did you forget to call {nameof(Initialize)} or {nameof(Update)}?");
-            }
-
-            return keysDown.Contains(key) && !keysDownLast.Contains(key);
-        }
-
-        public static bool IsKeyReleased(Key key)
-        {
-            if (keysDown == null)
-            {
-                return false;
-            }
-
-            if (keysDownLast == null)
-            {
-                throw new NullReferenceException($"The {nameof(keysDownLast)} field is null. Did you forget to call {nameof(Initialize)} or {nameof(Update)}?");
-            }
-
-            return !keysDown.Contains(key) && keysDownLast.Contains(key);
-        }
-
-        internal static void Initialize(IKeyboardDevice? device)
+        private Keyboard(IKeyboardDevice? device)
         {
             if (device == null)
             {
                 return;
             }
 
-            keysDown = new List<Key>();
-            keysDownLast = new List<Key>();
+            this.device = device;
 
-            device.KeyUp += Device_KeyUp;
-            device.KeyDown += Device_KeyDown;
+            this.keysDown = new List<Key>();
+            this.keysDownLast = new List<Key>();
+
+            this.device.KeyDown += this.Device_KeyDown;
+            this.device.KeyUp += this.Device_KeyUp;
         }
 
-        internal static void Update()
+        public bool IsKeyDown(Key key)
         {
-            if (keysDown == null)
+            if (this.keysDown == null)
             {
-                throw new NullReferenceException($"The {nameof(keysDown)} field is null. Did you forget to call {nameof(Initialize)}?");
+                return false;
             }
 
-            keysDownLast = new List<Key>(keysDown);
+            return this.keysDown.Contains(key);
         }
 
-        private static void Device_KeyDown(object? sender, KeyEventArgs e)
+        public bool IsKeyPressed(Key key)
         {
-            if (keysDown == null)
+            if (this.keysDown == null ||
+                this.keysDownLast == null)
             {
-                throw new NullReferenceException($"The {nameof(keysDown)} field is null. Did you forget to call {nameof(Initialize)}?");
+                return false;
             }
 
-            keysDown.Add(e.Key);
+            return this.keysDown.Contains(key) && !this.keysDownLast.Contains(key);
         }
 
-        private static void Device_KeyUp(object? sender, KeyEventArgs e)
+        public bool IsKeyReleased(Key key)
         {
-            if (keysDown == null)
+            if (this.keysDown == null ||
+                this.keysDownLast == null)
             {
-                throw new NullReferenceException($"The {nameof(keysDown)} field is null. Did you forget to call {nameof(Initialize)}?");
+                return false;
             }
 
-            while (keysDown.Contains(e.Key))
+            return !this.keysDown.Contains(key) && this.keysDownLast.Contains(key);
+        }
+
+        internal static Keyboard Create(IKeyboardDevice? device)
+        {
+            return new Keyboard(device);
+        }
+
+        internal void Update()
+        {
+            if (this.keysDown == null)
             {
-                keysDown.Remove(e.Key);
+                return;
+            }
+
+            this.keysDownLast = new List<Key>(this.keysDown);
+        }
+
+        private void Device_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
+            if (this.keysDown == null)
+            {
+                throw new NullReferenceException($"The {nameof(this.keysDown)} field is null. Did you accidently invoke this method?");
+            }
+
+            this.keysDown.Add(e.Key);
+        }
+
+        private void Device_KeyUp(object? sender, KeyEventArgs e)
+        {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
+            if (this.keysDown == null)
+            {
+                throw new NullReferenceException($"The {nameof(this.keysDown)} field is null. Did you accidently invoke this method?");
+            }
+
+            while (this.keysDown.Contains(e.Key))
+            {
+                this.keysDown.Remove(e.Key);
             }
         }
     }

@@ -38,20 +38,7 @@ namespace TestGame
             var keyboardDevice = new OpenTKKeyboardDevice(nativeWindow);
             var mouseDevice = new OpenTKMouseDevice(nativeWindow);
 
-            keyboardDevice.KeyUp += (s, e) =>
-            {
-                if (e.Control && e.Shift && e.Key == Key.D)
-                {
-                    Console.WriteLine("Woo, you did a commandy thingy broski");
-                    window.Close();
-                }
-            };
-
-            keyboardDevice.KeyDown += (s, e) =>
-            {
-                Console.WriteLine($"Key Released: {e.Key}");
-                Console.WriteLine($"Modifiers Released: {e.Modifiers}");
-            };
+            Keyboard.Initialize(keyboardDevice);
 
             mouseDevice.ButtonUp += (s, e) => Console.WriteLine(e.Button);
 
@@ -64,6 +51,23 @@ namespace TestGame
             while (!window.IsExiting)
             {
                 window.ProcessEvents();
+
+                if (Keyboard.IsKeyDown(Key.A))
+                {
+                    Console.WriteLine("A is down");
+                }
+
+                if (Keyboard.IsKeyReleased(Key.A))
+                {
+                    Console.WriteLine("A is released");
+                }
+
+                if (Keyboard.IsKeyPressed(Key.B))
+                {
+                    Console.WriteLine("B is pressed.");
+                }
+
+                Keyboard.Update();
             }
 
             window.Dispose();

@@ -16,32 +16,31 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         private Mock<IKeyboardDevice> keyboardDevice;
 
         [Test]
-        public void DeviceKeyDownShouldThrowArgumentNullExceptionWhenEIsNull()
+        public void DeviceKeyDownShouldThrowArgumentNullExceptionWhenEventDataIsNull()
         {
-            // Act and assert
             Assert.Throws<ArgumentNullException>(() => this.keyboardDevice.Raise(x => x.KeyDown += null, new object[] { new object(), null }));
         }
 
         [Test]
-        public void DeviceKeyUpShouldThrowArgumentNullExceptionWhenEIsNull()
+        public void DeviceKeyUpShouldThrowArgumentNullExceptionWhenEventDataIsNull()
         {
-            // Act and assert
             Assert.Throws<ArgumentNullException>(() => this.keyboardDevice.Raise(x => x.KeyUp += null, new object[] { new object(), null }));
         }
 
         [Test]
-        public void IsKeyDownShouldReturnFalseWhenDeviceKeyDownEventNotRaised()
+        public void IsKeyDownShouldReturnFalseWhenKeyIsNotDownDuringCurrentFrame()
         {
             // Act
-            bool actual = this.keyboard.IsKeyDown(Key.A);
+            bool actual = this.keyboard.IsKeyDown(Key.V);
 
             // Assert
             Assert.False(actual);
         }
 
         [Test]
-        public void IsKeyDownShouldReturnTrueWhenDeviceKeyUpEventRaised()
+        public void IsKeyDownShouldReturnTrueWhenKeyIsDownDuringCurrentFrame()
         {
+            // Arrange
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
                 Key = Key.A,
@@ -55,79 +54,65 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         }
 
         [Test]
-        public void IsKeyPressedShouldReturnFalseWhenKeyNotDownDuringCurrentFrameAndDownDuringPreviousFrame()
+        public void IsKeyPressedShouldReturnFalseWhenKeyIsNotDownDuringCurrentFrameAndDownDuringPreviousFrame()
         {
-            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
-            {
-                Key = Key.C,
-            });
-
-            // Simulate frame processing.
-            this.keyboard.Update();
-
-            this.keyboardDevice.Raise(x => x.KeyUp += null, new KeyEventArgs()
-            {
-                Key = Key.C,
-            });
-
             // Act
-            bool actual = this.keyboard.IsKeyPressed(Key.C);
+            bool actual = this.keyboard.IsKeyPressed(Key.LeftAlt);
 
             // Assert
             Assert.False(actual);
         }
 
         [Test]
-        public void IsKeyPressedShouldReturnTrueWhenKeyDownDuringCurrentFrameAndNotPreviousFrame()
+        public void IsKeyPressedShouldReturnTrueWhenKeyIsDownDuringCurrentFrameAndNotDownDuringPreviousFrame()
         {
+            // Arrange
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.C,
+                Key = Key.G,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyPressed(Key.C);
+            bool actual = this.keyboard.IsKeyPressed(Key.G);
 
             // Assert
             Assert.True(actual);
         }
 
         [Test]
-        public void IsKeyReleasedShouldReturnFalseWhenKeyDownDuringCurrentFrameAndKeyNotDownDuringPreviousFrame()
+        public void IsKeyReleasedShouldReturnFalseWhenKeyIsDownDuringCurrentFrameAndNotDownDuringPreviousFrame()
         {
-            // Key has now been released.
+            // Arrange
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.H,
+                Key = Key.LeftBracket,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyReleased(Key.H);
+            bool actual = this.keyboard.IsKeyReleased(Key.LeftBracket);
 
             // Assert
             Assert.False(actual);
         }
 
         [Test]
-        public void IsKeyReleasedShouldReturnTrueWhenKeyDownDuringPreviousFrameAndNotDownDuringCurrentFrame()
+        public void IsKeyReleasedShouldReturnTrueWhenKeyIsNotDownDuringCurrentFrameAndDownDuringPreviousFrame()
         {
-            // Key down during the previous frame
+            // Arrange
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.G,
+                Key = Key.Apostrophe,
             });
 
-            // Simulate frame processing
             this.keyboard.Update();
 
-            // Key has now been released.
             this.keyboardDevice.Raise(x => x.KeyUp += null, new KeyEventArgs()
             {
-                Key = Key.G,
+                Key = Key.Apostrophe,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyReleased(Key.G);
+            bool actual = this.keyboard.IsKeyReleased(Key.Apostrophe);
 
             // Assert
             Assert.True(actual);
@@ -138,16 +123,6 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         {
             this.keyboardDevice = new Mock<IKeyboardDevice>();
             this.keyboard = new Keyboard(this.keyboardDevice.Object);
-        }
-
-        [Test]
-        public void UpdateShouldNotThrowExceptionWhenDeviceIsNull()
-        {
-            // Arrange
-            var keyboard = new Keyboard(null);
-
-            // Act and assert
-            Assert.DoesNotThrow(() => keyboard.Update());
         }
     }
 }

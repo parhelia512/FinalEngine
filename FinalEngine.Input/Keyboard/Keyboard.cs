@@ -6,8 +6,6 @@ namespace FinalEngine.Input.Keyboard
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
 
     public class Keyboard : IKeyboard
     {
@@ -15,9 +13,9 @@ namespace FinalEngine.Input.Keyboard
 
         private readonly IList<Key> keysDown;
 
-        private IReadOnlyCollection<Key> keysDownLast;
+        private IList<Key> keysDownLast;
 
-        internal Keyboard(IKeyboardDevice? device)
+        public Keyboard(IKeyboardDevice? device)
         {
             this.device = device;
 
@@ -29,11 +27,6 @@ namespace FinalEngine.Input.Keyboard
                 this.device.KeyDown += this.Device_KeyDown;
                 this.device.KeyUp += this.Device_KeyUp;
             }
-        }
-
-        [ExcludeFromCodeCoverage(Justification = "Empty Constructor")]
-        private Keyboard()
-        {
         }
 
         public bool IsKeyDown(Key key)
@@ -51,7 +44,7 @@ namespace FinalEngine.Input.Keyboard
             return !this.keysDown.Contains(key) && this.keysDownLast.Contains(key);
         }
 
-        internal void Update()
+        public void Update()
         {
             this.keysDownLast = new List<Key>(this.keysDown);
         }

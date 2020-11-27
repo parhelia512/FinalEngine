@@ -2,7 +2,7 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace FinalEngine.Platform.Desktop.Tests.OpenTK
+namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

@@ -72,6 +72,16 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
         /// </value>
         bool IsVisible { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the position of the mouse relative to the content area of this window.
+        /// </summary>
+        /// <value>
+        ///     The mouse position relative to the content area of this window.
+        /// </value>
+        /// <remarks>
+        ///     It is not necessary to center the mouse on each frame. Use CursorGrabbed true; to
+        ///     enable this behavior.
+        /// </remarks>
         Vector2 MousePosition { get; set; }
 
         /// <summary>

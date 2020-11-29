@@ -75,6 +75,12 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// </summary>
         public event EventHandler<MouseScrollEventArgs>? Scroll;
 
+        /// <summary>
+        ///     Sets the cursor location (in window pixel coordinates).
+        /// </summary>
+        /// <param name="location">
+        ///     Specifies a <see cref="PointF"/> that represents the new location.
+        /// </param>
         public void SetCursorLocation(PointF location)
         {
             this.nativeWindow.MousePosition = new Vector2(location.X, location.Y);

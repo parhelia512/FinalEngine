@@ -4,8 +4,6 @@
 
 namespace TestGame
 {
-    using System;
-    using System.Drawing;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.Platform.Desktop.OpenTK;
@@ -47,46 +45,6 @@ namespace TestGame
 
             while (!window.IsExiting)
             {
-                if (keyboard.IsKeyDown(Key.A))
-                {
-                    Console.WriteLine("A is down");
-                }
-
-                if (keyboard.IsKeyPressed(Key.B))
-                {
-                    Console.WriteLine("B is pressed");
-                }
-
-                if (keyboard.IsKeyReleased(Key.B))
-                {
-                    Console.WriteLine("B is released");
-                }
-
-                if (keyboard.IsAltDown && keyboard.IsCapsLocked &&
-                    keyboard.IsKeyPressed(Key.P))
-                {
-                    Console.WriteLine("Woohoo");
-                }
-
-                if (mouse.IsButtonDown(MouseButton.Left))
-                {
-                    Console.WriteLine("Left button is down");
-                }
-
-                if (mouse.IsButtonPressed(MouseButton.Middle))
-                {
-                    Console.WriteLine("Middle button is pressed");
-
-                    Console.WriteLine(mouse.WheelOffset);
-                }
-
-                if (mouse.IsButtonReleased(MouseButton.Middle))
-                {
-                    Console.WriteLine("Middle button is released.");
-
-                    mouse.Location = new PointF(200, 200);
-                }
-
                 keyboard.Update();
                 mouse.Update();
 

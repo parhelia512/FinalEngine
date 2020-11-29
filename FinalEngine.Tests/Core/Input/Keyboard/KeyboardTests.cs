@@ -82,12 +82,14 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         [Test]
         public void DeviceKeyDownShouldThrowArgumentNullExceptionWhenEventDataIsNull()
         {
+            // Act and assert
             Assert.Throws<ArgumentNullException>(() => this.keyboardDevice.Raise(x => x.KeyDown += null, new object[] { new object(), null }));
         }
 
         [Test]
         public void DeviceKeyUpShouldThrowArgumentNullExceptionWhenEventDataIsNull()
         {
+            // Act and assert
             Assert.Throws<ArgumentNullException>(() => this.keyboardDevice.Raise(x => x.KeyUp += null, new object[] { new object(), null }));
         }
 
@@ -321,7 +323,7 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
             Assert.True(actual);
         }
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             this.keyboardDevice = new Mock<IKeyboardDevice>();

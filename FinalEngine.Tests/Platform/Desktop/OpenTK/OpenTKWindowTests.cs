@@ -114,7 +114,7 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
             Assert.Throws<ObjectDisposedException>(() => this.window.ProcessEvents());
         }
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             // Arrange
@@ -122,7 +122,7 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
             this.window = new OpenTKWindow(this.nativeWindow.Object);
         }
 
-        [OneTimeTearDown]
+        [TearDown]
         public void TearDown()
         {
             this.window.Dispose();

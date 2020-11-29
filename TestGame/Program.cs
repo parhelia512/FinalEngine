@@ -47,6 +47,27 @@ namespace TestGame
 
             while (!window.IsExiting)
             {
+                if (keyboard.IsKeyDown(Key.A))
+                {
+                    Console.WriteLine("A is down");
+                }
+
+                if (keyboard.IsKeyPressed(Key.B))
+                {
+                    Console.WriteLine("B is pressed");
+                }
+
+                if (keyboard.IsKeyReleased(Key.B))
+                {
+                    Console.WriteLine("B is released");
+                }
+
+                if (keyboard.IsAltDown && keyboard.IsCapsLocked &&
+                    keyboard.IsKeyPressed(Key.P))
+                {
+                    Console.WriteLine("Woohoo");
+                }
+
                 if (mouse.IsButtonDown(MouseButton.Left))
                 {
                     Console.WriteLine("Left button is down");

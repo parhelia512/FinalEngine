@@ -9,6 +9,7 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
     using FinalEngine.Input.Mouse;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
+    using global::OpenTK.Mathematics;
     using Moq;
     using NUnit.Framework;
     using TKInputAction = global::OpenTK.Windowing.GraphicsLibraryFramework.InputAction;
@@ -120,6 +121,16 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 
             // Act
             this.nativeWindow.Raise(x => x.MouseWheel += null, new TKMouseWheelEventArgs(0, 10));
+        }
+
+        [Test]
+        public void SetCursorLocationShouldSetNativeWindowMousePosition()
+        {
+            // Act
+            this.mouseDevice.SetCursorLocation(new PointF(100, 3400));
+
+            // Assert
+            this.nativeWindow.VerifySet(x => x.MousePosition = new Vector2(100, 3400), Times.Once);
         }
 
         [SetUp]

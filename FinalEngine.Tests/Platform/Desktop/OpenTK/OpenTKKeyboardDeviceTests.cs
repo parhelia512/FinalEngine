@@ -78,7 +78,7 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
             this.nativeWindow.Raise(x => x.KeyUp += null, new TKKeyboardKeyEventArgs(TKKeys.A, 0, TKModifiers.Alt, false));
         }
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             // Arrange

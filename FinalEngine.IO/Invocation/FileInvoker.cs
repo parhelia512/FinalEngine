@@ -4,8 +4,10 @@
 
 namespace FinalEngine.IO.Invocation
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
+    [ExcludeFromCodeCoverage]
     public class FileInvoker : IFileInvoker
     {
         public Stream Create(string path)

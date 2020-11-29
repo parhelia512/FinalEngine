@@ -5,6 +5,7 @@
 namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
@@ -14,6 +15,7 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
     using TKKeys = global::OpenTK.Windowing.GraphicsLibraryFramework.Keys;
     using TKModifiers = global::OpenTK.Windowing.GraphicsLibraryFramework.KeyModifiers;
 
+    [ExcludeFromCodeCoverage]
     public class OpenTKKeyboardDeviceTests
     {
         private OpenTKKeyboardDevice keyboardDevice;

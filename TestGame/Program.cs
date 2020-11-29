@@ -7,6 +7,7 @@ namespace TestGame
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.IO;
+    using FinalEngine.IO.Invocation;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using OpenTK.Mathematics;
@@ -42,7 +43,10 @@ namespace TestGame
             var keyboard = new Keyboard(keyboardDevice);
             var mouse = new Mouse(mouseDevice);
 
-            var fileSystem = new FileSystem();
+            var file = new FileInvoker();
+            var directory = new DirectoryInvoker();
+
+            var fileSystem = new FileSystem(file, directory);
 
             while (!window.IsExiting)
             {

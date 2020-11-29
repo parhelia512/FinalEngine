@@ -32,10 +32,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\FinalEngine.Input\FinalEngine.Input.csproj" />
+		<ProjectReference Include="..\FinalEngine.IO\FinalEngine.IO.csproj" />
 		<ProjectReference Include="..\FinalEngine.Platform.Desktop\FinalEngine.Platform.Desktop.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Core\IO\" />
 	</ItemGroup>
 </Project>

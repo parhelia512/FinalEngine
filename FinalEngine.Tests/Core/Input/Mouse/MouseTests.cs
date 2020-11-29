@@ -5,11 +5,13 @@
 namespace FinalEngine.Tests.Core.Input.Mouse
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using FinalEngine.Input.Mouse;
     using Moq;
     using NUnit.Framework;
 
+    [ExcludeFromCodeCoverage]
     public class MouseTests
     {
         private Mouse mouse;

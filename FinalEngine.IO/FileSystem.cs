@@ -5,7 +5,6 @@
 namespace FinalEngine.IO
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using FinalEngine.IO.Invocation;
 
@@ -13,7 +12,6 @@ namespace FinalEngine.IO
     ///     Provides a standard implementation of an <see cref="IFileSystem"/>.
     /// </summary>
     /// <seealso cref="FinalEngine.IO.IFileSystem"/>
-    [ExcludeFromCodeCoverage]
     public class FileSystem : IFileSystem
     {
         /// <summary>

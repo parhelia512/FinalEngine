@@ -5,10 +5,12 @@
 namespace FinalEngine.Tests.Core.Input.Keyboard
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Input.Keyboard;
     using Moq;
     using NUnit.Framework;
 
+    [ExcludeFromCodeCoverage]
     public class KeyboardTests
     {
         private Keyboard keyboard;

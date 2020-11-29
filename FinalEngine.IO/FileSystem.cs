@@ -5,8 +5,10 @@
 namespace FinalEngine.IO
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
+    [ExcludeFromCodeCoverage]
     public class FileSystem : IFileSystem
     {
         public void CreateDirectory(string path)

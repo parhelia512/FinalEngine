@@ -16,6 +16,12 @@ namespace FinalEngine.Input.Mouse
     public class Mouse : IMouse
     {
         /// <summary>
+        ///     The initial size capacity of the <see cref="buttonsDown"/> and <see
+        ///     cref="buttonsDownLast"/> collections.
+        /// </summary>
+        private const int InitialSizeCapacity = 12;
+    
+        /// <summary>
         ///     The buttons down during the current frame.
         /// </summary>
         private readonly IList<MouseButton> buttonsDown;
@@ -46,8 +52,8 @@ namespace FinalEngine.Input.Mouse
         {
             this.device = device;
 
-            this.buttonsDown = new List<MouseButton>();
-            this.buttonsDownLast = new List<MouseButton>();
+            this.buttonsDown = new List<MouseButton>(InitialSizeCapacity);
+            this.buttonsDownLast = new List<MouseButton>(InitialSizeCapacity);
 
             if (this.device != null)
             {

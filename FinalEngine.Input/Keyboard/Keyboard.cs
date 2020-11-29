@@ -15,6 +15,12 @@ namespace FinalEngine.Input.Keyboard
     public class Keyboard : IKeyboard
     {
         /// <summary>
+        ///     The initial size capacity of the <see cref="keysDown"/> and <see
+        ///     cref="keysDownLast"/> collections.
+        /// </summary>
+        private const int InitialSizeCapacity = 20;
+
+        /// <summary>
         ///     The physical keyboard device.
         /// </summary>
         private readonly IKeyboardDevice? device;
@@ -46,8 +52,8 @@ namespace FinalEngine.Input.Keyboard
         {
             this.device = device;
 
-            this.keysDown = new List<Key>();
-            this.keysDownLast = new List<Key>();
+            this.keysDown = new List<Key>(InitialSizeCapacity);
+            this.keysDownLast = new List<Key>(InitialSizeCapacity);
 
             if (this.device != null)
             {
@@ -192,7 +198,7 @@ namespace FinalEngine.Input.Keyboard
         {
             if (e == null)
             {
-                throw new ArgumentNullException(nameof(e));
+                throw new ArgumentNullException(nameof(e), $"The specified {nameof(e)} parameter cannot be null");
             }
 
             this.IsCapsLocked = e.CapsLock;
@@ -217,7 +223,7 @@ namespace FinalEngine.Input.Keyboard
         {
             if (e == null)
             {
-                throw new ArgumentNullException(nameof(e));
+                throw new ArgumentNullException(nameof(e), $"The specified {nameof(e)} parameter cannot be null.");
             }
 
             while (this.keysDown.Contains(e.Key))

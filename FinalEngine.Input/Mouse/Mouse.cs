@@ -182,7 +182,7 @@ namespace FinalEngine.Input.Mouse
         {
             if (e == null)
             {
-                throw new ArgumentNullException(nameof(e));
+                throw new ArgumentNullException(nameof(e), $"The specified {nameof(e)} parameter cannot be null");
             }
 
             this.buttonsDown.Add(e.Button);
@@ -204,7 +204,7 @@ namespace FinalEngine.Input.Mouse
         {
             if (e == null)
             {
-                throw new ArgumentNullException(nameof(e));
+                throw new ArgumentNullException(nameof(e), $"The specified {nameof(e)} parameter cannot be null");
             }
 
             while (this.buttonsDown.Contains(e.Button))
@@ -222,8 +222,16 @@ namespace FinalEngine.Input.Mouse
         /// <param name="e">
         ///     The <see cref="MouseMoveEventArgs"/> instance containing the event data.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        ///     The specified <paramref name="e"/> parameter is null.
+        /// </exception>
         private void Device_Move(object? sender, MouseMoveEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e), $"The specified {nameof(e)} parameter cannot be null");
+            }
+
             this.location = e.Location;
         }
 
@@ -236,8 +244,16 @@ namespace FinalEngine.Input.Mouse
         /// <param name="e">
         ///     The <see cref="MouseScrollEventArgs"/> instance containing the event data.
         /// </param>
+        /// <exception cref="ArgumentNullException">
+        ///     The specified <paramref name="e"/> parameter is null.
+        /// </exception>
         private void Device_Scroll(object? sender, MouseScrollEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e), $"The specified {nameof(e)} parameter cannot be null");
+            }
+
             this.WheelOffset = e.Offset;
         }
     }

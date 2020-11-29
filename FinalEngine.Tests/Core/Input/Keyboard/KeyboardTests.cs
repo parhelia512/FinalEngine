@@ -180,8 +180,11 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         [Test]
         public void IsKeyDownShouldReturnFalseWhenKeyIsNotDownDuringCurrentFrame()
         {
+            // Arrange
+            const Key Key = Key.V;
+
             // Act
-            bool actual = this.keyboard.IsKeyDown(Key.V);
+            bool actual = this.keyboard.IsKeyDown(Key);
 
             // Assert
             Assert.False(actual);
@@ -191,13 +194,15 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         public void IsKeyDownShouldReturnTrueWhenKeyIsDownDuringCurrentFrame()
         {
             // Arrange
+            const Key Key = Key.A;
+
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.A,
+                Key = Key,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyDown(Key.A);
+            bool actual = this.keyboard.IsKeyDown(Key);
 
             // Assert
             Assert.True(actual);
@@ -207,20 +212,22 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         public void IsKeyPressedShouldReturnFalseWhenKeyIsNotDownDuringCurrentFrame()
         {
             // Arrange
+            const Key Key = Key.LeftAlt;
+
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.LeftAlt,
+                Key = Key,
             });
 
             this.keyboard.Update();
 
             this.keyboardDevice.Raise(x => x.KeyUp += null, new KeyEventArgs()
             {
-                Key = Key.LeftAlt,
+                Key = Key,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyPressed(Key.LeftAlt);
+            bool actual = this.keyboard.IsKeyPressed(Key);
 
             // Assert
             Assert.False(actual);
@@ -230,13 +237,15 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         public void IsKeyPressedShouldReturnTrueWhenKeyIsDownDuringCurrentFrameAndNotDownDuringPreviousFrame()
         {
             // Arrange
+            const Key Key = Key.G;
+
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.G,
+                Key = Key,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyPressed(Key.G);
+            bool actual = this.keyboard.IsKeyPressed(Key);
 
             // Assert
             Assert.True(actual);
@@ -246,13 +255,15 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         public void IsKeyReleasedShouldReturnFalseWhenKeyIsDownDuringCurrentFrameAndNotDownDuringPreviousFrame()
         {
             // Arrange
+            const Key Key = Key.LeftBracket;
+
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.LeftBracket,
+                Key = Key,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyReleased(Key.LeftBracket);
+            bool actual = this.keyboard.IsKeyReleased(Key);
 
             // Assert
             Assert.False(actual);
@@ -262,20 +273,22 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         public void IsKeyReleasedShouldReturnTrueWhenKeyIsNotDownDuringCurrentFrameAndDownDuringPreviousFrame()
         {
             // Arrange
+            const Key Key = Key.Apostrophe;
+
             this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
             {
-                Key = Key.Apostrophe,
+                Key = Key,
             });
 
             this.keyboard.Update();
 
             this.keyboardDevice.Raise(x => x.KeyUp += null, new KeyEventArgs()
             {
-                Key = Key.Apostrophe,
+                Key = Key,
             });
 
             // Act
-            bool actual = this.keyboard.IsKeyReleased(Key.Apostrophe);
+            bool actual = this.keyboard.IsKeyReleased(Key);
 
             // Assert
             Assert.True(actual);
@@ -326,6 +339,7 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.keyboardDevice = new Mock<IKeyboardDevice>();
             this.keyboard = new Keyboard(this.keyboardDevice.Object);
         }

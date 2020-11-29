@@ -12,8 +12,6 @@ namespace TestGame
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
 
-    //// TODO: Unit tests should all have constant variables where required.
-
     /// <summary>
     ///     The main program.
     /// </summary>

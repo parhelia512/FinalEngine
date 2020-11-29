@@ -7,6 +7,7 @@ namespace FinalEngine.IO
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using FinalEngine.IO.Invocation;
 
     /// <summary>
     ///     Provides a standard implementation of an <see cref="IFileSystem"/>.
@@ -15,6 +16,37 @@ namespace FinalEngine.IO
     [ExcludeFromCodeCoverage]
     public class FileSystem : IFileSystem
     {
+        /// <summary>
+        ///     The directory invoker.
+        /// </summary>
+        private readonly IDirectoryInvoker directory;
+
+        /// <summary>
+        ///     The file invoker.
+        /// </summary>
+        private readonly IFileInvoker file;
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="FileSystem"/> class.
+        /// </summary>
+        /// <param name="file">
+        ///     Specifies a <see cref="IFileInvoker"/> that represents the invoker used to handle
+        ///     file operations.
+        /// </param>
+        /// <param name="directory">
+        ///     Specifies a <see cref="IDirectoryInvoker"/> that represents the invoker used to
+        ///     handle directory operations.
+        /// </param>
+        /// <exception cref="System.ArgumentNullException">
+        ///     The specified <paramref name="file"/> or <paramref name="directory"/> parameter is
+        ///     null.
+        /// </exception>
+        public FileSystem(IFileInvoker file, IDirectoryInvoker directory)
+        {
+            this.file = file ?? throw new ArgumentNullException(nameof(file), $"The specified {nameof(file)} parameter cannot be null.");
+            this.directory = directory ?? throw new ArgumentNullException(nameof(directory), $"The specified {nameof(directory)} parameter cannot be null.");
+        }
+
         /// <summary>
         ///     Creates a directory at the specified <paramref name="path"/>.
         /// </summary>
@@ -31,7 +63,7 @@ namespace FinalEngine.IO
                 throw new ArgumentNullException(nameof(path), $"The specified {nameof(path)} parameter cannot be null.");
             }
 
-            Directory.CreateDirectory(path);
+            this.directory.CreateDirectory(path);
         }
 
         /// <summary>
@@ -54,7 +86,7 @@ namespace FinalEngine.IO
                 throw new ArgumentNullException(nameof(path), $"The specified {nameof(path)} parameter cannot be null.");
             }
 
-            return File.Create(path);
+            return this.file.Create(path);
         }
 
         /// <summary>
@@ -74,7 +106,7 @@ namespace FinalEngine.IO
                 throw new ArgumentNullException(nameof(path), $"The specified {nameof(path)} parameter cannot be null.");
             }
 
-            Directory.Delete(path, true);
+            this.directory.Delete(path, true);
         }
 
         /// <summary>
@@ -93,7 +125,7 @@ namespace FinalEngine.IO
                 throw new ArgumentNullException(nameof(path), $"The specified {nameof(path)} parameter cannot be null.");
             }
 
-            File.Delete(path);
+            this.file.Delete(path);
         }
 
         /// <summary>
@@ -116,7 +148,7 @@ namespace FinalEngine.IO
                 throw new ArgumentNullException(nameof(path), $"The specified {nameof(path)} parameter cannot be null.");
             }
 
-            return Directory.Exists(path);
+            return this.directory.Exists(path);
         }
 
         /// <summary>
@@ -138,7 +170,7 @@ namespace FinalEngine.IO
                 throw new ArgumentNullException(nameof(path), $"The specified {nameof(path)} parameter cannot be null.");
             }
 
-            return File.Exists(path);
+            return this.file.Exists(path);
         }
 
         /// <summary>
@@ -181,7 +213,7 @@ namespace FinalEngine.IO
                     break;
             }
 
-            return File.Open(path, FileMode.Open, access);
+            return this.file.Open(path, FileMode.Open, access);
         }
     }
 }

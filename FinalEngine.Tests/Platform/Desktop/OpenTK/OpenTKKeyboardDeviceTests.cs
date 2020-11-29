@@ -66,6 +66,16 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
         }
 
         [Test]
+        public void NativeWindowKeyDownShouldNotRaiseKeyDownWhenRaisedAndNoSubscribers()
+        {
+            // Act
+            this.nativeWindow.Raise(x => x.KeyDown += null, default(TKKeyboardKeyEventArgs));
+
+            // Assert
+            Assert.Pass();
+        }
+
+        [Test]
         public void NativeWindowKeyUpEventShouldRaiseKeyUpEventWhenRaised()
         {
             // Assert
@@ -78,6 +88,16 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 
             // Act
             this.nativeWindow.Raise(x => x.KeyUp += null, new TKKeyboardKeyEventArgs(TKKeys.A, 0, TKModifiers.Alt, false));
+        }
+
+        [Test]
+        public void NativeWindowKeyUpShouldNotRaiseKeyUpWhenRaisedAndNoSubscribers()
+        {
+            // Act
+            this.nativeWindow.Raise(x => x.KeyUp += null, default(TKKeyboardKeyEventArgs));
+
+            // Assert
+            Assert.Pass();
         }
 
         [SetUp]

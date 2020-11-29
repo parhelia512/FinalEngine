@@ -9,44 +9,41 @@ namespace FinalEngine.Input.Mouse
     using System.Drawing;
 
     /// <summary>
-    ///     Provides a standard implementation of an <see cref="IMouse"/>, that interfaces with an
-    ///     <see cref="IMouseDevice"/>.
+    ///   Provides a standard implementation of an <see cref="IMouse"/>, that interfaces with an <see cref="IMouseDevice"/>.
     /// </summary>
     /// <seealso cref="FinalEngine.Input.Mouse.IMouse"/>
     public class Mouse : IMouse
     {
         /// <summary>
-        ///     The initial size capacity of the <see cref="buttonsDown"/> and <see
-        ///     cref="buttonsDownLast"/> collections.
+        ///   The initial size capacity of the <see cref="buttonsDown"/> and <see cref="buttonsDownLast"/> collections.
         /// </summary>
         private const int InitialSizeCapacity = 12;
-    
+
         /// <summary>
-        ///     The buttons down during the current frame.
+        ///   The buttons down during the current frame.
         /// </summary>
         private readonly IList<MouseButton> buttonsDown;
 
         /// <summary>
-        ///     The physical mouse device.
+        ///   The physical mouse device.
         /// </summary>
         private readonly IMouseDevice? device;
 
         /// <summary>
-        ///     The buttons down during the previous frame.
+        ///   The buttons down during the previous frame.
         /// </summary>
         private IList<MouseButton> buttonsDownLast;
 
         /// <summary>
-        ///     The cursor location as of the last time <see cref="IMouseDevice.Move"/> was raised.
+        ///   The cursor location as of the last time <see cref="IMouseDevice.Move"/> was raised.
         /// </summary>
         private PointF location;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Mouse"/> class.
+        ///   Initializes a new instance of the <see cref="Mouse"/> class.
         /// </summary>
         /// <param name="device">
-        ///     Specifies a <see cref="IMouseDevice"/> that represents the mouse device to listen
-        ///     to.
+        ///   Specifies a <see cref="IMouseDevice"/> that represents the mouse device to listen to.
         /// </param>
         public Mouse(IMouseDevice? device)
         {
@@ -65,7 +62,7 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Finalizes an instance of the <see cref="Mouse"/> class.
+        ///   Finalizes an instance of the <see cref="Mouse"/> class.
         /// </summary>
         ~Mouse()
         {
@@ -79,10 +76,10 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Gets or sets the location of the cursor in window pixel coordinates.
+        ///   Gets or sets the location of the cursor in window pixel coordinates.
         /// </summary>
         /// <value>
-        ///     The location of the cursor in window pixel coordinates.
+        ///   The location of the cursor in window pixel coordinates.
         /// </value>
         public PointF Location
         {
@@ -106,22 +103,21 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Gets the scroll wheel offset.
+        ///   Gets the scroll wheel offset.
         /// </summary>
         /// <value>
-        ///     The scroll wheel offset.
+        ///   The scroll wheel offset.
         /// </value>
         public double WheelOffset { get; private set; }
 
         /// <summary>
-        ///     Determines whether the specified <paramref name="button"/> is currently down.
+        ///   Determines whether the specified <paramref name="button"/> is currently down.
         /// </summary>
         /// <param name="button">
-        ///     Specifies a <see cref="MouseButton"/> that represents the button to check for.
+        ///   Specifies a <see cref="MouseButton"/> that represents the button to check for.
         /// </param>
         /// <returns>
-        ///     <c>true</c> if the specified <paramref name="button"/> is currently down; otherwise,
-        ///     <c>false</c>.
+        ///   <c>true</c> if the specified <paramref name="button"/> is currently down; otherwise, <c>false</c>.
         /// </returns>
         public bool IsButtonDown(MouseButton button)
         {
@@ -129,15 +125,13 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Determines whether the specified <paramref name="button"/> has been pressed this
-        ///     frame.
+        ///   Determines whether the specified <paramref name="button"/> has been pressed this frame.
         /// </summary>
         /// <param name="button">
-        ///     Specifies a <see cref="MouseButton"/> that represents the button to check for.
+        ///   Specifies a <see cref="MouseButton"/> that represents the button to check for.
         /// </param>
         /// <returns>
-        ///     <c>true</c> if the specified <paramref name="button"/> has been pressed this frame;
-        ///     otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <paramref name="button"/> has been pressed this frame; otherwise, <c>false</c>.
         /// </returns>
         public bool IsButtonPressed(MouseButton button)
         {
@@ -145,15 +139,13 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Determines whether the specified <paramref name="button"/> has been released since
-        ///     the previous frame.
+        ///   Determines whether the specified <paramref name="button"/> has been released since the previous frame.
         /// </summary>
         /// <param name="button">
-        ///     Specifies a <see cref="MouseButton"/> that represents the button to check for.
+        ///   Specifies a <see cref="MouseButton"/> that represents the button to check for.
         /// </param>
         /// <returns>
-        ///     <c>true</c> if the specified <paramref name="button"/> has been released since the
-        ///     previous frame; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <paramref name="button"/> has been released since the previous frame; otherwise, <c>false</c>.
         /// </returns>
         public bool IsButtonReleased(MouseButton button)
         {
@@ -161,11 +153,10 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Updates this <see cref="Mouse"/>.
+        ///   Updates this <see cref="Mouse"/>.
         /// </summary>
         /// <remarks>
-        ///     This method should only be called after the user has checked for input state
-        ///     changes.
+        ///   This method should only be called after the user has checked for input state changes.
         /// </remarks>
         public void Update()
         {
@@ -173,16 +164,16 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Handles the <see cref="IMouseDevice.ButtonDown"/> event.
+        ///   Handles the <see cref="IMouseDevice.ButtonDown"/> event.
         /// </summary>
         /// <param name="sender">
-        ///     The sender.
+        ///   The sender.
         /// </param>
         /// <param name="e">
-        ///     The <see cref="MouseButtonEventArgs"/> instance containing the event data.
+        ///   The <see cref="MouseButtonEventArgs"/> instance containing the event data.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        ///     The specified <paramref name="e"/> parameter is null.
+        ///   The specified <paramref name="e"/> parameter is null.
         /// </exception>
         private void Device_ButtonDown(object? sender, MouseButtonEventArgs e)
         {
@@ -195,16 +186,16 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Handles the <see cref="IMouseDevice.ButtonUp"/> event.
+        ///   Handles the <see cref="IMouseDevice.ButtonUp"/> event.
         /// </summary>
         /// <param name="sender">
-        ///     The sender.
+        ///   The sender.
         /// </param>
         /// <param name="e">
-        ///     The <see cref="MouseButtonEventArgs"/> instance containing the event data.
+        ///   The <see cref="MouseButtonEventArgs"/> instance containing the event data.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        ///     The specified <paramref name="e"/> parameter is null.
+        ///   The specified <paramref name="e"/> parameter is null.
         /// </exception>
         private void Device_ButtonUp(object? sender, MouseButtonEventArgs e)
         {
@@ -220,16 +211,16 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Handles the <see cref="IMouseDevice.Move"/> event.
+        ///   Handles the <see cref="IMouseDevice.Move"/> event.
         /// </summary>
         /// <param name="sender">
-        ///     The sender.
+        ///   The sender.
         /// </param>
         /// <param name="e">
-        ///     The <see cref="MouseMoveEventArgs"/> instance containing the event data.
+        ///   The <see cref="MouseMoveEventArgs"/> instance containing the event data.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        ///     The specified <paramref name="e"/> parameter is null.
+        ///   The specified <paramref name="e"/> parameter is null.
         /// </exception>
         private void Device_Move(object? sender, MouseMoveEventArgs e)
         {
@@ -242,16 +233,16 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <summary>
-        ///     Handles the <see cref="IMouseDevice.Scroll"/> event.
+        ///   Handles the <see cref="IMouseDevice.Scroll"/> event.
         /// </summary>
         /// <param name="sender">
-        ///     The sender.
+        ///   The sender.
         /// </param>
         /// <param name="e">
-        ///     The <see cref="MouseScrollEventArgs"/> instance containing the event data.
+        ///   The <see cref="MouseScrollEventArgs"/> instance containing the event data.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        ///     The specified <paramref name="e"/> parameter is null.
+        ///   The specified <paramref name="e"/> parameter is null.
         /// </exception>
         private void Device_Scroll(object? sender, MouseScrollEventArgs e)
         {

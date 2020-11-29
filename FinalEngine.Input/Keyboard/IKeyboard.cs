@@ -4,10 +4,18 @@
 
 namespace FinalEngine.Input.Keyboard
 {
-    //// TODO: Key Modifiers
-
     public interface IKeyboard
     {
+        bool IsAltDown { get; }
+
+        bool IsCapsLocked { get; }
+
+        bool IsControlDown { get; }
+
+        bool IsNumLocked { get; }
+
+        bool IsShiftDown { get; }
+
         bool IsKeyDown(Key key);
 
         bool IsKeyPressed(Key key);

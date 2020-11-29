@@ -29,6 +29,25 @@ namespace FinalEngine.Input.Keyboard
             }
         }
 
+        public bool IsAltDown
+        {
+            get { return this.keysDown.Contains(Key.LeftAlt) || this.keysDown.Contains(Key.RightAlt); }
+        }
+
+        public bool IsCapsLocked { get; private set; }
+
+        public bool IsControlDown
+        {
+            get { return this.keysDown.Contains(Key.LeftControl) || this.keysDown.Contains(Key.RightControl); }
+        }
+
+        public bool IsNumLocked { get; private set; }
+
+        public bool IsShiftDown
+        {
+            get { return this.keysDown.Contains(Key.LeftShift) || this.keysDown.Contains(Key.RightShift); }
+        }
+
         public bool IsKeyDown(Key key)
         {
             return this.keysDown.Contains(key);
@@ -55,6 +74,9 @@ namespace FinalEngine.Input.Keyboard
             {
                 throw new ArgumentNullException(nameof(e));
             }
+
+            this.IsCapsLocked = e.CapsLock;
+            this.IsNumLocked = e.NumLock;
 
             this.keysDown.Add(e.Key);
         }

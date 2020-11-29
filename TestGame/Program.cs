@@ -4,14 +4,14 @@
 
 namespace TestGame
 {
-    using System;
     using FinalEngine.Input.Keyboard;
-    using FinalEngine.Input.Mouse;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using OpenTK.Mathematics;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
+
+    //// TODO: Unit tests should all have constant variables where required.
 
     /// <summary>
     ///     The main program.
@@ -40,45 +40,10 @@ namespace TestGame
             var mouseDevice = new OpenTKMouseDevice(nativeWindow);
 
             var keyboard = new Keyboard(keyboardDevice);
-            var mouse = new Mouse(mouseDevice);
 
             while (!window.IsExiting)
             {
-                if (keyboard.IsKeyDown(Key.A))
-                {
-                    Console.WriteLine("A is down");
-                }
-
-                if (keyboard.IsKeyPressed(Key.B))
-                {
-                    Console.WriteLine("B is pressed");
-                }
-
-                if (keyboard.IsKeyReleased(Key.A))
-                {
-                    Console.WriteLine("A is released");
-                }
-
-                if (mouse.IsButtonDown(MouseButton.Left))
-                {
-                    Console.WriteLine("Left is down");
-                }
-
-                if (mouse.IsButtonPressed(MouseButton.Right))
-                {
-                    Console.WriteLine("Right is pressed.");
-                }
-
-                if (mouse.IsButtonReleased(MouseButton.Right))
-                {
-                    Console.WriteLine("Right is released.");
-
-                    Console.WriteLine(mouse.Location);
-                    Console.WriteLine(mouse.WheelOffset);
-                }
-
                 keyboard.Update();
-                mouse.Update();
 
                 window.ProcessEvents();
             }

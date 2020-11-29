@@ -16,6 +16,70 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         private Mock<IKeyboardDevice> keyboardDevice;
 
         [Test]
+        public void DeviceKeyDownShouldSetIsCapsLockedToFalseWhenCapsLockIsFalse()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Modifiers = KeyModifiers.None,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsCapsLocked;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void DeviceKeyDownShouldSetIsCapsLockedToTrueWhenCapsLockIsTrue()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Modifiers = KeyModifiers.CapsLock,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsCapsLocked;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void DeviceKeyDownShouldSetIsNumLockedToFalseWhenNumLockIsFalse()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Modifiers = KeyModifiers.None,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsNumLocked;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void DeviceKeyDownShouldSetIsNumLockedToTrueWhenNumLockIsTrue()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Modifiers = KeyModifiers.NumLock,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsNumLocked;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
         public void DeviceKeyDownShouldThrowArgumentNullExceptionWhenEventDataIsNull()
         {
             Assert.Throws<ArgumentNullException>(() => this.keyboardDevice.Raise(x => x.KeyDown += null, new object[] { new object(), null }));
@@ -25,6 +89,90 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         public void DeviceKeyUpShouldThrowArgumentNullExceptionWhenEventDataIsNull()
         {
             Assert.Throws<ArgumentNullException>(() => this.keyboardDevice.Raise(x => x.KeyUp += null, new object[] { new object(), null }));
+        }
+
+        [Test]
+        public void IsAltDownShouldReturnFalseWhenAltIsNotDownDuringCurrentFrame()
+        {
+            // Act
+            bool actual = this.keyboard.IsAltDown;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void IsAltDownShouldReturnTrueWhenAltLeftIsDownDuringCurrentFrame()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Key = Key.LeftAlt,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsAltDown;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void IsAltDownShouldReturnTrueWhenAltRightIsDownDuringCurrentFrame()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Key = Key.RightAlt,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsAltDown;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void IsControlDownShouldReturnFalseWhenControlIsNotDownDuringCurrentFrame()
+        {
+            // Act
+            bool actual = this.keyboard.IsControlDown;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void IsControlDownShouldReturnTrueWhenControlLeftIsDownDuringCurrentFrame()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Key = Key.LeftControl,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsControlDown;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void IsControlDownShouldReturnTrueWhenControlRightIsDownDuringCurrentFrame()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Key = Key.RightControl,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsControlDown;
+
+            // Assert
+            Assert.True(actual);
         }
 
         [Test]
@@ -54,8 +202,21 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
         }
 
         [Test]
-        public void IsKeyPressedShouldReturnFalseWhenKeyIsNotDownDuringCurrentFrameAndDownDuringPreviousFrame()
+        public void IsKeyPressedShouldReturnFalseWhenKeyIsNotDownDuringCurrentFrame()
         {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Key = Key.LeftAlt,
+            });
+
+            this.keyboard.Update();
+
+            this.keyboardDevice.Raise(x => x.KeyUp += null, new KeyEventArgs()
+            {
+                Key = Key.LeftAlt,
+            });
+
             // Act
             bool actual = this.keyboard.IsKeyPressed(Key.LeftAlt);
 
@@ -113,6 +274,48 @@ namespace FinalEngine.Tests.Core.Input.Keyboard
 
             // Act
             bool actual = this.keyboard.IsKeyReleased(Key.Apostrophe);
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void IsShiftDownShouldReturnFalseWhenShiftIsNotDownDuringCurrentFrame()
+        {
+            // Act
+            bool actual = this.keyboard.IsShiftDown;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void IsShiftDownShouldReturnTrueWhenShiftLeftIsDownDuringCurrentFrame()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Key = Key.LeftShift,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsShiftDown;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void IsShitDownShouldReturnTrueWhenShiftRightIsDownDuringCurrentFrame()
+        {
+            // Arrange
+            this.keyboardDevice.Raise(x => x.KeyDown += null, new KeyEventArgs()
+            {
+                Key = Key.RightShift,
+            });
+
+            // Act
+            bool actual = this.keyboard.IsShiftDown;
 
             // Assert
             Assert.True(actual);

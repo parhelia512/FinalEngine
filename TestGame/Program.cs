@@ -4,7 +4,10 @@
 
 namespace TestGame
 {
+    using System;
+    using System.Drawing;
     using FinalEngine.Input.Keyboard;
+    using FinalEngine.Input.Mouse;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using OpenTK.Mathematics;
@@ -40,10 +43,31 @@ namespace TestGame
             var mouseDevice = new OpenTKMouseDevice(nativeWindow);
 
             var keyboard = new Keyboard(keyboardDevice);
+            var mouse = new Mouse(mouseDevice);
 
             while (!window.IsExiting)
             {
+                if (mouse.IsButtonDown(MouseButton.Left))
+                {
+                    Console.WriteLine("Left button is down");
+                }
+
+                if (mouse.IsButtonPressed(MouseButton.Middle))
+                {
+                    Console.WriteLine("Middle button is pressed");
+
+                    Console.WriteLine(mouse.WheelOffset);
+                }
+
+                if (mouse.IsButtonReleased(MouseButton.Middle))
+                {
+                    Console.WriteLine("Middle button is released.");
+
+                    mouse.Location = new PointF(200, 200);
+                }
+
                 keyboard.Update();
+                mouse.Update();
 
                 window.ProcessEvents();
             }

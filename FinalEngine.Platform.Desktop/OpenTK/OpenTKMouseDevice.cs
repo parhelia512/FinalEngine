@@ -8,6 +8,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
     using System.Drawing;
     using FinalEngine.Input.Mouse;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
+    using global::OpenTK.Mathematics;
     using TKMouseButtonEventArgs = global::OpenTK.Windowing.Common.MouseButtonEventArgs;
     using TKMouseMoveEventArgs = global::OpenTK.Windowing.Common.MouseMoveEventArgs;
     using TKMouseWheelEventArgs = global::OpenTK.Windowing.Common.MouseWheelEventArgs;
@@ -73,6 +74,17 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         ///     Occurs when the position of the scroll wheel has changed.
         /// </summary>
         public event EventHandler<MouseScrollEventArgs>? Scroll;
+
+        /// <summary>
+        ///     Sets the cursor location (in window pixel coordinates).
+        /// </summary>
+        /// <param name="location">
+        ///     Specifies a <see cref="PointF"/> that represents the new location.
+        /// </param>
+        public void SetCursorLocation(PointF location)
+        {
+            this.nativeWindow.MousePosition = new Vector2(location.X, location.Y);
+        }
 
         /// <summary>
         ///     Handles the <see cref="INativeWindowInvoker.MouseDown"/> event.

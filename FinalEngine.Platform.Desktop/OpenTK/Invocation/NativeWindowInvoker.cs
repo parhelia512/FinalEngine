@@ -11,7 +11,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
     ///     Provides an implementation of an <see cref="INativeWindowInvoker"/>.
     /// </summary>
     /// <seealso cref="FinalEngine.Platform.Desktop.OpenTK.Invocation.INativeWindowInvoker"/>
-    [ExcludeFromCodeCoverage]
+    [ExcludeFromCodeCoverage(Justification = "Invocation Class")]
     public sealed class NativeWindowInvoker : NativeWindow, INativeWindowInvoker
     {
         /// <summary>

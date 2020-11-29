@@ -5,6 +5,7 @@
 namespace FinalEngine.Input.Mouse
 {
     using System;
+    using System.Drawing;
 
     /// <summary>
     ///     Defines an interface that provides access to common mouse device operations.
@@ -30,5 +31,13 @@ namespace FinalEngine.Input.Mouse
         ///     Occurs when the position of the scroll wheel has changed.
         /// </summary>
         event EventHandler<MouseScrollEventArgs>? Scroll;
+
+        /// <summary>
+        ///     Sets the cursor location (in window pixel coordinates).
+        /// </summary>
+        /// <param name="location">
+        ///     Specifies a <see cref="PointF"/> that represents the new location.
+        /// </param>
+        void SetCursorLocation(PointF location);
     }
 }

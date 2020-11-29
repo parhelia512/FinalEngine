@@ -2,7 +2,7 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace FinalEngine.Platform.Desktop.Tests.OpenTK
+namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -114,7 +114,7 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
             Assert.Throws<ObjectDisposedException>(() => this.window.ProcessEvents());
         }
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             // Arrange
@@ -122,7 +122,7 @@ namespace FinalEngine.Platform.Desktop.Tests.OpenTK
             this.window = new OpenTKWindow(this.nativeWindow.Object);
         }
 
-        [OneTimeTearDown]
+        [TearDown]
         public void TearDown()
         {
             this.window.Dispose();

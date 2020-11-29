@@ -5,6 +5,7 @@
 namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
 {
     using System;
+    using global::OpenTK.Mathematics;
     using global::OpenTK.Windowing.Common;
     using global::OpenTK.Windowing.Desktop;
 
@@ -70,6 +71,18 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
         ///     <c>true</c> if this window is visible; otherwise, <c>false</c>.
         /// </value>
         bool IsVisible { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the position of the mouse relative to the content area of this window.
+        /// </summary>
+        /// <value>
+        ///     The mouse position relative to the content area of this window.
+        /// </value>
+        /// <remarks>
+        ///     It is not necessary to center the mouse on each frame. Use CursorGrabbed true; to
+        ///     enable this behavior.
+        /// </remarks>
+        Vector2 MousePosition { get; set; }
 
         /// <summary>
         ///     Gets or sets the title of this window.

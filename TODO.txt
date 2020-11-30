@@ -1,4 +1,0 @@
-- Remove unecessary stuff
-- Migrate all projects to .NET 5.0, C# 9.0 and support null reference types
-- Once all the above is done, rewrite the unit tests AND document the source code
-- Go back to write proper commit messages and pull requests

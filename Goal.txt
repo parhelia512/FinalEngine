@@ -1,6 +1,21 @@
 - Windowing :)
 - Input :)
 - Rendering
+  - Render Context
+  - Render Device
+    - Input Assembler
+    - Rasterizer
+    - Pipeline
+    - Output Merger
+    - Resource Factory
+      - Render Target 2D
+      - Texture 2D
+      - Vertex Buffer
+      - Vertex Array
+      - Shader
+      - Shader Program
+  - Mesh
+  - Material
 - Audio
 - Physics
 - Scene & Entity Management

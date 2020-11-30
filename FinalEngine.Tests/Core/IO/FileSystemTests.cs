@@ -7,7 +7,6 @@ namespace FinalEngine.Tests.Core.IO
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Text;
     using FinalEngine.IO;
     using FinalEngine.IO.Invocation;
     using Moq;
@@ -90,7 +89,7 @@ namespace FinalEngine.Tests.Core.IO
         public void CreateFileShouldReturnSameStreamAsFileCreateWhenPathIsNotNull()
         {
             // Arrange
-            Stream expected = new MemoryStream(Encoding.UTF8.GetBytes("test"));
+            FileStream expected = null;
 
             this.file.Setup(x => x.Create(Path)).Returns(expected);
 
@@ -99,9 +98,6 @@ namespace FinalEngine.Tests.Core.IO
 
             // Assert
             Assert.AreSame(expected, actual);
-
-            // Dispose
-            expected.Dispose();
         }
 
         [Test]
@@ -313,7 +309,7 @@ namespace FinalEngine.Tests.Core.IO
         public void OpenFileShouldReturnSameAsFileOpenWhenPathIsNotNull()
         {
             // Arrange
-            Stream expected = new MemoryStream(Encoding.UTF8.GetBytes("testing"));
+            FileStream expected = null;
 
             this.file.Setup(x => x.Open(Path, FileMode.Open, FileAccess.Read)).Returns(expected);
 
@@ -322,9 +318,6 @@ namespace FinalEngine.Tests.Core.IO
 
             // Assert
             Assert.AreSame(expected, actual);
-
-            // Dispose
-            expected.Dispose();
         }
 
         [Test]

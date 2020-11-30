@@ -6,6 +6,8 @@ namespace TestGame
 {
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
+    using FinalEngine.IO;
+    using FinalEngine.IO.Invocation;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using OpenTK.Mathematics;
@@ -13,12 +15,12 @@ namespace TestGame
     using OpenTK.Windowing.Desktop;
 
     /// <summary>
-    ///     The main program.
+    ///   The main program.
     /// </summary>
     internal static class Program
     {
         /// <summary>
-        ///     Defines the entry point of the application.
+        ///   Defines the entry point of the application.
         /// </summary>
         private static void Main()
         {
@@ -40,6 +42,11 @@ namespace TestGame
 
             var keyboard = new Keyboard(keyboardDevice);
             var mouse = new Mouse(mouseDevice);
+
+            var file = new FileInvoker();
+            var directory = new DirectoryInvoker();
+
+            var fileSystem = new FileSystem(file, directory);
 
             while (!window.IsExiting)
             {

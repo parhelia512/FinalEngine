@@ -5,6 +5,7 @@
 namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using FinalEngine.Input.Mouse;
     using FinalEngine.Platform.Desktop.OpenTK;
@@ -19,6 +20,7 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
     using TKMouseMoveEventArgs = global::OpenTK.Windowing.Common.MouseMoveEventArgs;
     using TKMouseWheelEventArgs = global::OpenTK.Windowing.Common.MouseWheelEventArgs;
 
+    [ExcludeFromCodeCoverage]
     public class OpenTKMouseDeviceTests
     {
         private OpenTKMouseDevice mouseDevice;
@@ -68,6 +70,16 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
         }
 
         [Test]
+        public void NativeWindowMouseDownEventShouldNotRaiseButtonDownWhenRaisedAndNoSubscribers()
+        {
+            // Act
+            this.nativeWindow.Raise(x => x.MouseDown += null, default(TKMouseButtonEventArgs));
+
+            // Assert
+            Assert.Pass();
+        }
+
+        [Test]
         public void NativeWindowMouseDownEventShouldRaiseButtonDownWhenRaised()
         {
             // Assert
@@ -79,6 +91,16 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 
             // Act
             this.nativeWindow.Raise(x => x.MouseDown += null, new TKMouseButtonEventArgs(TKMouseButton.Button4, TKInputAction.Press, TKKeyModifiers.CapsLock));
+        }
+
+        [Test]
+        public void NativeWindowMouseMoveEventShouldNotRaiseMoveWhenRaisedAndNoSubscribers()
+        {
+            // Act
+            this.nativeWindow.Raise(x => x.MouseMove += null, default(TKMouseMoveEventArgs));
+
+            // Assert
+            Assert.Pass();
         }
 
         [Test]
@@ -96,6 +118,16 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
         }
 
         [Test]
+        public void NativeWindowMouseUpEventShouldNotRaiseButtonUpWhenRaisedAndNoSubscribers()
+        {
+            // Act
+            this.nativeWindow.Raise(x => x.MouseUp += null, default(TKMouseButtonEventArgs));
+
+            // Assert
+            Assert.Pass();
+        }
+
+        [Test]
         public void NativeWindowMouseUpEventShouldRaiseButtonUpWhenRaised()
         {
             this.mouseDevice.ButtonUp += (s, e) =>
@@ -107,6 +139,16 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
 
             // Act
             this.nativeWindow.Raise(x => x.MouseUp += null, new TKMouseButtonEventArgs(TKMouseButton.Button6, TKInputAction.Press, TKKeyModifiers.CapsLock));
+        }
+
+        [Test]
+        public void NativeWindowMouseWheelEventShouldNotRaiseWheelWhenRaisedAndNoSubscribers()
+        {
+            // Act
+            this.nativeWindow.Raise(x => x.MouseWheel += null, default(TKMouseWheelEventArgs));
+
+            // Assert
+            Assert.Pass();
         }
 
         [Test]

@@ -7,18 +7,16 @@ namespace FinalEngine.Input.Keyboard
     using System;
 
     /// <summary>
-    ///     Provides event data for the <see cref="IKeyboardDevice.KeyUp"/> and <see
-    ///     cref="IKeyboardDevice.KeyDown"/> events.
+    ///   Provides event data for the <see cref="IKeyboardDevice.KeyUp"/> and <see cref="IKeyboardDevice.KeyDown"/> events.
     /// </summary>
     /// <seealso cref="System.EventArgs"/>
     public class KeyEventArgs : EventArgs
     {
         /// <summary>
-        ///     Gets a value indicating whether the (left or right) alt key was held down when this
-        ///     event was raised.
+        ///   Gets a value indicating whether the (left or right) alt key was held down when this event was raised.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if the (left or right) alt key was held down; otherwise, <c>false</c>.
+        ///   <c>true</c> if the (left or right) alt key was held down; otherwise, <c>false</c>.
         /// </value>
         public bool Alt
         {
@@ -26,11 +24,10 @@ namespace FinalEngine.Input.Keyboard
         }
 
         /// <summary>
-        ///     Gets a value indicating whether the caps-lock key was locked when this event was
-        ///     raised.
+        ///   Gets a value indicating whether the caps-lock key was locked when this event was raised.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if the caps-lock key is locked; otherwise, <c>false</c>.
+        ///   <c>true</c> if the caps-lock key is locked; otherwise, <c>false</c>.
         /// </value>
         public bool CapsLock
         {
@@ -38,12 +35,10 @@ namespace FinalEngine.Input.Keyboard
         }
 
         /// <summary>
-        ///     Gets a value indicating whether the (left or right) control key was held down when
-        ///     this event was raised.
+        ///   Gets a value indicating whether the (left or right) control key was held down when this event was raised.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if the (left or right) control key was held down; otherwise,
-        ///     <c>false</c>.
+        ///   <c>true</c> if the (left or right) control key was held down; otherwise, <c>false</c>.
         /// </value>
         public bool Control
         {
@@ -51,27 +46,26 @@ namespace FinalEngine.Input.Keyboard
         }
 
         /// <summary>
-        ///     Gets the key that raised this event.
+        ///   Gets the key that raised this event.
         /// </summary>
         /// <value>
-        ///     The key that raised this event.
+        ///   The key that raised this event.
         /// </value>
         public Key Key { get; init; }
 
         /// <summary>
-        ///     Gets the modifiers that were pressed (or locked) when this event was raised.
+        ///   Gets the modifiers that were pressed (or locked) when this event was raised.
         /// </summary>
         /// <value>
-        ///     The modifiers that were pressed (or locked).
+        ///   The modifiers that were pressed (or locked).
         /// </value>
         public KeyModifiers Modifiers { get; init; }
 
         /// <summary>
-        ///     Gets a value indicating whether the num-lock key was locked when this event was
-        ///     rasied.
+        ///   Gets a value indicating whether the num-lock key was locked when this event was rasied.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if the num-lock key is locked; otherwise, <c>false</c>.
+        ///   <c>true</c> if the num-lock key is locked; otherwise, <c>false</c>.
         /// </value>
         public bool NumLock
         {
@@ -79,11 +73,10 @@ namespace FinalEngine.Input.Keyboard
         }
 
         /// <summary>
-        ///     Gets a value indicating whether the (left or right) shift key was held down when
-        ///     this event was raised.
+        ///   Gets a value indicating whether the (left or right) shift key was held down when this event was raised.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if the (left or right) shift key was held down; otherwise, <c>false</c>.
+        ///   <c>true</c> if the (left or right) shift key was held down; otherwise, <c>false</c>.
         /// </value>
         public bool Shift
         {
@@ -91,11 +84,10 @@ namespace FinalEngine.Input.Keyboard
         }
 
         /// <summary>
-        ///     Gets a value indicating whether any super keys were held down when this event was
-        ///     raised.
+        ///   Gets a value indicating whether any super keys were held down when this event was raised.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if any of the super keys were held down; otherwise, <c>false</c>.
+        ///   <c>true</c> if any of the super keys were held down; otherwise, <c>false</c>.
         /// </value>
         public bool Super
         {

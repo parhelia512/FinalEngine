@@ -1,5 +1,5 @@
-- Windowing
-- Input
+- Windowing :)
+- Input :)
 - Rendering
 - Audio
 - Physics

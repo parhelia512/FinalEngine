@@ -4,10 +4,12 @@
 
 namespace FinalEngine.Tests.Core.Input.Mouse
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using FinalEngine.Input.Mouse;
     using NUnit.Framework;
 
+    [ExcludeFromCodeCoverage]
     public class MouseMoveEventArgsTests
     {
         [Test]

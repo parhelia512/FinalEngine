@@ -7,37 +7,37 @@ namespace FinalEngine.Platform
     using System;
 
     /// <summary>
-    ///     Defines an interface that represents a display or window.
+    ///   Defines an interface that represents a display or window.
     /// </summary>
     /// <seealso cref="System.IDisposable"/>
     public interface IWindow : IDisposable
     {
         /// <summary>
-        ///     Gets a value indicating whether this <see cref="IWindow"/> is exiting.
+        ///   Gets a value indicating whether this <see cref="IWindow"/> is exiting.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if this <see cref="IWindow"/> is exiting; otherwise, <c>false</c>.
+        ///   <c>true</c> if this <see cref="IWindow"/> is exiting; otherwise, <c>false</c>.
         /// </value>
         bool IsExiting { get; }
 
         /// <summary>
-        ///     Gets or sets the title of this <see cref="IWindow"/>.
+        ///   Gets or sets the title of this <see cref="IWindow"/>.
         /// </summary>
         /// <value>
-        ///     The title of this <see cref="IWindow"/>.
+        ///   The title of this <see cref="IWindow"/>.
         /// </value>
         string Title { get; set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether this <see cref="IWindow"/> is visible.
+        ///   Gets or sets a value indicating whether this <see cref="IWindow"/> is visible.
         /// </summary>
         /// <value>
-        ///     <c>true</c> if this <see cref="IWindow"/> is visible; otherwise, <c>false</c>.
+        ///   <c>true</c> if this <see cref="IWindow"/> is visible; otherwise, <c>false</c>.
         /// </value>
         bool Visible { get; set; }
 
         /// <summary>
-        ///     Closes this <see cref="IWindow"/>, disposing of it's resources.
+        ///   Closes this <see cref="IWindow"/>, disposing of it's resources.
         /// </summary>
         void Close();
     }

@@ -4,9 +4,11 @@
 
 namespace FinalEngine.Tests.Core.Input.Keyboard
 {
+    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Input.Keyboard;
     using NUnit.Framework;
 
+    [ExcludeFromCodeCoverage]
     public class KeyEventArgsTests
     {
         [Test]

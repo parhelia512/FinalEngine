@@ -344,6 +344,7 @@ namespace FinalEngine.Tests.Core.IO
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.file = new Mock<IFileInvoker>();
             this.directory = new Mock<IDirectoryInvoker>();
             this.fileSystem = new FileSystem(this.file.Object, this.directory.Object);

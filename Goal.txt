@@ -23,3 +23,22 @@
 - File IO :)
 - Game Loop
 - Go through all documentation and really get GhostDocs working for you :)
+
+When abstracting the Rendering API for use with OpenGL and DirectX, just remember that if for some reason OpenGL does something differently to DirectX, it is methods that DirectX use that need to be abstracted away into their own class, only then can you decide how to handle the issue in the OpenGL backend. For example, DirectX doesn't like use the rasterizre to set the scissor rect, so, since OpenGL is a big state machine, we can just call `GL.Scissor` elsewhere in the codebase, where it is required and used by DirectX.
+
+// Just an example:
+public void ClearScreen(float r, float g, float b, float a, Vector2 scissor)
+{
+  GL.ClearColor(r, g, b, a);
+  GL.Scissor(scissor);
+}
+
+vs
+
+public void ClearScreen(float r, float g, float b, float a, Vector2 scissor)
+{
+  // Clear etc...
+  this.deviceContext.Clear(r, g, b, a, scissor);
+}
+
+Now, the API can handle the differences between OpenGL and DirectX.

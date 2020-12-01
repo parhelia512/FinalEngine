@@ -6,7 +6,6 @@ namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using System.Drawing;
-    using FinalEngine.Rendering.OpenGL.Extensions;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using OpenTK.Graphics.OpenGL4;
 
@@ -39,9 +38,9 @@ namespace FinalEngine.Rendering.OpenGL
                 this.invoker.Disable(EnableCap.ScissorTest);
             }
 
-            this.invoker.CullFace(description.CullMode.ToOpenTK());
-            this.invoker.FrontFace(description.WindingDirection.ToOpenTK());
-            this.invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenTK());
+            this.invoker.CullFace(description.CullMode == FaceCullMode.Back ? CullFaceMode.Back : CullFaceMode.Front);
+            this.invoker.FrontFace(description.WindingDirection == WindingDirection.Clockwise ? FrontFaceDirection.Cw : FrontFaceDirection.Ccw);
+            this.invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode == RasterMode.Solid ? PolygonMode.Fill : PolygonMode.Line);
         }
 
         public void SetScissor(Rectangle rectangle)

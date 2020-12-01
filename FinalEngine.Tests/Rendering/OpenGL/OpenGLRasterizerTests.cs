@@ -9,7 +9,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using System.Drawing;
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.OpenGL;
-    using FinalEngine.Rendering.OpenGL.Extensions;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using Moq;
     using NUnit.Framework;
@@ -52,7 +51,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.rasterizer.SetRasterState(description);
 
             // Assert
-            this.invoker.Verify(x => x.CullFace(description.CullMode.ToOpenTK()), Times.Once);
+            this.invoker.Verify(x => x.CullFace(CullFaceMode.Back), Times.Once);
         }
 
         [Test]
@@ -110,7 +109,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.rasterizer.SetRasterState(description);
 
             // Assert
-            this.invoker.Verify(x => x.FrontFace(description.WindingDirection.ToOpenTK()), Times.Once);
+            this.invoker.Verify(x => x.FrontFace(FrontFaceDirection.Ccw), Times.Once);
         }
 
         [Test]
@@ -123,7 +122,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.rasterizer.SetRasterState(description);
 
             // Assert
-            this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenTK()), Times.Once);
+            this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill), Times.Once);
         }
 
         [Test]

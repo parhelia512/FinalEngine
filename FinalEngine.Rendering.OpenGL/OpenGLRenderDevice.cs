@@ -6,7 +6,6 @@ namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using System.Drawing;
-    using FinalEngine.Rendering.OpenGL.Extensions;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using OpenTK.Graphics.OpenGL4;
 
@@ -33,7 +32,27 @@ namespace FinalEngine.Rendering.OpenGL
 
         public void DrawIndices(PrimitiveTopology topology, int first, int count)
         {
-            this.invoker.DrawElements(topology.ToOpenTK(), count, DrawElementsType.UnsignedInt, first);
+            PrimitiveType GetPrimitiveType()
+            {
+                switch (topology)
+                {
+                    case PrimitiveTopology.Line:
+                        return PrimitiveType.Lines;
+
+                    case PrimitiveTopology.LineStrip:
+                        return PrimitiveType.LineStrip;
+
+                    case PrimitiveTopology.Triangle:
+                        return PrimitiveType.Triangles;
+
+                    case PrimitiveTopology.TriangleStrip:
+                        return PrimitiveType.TriangleStrip;
+                }
+
+                throw new NotSupportedException($"The specified {nameof(topology)} parameter is not supported by the OpenGL backend.");
+            }
+
+            this.invoker.DrawElements(GetPrimitiveType(), count, DrawElementsType.UnsignedInt, first);
         }
     }
 }

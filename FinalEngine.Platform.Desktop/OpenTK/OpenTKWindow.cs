@@ -43,23 +43,13 @@ namespace FinalEngine.Platform.Desktop.OpenTK
             this.Dispose(false);
         }
 
-        /// <summary>
-        ///   Gets a value indicating whether this <see cref="OpenTKWindow"/> is exiting.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this <see cref="OpenTKWindow"/> is exiting; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         public bool IsExiting
         {
             get { return this.nativeWindow.IsExiting; }
         }
 
-        /// <summary>
-        ///   Gets or sets the title of this <see cref="OpenTKWindow"/>.
-        /// </summary>
-        /// <value>
-        ///   The title of this <see cref="OpenTKWindow"/>.
-        /// </value>
+        /// <inheritdoc/>
         /// <exception cref="System.ObjectDisposedException">
         ///   The underlying native window is dispsoed.
         /// </exception>
@@ -81,12 +71,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
             }
         }
 
-        /// <summary>
-        ///   Gets or sets a value indicating whether this <see cref="OpenTKWindow"/> is visible.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this <see cref="OpenTKWindow"/> is visible; otherwise, <c>false</c>.
-        /// </value>
+        /// <inheritdoc/>
         /// <exception cref="System.ObjectDisposedException">
         ///   The underlying native window is dispsoed.
         /// </exception>
@@ -116,9 +101,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// </value>
         protected bool IsDisposed { get; private set; }
 
-        /// <summary>
-        ///   Closes this <see cref="OpenTKWindow"/>, disposing of it's resources.
-        /// </summary>
+        /// <inheritdoc/>
         /// <exception cref="System.ObjectDisposedException">
         ///   The underlying native window is dispsoed.
         /// </exception>
@@ -132,18 +115,14 @@ namespace FinalEngine.Platform.Desktop.OpenTK
             this.nativeWindow.Close();
         }
 
-        /// <summary>
-        ///   Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        ///   Processes the events that are currently in the message queue.
-        /// </summary>
+        /// <inheritdoc/>
         /// <remarks>
         ///   This method is not thread safe and should only be executed on the main thread.
         /// </remarks>

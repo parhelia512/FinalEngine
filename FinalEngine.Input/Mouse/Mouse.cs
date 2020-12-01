@@ -61,26 +61,7 @@ namespace FinalEngine.Input.Mouse
             }
         }
 
-        /// <summary>
-        ///   Finalizes an instance of the <see cref="Mouse"/> class.
-        /// </summary>
-        ~Mouse()
-        {
-            if (this.device != null)
-            {
-                this.device.ButtonDown -= this.Device_ButtonDown;
-                this.device.ButtonUp -= this.Device_ButtonUp;
-                this.device.Move -= this.Device_Move;
-                this.device.Scroll -= this.Device_Scroll;
-            }
-        }
-
-        /// <summary>
-        ///   Gets or sets the location of the cursor in window pixel coordinates.
-        /// </summary>
-        /// <value>
-        ///   The location of the cursor in window pixel coordinates.
-        /// </value>
+        /// <inheritdoc/>
         public PointF Location
         {
             get
@@ -102,51 +83,22 @@ namespace FinalEngine.Input.Mouse
             }
         }
 
-        /// <summary>
-        ///   Gets the scroll wheel offset.
-        /// </summary>
-        /// <value>
-        ///   The scroll wheel offset.
-        /// </value>
+        /// <inheritdoc/>
         public double WheelOffset { get; private set; }
 
-        /// <summary>
-        ///   Determines whether the specified <paramref name="button"/> is currently down.
-        /// </summary>
-        /// <param name="button">
-        ///   Specifies a <see cref="MouseButton"/> that represents the button to check for.
-        /// </param>
-        /// <returns>
-        ///   <c>true</c> if the specified <paramref name="button"/> is currently down; otherwise, <c>false</c>.
-        /// </returns>
+        /// <inheritdoc/>
         public bool IsButtonDown(MouseButton button)
         {
             return this.buttonsDown.Contains(button);
         }
 
-        /// <summary>
-        ///   Determines whether the specified <paramref name="button"/> has been pressed this frame.
-        /// </summary>
-        /// <param name="button">
-        ///   Specifies a <see cref="MouseButton"/> that represents the button to check for.
-        /// </param>
-        /// <returns>
-        ///   <c>true</c> if the specified <paramref name="button"/> has been pressed this frame; otherwise, <c>false</c>.
-        /// </returns>
+        /// <inheritdoc/>
         public bool IsButtonPressed(MouseButton button)
         {
             return this.buttonsDown.Contains(button) && !this.buttonsDownLast.Contains(button);
         }
 
-        /// <summary>
-        ///   Determines whether the specified <paramref name="button"/> has been released since the previous frame.
-        /// </summary>
-        /// <param name="button">
-        ///   Specifies a <see cref="MouseButton"/> that represents the button to check for.
-        /// </param>
-        /// <returns>
-        ///   <c>true</c> if the specified <paramref name="button"/> has been released since the previous frame; otherwise, <c>false</c>.
-        /// </returns>
+        /// <inheritdoc/>
         public bool IsButtonReleased(MouseButton button)
         {
             return !this.buttonsDown.Contains(button) && this.buttonsDownLast.Contains(button);

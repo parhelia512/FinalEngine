@@ -4,19 +4,20 @@
 
 namespace FinalEngine.Rendering.OpenGL.Invocation
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
     using OpenTK;
+    using OpenTK.Graphics.OpenGL4;
 
-    /// <summary>
-    ///   Defines an interface that provides methods for invocation of the OpenGL Library.
-    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Invocation")]
     public interface IOpenGLInvoker
     {
-        /// <summary>
-        ///   Loads all bindings using the specified <paramref name="context"/>.
-        /// </summary>
-        /// <param name="context">
-        ///   Specifies a <see cref="IBindingsContext"/> that represents the bindings context used to load the bindings.
-        /// </param>
+        void Disable(EnableCap cap);
+
+        void Enable(EnableCap cap);
+
         void LoadBindings(IBindingsContext context);
+
+        void Viewport(Rectangle rectangle);
     }
 }

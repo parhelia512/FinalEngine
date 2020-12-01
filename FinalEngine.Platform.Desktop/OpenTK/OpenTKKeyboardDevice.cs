@@ -37,14 +37,10 @@ namespace FinalEngine.Platform.Desktop.OpenTK
             this.nativeWindow.KeyDown += this.NativeWindow_KeyDown;
         }
 
-        /// <summary>
-        ///   Occurs when a keyboard key is pressed.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<KeyEventArgs>? KeyDown;
 
-        /// <summary>
-        ///   Occurs when a keyboard key is released.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<KeyEventArgs>? KeyUp;
 
         /// <summary>

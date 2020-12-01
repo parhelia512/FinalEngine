@@ -43,32 +43,19 @@ namespace FinalEngine.Platform.Desktop.OpenTK
             this.nativeWindow.MouseWheel += this.NativeWindow_MouseWheel;
         }
 
-        /// <summary>
-        ///   Occurs when a mouse button is pressed.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<MouseButtonEventArgs>? ButtonDown;
 
-        /// <summary>
-        ///   Occurs when a mouse button is released.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<MouseButtonEventArgs>? ButtonUp;
 
-        /// <summary>
-        ///   Occurs when the location of the mouse has changed.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<MouseMoveEventArgs>? Move;
 
-        /// <summary>
-        ///   Occurs when the position of the scroll wheel has changed.
-        /// </summary>
+        /// <inheritdoc/>
         public event EventHandler<MouseScrollEventArgs>? Scroll;
 
-        /// <summary>
-        ///   Sets the cursor location (in window pixel coordinates).
-        /// </summary>
-        /// <param name="location">
-        ///   Specifies a <see cref="PointF"/> that represents the new location.
-        /// </param>
+        /// <inheritdoc/>
         public void SetCursorLocation(PointF location)
         {
             this.nativeWindow.MousePosition = new Vector2(location.X, location.Y);

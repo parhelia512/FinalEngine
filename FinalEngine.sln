@@ -30,9 +30,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.IO", "FinalEngi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rendering", "Rendering", "{B2CD257E-E2BC-4259-A9B5-4DA90A7DE0B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Rendering", "FinalEngine.Rendering\FinalEngine.Rendering.csproj", "{0A41C3A7-1881-43F8-BE83-8B35D6B04221}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering", "FinalEngine.Rendering\FinalEngine.Rendering.csproj", "{0A41C3A7-1881-43F8-BE83-8B35D6B04221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Rendering.OpenGL", "FinalEngine.Rendering.OpenGL\FinalEngine.Rendering.OpenGL.csproj", "{14B5098C-79C8-44BB-A485-6638873F10BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering.OpenGL", "FinalEngine.Rendering.OpenGL\FinalEngine.Rendering.OpenGL.csproj", "{14B5098C-79C8-44BB-A485-6638873F10BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

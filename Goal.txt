@@ -11,7 +11,7 @@
       - Render Target 2D
       - Texture 2D
       - Vertex Buffer
-      - Vertex Array
+      - Input Layout
       - Shader
       - Shader Program
   - Mesh

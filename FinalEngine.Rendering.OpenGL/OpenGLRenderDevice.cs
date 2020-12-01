@@ -17,8 +17,6 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             this.Rasterizer = new OpenGLRasterizer(invoker);
-
-            this.Rasterizer.SetRasterState(default);
         }
 
         public IRasterizer Rasterizer { get; }

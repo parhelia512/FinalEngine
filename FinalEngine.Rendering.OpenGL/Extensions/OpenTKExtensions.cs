@@ -10,9 +10,9 @@ namespace FinalEngine.Rendering.OpenGL.Extensions
 
     [ExcludeFromCodeCoverage]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Pointless")]
-    internal static class OpenTKExtensions
+    public static class OpenTKExtensions
     {
-        internal static PolygonMode ToOpenTK(this RasterMode mode)
+        public static PolygonMode ToOpenTK(this RasterMode mode)
         {
             switch (mode)
             {
@@ -27,7 +27,7 @@ namespace FinalEngine.Rendering.OpenGL.Extensions
             }
         }
 
-        internal static FrontFaceDirection ToOpenTK(this WindingDirection direction)
+        public static FrontFaceDirection ToOpenTK(this WindingDirection direction)
         {
             switch (direction)
             {
@@ -42,7 +42,7 @@ namespace FinalEngine.Rendering.OpenGL.Extensions
             }
         }
 
-        internal static CullFaceMode ToOpenTK(this FaceCullMode mode)
+        public static CullFaceMode ToOpenTK(this FaceCullMode mode)
         {
             switch (mode)
             {

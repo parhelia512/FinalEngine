@@ -4,15 +4,21 @@
 
 namespace TestGame
 {
+    using System;
+    using System.Drawing;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.IO;
     using FinalEngine.IO.Invocation;
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
+    using FinalEngine.Rendering.OpenGL;
+    using FinalEngine.Rendering.OpenGL.Invocation;
+    using OpenTK.Graphics.OpenGL4;
     using OpenTK.Mathematics;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
+    using OpenTK.Windowing.GraphicsLibraryFramework;
 
     /// <summary>
     ///   The main program.
@@ -26,6 +32,14 @@ namespace TestGame
         {
             var settings = new NativeWindowSettings()
             {
+                API = ContextAPI.OpenGL,
+                APIVersion = new Version(4, 6),
+
+                Flags = ContextFlags.ForwardCompatible,
+                Profile = ContextProfile.Core,
+
+                AutoLoadBindings = false,
+
                 WindowBorder = WindowBorder.Fixed,
                 WindowState = WindowState.Normal,
 
@@ -48,11 +62,19 @@ namespace TestGame
 
             var fileSystem = new FileSystem(file, directory);
 
+            var opengl = new OpenGLInvoker();
+            var bindings = new GLFWBindingsContext();
+            var context = new OpenGLRenderContext(opengl, bindings, nativeWindow.Context);
+
             while (!window.IsExiting)
             {
                 keyboard.Update();
                 mouse.Update();
 
+                GL.ClearColor(Color.CornflowerBlue);
+                GL.Clear(ClearBufferMask.ColorBufferBit);
+
+                context.SwapBuffers();
                 window.ProcessEvents();
             }
 

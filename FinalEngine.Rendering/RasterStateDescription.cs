@@ -4,7 +4,9 @@
 
 namespace FinalEngine.Rendering
 {
-    public struct RasterStateDescription
+    using System;
+
+    public struct RasterStateDescription : IEquatable<RasterStateDescription>
     {
         private FaceCullMode? cullMode;
 
@@ -32,6 +34,41 @@ namespace FinalEngine.Rendering
         {
             get { return this.windingDirection ?? WindingDirection.CounterClockwise; }
             set { this.windingDirection = value; }
+        }
+
+        public static bool operator !=(RasterStateDescription left, RasterStateDescription right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(RasterStateDescription left, RasterStateDescription right)
+        {
+            return left.Equals(right);
+        }
+
+        public bool Equals(RasterStateDescription other)
+        {
+            return this.CullEnabled == other.CullEnabled &&
+                   this.CullMode == other.CullMode &&
+                   this.FillMode == other.FillMode &&
+                   this.ScissorEnabled == other.ScissorEnabled &&
+                   this.WindingDirection == other.WindingDirection;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is RasterStateDescription description && this.Equals(description);
+        }
+
+        public override int GetHashCode()
+        {
+            const int Accumulator = 17;
+
+            return (this.CullEnabled.GetHashCode() * Accumulator) +
+                   (this.CullMode.GetHashCode() * Accumulator) +
+                   (this.FillMode.GetHashCode() * Accumulator) +
+                   (this.ScissorEnabled.GetHashCode() * Accumulator) +
+                   (this.WindingDirection.GetHashCode() * Accumulator);
         }
     }
 }

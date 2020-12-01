@@ -10,6 +10,8 @@ namespace FinalEngine.Rendering
     {
         void SetRasterState(RasterStateDescription description);
 
+        void SetScissor(Rectangle rectangle);
+
         void SetViewport(Rectangle rectangle);
     }
 }

@@ -46,6 +46,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.PolygonMode(MaterialFace, PolygonMode)"/>
         void PolygonMode(MaterialFace face, PolygonMode mode);
 
+        /// <inheritdoc cref="GL.Scissor(int, int, int, int)"/>
+        void Scissor(int x, int y, int width, int height);
+
         /// <inheritdoc cref="GL.Viewport(Rectangle)"/>
         void Viewport(Rectangle rectangle);
     }

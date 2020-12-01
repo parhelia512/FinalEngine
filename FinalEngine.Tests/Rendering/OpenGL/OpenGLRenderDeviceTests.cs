@@ -6,11 +6,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using Moq;
     using NUnit.Framework;
+    using OpenTK.Graphics.OpenGL4;
 
     [ExcludeFromCodeCoverage]
     public class OpenGLRenderDeviceTests
@@ -20,10 +22,63 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         private OpenGLRenderDevice renderDevice;
 
         [Test]
+        public void ClearShouldInvokeClearColorWhenInvoked()
+        {
+            // Arrange
+            Color color = Color.White;
+
+            // Act
+            this.renderDevice.Clear(color);
+
+            // Assert
+            this.invoker.Verify(x => x.ClearColor(color), Times.Once);
+        }
+
+        [Test]
+        public void ClearShouldInvokeClearDepthWhenInvoked()
+        {
+            // Act
+            this.renderDevice.Clear(Color.White);
+
+            // Assert
+            this.invoker.Verify(x => x.ClearDepth(1.0f), Times.Once);
+        }
+
+        [Test]
+        public void ClearShouldInvokeClearStencilWhenInvoked()
+        {
+            // Act
+            this.renderDevice.Clear(Color.White);
+
+            // Assert
+            this.invoker.Verify(x => x.ClearStencil(0), Times.Once);
+        }
+
+        [Test]
+        public void ClearShouldInvokeClearWhenInvoked()
+        {
+            // Act
+            this.renderDevice.Clear(Color.White);
+
+            // Assert
+            this.invoker.Verify(x => x.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit), Times.Once);
+        }
+
+        [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
             Assert.Throws<ArgumentNullException>(() => new OpenGLRenderDevice(null));
+        }
+
+        [Test]
+        public void DrawIndicesShouldInvokeDrawElementsWhenInvoked()
+        {
+            // Act
+            this.renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, 10);
+
+            // Assert
+            this.invoker.Verify(x => x.DrawElements(PrimitiveType.Triangles, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
         }
 
         [Test]

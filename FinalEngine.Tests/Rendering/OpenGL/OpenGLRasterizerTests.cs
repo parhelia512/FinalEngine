@@ -126,6 +126,19 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenTK()), Times.Once);
         }
 
+        [Test]
+        public void SetScissorShouldInvokeScissorWhenInvoked()
+        {
+            // Arrange
+            var rectangle = new Rectangle(10, 10, 400, 632);
+
+            // Act
+            this.rasterizer.SetScissor(rectangle);
+
+            // Assert
+            this.invoker.Verify(x => x.Scissor(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height), Times.Once);
+        }
+
         [SetUp]
         public void Setup()
         {

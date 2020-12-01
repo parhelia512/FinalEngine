@@ -81,6 +81,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void Scissor(int x, int y, int width, int height)
+        {
+            GL.Scissor(x, y, width, height);
+        }
+
+        /// <inheritdoc/>
         public void Viewport(Rectangle rectangle)
         {
             GL.Viewport(rectangle);

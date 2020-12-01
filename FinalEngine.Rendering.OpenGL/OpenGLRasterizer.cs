@@ -44,6 +44,11 @@ namespace FinalEngine.Rendering.OpenGL
             this.invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenTK());
         }
 
+        public void SetScissor(Rectangle rectangle)
+        {
+            this.invoker.Scissor(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+        }
+
         public void SetViewport(Rectangle rectangle)
         {
             this.invoker.Viewport(rectangle);

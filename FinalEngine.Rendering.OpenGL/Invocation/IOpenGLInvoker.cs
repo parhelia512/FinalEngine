@@ -32,11 +32,17 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.CompileShader(int)"/>
         void CompileShader(int shader);
 
+        /// <inheritdoc cref="GL.CreateProgram"/>
+        int CreateProgram();
+
         /// <inheritdoc cref="GL.CreateShader(ShaderType)"/>
         int CreateShader(ShaderType type);
 
         /// <inheritdoc cref="GL.CullFace(CullFaceMode)"/>
         void CullFace(CullFaceMode mode);
+
+        /// <inheritdoc cref="GL.DeleteProgram(int)"/>
+        void DeleteProgram(int program);
 
         /// <inheritdoc cref="GL.DeleteShader(int)"/>
         void DeleteShader(int shader);
@@ -53,8 +59,14 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.FrontFace(FrontFaceDirection)"/>
         void FrontFace(FrontFaceDirection mode);
 
+        /// <inheritdoc cref="GL.GetProgramInfoLog(int)"/>
+        string GetProgramInfoLog(int program);
+
         /// <inheritdoc cref="GL.GetShaderInfoLog(int)"/>
         string GetShaderInfoLog(int shader);
+
+        /// <inheritdoc cref="GL.LinkProgram(int)"/>
+        void LinkProgram(int program);
 
         /// <inheritdoc cref="GL.LoadBindings(IBindingsContext)"/>
         void LoadBindings(IBindingsContext context);
@@ -69,6 +81,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Must Match API")]
         [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Must Much API")]
         void ShaderSource(int shader, string @string);
+
+        /// <inheritdoc cref="GL.UseProgram(int)"/>
+        void UseProgram(int program);
+
+        /// <inheritdoc cref="GL.ValidateProgram(int)"/>
+        void ValidateProgram(int program);
 
         /// <inheritdoc cref="GL.Viewport(Rectangle)"/>
         void Viewport(Rectangle rectangle);

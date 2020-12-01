@@ -10,7 +10,7 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
     using FinalEngine.Rendering.Pipeline;
     using OpenTK.Graphics.OpenGL4;
 
-    public class OpenGLShader : IShader
+    public class OpenGLShader : IShader, IOpenGLShader
     {
         private readonly IOpenGLInvoker invoker;
 

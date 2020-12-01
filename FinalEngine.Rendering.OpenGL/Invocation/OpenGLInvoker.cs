@@ -53,6 +53,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public int CreateProgram()
+        {
+            return GL.CreateProgram();
+        }
+
+        /// <inheritdoc/>
         public int CreateShader(ShaderType type)
         {
             return GL.CreateShader(type);
@@ -64,6 +70,13 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.CullFace(mode);
         }
 
+        /// <inheritdoc/>
+        public void DeleteProgram(int program)
+        {
+            GL.DeleteProgram(program);
+        }
+
+        /// <inheritdoc/>
         public void DeleteShader(int shader)
         {
             GL.DeleteShader(shader);
@@ -93,9 +106,22 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.FrontFace(mode);
         }
 
+        /// <inheritdoc/>
+        public string GetProgramInfoLog(int program)
+        {
+            return GL.GetProgramInfoLog(program);
+        }
+
+        /// <inheritdoc/>
         public string GetShaderInfoLog(int shader)
         {
             return GL.GetShaderInfoLog(shader);
+        }
+
+        /// <inheritdoc/>
+        public void LinkProgram(int program)
+        {
+            GL.LinkProgram(program);
         }
 
         /// <inheritdoc/>
@@ -120,6 +146,18 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void ShaderSource(int shader, string @string)
         {
             GL.ShaderSource(shader, @string);
+        }
+
+        /// <inheritdoc/>
+        public void UseProgram(int program)
+        {
+            GL.UseProgram(program);
+        }
+
+        /// <inheritdoc/>
+        public void ValidateProgram(int program)
+        {
+            GL.ValidateProgram(program);
         }
 
         /// <inheritdoc/>

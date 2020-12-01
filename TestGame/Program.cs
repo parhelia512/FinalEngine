@@ -79,13 +79,8 @@ namespace TestGame
             var vertexShader = new OpenGLShader(opengl, PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert"));
             var pixelShader = new OpenGLShader(opengl, PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag"));
 
-            int program = GL.CreateProgram();
-
-            vertexShader.Attach(program);
-            pixelShader.Attach(program);
-
-            GL.LinkProgram(program);
-            GL.ValidateProgram(program);
+            var program = new OpenGLShaderProgram(opengl, vertexShader, pixelShader);
+            program.Bind();
 
             float[] vertices =
             {
@@ -123,9 +118,6 @@ namespace TestGame
                 mouse.Update();
 
                 renderDevice.Clear(Color.Black);
-
-                GL.UseProgram(program);
-
                 renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
 
                 renderContext.SwapBuffers();
@@ -136,7 +128,7 @@ namespace TestGame
             GL.DeleteBuffer(vbo);
             GL.DeleteBuffer(vao);
 
-            GL.DeleteProgram(program);
+            program.Dispose();
 
             vertexShader.Dispose();
             pixelShader.Dispose();

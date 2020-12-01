@@ -17,6 +17,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     public class OpenGLInvoker : IOpenGLInvoker
     {
         /// <inheritdoc/>
+        public void AttachShader(int program, int shader)
+        {
+            GL.AttachShader(program, shader);
+        }
+
+        /// <inheritdoc/>
         public void Clear(ClearBufferMask mask)
         {
             GL.Clear(mask);
@@ -41,9 +47,26 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void CompileShader(int shader)
+        {
+            GL.CompileShader(shader);
+        }
+
+        /// <inheritdoc/>
+        public int CreateShader(ShaderType type)
+        {
+            return GL.CreateShader(type);
+        }
+
+        /// <inheritdoc/>
         public void CullFace(CullFaceMode mode)
         {
             GL.CullFace(mode);
+        }
+
+        public void DeleteShader(int shader)
+        {
+            GL.DeleteShader(shader);
         }
 
         /// <inheritdoc/>
@@ -70,6 +93,11 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.FrontFace(mode);
         }
 
+        public string GetShaderInfoLog(int shader)
+        {
+            return GL.GetShaderInfoLog(shader);
+        }
+
         /// <inheritdoc/>
         public void LoadBindings(IBindingsContext context)
         {
@@ -86,6 +114,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void Scissor(int x, int y, int width, int height)
         {
             GL.Scissor(x, y, width, height);
+        }
+
+        /// <inheritdoc/>
+        public void ShaderSource(int shader, string @string)
+        {
+            GL.ShaderSource(shader, @string);
         }
 
         /// <inheritdoc/>

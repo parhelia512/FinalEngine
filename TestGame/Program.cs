@@ -16,6 +16,8 @@ namespace TestGame
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Rendering.OpenGL.Pipeline;
+    using FinalEngine.Rendering.Pipeline;
     using OpenTK.Graphics.OpenGL4;
     using OpenTK.Mathematics;
     using OpenTK.Windowing.Common;
@@ -74,24 +76,16 @@ namespace TestGame
 
             rasterizer.SetRasterState(default);
 
-            int vertexShader = GL.CreateShader(ShaderType.VertexShader);
-            GL.ShaderSource(vertexShader, File.ReadAllText("Resources\\Shaders\\shader.vert"));
-            GL.CompileShader(vertexShader);
-
-            int pixelShader = GL.CreateShader(ShaderType.FragmentShader);
-            GL.ShaderSource(pixelShader, File.ReadAllText("Resources\\shaders\\shader.frag"));
-            GL.CompileShader(pixelShader);
+            var vertexShader = new OpenGLShader(opengl, PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert"));
+            var pixelShader = new OpenGLShader(opengl, PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag"));
 
             int program = GL.CreateProgram();
 
-            GL.AttachShader(program, vertexShader);
-            GL.AttachShader(program, pixelShader);
+            vertexShader.Attach(program);
+            pixelShader.Attach(program);
 
             GL.LinkProgram(program);
             GL.ValidateProgram(program);
-
-            GL.DeleteShader(vertexShader);
-            GL.DeleteShader(pixelShader);
 
             float[] vertices =
             {
@@ -143,6 +137,9 @@ namespace TestGame
             GL.DeleteBuffer(vao);
 
             GL.DeleteProgram(program);
+
+            vertexShader.Dispose();
+            pixelShader.Dispose();
 
             window.Dispose();
             nativeWindow.Dispose();

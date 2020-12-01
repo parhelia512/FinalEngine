@@ -128,7 +128,7 @@ namespace TestGame
                 keyboard.Update();
                 mouse.Update();
 
-                renderDevice.Clear(Color.CornflowerBlue);
+                renderDevice.Clear(Color.Black);
 
                 GL.UseProgram(program);
 

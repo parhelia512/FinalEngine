@@ -4,12 +4,13 @@
 
 namespace FinalEngine.Rendering
 {
+    using System.Collections.Generic;
     using FinalEngine.Rendering.Pipeline;
 
     public interface IGPUResourceFactory
     {
         IShader CreateShader(PipelineTarget target, string sourceCode);
 
-        IShaderProgram CreateShaderProgram(IShader[] shaders);
+        IShaderProgram CreateShaderProgram(IEnumerable<IShader> shaders);
     }
 }

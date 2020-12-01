@@ -5,6 +5,7 @@
 namespace TestGame
 {
     using System;
+    using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
     using FinalEngine.Input.Keyboard;
@@ -16,7 +17,6 @@ namespace TestGame
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
-    using FinalEngine.Rendering.OpenGL.Pipeline;
     using FinalEngine.Rendering.Pipeline;
     using OpenTK.Graphics.OpenGL4;
     using OpenTK.Mathematics;
@@ -73,14 +73,19 @@ namespace TestGame
             var renderDevice = new OpenGLRenderDevice(opengl);
 
             IRasterizer rasterizer = renderDevice.Rasterizer;
+            IPipeline pipeline = renderDevice.Pipeline;
+            IGPUResourceFactory factory = renderDevice.Factory;
 
             rasterizer.SetRasterState(default);
 
-            var vertexShader = new OpenGLShader(opengl, PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert"));
-            var pixelShader = new OpenGLShader(opengl, PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag"));
+            IEnumerable<IShader> shaders = new List<IShader>()
+            {
+                factory.CreateShader(PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert")),
+                factory.CreateShader(PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag")),
+            };
 
-            var program = new OpenGLShaderProgram(opengl, vertexShader, pixelShader);
-            program.Bind();
+            IShaderProgram program = factory.CreateShaderProgram(shaders);
+            pipeline.SetShaderProgram(program);
 
             float[] vertices =
             {
@@ -130,8 +135,10 @@ namespace TestGame
 
             program.Dispose();
 
-            vertexShader.Dispose();
-            pixelShader.Dispose();
+            foreach (IShader shader in shaders)
+            {
+                shader.Dispose();
+            }
 
             window.Dispose();
             nativeWindow.Dispose();

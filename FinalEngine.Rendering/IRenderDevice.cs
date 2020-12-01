@@ -19,6 +19,10 @@ namespace FinalEngine.Rendering
 
     public interface IRenderDevice
     {
+        IGPUResourceFactory Factory { get; }
+
+        IPipeline Pipeline { get; }
+
         IRasterizer Rasterizer { get; }
 
         void Clear(Color color, float depth = 1.0f, int stencil = 0);

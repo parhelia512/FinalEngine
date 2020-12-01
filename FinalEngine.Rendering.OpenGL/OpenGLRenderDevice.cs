@@ -18,7 +18,13 @@ namespace FinalEngine.Rendering.OpenGL
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
             this.Rasterizer = new OpenGLRasterizer(invoker);
+            this.Pipeline = new OpenGLPipeline(invoker);
+            this.Factory = new OpenGLGPUResourceFactory(invoker);
         }
+
+        public IGPUResourceFactory Factory { get; }
+
+        public IPipeline Pipeline { get; }
 
         public IRasterizer Rasterizer { get; }
 

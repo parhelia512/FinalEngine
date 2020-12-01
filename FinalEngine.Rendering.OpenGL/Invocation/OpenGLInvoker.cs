@@ -119,6 +119,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public int GetUniformLocation(int program, string name)
+        {
+            return GL.GetUniformLocation(program, name);
+        }
+
+        /// <inheritdoc/>
         public void LinkProgram(int program)
         {
             GL.LinkProgram(program);
@@ -146,6 +152,48 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void ShaderSource(int shader, string @string)
         {
             GL.ShaderSource(shader, @string);
+        }
+
+        /// <inheritdoc/>
+        public void Uniform1(int location, int x)
+        {
+            GL.Uniform1(location, x);
+        }
+
+        /// <inheritdoc/>
+        public void Uniform1(int location, float v0)
+        {
+            GL.Uniform1(location, v0);
+        }
+
+        /// <inheritdoc/>
+        public void Uniform1(int location, double x)
+        {
+            GL.Uniform1(location, x);
+        }
+
+        /// <inheritdoc/>
+        public void Uniform2(int location, float v0, float v1)
+        {
+            GL.Uniform2(location, v0, v1);
+        }
+
+        /// <inheritdoc/>
+        public void Uniform3(int location, float v0, float v1, float v2)
+        {
+            GL.Uniform3(location, v0, v1, v2);
+        }
+
+        /// <inheritdoc/>
+        public void Uniform4(int location, float v0, float v1, float v2, float v3)
+        {
+            GL.Uniform4(location, v0, v1, v2, v3);
+        }
+
+        /// <inheritdoc/>
+        public void UniformMatrix4(int location, int count, bool transpose, float[] value)
+        {
+            GL.UniformMatrix4(location, count, transpose, value);
         }
 
         /// <inheritdoc/>

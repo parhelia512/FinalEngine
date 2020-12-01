@@ -65,6 +65,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.GetShaderInfoLog(int)"/>
         string GetShaderInfoLog(int shader);
 
+        /// <inheritdoc cref="GL.GetUniformLocation(int, string)"/>
+        int GetUniformLocation(int program, string name);
+
         /// <inheritdoc cref="GL.LinkProgram(int)"/>
         void LinkProgram(int program);
 

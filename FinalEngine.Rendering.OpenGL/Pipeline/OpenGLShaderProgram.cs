@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering.OpenGL.Pipeline
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
@@ -15,7 +16,7 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         private int id;
 
-        public OpenGLShaderProgram(IOpenGLInvoker invoker, params IOpenGLShader[] shaders)
+        public OpenGLShaderProgram(IOpenGLInvoker invoker, IEnumerable<IOpenGLShader> shaders)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
 
@@ -68,6 +69,11 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public int GetUniformLocation(string name)
+        {
+            return this.invoker.GetUniformLocation(this.id, name);
         }
 
         protected virtual void Dispose(bool disposing)

@@ -10,16 +10,11 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
     /// <summary>
     ///   Provides an implementation of an <see cref="INativeWindowInvoker"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Platform.Desktop.OpenTK.Invocation.INativeWindowInvoker"/>
+    /// <seealso cref="INativeWindowInvoker"/>
     [ExcludeFromCodeCoverage(Justification = "Invocation Class")]
     public sealed class NativeWindowInvoker : NativeWindow, INativeWindowInvoker
     {
-        /// <summary>
-        ///   Initializes a new instance of the <see cref="NativeWindowInvoker"/> class.
-        /// </summary>
-        /// <param name="settings">
-        ///   Specifies a <see cref="NativeWindowSettings"/> that represents the <see cref="NativeWindow"/> related settings.
-        /// </param>
+        /// <inheritdoc cref="NativeWindow(NativeWindowSettings)"/>
         public NativeWindowInvoker(NativeWindowSettings settings)
             : base(settings)
         {
@@ -33,12 +28,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK.Invocation
         /// </value>
         public bool IsDisposed { get; private set; }
 
-        /// <summary>
-        ///   Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing">
-        ///   <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
-        /// </param>
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

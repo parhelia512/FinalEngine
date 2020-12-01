@@ -26,6 +26,9 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
             this.id = this.invoker.CreateProgram();
 
+            //// TODO: Should we make sure the user creates a program with both a vertex and fragment shader?
+            //// TODO: How should we handle errors and warnings? Perhaps we need a way to decipher them and print out our own errors or warnings?
+
             foreach (IOpenGLShader? shader in shaders)
             {
                 if (shader == null)

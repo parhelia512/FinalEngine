@@ -53,9 +53,7 @@ namespace FinalEngine.Rendering.OpenGL
             invoker.LoadBindings(bindings);
         }
 
-        /// <summary>
-        ///   Swaps the front and back buffers, displaying the rendered scene to the user.
-        /// </summary>
+        /// <inheritdoc/>
         public void SwapBuffers()
         {
             if (!this.context.IsCurrent)

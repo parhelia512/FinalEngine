@@ -30,6 +30,15 @@ namespace FinalEngine.Rendering.OpenGL
                 this.invoker.Disable(EnableCap.CullFace);
             }
 
+            if (description.ScissorEnabled)
+            {
+                this.invoker.Enable(EnableCap.ScissorTest);
+            }
+            else
+            {
+                this.invoker.Disable(EnableCap.ScissorTest);
+            }
+
             this.invoker.CullFace(description.CullMode.ToOpenTK());
             this.invoker.FrontFace(description.WindingDirection.ToOpenTK());
             this.invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenTK());

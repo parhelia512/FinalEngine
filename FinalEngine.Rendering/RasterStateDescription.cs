@@ -6,21 +6,13 @@ namespace FinalEngine.Rendering
 {
     public struct RasterStateDescription
     {
-        private bool? cullEnabled;
-
         private FaceCullMode? cullMode;
 
         private RasterMode? fillMode;
 
-        private bool? scissorEnabled;
-
         private WindingDirection? windingDirection;
 
-        public bool CullEnabled
-        {
-            get { return this.cullEnabled ?? false; }
-            set { this.cullEnabled = value; }
-        }
+        public bool CullEnabled { get; set; }
 
         public FaceCullMode CullMode
         {
@@ -34,11 +26,7 @@ namespace FinalEngine.Rendering
             set { this.fillMode = value; }
         }
 
-        public bool ScissorEnabled
-        {
-            get { return this.scissorEnabled ?? false; }
-            set { this.scissorEnabled = value; }
-        }
+        public bool ScissorEnabled { get; set; }
 
         public WindingDirection WindingDirection
         {

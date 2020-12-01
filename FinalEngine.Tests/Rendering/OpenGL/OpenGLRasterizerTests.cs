@@ -142,12 +142,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.rasterizer = new OpenGLRasterizer(this.invoker.Object);
         }
 
         [Test]
-        public void SetViewportShouldnvokeInvokerSetViewportWhenInvoked()
+        public void SetViewportShouldnvokeInvokeSetViewportWhenInvoked()
         {
             // Arrange
             var rectangle = new Rectangle(1, 2, 4, 6);

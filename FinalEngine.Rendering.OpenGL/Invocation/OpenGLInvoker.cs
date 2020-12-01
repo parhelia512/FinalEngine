@@ -52,6 +52,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.Disable(cap);
         }
 
+        /// <inheritdoc/>
         public void DrawElements(PrimitiveType mode, int count, DrawElementsType type, int indices)
         {
             GL.DrawElements(mode, count, type, indices);
@@ -63,6 +64,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.Enable(cap);
         }
 
+        /// <inheritdoc/>
         public void FrontFace(FrontFaceDirection mode)
         {
             GL.FrontFace(mode);

@@ -32,7 +32,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void ConstructorShouldInvokeInvokerLoadBindingsWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeInvokeLoadBindingsWhenParametersAreNotNull()
         {
             // Assert
             this.invoker.Verify(x => x.LoadBindings(this.bindings.Object), Times.Once);
@@ -69,6 +69,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.bindings = new Mock<IBindingsContext>();
             this.context = new Mock<IGraphicsContext>();

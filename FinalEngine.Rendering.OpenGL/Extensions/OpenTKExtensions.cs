@@ -9,7 +9,6 @@ namespace FinalEngine.Rendering.OpenGL.Extensions
     using OpenTK.Graphics.OpenGL4;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Pointless")]
     public static class OpenTKExtensions
     {
         public static PrimitiveType ToOpenTK(this PrimitiveTopology topology)

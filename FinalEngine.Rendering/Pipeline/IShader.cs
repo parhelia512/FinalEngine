@@ -8,6 +8,8 @@ namespace FinalEngine.Rendering.Pipeline
 
     public enum PipelineTarget
     {
+        None,
+
         Vertex,
 
         Fragment,

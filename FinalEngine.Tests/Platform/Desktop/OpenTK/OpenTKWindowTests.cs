@@ -12,7 +12,7 @@ namespace FinalEngine.Tests.Platform.Desktop.OpenTK
     using NUnit.Framework;
 
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is down in TearDown.")]
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenTKWindowTests
     {
         private Mock<INativeWindowInvoker> nativeWindow;

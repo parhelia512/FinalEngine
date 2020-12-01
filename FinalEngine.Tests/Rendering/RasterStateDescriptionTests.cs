@@ -60,7 +60,7 @@ namespace FinalEngine.Tests.Rendering
         }
 
         [Test]
-        public void EqualityOperatorShouldReturnTrueWhenPropertiesDontMatch()
+        public void EqualityOperatorShouldReturnFalseWhenPropertiesDontMatch()
         {
             // Arrange
             var left = new RasterStateDescription()

@@ -42,16 +42,35 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeCullFaceWhenInvoked()
+        public void SetRasterStateShouldInvokeCullFaceBackWhenCullModeBack()
         {
             // Arrange
-            RasterStateDescription description = default;
+            var description = new RasterStateDescription()
+            {
+                CullMode = FaceCullMode.Back,
+            };
 
             // Act
             this.rasterizer.SetRasterState(description);
 
             // Assert
             this.invoker.Verify(x => x.CullFace(CullFaceMode.Back), Times.Once);
+        }
+
+        [Test]
+        public void SetRasterStateShouldInvokeCullFaceFrontWhenCullModeFront()
+        {
+            // Arrange
+            var description = new RasterStateDescription()
+            {
+                CullMode = FaceCullMode.Front,
+            };
+
+            // Act
+            this.rasterizer.SetRasterState(description);
+
+            // Assert
+            this.invoker.Verify(x => x.CullFace(CullFaceMode.Front), Times.Once);
         }
 
         [Test]
@@ -100,10 +119,29 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeFrontFaceeWhenInvoked()
+        public void SetRasterStateShouldInvokeFrontFaceClockwiseWhenDirectionClockwise()
         {
             // Arrange
-            RasterStateDescription description = default;
+            var description = new RasterStateDescription()
+            {
+                WindingDirection = WindingDirection.Clockwise,
+            };
+
+            // Act
+            this.rasterizer.SetRasterState(description);
+
+            // Assert
+            this.invoker.Verify(x => x.FrontFace(FrontFaceDirection.Cw), Times.Once);
+        }
+
+        [Test]
+        public void SetRasterStateShouldInvokeFrontFaceCounterClockwiseWhenDirectionCounterClockwise()
+        {
+            // Arrange
+            var description = new RasterStateDescription()
+            {
+                WindingDirection = WindingDirection.CounterClockwise,
+            };
 
             // Act
             this.rasterizer.SetRasterState(description);
@@ -113,16 +151,35 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetRasterStateShouldInvokePolygonModeWhenInvoked()
+        public void SetRasterStateShouldInvokePolygonModeFillWhenRasterModeSolid()
         {
             // Arrange
-            RasterStateDescription description = default;
+            var description = new RasterStateDescription()
+            {
+                FillMode = RasterMode.Solid,
+            };
 
             // Act
             this.rasterizer.SetRasterState(description);
 
             // Assert
             this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill), Times.Once);
+        }
+
+        [Test]
+        public void SetRasterStateShouldInvokePolygonModeLineWhenRasterModeWireframe()
+        {
+            // Arrange
+            var description = new RasterStateDescription()
+            {
+                FillMode = RasterMode.Wireframe,
+            };
+
+            // Act
+            this.rasterizer.SetRasterState(description);
+
+            // Assert
+            this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line), Times.Once);
         }
 
         [Test]

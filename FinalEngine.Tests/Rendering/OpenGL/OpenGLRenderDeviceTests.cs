@@ -72,7 +72,37 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void DrawIndicesShouldInvokeDrawElementsWhenInvoked()
+        public void DrawIndicesShouldInvokeDrawElementsLineStripWhenInvoked()
+        {
+            // Act
+            this.renderDevice.DrawIndices(PrimitiveTopology.LineStrip, 0, 10);
+
+            // Assert
+            this.invoker.Verify(x => x.DrawElements(PrimitiveType.LineStrip, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
+        }
+
+        [Test]
+        public void DrawIndicesShouldInvokeDrawElementsLineWhenInvoked()
+        {
+            // Act
+            this.renderDevice.DrawIndices(PrimitiveTopology.Line, 0, 10);
+
+            // Assert
+            this.invoker.Verify(x => x.DrawElements(PrimitiveType.Lines, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
+        }
+
+        [Test]
+        public void DrawIndicesShouldInvokeDrawElementsTriangleStripWhenInvoked()
+        {
+            // Act
+            this.renderDevice.DrawIndices(PrimitiveTopology.TriangleStrip, 0, 10);
+
+            // Assert
+            this.invoker.Verify(x => x.DrawElements(PrimitiveType.TriangleStrip, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
+        }
+
+        [Test]
+        public void DrawIndicesShouldInvokeDrawElementsTrianglesWhenInvoked()
         {
             // Act
             this.renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, 10);

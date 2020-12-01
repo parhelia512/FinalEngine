@@ -32,27 +32,28 @@ namespace FinalEngine.Rendering.OpenGL
 
         public void DrawIndices(PrimitiveTopology topology, int first, int count)
         {
-            PrimitiveType GetPrimitiveType()
+            PrimitiveType type = PrimitiveType.Triangles;
+
+            switch (topology)
             {
-                switch (topology)
-                {
-                    case PrimitiveTopology.Line:
-                        return PrimitiveType.Lines;
+                case PrimitiveTopology.Line:
+                    type = PrimitiveType.Lines;
+                    break;
 
-                    case PrimitiveTopology.LineStrip:
-                        return PrimitiveType.LineStrip;
+                case PrimitiveTopology.LineStrip:
+                    type = PrimitiveType.LineStrip;
+                    break;
 
-                    case PrimitiveTopology.Triangle:
-                        return PrimitiveType.Triangles;
+                case PrimitiveTopology.Triangle:
+                    type = PrimitiveType.Triangles;
+                    break;
 
-                    case PrimitiveTopology.TriangleStrip:
-                        return PrimitiveType.TriangleStrip;
-                }
-
-                throw new NotSupportedException($"The specified {nameof(topology)} parameter is not supported by the OpenGL backend.");
+                case PrimitiveTopology.TriangleStrip:
+                    type = PrimitiveType.TriangleStrip;
+                    break;
             }
 
-            this.invoker.DrawElements(GetPrimitiveType(), count, DrawElementsType.UnsignedInt, first);
+            this.invoker.DrawElements(type, count, DrawElementsType.UnsignedInt, first);
         }
     }
 }

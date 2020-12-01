@@ -7,5 +7,7 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
     public interface IOpenGLShaderProgram
     {
         void Bind();
+
+        int GetUniformLocation(string name);
     }
 }

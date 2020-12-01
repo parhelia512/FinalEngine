@@ -82,6 +82,27 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Must Much API")]
         void ShaderSource(int shader, string @string);
 
+        /// <inheritdoc cref="GL.Uniform1(int, int)"/>
+        void Uniform1(int location, int x);
+
+        /// <inheritdoc cref="GL.Uniform1(int, float)"/>
+        void Uniform1(int location, float v0);
+
+        /// <inheritdoc cref="GL.Uniform1(int, double)"/>
+        void Uniform1(int location, double x);
+
+        /// <inheritdoc cref="GL.Uniform2(int, float, float)"/>
+        void Uniform2(int location, float v0, float v1);
+
+        /// <inheritdoc cref="GL.Uniform3(int, float, float, float)"/>
+        void Uniform3(int location, float v0, float v1, float v2);
+
+        /// <inheritdoc cref="GL.Uniform4(int, float, float, float, float)"/>
+        void Uniform4(int location, float v0, float v1, float v2, float v3);
+
+        /// <inheritdoc cref="GL.UniformMatrix4(int, int, bool, float[])"/>
+        void UniformMatrix4(int location, int count, bool transpose, float[] value);
+
         /// <inheritdoc cref="GL.UseProgram(int)"/>
         void UseProgram(int program);
 

@@ -12,6 +12,27 @@ namespace FinalEngine.Rendering.OpenGL.Extensions
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Pointless")]
     public static class OpenTKExtensions
     {
+        public static PrimitiveType ToOpenTK(this PrimitiveTopology topology)
+        {
+            switch (topology)
+            {
+                case PrimitiveTopology.Line:
+                    return PrimitiveType.Lines;
+
+                case PrimitiveTopology.LineStrip:
+                    return PrimitiveType.LineStrip;
+
+                case PrimitiveTopology.Triangle:
+                    return PrimitiveType.Triangles;
+
+                case PrimitiveTopology.TriangleStrip:
+                    return PrimitiveType.TriangleStrip;
+
+                default:
+                    throw new NotSupportedException($"The specified {nameof(topology)} parameter is not supported in the OpenTK backend.");
+            }
+        }
+
         public static PolygonMode ToOpenTK(this RasterMode mode)
         {
             switch (mode)

@@ -128,11 +128,11 @@ namespace TestGame
                 keyboard.Update();
                 mouse.Update();
 
-                GL.ClearColor(Color.CornflowerBlue);
-                GL.Clear(ClearBufferMask.ColorBufferBit);
+                renderDevice.Clear(Color.CornflowerBlue);
 
                 GL.UseProgram(program);
-                GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
+
+                renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
 
                 renderContext.SwapBuffers();
                 window.ProcessEvents();

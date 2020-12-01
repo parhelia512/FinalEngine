@@ -13,11 +13,26 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     /// </summary>
     public interface IOpenGLInvoker
     {
+        /// <inheritdoc cref="GL.Clear(ClearBufferMask)"/>
+        void Clear(ClearBufferMask mask);
+
+        /// <inheritdoc cref="GL.ClearColor(Color)"/>
+        void ClearColor(Color color);
+
+        /// <inheritdoc cref="GL.ClearDepth(double)"/>
+        void ClearDepth(float depth);
+
+        /// <inheritdoc cref="GL.ClearStencil(int)"/>
+        void ClearStencil(int s);
+
         /// <inheritdoc cref="GL.CullFace(CullFaceMode)"/>
         void CullFace(CullFaceMode mode);
 
         /// <inheritdoc cref="GL.Disable(EnableCap)"/>
         void Disable(EnableCap cap);
+
+        /// <inheritdoc cref="GL.DrawElements(PrimitiveType, int, DrawElementsType, int)"/>
+        void DrawElements(PrimitiveType mode, int count, DrawElementsType type, int indices);
 
         /// <inheritdoc cref="GL.Enable(EnableCap)"/>
         void Enable(EnableCap cap);

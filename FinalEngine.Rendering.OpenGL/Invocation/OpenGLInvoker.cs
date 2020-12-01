@@ -17,6 +17,30 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     public class OpenGLInvoker : IOpenGLInvoker
     {
         /// <inheritdoc/>
+        public void Clear(ClearBufferMask mask)
+        {
+            GL.Clear(mask);
+        }
+
+        /// <inheritdoc/>
+        public void ClearColor(Color color)
+        {
+            GL.ClearColor(color);
+        }
+
+        /// <inheritdoc/>
+        public void ClearDepth(float depth)
+        {
+            GL.ClearDepth(depth);
+        }
+
+        /// <inheritdoc/>
+        public void ClearStencil(int s)
+        {
+            GL.ClearStencil(s);
+        }
+
+        /// <inheritdoc/>
         public void CullFace(CullFaceMode mode)
         {
             GL.CullFace(mode);
@@ -26,6 +50,11 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void Disable(EnableCap cap)
         {
             GL.Disable(cap);
+        }
+
+        public void DrawElements(PrimitiveType mode, int count, DrawElementsType type, int indices)
+        {
+            GL.DrawElements(mode, count, type, indices);
         }
 
         /// <inheritdoc/>

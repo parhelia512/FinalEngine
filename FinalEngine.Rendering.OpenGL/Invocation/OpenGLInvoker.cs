@@ -16,21 +16,42 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     [ExcludeFromCodeCoverage]
     public class OpenGLInvoker : IOpenGLInvoker
     {
+        /// <inheritdoc/>
+        public void CullFace(CullFaceMode mode)
+        {
+            GL.CullFace(mode);
+        }
+
+        /// <inheritdoc/>
         public void Disable(EnableCap cap)
         {
             GL.Disable(cap);
         }
 
+        /// <inheritdoc/>
         public void Enable(EnableCap cap)
         {
             GL.Enable(cap);
         }
 
+        public void FrontFace(FrontFaceDirection mode)
+        {
+            GL.FrontFace(mode);
+        }
+
+        /// <inheritdoc/>
         public void LoadBindings(IBindingsContext context)
         {
             GL.LoadBindings(context);
         }
 
+        /// <inheritdoc/>
+        public void PolygonMode(MaterialFace face, PolygonMode mode)
+        {
+            GL.PolygonMode(face, mode);
+        }
+
+        /// <inheritdoc/>
         public void Viewport(Rectangle rectangle)
         {
             GL.Viewport(rectangle);

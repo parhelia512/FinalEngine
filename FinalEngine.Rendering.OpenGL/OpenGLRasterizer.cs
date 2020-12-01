@@ -6,7 +6,9 @@ namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using System.Drawing;
+    using FinalEngine.Rendering.OpenGL.Extensions;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLRasterizer : IRasterizer
     {
@@ -19,7 +21,18 @@ namespace FinalEngine.Rendering.OpenGL
 
         public void SetRasterState(RasterStateDescription description)
         {
-            throw new System.NotImplementedException();
+            if (description.CullEnabled)
+            {
+                this.invoker.Enable(EnableCap.CullFace);
+            }
+            else
+            {
+                this.invoker.Disable(EnableCap.CullFace);
+            }
+
+            this.invoker.CullFace(description.CullMode.ToOpenTK());
+            this.invoker.FrontFace(description.WindingDirection.ToOpenTK());
+            this.invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode.ToOpenTK());
         }
 
         public void SetViewport(Rectangle rectangle)

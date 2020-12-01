@@ -1,0 +1,60 @@
+﻿// <copyright file="OpenTKExtensions.cs" company="Software Antics">
+//     Copyright (c) Software Antics. All rights reserved.
+// </copyright>
+
+namespace FinalEngine.Rendering.OpenGL.Extensions
+{
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using OpenTK.Graphics.OpenGL4;
+
+    [ExcludeFromCodeCoverage]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "Pointless")]
+    internal static class OpenTKExtensions
+    {
+        internal static PolygonMode ToOpenTK(this RasterMode mode)
+        {
+            switch (mode)
+            {
+                case RasterMode.Solid:
+                    return PolygonMode.Fill;
+
+                case RasterMode.Wireframe:
+                    return PolygonMode.Line;
+
+                default:
+                    throw new NotSupportedException($"The specified {nameof(mode)} parameter is not supported in the OpenTK backend.");
+            }
+        }
+
+        internal static FrontFaceDirection ToOpenTK(this WindingDirection direction)
+        {
+            switch (direction)
+            {
+                case WindingDirection.Clockwise:
+                    return FrontFaceDirection.Cw;
+
+                case WindingDirection.CounterClockwise:
+                    return FrontFaceDirection.Ccw;
+
+                default:
+                    throw new NotSupportedException($"The specified {nameof(direction)} parameter is not supported in the OpenTK backend.");
+            }
+        }
+
+        internal static CullFaceMode ToOpenTK(this FaceCullMode mode)
+        {
+            switch (mode)
+            {
+                case FaceCullMode.Back:
+                    return CullFaceMode.Back;
+
+                case FaceCullMode.Front:
+                    return CullFaceMode.Front;
+
+                default:
+                    throw new NotSupportedException($"The specified {nameof(mode)} parameter is not supported in the OpenTK backend.");
+            }
+        }
+    }
+}

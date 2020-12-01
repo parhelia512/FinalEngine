@@ -64,7 +64,9 @@ namespace TestGame
 
             var opengl = new OpenGLInvoker();
             var bindings = new GLFWBindingsContext();
-            var context = new OpenGLRenderContext(opengl, bindings, nativeWindow.Context);
+
+            var renderContext = new OpenGLRenderContext(opengl, bindings, nativeWindow.Context);
+            var renderDevice = new OpenGLRenderDevice(opengl);
 
             while (!window.IsExiting)
             {
@@ -74,7 +76,7 @@ namespace TestGame
                 GL.ClearColor(Color.CornflowerBlue);
                 GL.Clear(ClearBufferMask.ColorBufferBit);
 
-                context.SwapBuffers();
+                renderContext.SwapBuffers();
                 window.ProcessEvents();
             }
 

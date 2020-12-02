@@ -70,6 +70,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.Enable(EnableCap)"/>
         void Enable(EnableCap cap);
 
+        /// <inheritdoc cref="GL.EnableVertexAttribArray(int)"/>
+        void EnableVertexAttribArray(int index);
+
         /// <inheritdoc cref="GL.FrontFace(FrontFaceDirection)"/>
         void FrontFace(FrontFaceDirection mode);
 
@@ -128,6 +131,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.ValidateProgram(int)"/>
         void ValidateProgram(int program);
+
+        /// <inheritdoc cref="GL.VertexAttribBinding(int, int)"/>
+        void VertexAttribBinding(int attribindex, int bindingindex);
+
+        /// <inheritdoc cref="GL.VertexAttribFormat(int, int, VertexAttribType, bool, int)"/>
+        void VertexAttribFormat(int attribindex, int size, VertexAttribType type, bool normalized, int relativeoffset);
 
         /// <inheritdoc cref="GL.Viewport(Rectangle)"/>
         void Viewport(Rectangle rectangle);

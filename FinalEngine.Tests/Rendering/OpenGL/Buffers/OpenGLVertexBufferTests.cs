@@ -24,7 +24,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         private OpenGLVertexBuffer<int> vertexBuffer;
 
         [Test]
-        public void BindShouldInvokeBindVertexBufferWhenVertexBufferIsNotDisposed()
+        public void BindShouldInvokeBindVertexBufferIDWhenVertexBufferIsNotDisposed()
         {
             // Act
             this.vertexBuffer.Bind();
@@ -51,7 +51,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldInvokeBindBufferNoneWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBindBufferZeroWhenParametersAreNotNull()
         {
             // Assert
             this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, 0), Times.Once);

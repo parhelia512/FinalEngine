@@ -18,7 +18,7 @@ namespace FinalEngine.Rendering.OpenGL
 
         public OpenGLPipeline(IOpenGLInvoker invoker)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
         }
 
         public void SetShaderProgram(IShaderProgram? program)
@@ -44,7 +44,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))
@@ -59,7 +59,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))
@@ -74,7 +74,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))
@@ -89,7 +89,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))
@@ -104,7 +104,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))
@@ -119,7 +119,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))
@@ -134,7 +134,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))
@@ -149,7 +149,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null.");
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             if (!this.TryGetUniformLocation(name, out int location))

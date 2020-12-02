@@ -18,13 +18,13 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         public OpenGLShader(IOpenGLInvoker invoker, PipelineTarget target, string sourceCode)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
             this.EntryPoint = target;
 
             if (string.IsNullOrWhiteSpace(sourceCode))
             {
-                throw new ArgumentNullException(nameof(sourceCode));
+                throw new ArgumentNullException(nameof(sourceCode), $"The specified {nameof(sourceCode)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             ShaderType type;

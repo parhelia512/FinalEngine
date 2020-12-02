@@ -17,14 +17,14 @@ namespace FinalEngine.Rendering.OpenGL
 
         public OpenGLGPUResourceFactory(IOpenGLInvoker invoker)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
         }
 
         public IShader CreateShader(PipelineTarget target, string sourceCode)
         {
             if (string.IsNullOrWhiteSpace(sourceCode))
             {
-                throw new ArgumentNullException(nameof(sourceCode));
+                throw new ArgumentNullException(nameof(sourceCode), $"The specified {nameof(sourceCode)} parameter cannot be null, empty or contain only whitespace");
             }
 
             return new OpenGLShader(this.invoker, target, sourceCode);
@@ -34,7 +34,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (shaders == null)
             {
-                throw new ArgumentNullException(nameof(shaders));
+                throw new ArgumentNullException(nameof(shaders), $"The specified {nameof(shaders)} parameter cannot be null.");
             }
 
             return new OpenGLShaderProgram(this.invoker, shaders.Cast<IOpenGLShader>());

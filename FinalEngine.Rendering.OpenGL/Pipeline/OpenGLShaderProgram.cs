@@ -17,11 +17,11 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         public OpenGLShaderProgram(IOpenGLInvoker invoker, IEnumerable<IOpenGLShader> shaders)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
             if (shaders == null)
             {
-                throw new ArgumentNullException(nameof(shaders));
+                throw new ArgumentNullException(nameof(shaders), $"The specified {nameof(shaders)} parameter cannot be null.");
             }
 
             this.id = this.invoker.CreateProgram();
@@ -76,7 +76,7 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException(nameof(name));
+                throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
             }
 
             return this.invoker.GetUniformLocation(this.id, name);

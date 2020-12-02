@@ -44,7 +44,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldInvokeBindBufferIdentifierWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBindBufferIDWhenParametersAreNotNull()
         {
             // Assert
             this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, this.id), Times.Once);

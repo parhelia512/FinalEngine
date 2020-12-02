@@ -4,6 +4,7 @@
 
 namespace FinalEngine.Rendering.OpenGL.Invocation
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using OpenTK;
@@ -16,6 +17,15 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     {
         /// <inheritdoc cref="GL.AttachShader(int, int)"/>
         void AttachShader(int program, int shader);
+
+        /// <inheritdoc cref="GL.BindBuffer(BufferTarget, int)"/>
+        void BindBuffer(BufferTarget target, int buffer);
+
+        /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
+        void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
+
+        /// <inheritdoc cref="GL.BufferData{T2}(BufferTarget, int, T2[], BufferUsageHint)"/>
+        void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage);
 
         /// <inheritdoc cref="GL.Clear(ClearBufferMask)"/>
         void Clear(ClearBufferMask mask);
@@ -41,6 +51,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.CullFace(CullFaceMode)"/>
         void CullFace(CullFaceMode mode);
 
+        /// <inheritdoc cref="GL.DeleteBuffer(int)"/>
+        void DeleteBuffer(int buffers);
+
         /// <inheritdoc cref="GL.DeleteProgram(int)"/>
         void DeleteProgram(int program);
 
@@ -58,6 +71,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.FrontFace(FrontFaceDirection)"/>
         void FrontFace(FrontFaceDirection mode);
+
+        /// <inheritdoc cref="GL.GenBuffer"/>
+        int GenBuffer();
 
         /// <inheritdoc cref="GL.GetProgramInfoLog(int)"/>
         string GetProgramInfoLog(int program);

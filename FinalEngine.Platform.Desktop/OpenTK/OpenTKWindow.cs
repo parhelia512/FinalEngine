@@ -5,7 +5,6 @@
 namespace FinalEngine.Platform.Desktop.OpenTK
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
 
     /// <summary>
@@ -37,7 +36,6 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// <summary>
         ///   Finalizes an instance of the <see cref="OpenTKWindow"/> class.
         /// </summary>
-        [ExcludeFromCodeCoverage]
         ~OpenTKWindow()
         {
             this.Dispose(false);
@@ -145,7 +143,6 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// <param name="disposing">
         ///   <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
         /// </param>
-        [ExcludeFromCodeCoverage]
         protected virtual void Dispose(bool disposing)
         {
             if (this.IsDisposed)

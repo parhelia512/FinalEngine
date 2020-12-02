@@ -6,7 +6,6 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.OpenGL.Invocation;
 
     public class OpenGLShaderProgram : IOpenGLShaderProgram
@@ -53,7 +52,6 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
             }
         }
 
-        [ExcludeFromCodeCoverage]
         ~OpenGLShaderProgram()
         {
             this.Dispose(false);

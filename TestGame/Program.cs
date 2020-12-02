@@ -5,6 +5,7 @@
 namespace TestGame
 {
     using System;
+    using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
     using FinalEngine.Input.Keyboard;
@@ -16,6 +17,7 @@ namespace TestGame
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Rendering.Pipeline;
     using OpenTK.Graphics.OpenGL4;
     using OpenTK.Mathematics;
     using OpenTK.Windowing.Common;
@@ -71,27 +73,19 @@ namespace TestGame
             var renderDevice = new OpenGLRenderDevice(opengl);
 
             IRasterizer rasterizer = renderDevice.Rasterizer;
+            IPipeline pipeline = renderDevice.Pipeline;
+            IGPUResourceFactory factory = renderDevice.Factory;
 
             rasterizer.SetRasterState(default);
 
-            int vertexShader = GL.CreateShader(ShaderType.VertexShader);
-            GL.ShaderSource(vertexShader, File.ReadAllText("Resources\\Shaders\\shader.vert"));
-            GL.CompileShader(vertexShader);
+            IEnumerable<IShader> shaders = new List<IShader>()
+            {
+                factory.CreateShader(PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert")),
+                factory.CreateShader(PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag")),
+            };
 
-            int pixelShader = GL.CreateShader(ShaderType.FragmentShader);
-            GL.ShaderSource(pixelShader, File.ReadAllText("Resources\\shaders\\shader.frag"));
-            GL.CompileShader(pixelShader);
-
-            int program = GL.CreateProgram();
-
-            GL.AttachShader(program, vertexShader);
-            GL.AttachShader(program, pixelShader);
-
-            GL.LinkProgram(program);
-            GL.ValidateProgram(program);
-
-            GL.DeleteShader(vertexShader);
-            GL.DeleteShader(pixelShader);
+            IShaderProgram program = factory.CreateShaderProgram(shaders);
+            pipeline.SetShaderProgram(program);
 
             float[] vertices =
             {
@@ -129,9 +123,6 @@ namespace TestGame
                 mouse.Update();
 
                 renderDevice.Clear(Color.Black);
-
-                GL.UseProgram(program);
-
                 renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
 
                 renderContext.SwapBuffers();
@@ -142,7 +133,12 @@ namespace TestGame
             GL.DeleteBuffer(vbo);
             GL.DeleteBuffer(vao);
 
-            GL.DeleteProgram(program);
+            program.Dispose();
+
+            foreach (IShader shader in shaders)
+            {
+                shader.Dispose();
+            }
 
             window.Dispose();
             nativeWindow.Dispose();

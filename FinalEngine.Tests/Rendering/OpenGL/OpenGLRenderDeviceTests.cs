@@ -112,6 +112,26 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
+        public void FactoryShouldReturnOpenGLGPUResourceFactory()
+        {
+            // Act
+            IGPUResourceFactory actual = this.renderDevice.Factory;
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLGPUResourceFactory), actual);
+        }
+
+        [Test]
+        public void PipelineShouldReturnOpenGLPipeline()
+        {
+            // Act
+            IPipeline actual = this.renderDevice.Pipeline;
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLPipeline), actual);
+        }
+
+        [Test]
         public void RasterizerShouldReturnOpenGLRasterizer()
         {
             // Act

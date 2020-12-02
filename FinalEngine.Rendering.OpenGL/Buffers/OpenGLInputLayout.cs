@@ -32,6 +32,14 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
             }
         }
 
+        public void Reset()
+        {
+            foreach (InputElement element in this.Elements)
+            {
+                this.invoker.DisableVertexAttribArray(element.Index);
+            }
+        }
+
         private static VertexAttribType GetVertexAttribType(InputElementType type)
         {
             switch (type)

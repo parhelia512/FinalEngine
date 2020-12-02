@@ -10,6 +10,8 @@ namespace FinalEngine.Rendering.OpenGL
 
     public class OpenGLInputAssembler : IInputAssembler
     {
+        private IOpenGLInputLayout? boundLayout;
+
         public void SetIndexBuffer(IIndexBuffer buffer)
         {
             if (buffer == null)
@@ -27,8 +29,6 @@ namespace FinalEngine.Rendering.OpenGL
 
         public void SetInputLayout(IInputLayout layout)
         {
-            //// TODO: Make sure all vertex attribute bindings are set back to normal when setting a new input layout.
-
             if (layout == null)
             {
                 throw new ArgumentNullException(nameof(layout));
@@ -39,7 +39,10 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentException($"The specified {nameof(layout)} parameter is not of type {nameof(IOpenGLInputLayout)}.");
             }
 
-            glInputLayout.Bind();
+            this.boundLayout?.Reset();
+
+            this.boundLayout = glInputLayout;
+            this.boundLayout.Bind();
         }
 
         public void SetVertexBuffer(IVertexBuffer buffer)

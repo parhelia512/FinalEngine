@@ -85,6 +85,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             Assert.Throws<ArgumentNullException>(() => new OpenGLVertexBuffer<int>(null, Array.Empty<int>(), 0, 0));
         }
 
+        [Test]
+        public void DisposeShouldInvokeDeleteBufferWhenInvoked()
+        {
+            // Act
+            this.vertexBuffer.Dispose();
+
+            // Assert
+            this.invoker.Verify(x => x.DeleteBuffer(this.id), Times.Once);
+        }
+
         [SetUp]
         public void Setup()
         {
@@ -111,12 +121,9 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             Assert.AreEqual(1, actual);
         }
 
-        [Test]
+        [TearDown]
         public void Teardown()
         {
-            this.vertexBuffer.Dispose();
-
-            // Dispose once more just to be safe.
             this.vertexBuffer.Dispose();
         }
     }

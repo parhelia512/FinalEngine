@@ -127,6 +127,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DisableVertexAttribArray(int index)
+        {
+            GL.DisableVertexAttribArray(index);
+        }
+
+        /// <inheritdoc/>
         public void DrawElements(PrimitiveType mode, int count, DrawElementsType type, int indices)
         {
             GL.DrawElements(mode, count, type, indices);

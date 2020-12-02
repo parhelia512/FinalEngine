@@ -84,6 +84,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
+        public void DisposeShouldInvokeDeleteBufferWhenInvoked()
+        {
+            // Act
+            this.indexBuffer.Dispose();
+
+            // Assert
+            this.invoker.Verify(x => x.DeleteBuffer(this.id), Times.Once);
+        }
+
+        [Test]
         public void LengthShouldReturnSameAsConstructorInputWhenInvoked()
         {
             // Act
@@ -114,9 +124,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [TearDown]
         public void Teardown()
         {
-            this.indexBuffer.Dispose();
-
-            // One more time, just to be safe.
             this.indexBuffer.Dispose();
         }
     }

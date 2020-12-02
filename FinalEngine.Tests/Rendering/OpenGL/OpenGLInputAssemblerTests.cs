@@ -58,6 +58,20 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
+        public void SetInputLayoutShouldInvokeResetWhenSetInputLayoutPreviouslyCalled()
+        {
+            // Arrange
+            var layout = new Mock<IOpenGLInputLayout>();
+            this.inputAssembler.SetInputLayout(layout.Object);
+
+            // Act
+            this.inputAssembler.SetInputLayout(layout.Object);
+
+            // Assert
+            layout.Verify(x => x.Reset(), Times.Once);
+        }
+
+        [Test]
         public void SetInputLayoutShouldThrowArgumentExceptionWhenBufferIsNotOpenGLInputLayout()
         {
             // Act and assert

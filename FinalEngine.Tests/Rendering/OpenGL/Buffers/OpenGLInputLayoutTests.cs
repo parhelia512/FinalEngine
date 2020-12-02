@@ -83,6 +83,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             Assert.Throws<ArgumentNullException>(() => new OpenGLInputLayout(null, Enumerable.Empty<InputElement>()));
         }
 
+        [Test]
+        public void ResetShouldInvokeDisableVertexAttribArrayWhenInvoked()
+        {
+            // Act
+            this.inputLayout.Reset();
+
+            // Assert
+            this.invoker.Verify(x => x.DisableVertexAttribArray(It.IsAny<int>()), Times.Exactly(this.elements.Count));
+        }
+
         [SetUp]
         public void Setup()
         {

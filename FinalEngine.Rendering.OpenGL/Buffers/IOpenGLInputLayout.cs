@@ -9,5 +9,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
     public interface IOpenGLInputLayout : IInputLayout
     {
         void Bind();
+
+        void Reset();
     }
 }

@@ -70,6 +70,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.Disable(EnableCap)"/>
         void Disable(EnableCap cap);
 
+        /// <inheritdoc cref="GL.DisableVertexAttribArray(int)"/>
+        void DisableVertexAttribArray(int index);
+
         /// <inheritdoc cref="GL.DrawElements(PrimitiveType, int, DrawElementsType, int)"/>
         void DrawElements(PrimitiveType mode, int count, DrawElementsType type, int indices);
 

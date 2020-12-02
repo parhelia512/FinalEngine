@@ -4,6 +4,7 @@
 
 namespace FinalEngine.Rendering.OpenGL.Invocation
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using OpenTK;
@@ -20,6 +21,25 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void AttachShader(int program, int shader)
         {
             GL.AttachShader(program, shader);
+        }
+
+        /// <inheritdoc/>
+        public void BindBuffer(BufferTarget target, int buffer)
+        {
+            GL.BindBuffer(target, buffer);
+        }
+
+        /// <inheritdoc/>
+        public void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride)
+        {
+            GL.BindVertexBuffer(bindingindex, buffer, offset, stride);
+        }
+
+        /// <inheritdoc/>
+        public void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct
+        {
+            GL.BufferData<T2>(target, size, data, usage);
         }
 
         /// <inheritdoc/>
@@ -71,6 +91,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DeleteBuffer(int buffers)
+        {
+            GL.DeleteBuffer(buffers);
+        }
+
+        /// <inheritdoc/>
         public void DeleteProgram(int program)
         {
             GL.DeleteProgram(program);
@@ -104,6 +130,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void FrontFace(FrontFaceDirection mode)
         {
             GL.FrontFace(mode);
+        }
+
+        /// <inheritdoc/>
+        public int GenBuffer()
+        {
+            return GL.GenBuffer();
         }
 
         /// <inheritdoc/>

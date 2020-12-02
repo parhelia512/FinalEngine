@@ -25,7 +25,8 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
 
         /// <inheritdoc cref="GL.BufferData{T2}(BufferTarget, int, T2[], BufferUsageHint)"/>
-        void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage);
+        void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct;
 
         /// <inheritdoc cref="GL.Clear(ClearBufferMask)"/>
         void Clear(ClearBufferMask mask);

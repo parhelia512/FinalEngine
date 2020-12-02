@@ -4,6 +4,8 @@
 
 namespace TestGame
 {
+    //// TODO: Make sure that all OpenGL unit tests are checking whether the delete calls are being invoked inside their Dispose methods.
+
     using System;
     using System.Collections.Generic;
     using System.Drawing;

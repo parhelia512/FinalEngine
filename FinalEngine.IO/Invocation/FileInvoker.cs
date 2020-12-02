@@ -10,7 +10,7 @@ namespace FinalEngine.IO.Invocation
     /// <summary>
     ///   Provides an implementation ofa n <see cref="IFileInvoker"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.IO.Invocation.IFileInvoker"/>
+    /// <seealso cref="IFileInvoker"/>
     [ExcludeFromCodeCoverage]
     public class FileInvoker : IFileInvoker
     {

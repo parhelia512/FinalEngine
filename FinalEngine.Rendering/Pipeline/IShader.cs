@@ -8,9 +8,6 @@ namespace FinalEngine.Rendering.Pipeline
 
     public enum PipelineTarget
     {
-        // TODO: Should this even be here, I only did it to satisfy unit tests?
-        None,
-
         Vertex,
 
         Fragment,

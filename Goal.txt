@@ -4,16 +4,16 @@
   - Render Context
   - Render Device
     - Input Assembler
-    - Rasterizer
-    - Pipeline
+    - Rasterizer :)
+    - Pipeline :)
     - Output Merger
     - Resource Factory
       - Render Target 2D
       - Texture 2D
-      - Vertex Buffer
+      - Vertex Buffer :)
       - Input Layout
-      - Shader
-      - Shader Program
+      - Shader :)
+      - Shader Program :)
   - Mesh
   - Material
 - Audio

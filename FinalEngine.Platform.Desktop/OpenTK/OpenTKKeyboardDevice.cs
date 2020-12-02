@@ -12,7 +12,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IKeyboardDevice"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Input.Keyboard.IKeyboardDevice"/>
+    /// <seealso cref="IKeyboardDevice"/>
     public class OpenTKKeyboardDevice : IKeyboardDevice
     {
         /// <summary>

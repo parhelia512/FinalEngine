@@ -122,6 +122,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
+        public void InputAssemblerShouldReturnOpenGLInputAssembler()
+        {
+            // Act
+            IInputAssembler actual = this.renderDevice.InputAssembler;
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLInputAssembler), actual);
+        }
+
+        [Test]
         public void PipelineShouldReturnOpenGLPipeline()
         {
             // Act

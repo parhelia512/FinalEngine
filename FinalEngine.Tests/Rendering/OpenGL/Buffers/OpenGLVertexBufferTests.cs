@@ -61,7 +61,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         public void ConstructorShouldInvokeBufferDataWhenParametersAreNotNulL()
         {
             // Assert
-            this.invoker.Verify(x => x.BufferData<int>(BufferTarget.ArrayBuffer, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
+            this.invoker.Verify(x => x.BufferData(BufferTarget.ArrayBuffer, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
         }
 
         [Test]

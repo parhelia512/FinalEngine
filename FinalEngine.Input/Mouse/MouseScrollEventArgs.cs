@@ -9,7 +9,7 @@ namespace FinalEngine.Input.Mouse
     /// <summary>
     ///   Provides event data for the <see cref="IMouseDevice.Scroll"/> event.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public class MouseScrollEventArgs : EventArgs
     {
         /// <summary>

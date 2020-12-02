@@ -11,7 +11,7 @@ namespace FinalEngine.IO
     /// <summary>
     ///   Provides a standard implementation of an <see cref="IFileSystem"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.IO.IFileSystem"/>
+    /// <seealso cref="IFileSystem"/>
     public class FileSystem : IFileSystem
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace FinalEngine.IO
         /// <param name="directory">
         ///   Specifies a <see cref="IDirectoryInvoker"/> that represents the invoker used to handle directory operations.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="file"/> or <paramref name="directory"/> parameter is null.
         /// </exception>
         public FileSystem(IFileInvoker file, IDirectoryInvoker directory)
@@ -43,7 +43,7 @@ namespace FinalEngine.IO
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="path"/> parameter is null, empty of contains only whitespace characters.
         /// </exception>
         public void CreateDirectory(string path)
@@ -57,7 +57,7 @@ namespace FinalEngine.IO
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="path"/> parameter is null, empty of contains only whitespace characters.
         /// </exception>
         public Stream CreateFile(string path)
@@ -71,7 +71,7 @@ namespace FinalEngine.IO
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="path"/> parameter is null, empty of contains only whitespace characters.
         /// </exception>
         public void DeleteDirectory(string path)
@@ -85,7 +85,7 @@ namespace FinalEngine.IO
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="path"/> parameter is null, empty of contains only whitespace characters.
         /// </exception>
         public void DeleteFile(string path)
@@ -99,7 +99,7 @@ namespace FinalEngine.IO
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="path"/> parameter is null, empty of contains only whitespace characters.
         /// </exception>
         public bool DirectoryExists(string path)
@@ -113,7 +113,7 @@ namespace FinalEngine.IO
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="path"/> parameter is null, empty of contains only whitespace characters.
         /// </exception>
         public bool FileExists(string path)
@@ -127,7 +127,7 @@ namespace FinalEngine.IO
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="path"/> parameter is null, empty of contains only whitespace characters.
         /// </exception>
         public Stream OpenFile(string path, FileAccessMode mode)

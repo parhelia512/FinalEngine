@@ -16,7 +16,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IMouseDevice"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Input.Mouse.IMouseDevice"/>
+    /// <seealso cref="IMouseDevice"/>
     public class OpenTKMouseDevice : IMouseDevice
     {
         /// <summary>

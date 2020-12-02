@@ -11,7 +11,7 @@ namespace FinalEngine.Input.Mouse
     /// <summary>
     ///   Provides a standard implementation of an <see cref="IMouse"/>, that interfaces with an <see cref="IMouseDevice"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Input.Mouse.IMouse"/>
+    /// <seealso cref="IMouse"/>
     public class Mouse : IMouse
     {
         /// <summary>

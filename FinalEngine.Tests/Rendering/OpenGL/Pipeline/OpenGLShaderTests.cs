@@ -117,10 +117,12 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         public void ConstructorShouldThrowNotSupportedExceptionWhenShaderTypeIsNone()
         {
             // Arrange
+            Assert.IsFalse(Enum.IsDefined(typeof(PipelineTarget), int.MaxValue));
+
             var invoker = new Mock<IOpenGLInvoker>();
 
             // Act and assert
-            Assert.Throws<NotSupportedException>(() => new OpenGLShader(invoker.Object, PipelineTarget.None, "test"));
+            Assert.Throws<NotSupportedException>(() => new OpenGLShader(invoker.Object, (PipelineTarget)int.MaxValue, "test"));
         }
 
         [Test]

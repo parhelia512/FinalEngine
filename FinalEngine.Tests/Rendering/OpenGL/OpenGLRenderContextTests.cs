@@ -25,10 +25,24 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         private OpenGLRenderContext renderContext;
 
         [Test]
+        public void ConstructorShouldInvokeBindVertexArrayWhenParametersAreNotNull()
+        {
+            // Assert
+            this.invoker.Verify(x => x.BindVertexArray(10), Times.Once);
+        }
+
+        [Test]
         public void ConstructorShouldInvokeContextMakeCurrentWhenParametersAreNotNull()
         {
             // Assert
             this.context.Verify(x => x.MakeCurrent(), Times.Once);
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeGenVertexArrayWhenParametersAreNotNull()
+        {
+            // Assert
+            this.invoker.Verify(x => x.GenVertexArray(), Times.Once);
         }
 
         [Test]
@@ -66,11 +80,24 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(null, new Mock<IBindingsContext>().Object, new Mock<IGraphicsContext>().Object));
         }
 
+        [Test]
+        public void DisposeShouldInvokeDeleteVertexArrayWhenInvoked()
+        {
+            // Act
+            this.renderContext.Dispose();
+
+            // Assert
+            this.invoker.Verify(x => x.DeleteVertexArray(10), Times.Once);
+        }
+
         [SetUp]
         public void Setup()
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
+
+            this.invoker.Setup(x => x.GenVertexArray()).Returns(10);
+
             this.bindings = new Mock<IBindingsContext>();
             this.context = new Mock<IGraphicsContext>();
             this.renderContext = new OpenGLRenderContext(this.invoker.Object, this.bindings.Object, this.context.Object);
@@ -100,6 +127,12 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 
             // Assert
             this.context.Verify(x => x.SwapBuffers(), Times.Never);
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            this.renderContext.Dispose();
         }
     }
 }

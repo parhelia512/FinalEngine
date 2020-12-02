@@ -13,7 +13,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IOpenGLInvoker"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Rendering.OpenGL.Invocation.IOpenGLInvoker"/>
+    /// <seealso cref="IOpenGLInvoker"/>
     [ExcludeFromCodeCoverage]
     public class OpenGLInvoker : IOpenGLInvoker
     {
@@ -45,7 +45,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
             where T2 : struct
         {
-            GL.BufferData<T2>(target, size, data, usage);
+            GL.BufferData(target, size, data, usage);
         }
 
         /// <inheritdoc/>

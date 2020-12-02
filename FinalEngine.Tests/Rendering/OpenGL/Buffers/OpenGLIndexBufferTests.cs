@@ -28,6 +28,9 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [Test]
         public void BindShouldInvokeBindBufferIDWhenIndexBufferIsNotDisposed()
         {
+            // Arrange
+            this.invoker.Reset();
+
             // Act
             this.indexBuffer.Bind();
 

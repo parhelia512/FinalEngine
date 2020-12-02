@@ -9,7 +9,7 @@ namespace FinalEngine.Input.Keyboard
     /// <summary>
     ///   Provides event data for the <see cref="IKeyboardDevice.KeyUp"/> and <see cref="IKeyboardDevice.KeyDown"/> events.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public class KeyEventArgs : EventArgs
     {
         /// <summary>

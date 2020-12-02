@@ -10,7 +10,7 @@ namespace FinalEngine.Input.Mouse
     /// <summary>
     ///   Provides event data for the <see cref="IMouseDevice.Move"/> event.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public class MouseMoveEventArgs : EventArgs
     {
         /// <summary>

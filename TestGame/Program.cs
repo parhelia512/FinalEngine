@@ -4,12 +4,11 @@
 
 namespace TestGame
 {
-    //// TODO: Make sure that all OpenGL unit tests are checking whether the delete calls are being invoked inside their Dispose methods.
-
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
+    using System.Numerics;
     using System.Runtime.InteropServices;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
@@ -22,47 +21,12 @@ namespace TestGame
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
-    using OpenTK.Mathematics;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
 
-    [StructLayout(LayoutKind.Explicit)]
-    public struct Vertex
-    {
-        public static readonly int SizeInBytes = Marshal.SizeOf<Vertex>();
-
-        [FieldOffset(0)]
-        private Vector3 position;
-
-        [FieldOffset(12)]
-        private Vector4 color;
-
-        public Vertex(Vector3 position, Vector4 color)
-        {
-            this.position = position;
-            this.color = color;
-        }
-
-        public Vector3 Position
-        {
-            get { return this.position; }
-        }
-
-        public Vector4 Color
-        {
-            get { return this.color; }
-        }
-    }
-
-    /// <summary>
-    ///   The main program.
-    /// </summary>
     internal static class Program
     {
-        /// <summary>
-        ///   Defines the entry point of the application.
-        /// </summary>
         private static void Main()
         {
             var settings = new NativeWindowSettings()
@@ -78,7 +42,7 @@ namespace TestGame
                 WindowBorder = WindowBorder.Fixed,
                 WindowState = WindowState.Normal,
 
-                Size = new Vector2i(1024, 768),
+                Size = new OpenTK.Mathematics.Vector2i(1024, 768),
 
                 StartVisible = true,
             };

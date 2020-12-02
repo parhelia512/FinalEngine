@@ -13,6 +13,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
     using OpenTK.Graphics.OpenGL4;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLIndexBufferTests
     {
         private int[] data;

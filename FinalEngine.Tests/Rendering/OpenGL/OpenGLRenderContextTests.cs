@@ -14,6 +14,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using OpenTK.Windowing.Common;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLRenderContextTests
     {
         private Mock<IBindingsContext> bindings;

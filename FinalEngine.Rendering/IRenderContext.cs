@@ -4,7 +4,9 @@
 
 namespace FinalEngine.Rendering
 {
-    public interface IRenderContext
+    using System;
+
+    public interface IRenderContext : IDisposable
     {
         void SwapBuffers();
     }

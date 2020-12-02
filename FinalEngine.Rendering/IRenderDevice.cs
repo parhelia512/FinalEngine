@@ -21,6 +21,8 @@ namespace FinalEngine.Rendering
     {
         IGPUResourceFactory Factory { get; }
 
+        IInputAssembler InputAssembler { get; }
+
         IPipeline Pipeline { get; }
 
         IRasterizer Rasterizer { get; }

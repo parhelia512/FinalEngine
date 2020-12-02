@@ -30,6 +30,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void BindVertexArray(int array)
+        {
+            GL.BindVertexArray(array);
+        }
+
+        /// <inheritdoc/>
         public void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride)
         {
             GL.BindVertexBuffer(bindingindex, buffer, offset, stride);
@@ -109,6 +115,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DeleteVertexArray(int arrays)
+        {
+            GL.DeleteVertexArray(arrays);
+        }
+
+        /// <inheritdoc/>
         public void Disable(EnableCap cap)
         {
             GL.Disable(cap);
@@ -127,6 +139,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void EnableVertexAttribArray(int index)
+        {
+            GL.EnableVertexAttribArray(index);
+        }
+
+        /// <inheritdoc/>
         public void FrontFace(FrontFaceDirection mode)
         {
             GL.FrontFace(mode);
@@ -136,6 +154,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public int GenBuffer()
         {
             return GL.GenBuffer();
+        }
+
+        /// <inheritdoc/>
+        public int GenVertexArray()
+        {
+            return GL.GenVertexArray();
         }
 
         /// <inheritdoc/>
@@ -238,6 +262,18 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void ValidateProgram(int program)
         {
             GL.ValidateProgram(program);
+        }
+
+        /// <inheritdoc/>
+        public void VertexAttribBinding(int attribindex, int bindingindex)
+        {
+            GL.VertexAttribBinding(attribindex, bindingindex);
+        }
+
+        /// <inheritdoc/>
+        public void VertexAttribFormat(int attribindex, int size, VertexAttribType type, bool normalized, int relativeoffset)
+        {
+            GL.VertexAttribFormat(attribindex, size, type, normalized, relativeoffset);
         }
 
         /// <inheritdoc/>

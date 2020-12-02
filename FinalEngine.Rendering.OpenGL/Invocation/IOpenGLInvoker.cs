@@ -21,6 +21,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.BindBuffer(BufferTarget, int)"/>
         void BindBuffer(BufferTarget target, int buffer);
 
+        /// <inheritdoc cref="GL.BindVertexArray(int)"/>
+        void BindVertexArray(int array);
+
         /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
         void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
 
@@ -61,6 +64,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.DeleteShader(int)"/>
         void DeleteShader(int shader);
 
+        /// <inheritdoc cref="GL.DeleteVertexArray(int)"/>
+        void DeleteVertexArray(int arrays);
+
         /// <inheritdoc cref="GL.Disable(EnableCap)"/>
         void Disable(EnableCap cap);
 
@@ -78,6 +84,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.GenBuffer"/>
         int GenBuffer();
+
+        /// <inheritdoc cref="GL.GenVertexArray"/>
+        int GenVertexArray();
 
         /// <inheritdoc cref="GL.GetProgramInfoLog(int)"/>
         string GetProgramInfoLog(int program);

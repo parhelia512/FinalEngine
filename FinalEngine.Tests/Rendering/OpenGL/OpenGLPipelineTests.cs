@@ -604,6 +604,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.pipeline = new OpenGLPipeline(this.invoker.Object);
         }

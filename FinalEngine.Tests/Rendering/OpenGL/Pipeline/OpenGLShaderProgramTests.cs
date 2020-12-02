@@ -75,6 +75,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         }
 
         [Test]
+        public void ConstructorShouldThrowArgumentNullExceptionWhenShadersIsNull()
+        {
+            // Arrange, act and assert
+            Assert.Throws<ArgumentNullException>(() => new OpenGLShaderProgram(new Mock<IOpenGLInvoker>().Object, null));
+        }
+
+        [Test]
         public void ConstructorShouldThrowExceptionWhenGetProgramInfoLogReturnsString()
         {
             // Arrange
@@ -83,13 +90,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
 
             // Act and assert
             Assert.Throws<Exception>(() => new OpenGLShaderProgram(invoker.Object, this.shaders));
-        }
-
-        [Test]
-        public void ConstruxtorShouldThrowArgumentNullExceptionWhenShadersIsNull()
-        {
-            // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLShaderProgram(new Mock<IOpenGLInvoker>().Object, null));
         }
 
         [Test]
@@ -151,6 +151,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
 
             this.shader = new Mock<IOpenGLShader>();

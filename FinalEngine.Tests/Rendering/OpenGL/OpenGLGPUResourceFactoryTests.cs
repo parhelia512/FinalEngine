@@ -2,7 +2,7 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
+namespace FinalEngine.Tests.Rendering.OpenGL
 {
     using System;
     using System.Collections.Generic;
@@ -99,6 +99,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.factory = new OpenGLGPUResourceFactory(this.invoker.Object);
         }

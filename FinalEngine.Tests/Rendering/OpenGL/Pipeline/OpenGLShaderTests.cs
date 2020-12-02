@@ -146,6 +146,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.shader = new OpenGLShader(this.invoker.Object, PipelineTarget.Vertex, "test");
         }

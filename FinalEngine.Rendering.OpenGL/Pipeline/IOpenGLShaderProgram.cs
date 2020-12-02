@@ -4,7 +4,9 @@
 
 namespace FinalEngine.Rendering.OpenGL.Pipeline
 {
-    public interface IOpenGLShaderProgram
+    using FinalEngine.Rendering.Pipeline;
+
+    public interface IOpenGLShaderProgram : IShaderProgram
     {
         void Bind();
 

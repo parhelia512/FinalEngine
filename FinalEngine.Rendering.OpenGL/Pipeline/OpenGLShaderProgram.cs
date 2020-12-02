@@ -8,9 +8,8 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.OpenGL.Invocation;
-    using FinalEngine.Rendering.Pipeline;
 
-    public class OpenGLShaderProgram : IShaderProgram, IOpenGLShaderProgram
+    public class OpenGLShaderProgram : IOpenGLShaderProgram
     {
         private readonly IOpenGLInvoker invoker;
 
@@ -73,6 +72,11 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         public int GetUniformLocation(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
             return this.invoker.GetUniformLocation(this.id, name);
         }
 

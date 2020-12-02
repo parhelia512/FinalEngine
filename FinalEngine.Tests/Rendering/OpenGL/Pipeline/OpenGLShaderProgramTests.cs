@@ -102,6 +102,52 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
             this.invoker.Verify(x => x.DeleteProgram(0), Times.Once);
         }
 
+        [Test]
+        public void GetUniformLocationShouldInvokeGetUniformLocationWhenNameIsNotNull()
+        {
+            // Act
+            this.program.GetUniformLocation("test");
+
+            // Assert
+            this.invoker.Verify(x => x.GetUniformLocation(0, "test"), Times.Once);
+        }
+
+        [Test]
+        public void GetUniformLocationShouldReturnSameAsInvokerGetUniformLocationWhenInvoked()
+        {
+            // Arrange
+            const int Expected = 12;
+
+            this.invoker.Setup(x => x.GetUniformLocation(0, It.IsAny<string>())).Returns(Expected);
+
+            // Act
+            int actual = this.program.GetUniformLocation("test");
+
+            // Assert
+            Assert.AreEqual(Expected, actual);
+        }
+
+        [Test]
+        public void GetUniformLocationShouldThrowArgumentNullExceptionWhenNameIsEmpty()
+        {
+            // Act and assert
+            Assert.Throws<ArgumentNullException>(() => this.program.GetUniformLocation(string.Empty));
+        }
+
+        [Test]
+        public void GetUniformLocationShouldThrowArgumentNullExceptionWhenNameIsNull()
+        {
+            // Act and assert
+            Assert.Throws<ArgumentNullException>(() => this.program.GetUniformLocation(null));
+        }
+
+        [Test]
+        public void GetUniformLocationShouldThrowArgumentNullExceptionWhenNameIsWhitespace()
+        {
+            // Act and assert
+            Assert.Throws<ArgumentNullException>(() => this.program.GetUniformLocation("\t\r\n"));
+        }
+
         [SetUp]
         public void Setup()
         {

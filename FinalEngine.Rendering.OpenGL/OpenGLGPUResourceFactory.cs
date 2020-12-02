@@ -37,18 +37,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(shaders));
             }
 
-            IEnumerable<IOpenGLShader> casted;
-
-            try
-            {
-                casted = shaders.Cast<IOpenGLShader>();
-            }
-            catch (InvalidCastException)
-            {
-                throw new ArgumentException($"The specified {nameof(shaders)} parameter contains an item in the array that does not implement {nameof(IOpenGLShader)}.");
-            }
-
-            return new OpenGLShaderProgram(this.invoker, casted);
+            return new OpenGLShaderProgram(this.invoker, shaders.Cast<IOpenGLShader>());
         }
     }
 }

@@ -27,6 +27,8 @@ namespace FinalEngine.Rendering.OpenGL
             {
                 this.boundProgram = null;
                 this.invoker.UseProgram(0);
+
+                return;
             }
 
             if (program is not IOpenGLShaderProgram glProgram)

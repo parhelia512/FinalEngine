@@ -11,6 +11,14 @@ namespace FinalEngine.Tests.Rendering.Buffers
     [ExcludeFromCodeCoverage]
     public class InputElementTests
     {
+        private const int Index = 234;
+
+        private const int RelativeOffset = 304;
+
+        private const int Size = 432;
+
+        private const InputElementType Type = InputElementType.Float;
+
         private InputElement element;
 
         [Test]
@@ -20,7 +28,7 @@ namespace FinalEngine.Tests.Rendering.Buffers
             int actual = this.element.Index;
 
             // Assert
-            Assert.AreEqual(234, actual);
+            Assert.AreEqual(Index, actual);
         }
 
         [Test]
@@ -30,7 +38,7 @@ namespace FinalEngine.Tests.Rendering.Buffers
             int actual = this.element.RelativeOffset;
 
             // Assert
-            Assert.AreEqual(304, actual);
+            Assert.AreEqual(RelativeOffset, actual);
         }
 
         [Test]
@@ -40,7 +48,7 @@ namespace FinalEngine.Tests.Rendering.Buffers
             int actual = this.element.Size;
 
             // Assert
-            Assert.AreEqual(432, actual);
+            Assert.AreEqual(Size, actual);
         }
 
         [Test]
@@ -50,14 +58,14 @@ namespace FinalEngine.Tests.Rendering.Buffers
             InputElementType actual = this.element.Type;
 
             // Assert
-            Assert.AreEqual(InputElementType.Float, actual);
+            Assert.AreEqual(Type, actual);
         }
 
         [SetUp]
         public void Setup()
         {
             // Arrange
-            this.element = new InputElement(234, 432, InputElementType.Float, 304);
+            this.element = new InputElement(Index, Size, Type, RelativeOffset);
         }
     }
 }

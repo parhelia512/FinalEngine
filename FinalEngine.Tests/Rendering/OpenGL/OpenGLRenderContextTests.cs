@@ -17,6 +17,8 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLRenderContextTests
     {
+        private const int ID = 10;
+
         private Mock<IBindingsContext> bindings;
 
         private Mock<IGraphicsContext> context;
@@ -29,7 +31,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void ConstructorShouldInvokeBindVertexArrayWhenParametersAreNotNull()
         {
             // Assert
-            this.invoker.Verify(x => x.BindVertexArray(10), Times.Once);
+            this.invoker.Verify(x => x.BindVertexArray(ID), Times.Once);
         }
 
         [Test]
@@ -97,7 +99,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
 
-            this.invoker.Setup(x => x.GenVertexArray()).Returns(10);
+            this.invoker.Setup(x => x.GenVertexArray()).Returns(ID);
 
             this.bindings = new Mock<IBindingsContext>();
             this.context = new Mock<IGraphicsContext>();

@@ -18,7 +18,14 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
     [ExcludeFromCodeCoverage]
     public class OpenGLInputLayoutTests
     {
-        private List<InputElement> elements;
+        private readonly List<InputElement> elements = new List<InputElement>()
+        {
+            new InputElement(0, 3, InputElementType.Float, 0),
+            new InputElement(1, 4, InputElementType.Byte, 12),
+            new InputElement(2, 3, InputElementType.Short, 28),
+            new InputElement(3, 3, InputElementType.Double, 22),
+            new InputElement(4, 5, InputElementType.Int, 121),
+        };
 
         private OpenGLInputLayout inputLayout;
 
@@ -98,16 +105,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
-
-            this.elements = new List<InputElement>()
-            {
-                new InputElement(0, 3, InputElementType.Float, 0),
-                new InputElement(1, 4, InputElementType.Byte, 12),
-                new InputElement(2, 3, InputElementType.Short, 28),
-                new InputElement(3, 3, InputElementType.Double, 22),
-                new InputElement(4, 5, InputElementType.Int, 121),
-            };
-
             this.inputLayout = new OpenGLInputLayout(this.invoker.Object, this.elements);
         }
     }

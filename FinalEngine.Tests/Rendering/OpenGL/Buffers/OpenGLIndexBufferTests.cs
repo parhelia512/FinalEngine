@@ -16,15 +16,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLIndexBufferTests
     {
-        private int[] data;
+        private const int ID = 306;
 
-        private int id;
+        private readonly int[] data = { 3, 5, 7, 1, 3, 6, 7, 1, 5, 3, };
 
         private OpenGLIndexBuffer<int> indexBuffer;
 
         private Mock<IOpenGLInvoker> invoker;
-
-        private int length;
 
         [Test]
         public void BindShouldInvokeBindBufferIDWhenIndexBufferIsNotDisposed()
@@ -36,7 +34,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             this.indexBuffer.Bind();
 
             // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, this.id), Times.Once);
+            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, ID), Times.Once);
         }
 
         [Test]
@@ -53,7 +51,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         public void ConstructorShouldInvokeBindBufferIDWhenParametersAreNotNull()
         {
             // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, this.id), Times.Once);
+            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, ID), Times.Once);
         }
 
         [Test]
@@ -91,7 +89,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             this.indexBuffer.Dispose();
 
             // Assert
-            this.invoker.Verify(x => x.DeleteBuffer(this.id), Times.Once);
+            this.invoker.Verify(x => x.DeleteBuffer(ID), Times.Once);
         }
 
         [Test]
@@ -101,24 +99,15 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             int actual = this.indexBuffer.Length;
 
             // Assert
-            Assert.AreEqual(this.length, actual);
+            Assert.AreEqual(this.data.Length, actual);
         }
 
         [SetUp]
         public void Setup()
         {
             // Arrange
-            this.id = 306;
-
             this.invoker = new Mock<IOpenGLInvoker>();
-            this.invoker.Setup(x => x.GenBuffer()).Returns(this.id);
-
-            this.data = new int[]
-            {
-                3, 5, 7, 1, 3, 6, 7, 1, 5, 3,
-            };
-
-            this.length = this.data.Length;
+            this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
 
             this.indexBuffer = new OpenGLIndexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int));
         }

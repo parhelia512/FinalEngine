@@ -16,9 +16,11 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLVertexBufferTests
     {
-        private int[] data;
+        private const int ID = 42;
 
-        private int id;
+        private const int Stride = 32;
+
+        private readonly int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, };
 
         private Mock<IOpenGLInvoker> invoker;
 
@@ -31,7 +33,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             this.vertexBuffer.Bind();
 
             // Assert
-            this.invoker.Verify(x => x.BindVertexBuffer(0, this.id, IntPtr.Zero, this.vertexBuffer.Stride), Times.Once);
+            this.invoker.Verify(x => x.BindVertexBuffer(0, ID, IntPtr.Zero, this.vertexBuffer.Stride), Times.Once);
         }
 
         [Test]
@@ -48,7 +50,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         public void ConstructorShouldInvokeBindBufferIDWhenParametersAreNotNull()
         {
             // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, this.id), Times.Once);
+            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, ID), Times.Once);
         }
 
         [Test]
@@ -93,24 +95,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             this.vertexBuffer.Dispose();
 
             // Assert
-            this.invoker.Verify(x => x.DeleteBuffer(this.id), Times.Once);
+            this.invoker.Verify(x => x.DeleteBuffer(ID), Times.Once);
         }
 
         [SetUp]
         public void Setup()
         {
-            // Arrange
-            this.id = 42;
-
             this.invoker = new Mock<IOpenGLInvoker>();
-            this.invoker.Setup(x => x.GenBuffer()).Returns(this.id);
+            this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
 
-            this.data = new int[]
-            {
-                0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-            };
-
-            this.vertexBuffer = new OpenGLVertexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int), 1);
+            this.vertexBuffer = new OpenGLVertexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int), Stride);
         }
 
         [Test]
@@ -120,7 +114,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             int actual = this.vertexBuffer.Stride;
 
             // Assert
-            Assert.AreEqual(1, actual);
+            Assert.AreEqual(Stride, actual);
         }
 
         [TearDown]

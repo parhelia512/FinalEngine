@@ -45,7 +45,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetInputLayoutShouldInvokeBindWhenBufferIsOpenGLInputLayout()
+        public void SetInputLayoutShouldInvokeBindWhenLayoutIsOpenGLInputLayout()
         {
             // Arrange
             var layout = new Mock<IOpenGLInputLayout>();
@@ -88,6 +88,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.inputAssembler = new OpenGLInputAssembler();
         }
 

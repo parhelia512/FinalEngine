@@ -55,7 +55,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             IInputLayout actual = this.factory.CreateInputLayout(Enumerable.Empty<InputElement>());
 
             // Assert
-            Assert.IsNotInstanceOf(typeof(InputElement), actual);
+            Assert.IsInstanceOf(typeof(OpenGLInputLayout), actual);
         }
 
         [Test]

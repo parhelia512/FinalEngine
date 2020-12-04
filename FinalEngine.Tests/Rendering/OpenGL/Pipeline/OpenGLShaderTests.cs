@@ -114,7 +114,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         }
 
         [Test]
-        public void ConstructorShouldThrowNotSupportedExceptionWhenShaderTypeIsNone()
+        public void ConstructorShouldThrowNotSupportedExceptionWhenShaderTypeIsNotDefined()
         {
             // Arrange
             Assert.IsFalse(Enum.IsDefined(typeof(PipelineTarget), int.MaxValue));

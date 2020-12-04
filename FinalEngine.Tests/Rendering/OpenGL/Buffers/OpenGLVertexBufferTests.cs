@@ -99,6 +99,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.id = 42;
 
             this.invoker = new Mock<IOpenGLInvoker>();

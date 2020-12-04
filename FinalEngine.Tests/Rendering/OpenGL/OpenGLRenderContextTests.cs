@@ -47,7 +47,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void ConstructorShouldInvokeInvokeLoadBindingsWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeLoadBindingsWhenParametersAreNotNull()
         {
             // Assert
             this.invoker.Verify(x => x.LoadBindings(this.bindings.Object), Times.Once);

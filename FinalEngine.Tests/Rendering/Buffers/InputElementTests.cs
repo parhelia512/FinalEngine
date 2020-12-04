@@ -4,9 +4,11 @@
 
 namespace FinalEngine.Tests.Rendering.Buffers
 {
+    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.Buffers;
     using NUnit.Framework;
 
+    [ExcludeFromCodeCoverage]
     public class InputElementTests
     {
         private InputElement element;
@@ -54,6 +56,7 @@ namespace FinalEngine.Tests.Rendering.Buffers
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.element = new InputElement(234, 432, InputElementType.Float, 304);
         }
     }

@@ -78,7 +78,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsnull()
+        public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
             Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(null, Array.Empty<int>(), 0));
@@ -107,6 +107,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.id = 306;
 
             this.invoker = new Mock<IOpenGLInvoker>();

@@ -16,8 +16,8 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
 
         public OpenGLInputLayout(IOpenGLInvoker invoker, IEnumerable<InputElement> elements)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
-            this.Elements = elements ?? throw new ArgumentNullException(nameof(elements));
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+            this.Elements = elements ?? throw new ArgumentNullException(nameof(elements), $"The specified {nameof(elements)} parameter cannot be null.");
         }
 
         public IEnumerable<InputElement> Elements { get; }

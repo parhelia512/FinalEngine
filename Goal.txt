@@ -3,7 +3,7 @@
 - Rendering
   - Render Context
   - Render Device
-    - Input Assembler
+    - Input Assembler :)
     - Rasterizer :)
     - Pipeline :)
     - Output Merger
@@ -11,7 +11,7 @@
       - Render Target 2D
       - Texture 2D
       - Vertex Buffer :)
-      - Input Layout
+      - Input Layout :)
       - Shader :)
       - Shader Program :)
   - Mesh

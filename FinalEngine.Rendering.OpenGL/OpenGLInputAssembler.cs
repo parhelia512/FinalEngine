@@ -16,7 +16,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer));
+                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
             }
 
             if (buffer is not IOpenGLIndexBuffer glIndexBuffer)
@@ -31,7 +31,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (layout == null)
             {
-                throw new ArgumentNullException(nameof(layout));
+                throw new ArgumentNullException(nameof(layout), $"The specified {nameof(layout)} parameter cannot be null.");
             }
 
             if (layout is not IOpenGLInputLayout glInputLayout)
@@ -49,7 +49,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer));
+                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
             }
 
             if (buffer is not IOpenGLVertexBuffer glVertexBuffer)

@@ -10,7 +10,7 @@ namespace FinalEngine.Input.Keyboard
     /// <summary>
     ///   Provides a standard implementation of an <see cref="IKeyboard"/>, that interfaces with an <see cref="IKeyboardDevice"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Input.Keyboard.IKeyboard"/>
+    /// <seealso cref="IKeyboard"/>
     public class Keyboard : IKeyboard
     {
         /// <summary>

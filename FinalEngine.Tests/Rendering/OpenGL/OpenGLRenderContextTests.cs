@@ -14,8 +14,11 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using OpenTK.Windowing.Common;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLRenderContextTests
     {
+        private const int ID = 10;
+
         private Mock<IBindingsContext> bindings;
 
         private Mock<IGraphicsContext> context;
@@ -25,6 +28,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         private OpenGLRenderContext renderContext;
 
         [Test]
+        public void ConstructorShouldInvokeBindVertexArrayWhenParametersAreNotNull()
+        {
+            // Assert
+            this.invoker.Verify(x => x.BindVertexArray(ID), Times.Once);
+        }
+
+        [Test]
         public void ConstructorShouldInvokeContextMakeCurrentWhenParametersAreNotNull()
         {
             // Assert
@@ -32,7 +42,14 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void ConstructorShouldInvokeInvokeLoadBindingsWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeGenVertexArrayWhenParametersAreNotNull()
+        {
+            // Assert
+            this.invoker.Verify(x => x.GenVertexArray(), Times.Once);
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeLoadBindingsWhenParametersAreNotNull()
         {
             // Assert
             this.invoker.Verify(x => x.LoadBindings(this.bindings.Object), Times.Once);
@@ -66,11 +83,24 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(null, new Mock<IBindingsContext>().Object, new Mock<IGraphicsContext>().Object));
         }
 
+        [Test]
+        public void DisposeShouldInvokeDeleteVertexArrayWhenInvoked()
+        {
+            // Act
+            this.renderContext.Dispose();
+
+            // Assert
+            this.invoker.Verify(x => x.DeleteVertexArray(10), Times.Once);
+        }
+
         [SetUp]
         public void Setup()
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
+
+            this.invoker.Setup(x => x.GenVertexArray()).Returns(ID);
+
             this.bindings = new Mock<IBindingsContext>();
             this.context = new Mock<IGraphicsContext>();
             this.renderContext = new OpenGLRenderContext(this.invoker.Object, this.bindings.Object, this.context.Object);
@@ -100,6 +130,12 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 
             // Assert
             this.context.Verify(x => x.SwapBuffers(), Times.Never);
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            this.renderContext.Dispose();
         }
     }
 }

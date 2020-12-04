@@ -13,12 +13,13 @@ namespace FinalEngine.Rendering.OpenGL
     {
         private readonly IGraphicsContext context;
 
+        private readonly IOpenGLInvoker invoker;
+
+        private int vao;
+
         public OpenGLRenderContext(IOpenGLInvoker invoker, IBindingsContext bindings, IGraphicsContext context)
         {
-            if (invoker == null)
-            {
-                throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
-            }
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
             if (bindings == null)
             {
@@ -29,6 +30,22 @@ namespace FinalEngine.Rendering.OpenGL
 
             context.MakeCurrent();
             invoker.LoadBindings(bindings);
+
+            this.vao = invoker.GenVertexArray();
+            invoker.BindVertexArray(this.vao);
+        }
+
+        ~OpenGLRenderContext()
+        {
+            this.Dispose(false);
+        }
+
+        protected bool IsDisposed { get; private set; }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public void SwapBuffers()
@@ -39,6 +56,22 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             this.context.SwapBuffers();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            if (disposing && this.vao != -1)
+            {
+                this.invoker.DeleteVertexArray(this.vao);
+                this.vao = -1;
+            }
+
+            this.IsDisposed = true;
         }
     }
 }

@@ -5,14 +5,13 @@
 namespace FinalEngine.Platform.Desktop.OpenTK
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
 
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IWindow"/> and <see cref="IEventsProcessor"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Platform.IWindow"/>
-    /// <seealso cref="FinalEngine.Platform.IEventsProcessor"/>
+    /// <seealso cref="IWindow"/>
+    /// <seealso cref="IEventsProcessor"/>
     public class OpenTKWindow : IWindow, IEventsProcessor
     {
         /// <summary>
@@ -26,7 +25,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// <param name="nativeWindow">
         ///   Specifies a <see cref="INativeWindowInvoker"/> that represents the underlying native window to be used.
         /// </param>
-        /// <exception cref="System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="nativeWindow"/> parameter is null.
         /// </exception>
         public OpenTKWindow(INativeWindowInvoker nativeWindow)
@@ -37,7 +36,6 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// <summary>
         ///   Finalizes an instance of the <see cref="OpenTKWindow"/> class.
         /// </summary>
-        [ExcludeFromCodeCoverage]
         ~OpenTKWindow()
         {
             this.Dispose(false);
@@ -50,7 +48,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ObjectDisposedException">
+        /// <exception cref="ObjectDisposedException">
         ///   The underlying native window is dispsoed.
         /// </exception>
         public string Title
@@ -72,7 +70,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ObjectDisposedException">
+        /// <exception cref="ObjectDisposedException">
         ///   The underlying native window is dispsoed.
         /// </exception>
         public bool Visible
@@ -102,7 +100,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         protected bool IsDisposed { get; private set; }
 
         /// <inheritdoc/>
-        /// <exception cref="System.ObjectDisposedException">
+        /// <exception cref="ObjectDisposedException">
         ///   The underlying native window is dispsoed.
         /// </exception>
         public void Close()
@@ -126,7 +124,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// <remarks>
         ///   This method is not thread safe and should only be executed on the main thread.
         /// </remarks>
-        /// <exception cref="System.ObjectDisposedException">
+        /// <exception cref="ObjectDisposedException">
         ///   The underlying native window is dispsoed.
         /// </exception>
         public void ProcessEvents()
@@ -145,7 +143,6 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         /// <param name="disposing">
         ///   <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
         /// </param>
-        [ExcludeFromCodeCoverage]
         protected virtual void Dispose(bool disposing)
         {
             if (this.IsDisposed)

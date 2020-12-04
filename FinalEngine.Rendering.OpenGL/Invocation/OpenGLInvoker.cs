@@ -4,6 +4,7 @@
 
 namespace FinalEngine.Rendering.OpenGL.Invocation
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using OpenTK;
@@ -12,7 +13,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     /// <summary>
     ///   Provides an OpenTK implementation of an <see cref="IOpenGLInvoker"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.Rendering.OpenGL.Invocation.IOpenGLInvoker"/>
+    /// <seealso cref="IOpenGLInvoker"/>
     [ExcludeFromCodeCoverage]
     public class OpenGLInvoker : IOpenGLInvoker
     {
@@ -20,6 +21,31 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void AttachShader(int program, int shader)
         {
             GL.AttachShader(program, shader);
+        }
+
+        /// <inheritdoc/>
+        public void BindBuffer(BufferTarget target, int buffer)
+        {
+            GL.BindBuffer(target, buffer);
+        }
+
+        /// <inheritdoc/>
+        public void BindVertexArray(int array)
+        {
+            GL.BindVertexArray(array);
+        }
+
+        /// <inheritdoc/>
+        public void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride)
+        {
+            GL.BindVertexBuffer(bindingindex, buffer, offset, stride);
+        }
+
+        /// <inheritdoc/>
+        public void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct
+        {
+            GL.BufferData(target, size, data, usage);
         }
 
         /// <inheritdoc/>
@@ -71,6 +97,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DeleteBuffer(int buffers)
+        {
+            GL.DeleteBuffer(buffers);
+        }
+
+        /// <inheritdoc/>
         public void DeleteProgram(int program)
         {
             GL.DeleteProgram(program);
@@ -83,9 +115,21 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DeleteVertexArray(int arrays)
+        {
+            GL.DeleteVertexArray(arrays);
+        }
+
+        /// <inheritdoc/>
         public void Disable(EnableCap cap)
         {
             GL.Disable(cap);
+        }
+
+        /// <inheritdoc/>
+        public void DisableVertexAttribArray(int index)
+        {
+            GL.DisableVertexAttribArray(index);
         }
 
         /// <inheritdoc/>
@@ -101,9 +145,27 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void EnableVertexAttribArray(int index)
+        {
+            GL.EnableVertexAttribArray(index);
+        }
+
+        /// <inheritdoc/>
         public void FrontFace(FrontFaceDirection mode)
         {
             GL.FrontFace(mode);
+        }
+
+        /// <inheritdoc/>
+        public int GenBuffer()
+        {
+            return GL.GenBuffer();
+        }
+
+        /// <inheritdoc/>
+        public int GenVertexArray()
+        {
+            return GL.GenVertexArray();
         }
 
         /// <inheritdoc/>
@@ -206,6 +268,18 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void ValidateProgram(int program)
         {
             GL.ValidateProgram(program);
+        }
+
+        /// <inheritdoc/>
+        public void VertexAttribBinding(int attribindex, int bindingindex)
+        {
+            GL.VertexAttribBinding(attribindex, bindingindex);
+        }
+
+        /// <inheritdoc/>
+        public void VertexAttribFormat(int attribindex, int size, VertexAttribType type, bool normalized, int relativeoffset)
+        {
+            GL.VertexAttribFormat(attribindex, size, type, normalized, relativeoffset);
         }
 
         /// <inheritdoc/>

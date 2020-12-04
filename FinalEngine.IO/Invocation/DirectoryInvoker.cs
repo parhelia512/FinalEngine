@@ -10,7 +10,7 @@ namespace FinalEngine.IO.Invocation
     /// <summary>
     ///   Provides an implementation of an <see cref="IDirectoryInvoker"/>.
     /// </summary>
-    /// <seealso cref="FinalEngine.IO.Invocation.IDirectoryInvoker"/>
+    /// <seealso cref="IDirectoryInvoker"/>
     [ExcludeFromCodeCoverage]
     public class DirectoryInvoker : IDirectoryInvoker
     {

@@ -9,7 +9,7 @@ namespace FinalEngine.Platform
     /// <summary>
     ///   Defines an interface that represents a display or window.
     /// </summary>
-    /// <seealso cref="System.IDisposable"/>
+    /// <seealso cref="IDisposable"/>
     public interface IWindow : IDisposable
     {
         /// <summary>

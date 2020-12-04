@@ -9,7 +9,7 @@ namespace FinalEngine.Input.Mouse
     /// <summary>
     ///   Provides event data for the <see cref="IMouseDevice.ButtonUp"/> and <see cref="IMouseDevice.ButtonDown"/> events.
     /// </summary>
-    /// <seealso cref="System.EventArgs"/>
+    /// <seealso cref="EventArgs"/>
     public class MouseButtonEventArgs : EventArgs
     {
         /// <summary>

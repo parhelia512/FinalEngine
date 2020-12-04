@@ -4,6 +4,7 @@
 
 namespace FinalEngine.Rendering.OpenGL.Invocation
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using OpenTK;
@@ -16,6 +17,19 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     {
         /// <inheritdoc cref="GL.AttachShader(int, int)"/>
         void AttachShader(int program, int shader);
+
+        /// <inheritdoc cref="GL.BindBuffer(BufferTarget, int)"/>
+        void BindBuffer(BufferTarget target, int buffer);
+
+        /// <inheritdoc cref="GL.BindVertexArray(int)"/>
+        void BindVertexArray(int array);
+
+        /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
+        void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
+
+        /// <inheritdoc cref="GL.BufferData{T2}(BufferTarget, int, T2[], BufferUsageHint)"/>
+        void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct;
 
         /// <inheritdoc cref="GL.Clear(ClearBufferMask)"/>
         void Clear(ClearBufferMask mask);
@@ -41,14 +55,23 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.CullFace(CullFaceMode)"/>
         void CullFace(CullFaceMode mode);
 
+        /// <inheritdoc cref="GL.DeleteBuffer(int)"/>
+        void DeleteBuffer(int buffers);
+
         /// <inheritdoc cref="GL.DeleteProgram(int)"/>
         void DeleteProgram(int program);
 
         /// <inheritdoc cref="GL.DeleteShader(int)"/>
         void DeleteShader(int shader);
 
+        /// <inheritdoc cref="GL.DeleteVertexArray(int)"/>
+        void DeleteVertexArray(int arrays);
+
         /// <inheritdoc cref="GL.Disable(EnableCap)"/>
         void Disable(EnableCap cap);
+
+        /// <inheritdoc cref="GL.DisableVertexAttribArray(int)"/>
+        void DisableVertexAttribArray(int index);
 
         /// <inheritdoc cref="GL.DrawElements(PrimitiveType, int, DrawElementsType, int)"/>
         void DrawElements(PrimitiveType mode, int count, DrawElementsType type, int indices);
@@ -56,8 +79,17 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.Enable(EnableCap)"/>
         void Enable(EnableCap cap);
 
+        /// <inheritdoc cref="GL.EnableVertexAttribArray(int)"/>
+        void EnableVertexAttribArray(int index);
+
         /// <inheritdoc cref="GL.FrontFace(FrontFaceDirection)"/>
         void FrontFace(FrontFaceDirection mode);
+
+        /// <inheritdoc cref="GL.GenBuffer"/>
+        int GenBuffer();
+
+        /// <inheritdoc cref="GL.GenVertexArray"/>
+        int GenVertexArray();
 
         /// <inheritdoc cref="GL.GetProgramInfoLog(int)"/>
         string GetProgramInfoLog(int program);
@@ -111,6 +143,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.ValidateProgram(int)"/>
         void ValidateProgram(int program);
+
+        /// <inheritdoc cref="GL.VertexAttribBinding(int, int)"/>
+        void VertexAttribBinding(int attribindex, int bindingindex);
+
+        /// <inheritdoc cref="GL.VertexAttribFormat(int, int, VertexAttribType, bool, int)"/>
+        void VertexAttribFormat(int attribindex, int size, VertexAttribType type, bool normalized, int relativeoffset);
 
         /// <inheritdoc cref="GL.Viewport(Rectangle)"/>
         void Viewport(Rectangle rectangle);

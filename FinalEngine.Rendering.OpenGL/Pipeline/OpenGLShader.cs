@@ -5,7 +5,6 @@
 namespace FinalEngine.Rendering.OpenGL.Pipeline
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
     using OpenTK.Graphics.OpenGL4;
@@ -56,7 +55,6 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
             }
         }
 
-        [ExcludeFromCodeCoverage]
         ~OpenGLShader()
         {
             this.Dispose(false);

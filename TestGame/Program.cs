@@ -8,6 +8,8 @@ namespace TestGame
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
+    using System.Numerics;
+    using System.Runtime.InteropServices;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.IO;
@@ -15,23 +17,16 @@ namespace TestGame
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using FinalEngine.Rendering;
+    using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
-    using OpenTK.Graphics.OpenGL4;
-    using OpenTK.Mathematics;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
 
-    /// <summary>
-    ///   The main program.
-    /// </summary>
     internal static class Program
     {
-        /// <summary>
-        ///   Defines the entry point of the application.
-        /// </summary>
         private static void Main()
         {
             var settings = new NativeWindowSettings()
@@ -47,7 +42,7 @@ namespace TestGame
                 WindowBorder = WindowBorder.Fixed,
                 WindowState = WindowState.Normal,
 
-                Size = new Vector2i(1024, 768),
+                Size = new OpenTK.Mathematics.Vector2i(1024, 768),
 
                 StartVisible = true,
             };
@@ -74,6 +69,8 @@ namespace TestGame
 
             IRasterizer rasterizer = renderDevice.Rasterizer;
             IPipeline pipeline = renderDevice.Pipeline;
+            IInputAssembler inputAssembler = renderDevice.InputAssembler;
+
             IGPUResourceFactory factory = renderDevice.Factory;
 
             rasterizer.SetRasterState(default);
@@ -87,11 +84,18 @@ namespace TestGame
             IShaderProgram program = factory.CreateShaderProgram(shaders);
             pipeline.SetShaderProgram(program);
 
-            float[] vertices =
+            Vertex[] vertices =
             {
-                -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-                0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-                0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+                new Vertex(new Vector3(-0.9f, -0.5f, 0.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)),
+                new Vertex(new Vector3(-0.0f, -0.5f, 0.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f)),
+                new Vertex(new Vector3(-0.45f, 0.5f, 0.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f)),
+            };
+
+            Vertex[] vertices2 =
+            {
+                new Vertex(new Vector3(0.0f, -0.5f, 0.0f), new Vector4(1.0f, 1.0f, 0.0f, 1.0f)),
+                new Vertex(new Vector3(0.9f, -0.5f, 0.0f), new Vector4(0.0f, 1.0f, 1.0f, 1.0f)),
+                new Vertex(new Vector3(0.45f, 0.5f, 0.0f), new Vector4(1.0f, 0.0f, 1.0f, 1.0f)),
             };
 
             int[] indices =
@@ -99,23 +103,20 @@ namespace TestGame
                 0, 1, 2,
             };
 
-            int vao = GL.GenVertexArray();
-            int vbo = GL.GenBuffer();
-            int ebo = GL.GenBuffer();
+            var inputElements = new List<InputElement>()
+            {
+                new InputElement(0, 3, InputElementType.Float, Marshal.OffsetOf<Vertex>("position").ToInt32()),
+                new InputElement(1, 4, InputElementType.Float, Marshal.OffsetOf<Vertex>("color").ToInt32()),
+            };
 
-            GL.BindVertexArray(vao);
+            IInputLayout inputLayout = factory.CreateInputLayout(inputElements);
+            inputAssembler.SetInputLayout(inputLayout);
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
+            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(vertices, vertices.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
+            IVertexBuffer vertexBuffer2 = factory.CreateVertexBuffer(vertices2, vertices2.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
 
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 7 * sizeof(float), 0);
-            GL.EnableVertexAttribArray(0);
-
-            GL.VertexAttribPointer(1, 4, VertexAttribPointerType.Float, false, 7 * sizeof(float), 3 * sizeof(float));
-            GL.EnableVertexAttribArray(1);
-
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ebo);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices, BufferUsageHint.StaticDraw);
+            IIndexBuffer indexBuffer = factory.CreateIndexBuffer(indices, indices.Length * sizeof(int));
+            inputAssembler.SetIndexBuffer(indexBuffer);
 
             while (!window.IsExiting)
             {
@@ -123,15 +124,16 @@ namespace TestGame
                 mouse.Update();
 
                 renderDevice.Clear(Color.Black);
+
+                inputAssembler.SetVertexBuffer(vertexBuffer);
+                renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
+
+                inputAssembler.SetVertexBuffer(vertexBuffer2);
                 renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
 
                 renderContext.SwapBuffers();
                 window.ProcessEvents();
             }
-
-            GL.DeleteBuffer(ebo);
-            GL.DeleteBuffer(vbo);
-            GL.DeleteBuffer(vao);
 
             program.Dispose();
 
@@ -140,6 +142,7 @@ namespace TestGame
                 shader.Dispose();
             }
 
+            renderContext.Dispose();
             window.Dispose();
             nativeWindow.Dispose();
         }

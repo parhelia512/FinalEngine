@@ -27,6 +27,15 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
         void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
 
+        /// <inheritdoc cref="GL.BlendColor(Color)"/>
+        void BlendColor(Color color);
+
+        /// <inheritdoc cref="GL.BlendEquation(BlendEquationMode)"/>
+        void BlendEquation(BlendEquationMode mode);
+
+        /// <inheritdoc cref="GL.BlendFunc(BlendingFactor, BlendingFactor)"/>
+        void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor);
+
         /// <inheritdoc cref="GL.BufferData{T2}(BufferTarget, int, T2[], BufferUsageHint)"/>
         void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
             where T2 : struct;

@@ -78,6 +78,7 @@ namespace TestGame
             rasterizer.SetRasterState(default);
             outputMerger.SetDepthState(default);
             outputMerger.SetStencilState(default);
+            outputMerger.SetBlendState(default);
 
             IEnumerable<IShader> shaders = new List<IShader>()
             {

@@ -7,6 +7,8 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using OpenTK.Graphics.OpenGL4;
+    using BlendEquationMode = FinalEngine.Rendering.BlendEquationMode;
+    using TKBlendEquationMode = OpenTK.Graphics.OpenGL4.BlendEquationMode;
 
     public class OpenGLOutputMerger : IOutputMerger
     {
@@ -15,6 +17,48 @@ namespace FinalEngine.Rendering.OpenGL
         public OpenGLOutputMerger(IOpenGLInvoker invoker)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+        }
+
+        public void SetBlendState(BlendStateDescription description)
+        {
+            if (description.Enabled)
+            {
+                this.invoker.Enable(EnableCap.Blend);
+            }
+            else
+            {
+                this.invoker.Disable(EnableCap.Blend);
+            }
+
+            this.invoker.BlendColor(description.Color);
+
+            TKBlendEquationMode equation = TKBlendEquationMode.FuncAdd;
+
+            switch (description.EquationMode)
+            {
+                case BlendEquationMode.Add:
+                    equation = TKBlendEquationMode.FuncAdd;
+                    break;
+
+                case BlendEquationMode.Max:
+                    equation = TKBlendEquationMode.Max;
+                    break;
+
+                case BlendEquationMode.Min:
+                    equation = TKBlendEquationMode.Min;
+                    break;
+
+                case BlendEquationMode.ReverseSubstract:
+                    equation = TKBlendEquationMode.FuncReverseSubtract;
+                    break;
+
+                case BlendEquationMode.Subtract:
+                    equation = TKBlendEquationMode.FuncSubtract;
+                    break;
+            }
+
+            this.invoker.BlendEquation(equation);
+            this.invoker.BlendFunc(GetBlendingFactor(description.SourceMode), GetBlendingFactor(description.DestinationMode));
         }
 
         public void SetDepthState(DepthStateDescription description)
@@ -114,6 +158,57 @@ namespace FinalEngine.Rendering.OpenGL
 
             this.invoker.StencilFunc(function, description.ReferenceValue, description.ReadMask);
             this.invoker.StencilOp(GetStencilOp(description.StencilFail), GetStencilOp(description.DepthFail), GetStencilOp(description.Pass));
+        }
+
+        private static BlendingFactor GetBlendingFactor(BlendMode mode)
+        {
+            switch (mode)
+            {
+                case BlendMode.Zero:
+                    return BlendingFactor.Zero;
+
+                case BlendMode.SourceColor:
+                    return BlendingFactor.SrcColor;
+
+                case BlendMode.SourceAlphaSaturate:
+                    return BlendingFactor.SrcAlphaSaturate;
+
+                case BlendMode.SourceAlpha:
+                    return BlendingFactor.SrcAlpha;
+
+                case BlendMode.OneMinusSourceColor:
+                    return BlendingFactor.OneMinusSrcColor;
+
+                case BlendMode.OneMinusSourceAlpha:
+                    return BlendingFactor.OneMinusSrcAlpha;
+
+                case BlendMode.OneMinusDestinationColor:
+                    return BlendingFactor.OneMinusDstColor;
+
+                case BlendMode.OneMinusDestinationAlpha:
+                    return BlendingFactor.OneMinusDstAlpha;
+
+                case BlendMode.OneMinusConstantColor:
+                    return BlendingFactor.OneMinusConstantColor;
+
+                case BlendMode.OneMinusConstantAlpha:
+                    return BlendingFactor.OneMinusConstantAlpha;
+
+                case BlendMode.One:
+                    return BlendingFactor.One;
+
+                case BlendMode.DestinationColor:
+                    return BlendingFactor.DstColor;
+
+                case BlendMode.DestinationAlpha:
+                    return BlendingFactor.DstAlpha;
+
+                case BlendMode.ConstantAlpha:
+                    return BlendingFactor.ConstantAlpha;
+
+                default:
+                    throw new NotSupportedException($"The specified {nameof(mode)} is not supported by the OpenGL Backend.");
+            }
         }
 
         private static StencilOp GetStencilOp(StencilOperation operation)

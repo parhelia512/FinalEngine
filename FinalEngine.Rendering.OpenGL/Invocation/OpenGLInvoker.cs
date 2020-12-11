@@ -42,6 +42,24 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void BlendColor(Color color)
+        {
+            GL.BlendColor(color);
+        }
+
+        /// <inheritdoc/>
+        public void BlendEquation(BlendEquationMode mode)
+        {
+            GL.BlendEquation(mode);
+        }
+
+        /// <inheritdoc/>
+        public void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor)
+        {
+            GL.BlendFunc(sfactor, dfactor);
+        }
+
+        /// <inheritdoc/>
         public void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
             where T2 : struct
         {

@@ -6,6 +6,8 @@ namespace FinalEngine.Rendering
 {
     public interface IOutputMerger
     {
+        void SetBlendState(BlendStateDescription description);
+
         void SetDepthState(DepthStateDescription description);
 
         void SetStencilState(StencilStateDescription description);

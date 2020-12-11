@@ -235,6 +235,24 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void StencilFunc(StencilFunction func, int @ref, int mask)
+        {
+            GL.StencilFunc(func, @ref, mask);
+        }
+
+        /// <inheritdoc/>
+        public void StencilMask(int mask)
+        {
+            GL.StencilMask(mask);
+        }
+
+        /// <inheritdoc/>
+        public void StencilOp(StencilOp fail, StencilOp zfail, StencilOp zpass)
+        {
+            GL.StencilOp(fail, zfail, zpass);
+        }
+
+        /// <inheritdoc/>
         public void Uniform1(int location, int x)
         {
             GL.Uniform1(location, x);

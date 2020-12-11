@@ -126,6 +126,16 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Must Much API")]
         void ShaderSource(int shader, string @string);
 
+        /// <inheritdoc cref="GL.StencilFunc(StencilFunction, int, int)"/>
+        [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Must Match API")]
+        void StencilFunc(StencilFunction func, int @ref, int mask);
+
+        /// <inheritdoc cref="GL.StencilMask(int)"/>
+        void StencilMask(int mask);
+
+        /// <inheritdoc cref="GL.StencilOp(StencilOp, StencilOp, StencilOp)"/>
+        void StencilOp(StencilOp fail, StencilOp zfail, StencilOp zpass);
+
         /// <inheritdoc cref="GL.Uniform1(int, int)"/>
         void Uniform1(int location, int x);
 

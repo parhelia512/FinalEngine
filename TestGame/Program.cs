@@ -21,6 +21,7 @@ namespace TestGame
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
+    using OpenTK.Graphics.OpenGL4;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -76,6 +77,7 @@ namespace TestGame
 
             rasterizer.SetRasterState(default);
             outputMerger.SetDepthState(default);
+            outputMerger.SetStencilState(default);
 
             IEnumerable<IShader> shaders = new List<IShader>()
             {
@@ -119,6 +121,8 @@ namespace TestGame
 
             IIndexBuffer indexBuffer = factory.CreateIndexBuffer(indices, indices.Length * sizeof(int));
             inputAssembler.SetIndexBuffer(indexBuffer);
+
+            Console.WriteLine(GL.GetError());
 
             while (!window.IsExiting)
             {

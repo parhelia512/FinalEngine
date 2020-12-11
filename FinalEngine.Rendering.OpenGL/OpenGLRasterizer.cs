@@ -48,9 +48,10 @@ namespace FinalEngine.Rendering.OpenGL
             this.invoker.Scissor(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
         }
 
-        public void SetViewport(Rectangle rectangle)
+        public void SetViewport(Rectangle rectangle, float near = 0.0f, float far = 1.0f)
         {
             this.invoker.Viewport(rectangle);
+            this.invoker.DepthRange(near, far);
         }
     }
 }

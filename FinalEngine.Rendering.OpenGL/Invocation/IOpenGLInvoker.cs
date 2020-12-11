@@ -67,6 +67,15 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.DeleteVertexArray(int)"/>
         void DeleteVertexArray(int arrays);
 
+        /// <inheritdoc cref="GL.DepthFunc(DepthFunction)"/>
+        void DepthFunc(DepthFunction func);
+
+        /// <inheritdoc cref="GL.DepthMask(bool)"/>
+        void DepthMask(bool flag);
+
+        /// <inheritdoc cref="GL.DepthRange(float, float)"/>
+        void DepthRange(float n, float f);
+
         /// <inheritdoc cref="GL.Disable(EnableCap)"/>
         void Disable(EnableCap cap);
 

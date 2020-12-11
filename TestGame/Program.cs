@@ -70,10 +70,12 @@ namespace TestGame
             IRasterizer rasterizer = renderDevice.Rasterizer;
             IPipeline pipeline = renderDevice.Pipeline;
             IInputAssembler inputAssembler = renderDevice.InputAssembler;
+            IOutputMerger outputMerger = renderDevice.OutputMerger;
 
             IGPUResourceFactory factory = renderDevice.Factory;
 
             rasterizer.SetRasterState(default);
+            outputMerger.SetDepthState(default);
 
             IEnumerable<IShader> shaders = new List<IShader>()
             {

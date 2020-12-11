@@ -23,6 +23,8 @@ namespace FinalEngine.Rendering
 
         IInputAssembler InputAssembler { get; }
 
+        IOutputMerger OutputMerger { get; }
+
         IPipeline Pipeline { get; }
 
         IRasterizer Rasterizer { get; }

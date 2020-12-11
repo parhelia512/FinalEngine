@@ -121,6 +121,24 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DepthFunc(DepthFunction func)
+        {
+            GL.DepthFunc(func);
+        }
+
+        /// <inheritdoc/>
+        public void DepthMask(bool flag)
+        {
+            GL.DepthMask(flag);
+        }
+
+        /// <inheritdoc/>
+        public void DepthRange(float n, float f)
+        {
+            GL.DepthRange(n, f);
+        }
+
+        /// <inheritdoc/>
         public void Disable(EnableCap cap)
         {
             GL.Disable(cap);

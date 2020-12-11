@@ -132,6 +132,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
+        public void OutputMergerShouldReturnOpenGLOutputMerger()
+        {
+            // Act
+            IOutputMerger actual = this.renderDevice.OutputMerger;
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLOutputMerger), actual);
+        }
+
+        [Test]
         public void PipelineShouldReturnOpenGLPipeline()
         {
             // Act

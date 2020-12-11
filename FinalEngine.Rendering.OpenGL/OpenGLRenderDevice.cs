@@ -20,12 +20,15 @@ namespace FinalEngine.Rendering.OpenGL
             this.Rasterizer = new OpenGLRasterizer(invoker);
             this.Pipeline = new OpenGLPipeline(invoker);
             this.InputAssembler = new OpenGLInputAssembler();
+            this.OutputMerger = new OpenGLOutputMerger(invoker);
             this.Factory = new OpenGLGPUResourceFactory(invoker);
         }
 
         public IGPUResourceFactory Factory { get; }
 
         public IInputAssembler InputAssembler { get; }
+
+        public IOutputMerger OutputMerger { get; }
 
         public IPipeline Pipeline { get; }
 

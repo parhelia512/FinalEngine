@@ -4,32 +4,11 @@
 
 namespace TestGame
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.IO;
-    using System.Numerics;
-    using System.Runtime.InteropServices;
-    using FinalEngine.Input.Keyboard;
-    using FinalEngine.Input.Mouse;
-    using FinalEngine.IO;
-    using FinalEngine.IO.Invocation;
-    using FinalEngine.Platform.Desktop.OpenTK;
-    using FinalEngine.Platform.Desktop.OpenTK.Invocation;
-    using FinalEngine.Rendering;
-    using FinalEngine.Rendering.Buffers;
-    using FinalEngine.Rendering.OpenGL;
-    using FinalEngine.Rendering.OpenGL.Invocation;
-    using FinalEngine.Rendering.Pipeline;
-    using OpenTK.Graphics.OpenGL4;
-    using OpenTK.Windowing.Common;
-    using OpenTK.Windowing.Desktop;
-    using OpenTK.Windowing.GraphicsLibraryFramework;
-
     internal static class Program
     {
         private static void Main()
         {
+            /*
             var settings = new NativeWindowSettings()
             {
                 API = ContextAPI.OpenGL,
@@ -139,6 +118,7 @@ namespace TestGame
             renderContext.Dispose();
             window.Dispose();
             nativeWindow.Dispose();
+            */
         }
     }
 }

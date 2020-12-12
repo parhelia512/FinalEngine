@@ -17,7 +17,7 @@ namespace FinalEngine.Rendering
         TriangleStrip,
     }
 
-    public interface IRenderDevice : IGPUResourceFactory, IInputAssembler, IOutputMerger, IPipeline, IRasterizer
+    public interface IRenderDevice
     {
         void Clear(Color color, float depth = 1.0f, int stencil = 0);
 

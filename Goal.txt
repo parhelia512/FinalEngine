@@ -1,12 +1,12 @@
 - Windowing :)
 - Input :)
 - Rendering
-  - Render Context
+  - Render Context :)
   - Render Device
     - Input Assembler :)
     - Rasterizer :)
     - Pipeline :)
-    - Output Merger
+    - Output Merger :)
     - Resource Factory
       - Render Target 2D
       - Texture 2D

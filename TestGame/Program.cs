@@ -68,60 +68,49 @@ namespace TestGame
             var renderContext = new OpenGLRenderContext(opengl, bindings, nativeWindow.Context);
             var renderDevice = new OpenGLRenderDevice(opengl);
 
-            IRasterizer rasterizer = renderDevice.Rasterizer;
-            IPipeline pipeline = renderDevice.Pipeline;
-            IInputAssembler inputAssembler = renderDevice.InputAssembler;
-            IOutputMerger outputMerger = renderDevice.OutputMerger;
-
-            IGPUResourceFactory factory = renderDevice.Factory;
-
-            rasterizer.SetRasterState(default);
-            outputMerger.SetDepthState(default);
-            outputMerger.SetStencilState(default);
-            outputMerger.SetBlendState(default);
+            renderDevice.SetRasterState(default);
+            renderDevice.SetDepthState(default);
+            renderDevice.SetStencilState(default);
+            renderDevice.SetBlendState(default);
 
             IEnumerable<IShader> shaders = new List<IShader>()
             {
-                factory.CreateShader(PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert")),
-                factory.CreateShader(PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag")),
+                renderDevice.CreateShader(PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert")),
+                renderDevice.CreateShader(PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag")),
             };
 
-            IShaderProgram program = factory.CreateShaderProgram(shaders);
-            pipeline.SetShaderProgram(program);
+            IShaderProgram program = renderDevice.CreateShaderProgram(shaders);
+            renderDevice.SetShaderProgram(program);
 
             Vertex[] vertices =
             {
-                new Vertex(new Vector3(-0.9f, -0.5f, 0.0f), new Vector4(1.0f, 0.0f, 0.0f, 1.0f)),
-                new Vertex(new Vector3(-0.0f, -0.5f, 0.0f), new Vector4(0.0f, 1.0f, 0.0f, 1.0f)),
-                new Vertex(new Vector3(-0.45f, 0.5f, 0.0f), new Vector4(0.0f, 0.0f, 1.0f, 1.0f)),
-            };
-
-            Vertex[] vertices2 =
-            {
-                new Vertex(new Vector3(0.0f, -0.5f, 0.0f), new Vector4(1.0f, 1.0f, 0.0f, 1.0f)),
-                new Vertex(new Vector3(0.9f, -0.5f, 0.0f), new Vector4(0.0f, 1.0f, 1.0f, 1.0f)),
-                new Vertex(new Vector3(0.45f, 0.5f, 0.0f), new Vector4(1.0f, 0.0f, 1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f, 0.0f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f, 0.0f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), Vector4.One, new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, 0.5f, 0.0f), Vector4.One, new Vector2(0.0f, 1.0f)),
             };
 
             int[] indices =
             {
-                0, 1, 2,
+                0, 1, 3,
+                1, 2, 3,
             };
 
             var inputElements = new List<InputElement>()
             {
                 new InputElement(0, 3, InputElementType.Float, Marshal.OffsetOf<Vertex>("position").ToInt32()),
                 new InputElement(1, 4, InputElementType.Float, Marshal.OffsetOf<Vertex>("color").ToInt32()),
+                new InputElement(2, 2, InputElementType.Float, Marshal.OffsetOf<Vertex>("textureCoordinate").ToInt32()),
             };
 
-            IInputLayout inputLayout = factory.CreateInputLayout(inputElements);
-            inputAssembler.SetInputLayout(inputLayout);
+            IInputLayout inputLayout = renderDevice.CreateInputLayout(inputElements);
+            renderDevice.SetInputLayout(inputLayout);
 
-            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(vertices, vertices.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
-            IVertexBuffer vertexBuffer2 = factory.CreateVertexBuffer(vertices2, vertices2.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
+            IVertexBuffer vertexBuffer = renderDevice.CreateVertexBuffer(vertices, vertices.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
+            IIndexBuffer indexBuffer = renderDevice.CreateIndexBuffer(indices, indices.Length * sizeof(int));
 
-            IIndexBuffer indexBuffer = factory.CreateIndexBuffer(indices, indices.Length * sizeof(int));
-            inputAssembler.SetIndexBuffer(indexBuffer);
+            renderDevice.SetVertexBuffer(vertexBuffer);
+            renderDevice.SetIndexBuffer(indexBuffer);
 
             Console.WriteLine(GL.GetError());
 
@@ -131,11 +120,6 @@ namespace TestGame
                 mouse.Update();
 
                 renderDevice.Clear(Color.Black);
-
-                inputAssembler.SetVertexBuffer(vertexBuffer);
-                renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
-
-                inputAssembler.SetVertexBuffer(vertexBuffer2);
                 renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
 
                 renderContext.SwapBuffers();

@@ -11,7 +11,5 @@ namespace FinalEngine.Rendering
         void SetDepthState(DepthStateDescription description);
 
         void SetStencilState(StencilStateDescription description);
-
-        //// TODO: SetRenderTarget(IRenderTarget? target);
     }
 }

@@ -20,6 +20,6 @@ namespace FinalEngine.Rendering
         IShaderProgram CreateShaderProgram(IEnumerable<IShader> shaders);
 
         IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride)
-            where T : struct;
+                    where T : struct;
     }
 }

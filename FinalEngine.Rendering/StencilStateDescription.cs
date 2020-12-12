@@ -61,8 +61,7 @@ namespace FinalEngine.Rendering
 
         public int ReadMask
         {
-            // TODO: Write an issue for this, "all 1's"? Lol...
-            get { return this.readMask ?? 1; }
+            get { return this.readMask ?? 0; }
             set { this.readMask = value; }
         }
 
@@ -76,8 +75,7 @@ namespace FinalEngine.Rendering
 
         public int WriteMask
         {
-            // TODO: Write an issue for this, "all 1's"? Lol...
-            get { return this.writeMask ?? 1; }
+            get { return this.writeMask ?? -1; }
             set { this.writeMask = value; }
         }
 

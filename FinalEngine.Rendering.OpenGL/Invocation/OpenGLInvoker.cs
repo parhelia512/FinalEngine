@@ -18,6 +18,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     public class OpenGLInvoker : IOpenGLInvoker
     {
         /// <inheritdoc/>
+        public void ActiveTexture(TextureUnit texture)
+        {
+            GL.ActiveTexture(texture);
+        }
+
+        /// <inheritdoc/>
         public void AttachShader(int program, int shader)
         {
             GL.AttachShader(program, shader);
@@ -27,6 +33,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void BindBuffer(BufferTarget target, int buffer)
         {
             GL.BindBuffer(target, buffer);
+        }
+
+        /// <inheritdoc/>
+        public void BindTexture(TextureTarget target, int texture)
+        {
+            GL.BindTexture(target, texture);
         }
 
         /// <inheritdoc/>
@@ -133,6 +145,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DeleteTexture(int textures)
+        {
+            GL.DeleteTexture(textures);
+        }
+
+        /// <inheritdoc/>
         public void DeleteVertexArray(int arrays)
         {
             GL.DeleteVertexArray(arrays);
@@ -196,6 +214,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public int GenBuffer()
         {
             return GL.GenBuffer();
+        }
+
+        /// <inheritdoc/>
+        public int GenTexture()
+        {
+            return GL.GenTexture();
         }
 
         /// <inheritdoc/>
@@ -281,6 +305,18 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             {
                 this.Disable(cap);
             }
+        }
+
+        /// <inheritdoc/>
+        public void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalForamt, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels)
+        {
+            GL.TexImage2D(target, level, internalForamt, width, height, border, format, type, pixels);
+        }
+
+        /// <inheritdoc/>
+        public void TexParameter(TextureTarget target, TextureParameterName name, int param)
+        {
+            GL.TexParameter(target, name, param);
         }
 
         /// <inheritdoc/>

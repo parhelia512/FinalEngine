@@ -61,6 +61,125 @@ namespace FinalEngine.Tests.Rendering.Buffers
             Assert.AreEqual(Type, actual);
         }
 
+        [Test]
+        public void EqualityOperatorShouldReturnFalseWhenPropertiesDontMatch()
+        {
+            // Arrange
+            var left = new InputElement(1, 2, InputElementType.Byte, 2);
+            var right = new InputElement(2, 3, InputElementType.Double, 4);
+
+            // Act
+            bool actual = left == right;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualityOperatorShouldReturnTrueWhenPropertiesMatch()
+        {
+            // Arrange
+            var left = new InputElement(1, 2, InputElementType.Byte, 2);
+            var right = new InputElement(1, 2, InputElementType.Byte, 2);
+
+            // Act
+            bool actual = left == right;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnFalseWhenObjectIsNotBlendStateDescription()
+        {
+            // Act
+            bool actual = this.element.Equals(new object());
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnFalseWhenObjectIsNull()
+        {
+            // Act
+            bool actual = this.element.Equals(null);
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnFalseWhenPropertiesDontMatch()
+        {
+            // Arrange
+            var left = new InputElement(5, 7, InputElementType.Float, 2);
+            var right = new InputElement(2, 3, InputElementType.Double, 33);
+
+            // Act
+            bool actual = left.Equals(right);
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnTrueWhenObjectIsInputElementAndHasSameProperties()
+        {
+            // Arrange
+            var left = new InputElement(1, 2, InputElementType.Byte, 2);
+            object right = new InputElement(1, 2, InputElementType.Byte, 2);
+
+            // Act
+            bool actual = left.Equals(right);
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void GetHashCodeShouldReturnSameAsOtherObjectWhenPropertiesAreEqual()
+        {
+            // Arrange
+            var left = new InputElement(1, 2, InputElementType.Byte, 2);
+            var right = new InputElement(1, 2, InputElementType.Byte, 2);
+
+            // Act
+            int leftHashCode = left.GetHashCode();
+            int rightHashCode = right.GetHashCode();
+
+            // Assert
+            Assert.AreEqual(leftHashCode, rightHashCode);
+        }
+
+        [Test]
+        public void InEqualityOperatorShouldReturnFalseWhenPropertiesMatch()
+        {
+            // Arrange
+            var left = new InputElement(1, 2, InputElementType.Byte, 2);
+            var right = new InputElement(1, 2, InputElementType.Byte, 2);
+
+            // Act
+            bool actual = left != right;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void InEqualityOperatorShouldReturnTrueWhenPropertiesDontMatch()
+        {
+            // Arrange
+            var left = new InputElement(1, 5, InputElementType.Int, 2);
+            var right = new InputElement(7, 2, InputElementType.Byte, 277542);
+
+            // Act
+            bool actual = left != right;
+
+            // Assert
+            Assert.True(actual);
+        }
+
         [SetUp]
         public void Setup()
         {

@@ -17,18 +17,8 @@ namespace FinalEngine.Rendering
         TriangleStrip,
     }
 
-    public interface IRenderDevice
+    public interface IRenderDevice : IGPUResourceFactory, IInputAssembler, IOutputMerger, IPipeline, IRasterizer
     {
-        IGPUResourceFactory Factory { get; }
-
-        IInputAssembler InputAssembler { get; }
-
-        IOutputMerger OutputMerger { get; }
-
-        IPipeline Pipeline { get; }
-
-        IRasterizer Rasterizer { get; }
-
         void Clear(Color color, float depth = 1.0f, int stencil = 0);
 
         void DrawIndices(PrimitiveTopology topology, int first, int count);

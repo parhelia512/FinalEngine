@@ -7,18 +7,31 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Numerics;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
     using OpenTK.Graphics.OpenGL4;
     using BlendEquationMode = FinalEngine.Rendering.BlendEquationMode;
+    using TextureWrapMode = FinalEngine.Rendering.Textures.TextureWrapMode;
     using TKBlendEquationMode = OpenTK.Graphics.OpenGL4.BlendEquationMode;
 
     public class OpenGLRenderDevice : IRenderDevice
     {
+        private readonly IGPUResourceFactory factory;
+
+        private readonly IInputAssembler inputAssembler;
+
         private readonly IOpenGLInvoker invoker;
 
         private readonly IEnumMapper mapper;
+
+        private readonly IOutputMerger outputMerger;
+
+        private readonly IPipeline pipeline;
+
+        private readonly IRasterizer rasterizer;
 
         public OpenGLRenderDevice(IOpenGLInvoker invoker)
         {
@@ -77,26 +90,20 @@ namespace FinalEngine.Rendering.OpenGL
                 { StencilOperation.Keep, StencilOp.Keep },
                 { StencilOperation.Replace, StencilOp.Replace },
                 { StencilOperation.Zero, StencilOp.Zero },
+                { TextureFilterMode.Linear, All.Linear },
+                { TextureFilterMode.Nearest, All.Nearest },
+                { TextureWrapMode.Clamp, All.ClampToEdge },
+                { TextureWrapMode.Repeat, All.Repeat },
             };
 
             this.mapper = new EnumMapper(map);
 
-            this.Rasterizer = new OpenGLRasterizer(invoker, this.mapper);
-            this.Pipeline = new OpenGLPipeline(invoker);
-            this.InputAssembler = new OpenGLInputAssembler();
-            this.OutputMerger = new OpenGLOutputMerger(invoker, this.mapper);
-            this.Factory = new OpenGLGPUResourceFactory(invoker, this.mapper);
+            this.inputAssembler = new OpenGLInputAssembler();
+            this.pipeline = new OpenGLPipeline(invoker);
+            this.rasterizer = new OpenGLRasterizer(invoker, this.mapper);
+            this.outputMerger = new OpenGLOutputMerger(invoker, this.mapper);
+            this.factory = new OpenGLGPUResourceFactory(invoker, this.mapper);
         }
-
-        public IGPUResourceFactory Factory { get; }
-
-        public IInputAssembler InputAssembler { get; }
-
-        public IOutputMerger OutputMerger { get; }
-
-        public IPipeline Pipeline { get; }
-
-        public IRasterizer Rasterizer { get; }
 
         public void Clear(Color color, float depth = 1, int stencil = 0)
         {
@@ -106,9 +113,125 @@ namespace FinalEngine.Rendering.OpenGL
             this.invoker.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit);
         }
 
+        public IIndexBuffer CreateIndexBuffer<T>(T[] data, int sizeInBytes)
+            where T : struct
+        {
+            return this.factory.CreateIndexBuffer(data, sizeInBytes);
+        }
+
+        public IInputLayout CreateInputLayout(IEnumerable<InputElement> elements)
+        {
+            return this.factory.CreateInputLayout(elements);
+        }
+
+        public IShader CreateShader(PipelineTarget target, string sourceCode)
+        {
+            return this.factory.CreateShader(target, sourceCode);
+        }
+
+        public IShaderProgram CreateShaderProgram(IEnumerable<IShader> shaders)
+        {
+            return this.factory.CreateShaderProgram(shaders);
+        }
+
+        public IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride) where T : struct
+        {
+            return this.factory.CreateVertexBuffer(data, sizeInBytes, stride);
+        }
+
         public void DrawIndices(PrimitiveTopology topology, int first, int count)
         {
             this.invoker.DrawElements(this.mapper.Forward<PrimitiveType>(topology), count, DrawElementsType.UnsignedInt, first);
+        }
+
+        public void SetBlendState(BlendStateDescription description)
+        {
+            this.outputMerger.SetBlendState(description);
+        }
+
+        public void SetDepthState(DepthStateDescription description)
+        {
+            this.outputMerger.SetDepthState(description);
+        }
+
+        public void SetIndexBuffer(IIndexBuffer buffer)
+        {
+            this.inputAssembler.SetIndexBuffer(buffer);
+        }
+
+        public void SetInputLayout(IInputLayout layout)
+        {
+            this.inputAssembler.SetInputLayout(layout);
+        }
+
+        public void SetRasterState(RasterStateDescription description)
+        {
+            this.rasterizer.SetRasterState(description);
+        }
+
+        public void SetScissor(Rectangle rectangle)
+        {
+            this.rasterizer.SetScissor(rectangle);
+        }
+
+        public void SetShaderProgram(IShaderProgram? program)
+        {
+            this.pipeline.SetShaderProgram(program);
+        }
+
+        public void SetStencilState(StencilStateDescription description)
+        {
+            this.outputMerger.SetStencilState(description);
+        }
+
+        public void SetUniform(string name, int value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetUniform(string name, float value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetUniform(string name, double value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetUniform(string name, bool value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetUniform(string name, Vector2 value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetUniform(string name, Vector3 value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetUniform(string name, Vector4 value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetUniform(string name, Matrix4x4 value)
+        {
+            this.pipeline.SetUniform(name, value);
+        }
+
+        public void SetVertexBuffer(IVertexBuffer buffer)
+        {
+            this.inputAssembler.SetVertexBuffer(buffer);
+        }
+
+        public void SetViewport(Rectangle rectangle, float near = 0, float far = 1)
+        {
+            this.rasterizer.SetViewport(rectangle, near, far);
         }
     }
 }

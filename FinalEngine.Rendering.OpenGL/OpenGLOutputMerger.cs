@@ -31,34 +31,8 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             this.invoker.BlendColor(description.Color);
-
-            TKBlendEquationMode equation = TKBlendEquationMode.FuncAdd;
-
-            switch (description.EquationMode)
-            {
-                case BlendEquationMode.Add:
-                    equation = TKBlendEquationMode.FuncAdd;
-                    break;
-
-                case BlendEquationMode.Max:
-                    equation = TKBlendEquationMode.Max;
-                    break;
-
-                case BlendEquationMode.Min:
-                    equation = TKBlendEquationMode.Min;
-                    break;
-
-                case BlendEquationMode.ReverseSubstract:
-                    equation = TKBlendEquationMode.FuncReverseSubtract;
-                    break;
-
-                case BlendEquationMode.Subtract:
-                    equation = TKBlendEquationMode.FuncSubtract;
-                    break;
-            }
-
-            this.invoker.BlendEquation(equation);
-            this.invoker.BlendFunc(GetBlendingFactor(description.SourceMode), GetBlendingFactor(description.DestinationMode));
+            this.invoker.BlendEquation(GetOpenGLBlendEquationMode(description.EquationMode));
+            this.invoker.BlendFunc(GetOpenGLBlendingFactor(description.SourceMode), GetOpenGLBlendingFactor(description.DestinationMode));
         }
 
         public void SetDepthState(DepthStateDescription description)
@@ -73,41 +47,7 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             this.invoker.DepthMask(description.WriteEnabled);
-
-            DepthFunction function = DepthFunction.Less;
-
-            switch (description.ComparisonMode)
-            {
-                case ComparisonMode.Less:
-                    function = DepthFunction.Less;
-                    break;
-
-                case ComparisonMode.Always:
-                    function = DepthFunction.Always;
-                    break;
-
-                case ComparisonMode.Equal:
-                    function = DepthFunction.Equal;
-                    break;
-
-                case ComparisonMode.Greater:
-                    function = DepthFunction.Greater;
-                    break;
-
-                case ComparisonMode.GreaterEqual:
-                    function = DepthFunction.Gequal;
-                    break;
-
-                case ComparisonMode.LessEqual:
-                    function = DepthFunction.Lequal;
-                    break;
-
-                case ComparisonMode.Never:
-                    function = DepthFunction.Never;
-                    break;
-            }
-
-            this.invoker.DepthFunc(function);
+            this.invoker.DepthFunc(GetOpenGLFunction<DepthFunction>(description.ComparisonMode));
         }
 
         public void SetStencilState(StencilStateDescription description)
@@ -122,45 +62,35 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             this.invoker.StencilMask(description.WriteMask);
-
-            StencilFunction function = StencilFunction.Always;
-
-            switch (description.ComparisonMode)
-            {
-                case ComparisonMode.Less:
-                    function = StencilFunction.Less;
-                    break;
-
-                case ComparisonMode.Always:
-                    function = StencilFunction.Always;
-                    break;
-
-                case ComparisonMode.Equal:
-                    function = StencilFunction.Equal;
-                    break;
-
-                case ComparisonMode.Greater:
-                    function = StencilFunction.Greater;
-                    break;
-
-                case ComparisonMode.GreaterEqual:
-                    function = StencilFunction.Gequal;
-                    break;
-
-                case ComparisonMode.LessEqual:
-                    function = StencilFunction.Lequal;
-                    break;
-
-                case ComparisonMode.Never:
-                    function = StencilFunction.Never;
-                    break;
-            }
-
-            this.invoker.StencilFunc(function, description.ReferenceValue, description.ReadMask);
-            this.invoker.StencilOp(GetStencilOp(description.StencilFail), GetStencilOp(description.DepthFail), GetStencilOp(description.Pass));
+            this.invoker.StencilFunc(GetOpenGLFunction<StencilFunction>(description.ComparisonMode), description.ReferenceValue, description.ReadMask);
+            this.invoker.StencilOp(GetOpenGLStencilOp(description.StencilFail), GetOpenGLStencilOp(description.DepthFail), GetOpenGLStencilOp(description.Pass));
         }
 
-        private static BlendingFactor GetBlendingFactor(BlendMode mode)
+        private static TKBlendEquationMode GetOpenGLBlendEquationMode(BlendEquationMode mode)
+        {
+            switch (mode)
+            {
+                case BlendEquationMode.Add:
+                    return TKBlendEquationMode.FuncAdd;
+
+                case BlendEquationMode.Max:
+                    return TKBlendEquationMode.Max;
+
+                case BlendEquationMode.Min:
+                    return TKBlendEquationMode.Min;
+
+                case BlendEquationMode.ReverseSubstract:
+                    return TKBlendEquationMode.FuncReverseSubtract;
+
+                case BlendEquationMode.Subtract:
+                    return TKBlendEquationMode.FuncSubtract;
+
+                default:
+                    throw new NotSupportedException($"The specified {nameof(mode)} is not supported by the OpenGL Backend.");
+            }
+        }
+
+        private static BlendingFactor GetOpenGLBlendingFactor(BlendMode mode)
         {
             switch (mode)
             {
@@ -211,7 +141,38 @@ namespace FinalEngine.Rendering.OpenGL
             }
         }
 
-        private static StencilOp GetStencilOp(StencilOperation operation)
+        private static T GetOpenGLFunction<T>(ComparisonMode mode)
+                            where T : Enum
+        {
+            switch (mode)
+            {
+                case ComparisonMode.Always:
+                    return ParseEnum<T>(nameof(All.Always));
+
+                case ComparisonMode.Equal:
+                    return ParseEnum<T>(nameof(All.Equal));
+
+                case ComparisonMode.Greater:
+                    return ParseEnum<T>(nameof(All.Greater));
+
+                case ComparisonMode.GreaterEqual:
+                    return ParseEnum<T>(nameof(All.Gequal));
+
+                case ComparisonMode.Less:
+                    return ParseEnum<T>(nameof(All.Less));
+
+                case ComparisonMode.LessEqual:
+                    return ParseEnum<T>(nameof(All.Lequal));
+
+                case ComparisonMode.Never:
+                    return ParseEnum<T>(nameof(All.Never));
+
+                default:
+                    throw new NotSupportedException($"The specified {nameof(mode)} is not supported by the OpenGL Backend.");
+            }
+        }
+
+        private static StencilOp GetOpenGLStencilOp(StencilOperation operation)
         {
             switch (operation)
             {
@@ -242,6 +203,12 @@ namespace FinalEngine.Rendering.OpenGL
                 default:
                     throw new NotSupportedException($"The specified {nameof(operation)} is not supported by the OpenGL Backend.");
             }
+        }
+
+        private static T ParseEnum<T>(string name)
+                    where T : Enum
+        {
+            return (T)Enum.Parse(typeof(T), name);
         }
     }
 }

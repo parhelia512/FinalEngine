@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
 
     public enum BlendEquationMode
@@ -51,6 +52,9 @@ namespace FinalEngine.Rendering
         SourceAlphaSaturate,
     }
 
+    //// TODO: Unit Tests
+
+    [ExcludeFromCodeCoverage]
     public struct BlendStateDescription : IEquatable<BlendStateDescription>
     {
         private Color? color;

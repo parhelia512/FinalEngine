@@ -11,6 +11,8 @@ namespace FinalEngine.Rendering
     {
         void SetShaderProgram(IShaderProgram? program);
 
+        //// TODO: SetTexture(ITexture texture);
+
         void SetUniform(string name, int value);
 
         void SetUniform(string name, float value);

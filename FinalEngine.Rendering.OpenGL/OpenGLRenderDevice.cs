@@ -98,7 +98,7 @@ namespace FinalEngine.Rendering.OpenGL
 
             this.mapper = new EnumMapper(map);
 
-            this.inputAssembler = new OpenGLInputAssembler();
+            this.inputAssembler = new OpenGLInputAssembler(invoker);
             this.pipeline = new OpenGLPipeline(invoker);
             this.rasterizer = new OpenGLRasterizer(invoker, this.mapper);
             this.outputMerger = new OpenGLOutputMerger(invoker, this.mapper);
@@ -134,7 +134,8 @@ namespace FinalEngine.Rendering.OpenGL
             return this.factory.CreateShaderProgram(shaders);
         }
 
-        public IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride) where T : struct
+        public IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride)
+            where T : struct
         {
             return this.factory.CreateVertexBuffer(data, sizeInBytes, stride);
         }

@@ -7,16 +7,27 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Buffers;
+    using FinalEngine.Rendering.OpenGL.Invocation;
+    using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLInputAssembler : IInputAssembler
     {
+        private readonly IOpenGLInvoker invoker;
+
         private IOpenGLInputLayout? boundLayout;
 
-        public void SetIndexBuffer(IIndexBuffer buffer)
+        public OpenGLInputAssembler(IOpenGLInvoker invoker)
+        {
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+        }
+
+        public void SetIndexBuffer(IIndexBuffer? buffer)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
+                this.invoker.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+
+                return;
             }
 
             if (buffer is not IOpenGLIndexBuffer glIndexBuffer)
@@ -27,11 +38,13 @@ namespace FinalEngine.Rendering.OpenGL
             glIndexBuffer.Bind();
         }
 
-        public void SetInputLayout(IInputLayout layout)
+        public void SetInputLayout(IInputLayout? layout)
         {
             if (layout == null)
             {
-                throw new ArgumentNullException(nameof(layout), $"The specified {nameof(layout)} parameter cannot be null.");
+                this.boundLayout?.Reset();
+
+                return;
             }
 
             if (layout is not IOpenGLInputLayout glInputLayout)
@@ -40,16 +53,18 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             this.boundLayout?.Reset();
-
             this.boundLayout = glInputLayout;
+
             this.boundLayout.Bind();
         }
 
-        public void SetVertexBuffer(IVertexBuffer buffer)
+        public void SetVertexBuffer(IVertexBuffer? buffer)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
+                this.invoker.BindVertexBuffer(0, 0, IntPtr.Zero, 0);
+
+                return;
             }
 
             if (buffer is not IOpenGLVertexBuffer glVertexBuffer)

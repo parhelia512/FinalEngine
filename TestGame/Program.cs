@@ -112,6 +112,9 @@ namespace TestGame
             renderDevice.SetVertexBuffer(vertexBuffer);
             renderDevice.SetIndexBuffer(indexBuffer);
 
+            renderDevice.SetUniform("u_color", new Vector4(1.0f, 0.0f, 1.0f, 1.0f));
+            renderDevice.SetUniform("u_color", new Vector4(1.0f, 1.0f, 0.0f, 1.0f));
+
             Console.WriteLine(GL.GetError());
 
             while (!window.IsExiting)

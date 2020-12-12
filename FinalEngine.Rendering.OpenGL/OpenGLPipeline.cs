@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering.OpenGL
 {
     using System;
+    using System.Collections.Generic;
     using System.Numerics;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
@@ -14,11 +15,14 @@ namespace FinalEngine.Rendering.OpenGL
     {
         private readonly IOpenGLInvoker invoker;
 
+        private readonly IDictionary<string, int> uniformLocations;
+
         private IOpenGLShaderProgram? boundProgram;
 
         public OpenGLPipeline(IOpenGLInvoker invoker)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+            this.uniformLocations = new Dictionary<string, int>();
         }
 
         public void SetShaderProgram(IShaderProgram? program)
@@ -176,12 +180,17 @@ namespace FinalEngine.Rendering.OpenGL
                 return false;
             }
 
-            location = this.boundProgram.GetUniformLocation(name);
-
-            if (location == -1)
+            if (!this.uniformLocations.TryGetValue(name, out location))
             {
-                // TODO: Use appropriate logging system.
-                throw new ArgumentException($"The specified uniform, {name} couldn't be located.", nameof(name));
+                int value = this.boundProgram.GetUniformLocation(name);
+
+                if (value == -1)
+                {
+                    // TODO: Use appropriate logging system.
+                    throw new ArgumentException($"The specified uniform, {name} couldn't be located.", nameof(name));
+                }
+
+                this.uniformLocations.Add(name, value);
             }
 
             return true;

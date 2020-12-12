@@ -6,8 +6,9 @@ layout (location = 1) in vec2 in_texCoord;
 out vec4 out_color;
 
 uniform sampler2D u_texture;
+uniform vec4 u_color;
 
 void main()
 {
-	out_color = in_color; //texture(u_texture, in_texCoord);
+	out_color = u_color;
 }

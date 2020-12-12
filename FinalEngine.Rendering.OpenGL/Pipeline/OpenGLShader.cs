@@ -55,6 +55,11 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         public void Attach(int program)
         {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(OpenGLShader));
+            }
+
             this.invoker.AttachShader(program, this.id);
         }
 

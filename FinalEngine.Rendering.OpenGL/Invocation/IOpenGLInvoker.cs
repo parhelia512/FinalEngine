@@ -145,6 +145,8 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.StencilOp(StencilOp, StencilOp, StencilOp)"/>
         void StencilOp(StencilOp fail, StencilOp zfail, StencilOp zpass);
 
+        void Switch(EnableCap cap, bool value);
+
         /// <inheritdoc cref="GL.Uniform1(int, int)"/>
         void Uniform1(int location, int x);
 

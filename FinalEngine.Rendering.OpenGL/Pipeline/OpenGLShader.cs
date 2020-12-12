@@ -15,32 +15,21 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         private int id;
 
-        public OpenGLShader(IOpenGLInvoker invoker, PipelineTarget target, string sourceCode)
+        public OpenGLShader(IOpenGLInvoker invoker, IEnumMapper mapper, ShaderType type, string sourceCode)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
-            this.EntryPoint = target;
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper));
+            }
 
             if (string.IsNullOrWhiteSpace(sourceCode))
             {
                 throw new ArgumentNullException(nameof(sourceCode), $"The specified {nameof(sourceCode)} parameter cannot be null, empty or contain only whitespace.");
             }
 
-            ShaderType type;
-
-            switch (target)
-            {
-                case PipelineTarget.Vertex:
-                    type = ShaderType.VertexShader;
-                    break;
-
-                case PipelineTarget.Fragment:
-                    type = ShaderType.FragmentShader;
-                    break;
-
-                default:
-                    throw new NotSupportedException($"The specified {nameof(target)} is not supported by the OpenGL Backend.");
-            }
+            this.EntryPoint = mapper.Reverse<PipelineTarget>(type);
 
             this.id = this.invoker.CreateShader(type);
             this.invoker.ShaderSource(this.id, sourceCode);
@@ -82,13 +71,10 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
                 return;
             }
 
-            if (disposing)
+            if (disposing && this.id != -1)
             {
-                if (this.id != -1)
-                {
-                    this.invoker.DeleteShader(this.id);
-                    this.id = -1;
-                }
+                this.invoker.DeleteShader(this.id);
+                this.id = -1;
             }
 
             this.IsDisposed = true;

@@ -82,13 +82,10 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
                 return;
             }
 
-            if (disposing)
+            if (disposing && this.id != -1)
             {
-                if (this.id != -1)
-                {
-                    this.invoker.DeleteProgram(this.id);
-                    this.id = -1;
-                }
+                this.invoker.DeleteProgram(this.id);
+                this.id = -1;
             }
 
             this.IsDisposed = true;

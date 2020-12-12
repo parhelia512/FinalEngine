@@ -12,14 +12,18 @@ namespace FinalEngine.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
     using FinalEngine.Rendering.Pipeline;
+    using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLGPUResourceFactory : IGPUResourceFactory
     {
         private readonly IOpenGLInvoker invoker;
 
-        public OpenGLGPUResourceFactory(IOpenGLInvoker invoker)
+        private readonly IEnumMapper mapper;
+
+        public OpenGLGPUResourceFactory(IOpenGLInvoker invoker, IEnumMapper mapper)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
         }
 
         public IIndexBuffer CreateIndexBuffer<T>(T[] data, int sizeInBytes)
@@ -40,7 +44,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(elements), $"The specified {nameof(elements)} parameter cannot be null.");
             }
 
-            return new OpenGLInputLayout(this.invoker, elements);
+            return new OpenGLInputLayout(this.invoker, this.mapper, elements);
         }
 
         public IShader CreateShader(PipelineTarget target, string sourceCode)
@@ -50,7 +54,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(sourceCode), $"The specified {nameof(sourceCode)} parameter cannot be null, empty or contain only whitespace");
             }
 
-            return new OpenGLShader(this.invoker, target, sourceCode);
+            return new OpenGLShader(this.invoker, this.mapper, this.mapper.Forward<ShaderType>(target), sourceCode);
         }
 
         public IShaderProgram CreateShaderProgram(IEnumerable<IShader> shaders)

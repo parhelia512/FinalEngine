@@ -271,6 +271,19 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void Switch(EnableCap cap, bool value)
+        {
+            if (value)
+            {
+                this.Enable(cap);
+            }
+            else
+            {
+                this.Disable(cap);
+            }
+        }
+
+        /// <inheritdoc/>
         public void Uniform1(int location, int x)
         {
             GL.Uniform1(location, x);

@@ -5,7 +5,6 @@
 namespace FinalEngine.Rendering
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     public enum StencilOperation
     {
@@ -26,9 +25,6 @@ namespace FinalEngine.Rendering
         Invert,
     }
 
-    //// TODO: Unit Tests
-
-    [ExcludeFromCodeCoverage]
     public struct StencilStateDescription : IEquatable<StencilStateDescription>
     {
         private ComparisonMode? comparisonMode;

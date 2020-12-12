@@ -1,4 +1,4 @@
-﻿// <copyright file="OpenGLIndexBufferTests.cs" company="Software Antics">
+﻿// <copyright file="OpenGLVertexBufferTests.cs" company="Software Antics">
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
@@ -14,55 +14,57 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
 
     [ExcludeFromCodeCoverage]
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
-    public class OpenGLIndexBufferTests
+    public class OpenGLVertexBufferTests
     {
-        private const int ID = 10;
+        private const int ID = 42;
 
-        private readonly int[] data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        private const int Stride = 32;
 
-        private OpenGLIndexBuffer<int> indexBuffer;
+        private readonly int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, };
 
         private Mock<IOpenGLInvoker> invoker;
 
+        private OpenGLVertexBuffer<int> vertexBuffer;
+
         [Test]
-        public void BindShouldInvokeBindBufferIdentifierWhenBufferIsNotDisposed()
+        public void BindShouldInvokeBindVertexBufferWhenBufferIsNotDisposed()
         {
             // Act
-            this.indexBuffer.Bind();
+            this.vertexBuffer.Bind();
 
             // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, ID), Times.Once);
+            this.invoker.Verify(x => x.BindVertexBuffer(0, ID, IntPtr.Zero, this.vertexBuffer.Stride), Times.Once);
         }
 
         [Test]
         public void BindShouldThrowObjectDisposedExceptionWhenBufferIsDisposed()
         {
             // Arrange
-            this.indexBuffer.Dispose();
+            this.vertexBuffer.Dispose();
 
             // Act and assert
-            Assert.Throws<ObjectDisposedException>(() => this.indexBuffer.Bind());
+            Assert.Throws<ObjectDisposedException>(() => this.vertexBuffer.Bind());
+        }
+
+        [Test]
+        public void ConstructorShouldBindBufferZeroWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, 0), Times.Once);
         }
 
         [Test]
         public void ConstructorShouldInvokeBindBufferIdentifierWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, ID), Times.Once);
-        }
-
-        [Test]
-        public void ConstructorShouldInvokeBindBufferZeroWhenInvoked()
-        {
-            // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, 0), Times.Once);
+            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, ID), Times.Once);
         }
 
         [Test]
         public void ConstructorShouldInvokeBufferDataWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.BufferData(BufferTarget.ElementArrayBuffer, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
+            this.invoker.Verify(x => x.BufferData(BufferTarget.ArrayBuffer, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
         }
 
         [Test]
@@ -76,31 +78,24 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         public void ConstructorShouldThrowArgumentNullExceptionWhenDataIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(this.invoker.Object, null, 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLVertexBuffer<int>(this.invoker.Object, null, this.data.Length * sizeof(int), 0));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(null, this.data, 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLVertexBuffer<int>(null, this.data, this.data.Length * sizeof(int), Stride));
         }
 
         [Test]
-        public void DisposeShouldInvokeDeleteBufferIdentifierWhenBufferIsNotDisposed()
+        public void DisposeShouldInvokeDeleteBufferWhenBufferIsNotDisposed()
         {
             // Act
-            this.indexBuffer.Dispose();
+            this.vertexBuffer.Dispose();
 
             // Assert
             this.invoker.Verify(x => x.DeleteBuffer(ID), Times.Once);
-        }
-
-        [Test]
-        public void LengthShouldReturnSameAsDataLength()
-        {
-            // Assert
-            Assert.AreEqual(this.data.Length, this.indexBuffer.Length);
         }
 
         [SetUp]
@@ -108,13 +103,20 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         {
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
-            this.indexBuffer = new OpenGLIndexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int));
+            this.vertexBuffer = new OpenGLVertexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int), Stride);
+        }
+
+        [Test]
+        public void StrideShouldReturnSameAsStride()
+        {
+            // Assert
+            Assert.AreEqual(Stride, this.vertexBuffer.Stride);
         }
 
         [TearDown]
         public void Teardown()
         {
-            this.indexBuffer.Dispose();
+            this.vertexBuffer.Dispose();
         }
     }
 }

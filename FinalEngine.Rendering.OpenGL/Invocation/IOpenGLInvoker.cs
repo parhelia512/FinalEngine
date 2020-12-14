@@ -15,7 +15,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     /// </summary>
     public interface IOpenGLInvoker
     {
-        /// <inheritdoc cref="GL.ActiveTexture(TextureUnit)>
+        /// <inheritdoc cref="GL.ActiveTexture(TextureUnit)">
         void ActiveTexture(TextureUnit texture);
 
         /// <inheritdoc cref="GL.AttachShader(int, int)"/>

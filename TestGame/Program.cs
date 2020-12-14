@@ -237,7 +237,7 @@ namespace TestGame
                 for (int i = 0; i < positions.Length; i++)
                 {
                     float angle = 20.0f * i;
-                    bool xyz = random.NextDouble() <= 1.0f ? true : false;
+                    bool xyz = random.NextDouble() <= 1.0f;
 
                     Matrix4x4 model = Matrix4x4.CreateRotationZ(MathHelper.DegreesToRadians(angle * 1.0f)) *
                                       Matrix4x4.CreateRotationY(MathHelper.DegreesToRadians(xyz ? temp : angle * 0.2f)) *

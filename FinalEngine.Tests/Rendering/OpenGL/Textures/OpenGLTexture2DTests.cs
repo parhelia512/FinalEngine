@@ -21,6 +21,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
     using TKTextureWrapMode = OpenTK.Graphics.OpenGL4.TextureWrapMode;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLTexture2DTests
     {
         private Texture2DDescription description;
@@ -84,7 +85,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         public void DescriptionShouldReturnSameAsConstructorWhenInvoked()
         {
             // Act
-            var actual = this.texture.Description;
+            Texture2DDescription actual = this.texture.Description;
 
             // Assert
             Assert.AreSame(this.description, actual);
@@ -108,6 +109,12 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
             };
 
             this.texture = new OpenGLTexture2D(this.invoker.Object, this.mapper.Object, this.description, PixelFormat.Rgba, PixelFormat.Rgb, new IntPtr(1));
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            this.texture.Dispose();
         }
     }
 }

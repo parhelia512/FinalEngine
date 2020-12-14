@@ -16,7 +16,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
     public class OpenGLTexture2D : OpenGLTextureBase, ITexture2D
     {
-        public OpenGLTexture2D(IOpenGLInvoker invoker, IEnumMapper mapper, Texture2DDescription description, int width, int height, PixelFormat format, PixelFormat internalFormat, IntPtr data)
+        public OpenGLTexture2D(IOpenGLInvoker invoker, IEnumMapper mapper, Texture2DDescription description, PixelFormat format, PixelFormat internalFormat, IntPtr data)
             : base(invoker, TextureTarget.Texture2D, format, internalFormat)
         {
             if (mapper == null)
@@ -29,8 +29,6 @@ namespace FinalEngine.Rendering.OpenGL.Textures
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannto be null.");
             }
 
-            this.Width = width;
-            this.Height = height;
             this.Description = description;
 
             this.Bind();
@@ -44,8 +42,8 @@ namespace FinalEngine.Rendering.OpenGL.Textures
                 target: TextureTarget.Texture2D,
                 level: 0,
                 internalForamt: mapper.Forward<PixelInternalFormat>(internalFormat),
-                width: width,
-                height: height,
+                width: description.Width,
+                height: description.Height,
                 border: 0,
                 format: mapper.Forward<TKPixelForamt>(format),
                 type: mapper.Forward<TKPixelType>(description.PixelType),
@@ -55,9 +53,5 @@ namespace FinalEngine.Rendering.OpenGL.Textures
         }
 
         public Texture2DDescription Description { get; }
-
-        public int Height { get; }
-
-        public int Width { get; }
     }
 }

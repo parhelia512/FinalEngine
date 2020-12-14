@@ -14,8 +14,12 @@ namespace FinalEngine.Rendering.OpenGL
     using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
     using BlendEquationMode = FinalEngine.Rendering.BlendEquationMode;
+    using PixelFormat = FinalEngine.Rendering.Textures.PixelFormat;
+    using PixelType = FinalEngine.Rendering.Textures.PixelType;
     using TextureWrapMode = FinalEngine.Rendering.Textures.TextureWrapMode;
     using TKBlendEquationMode = OpenTK.Graphics.OpenGL4.BlendEquationMode;
+    using TKPixelForamt = OpenTK.Graphics.OpenGL4.PixelFormat;
+    using TKPixelType = OpenTK.Graphics.OpenGL4.PixelType;
 
     public class OpenGLRenderDevice : IRenderDevice
     {
@@ -84,6 +88,15 @@ namespace FinalEngine.Rendering.OpenGL
                 { TextureFilterMode.Nearest, All.Nearest },
                 { TextureWrapMode.Clamp, All.ClampToEdge },
                 { TextureWrapMode.Repeat, All.Repeat },
+                { PixelType.Byte,  TKPixelType.UnsignedByte },
+                { PixelType.Int, TKPixelType.UnsignedInt },
+                { PixelType.Short, TKPixelType.UnsignedShort },
+                { PixelFormat.R, TKPixelForamt.Red },
+                { PixelFormat.Rg, TKPixelForamt.Rg },
+                { PixelFormat.Rgb, TKPixelForamt.Rgb },
+                { PixelFormat.Rgba, TKPixelForamt.Rgba },
+                { PixelFormat.Depth, TKPixelForamt.DepthComponent },
+                { PixelFormat.DepthAndStencil, TKPixelForamt.DepthStencil },
             };
 
             this.mapper = new EnumMapper(map);

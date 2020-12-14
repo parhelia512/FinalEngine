@@ -16,6 +16,6 @@ namespace FinalEngine.Rendering.Textures
 
         Depth,
 
-        Stencil,
+        DepthAndStencil,
     }
 }

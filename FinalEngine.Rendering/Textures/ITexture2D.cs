@@ -7,9 +7,5 @@ namespace FinalEngine.Rendering.Textures
     public interface ITexture2D : ITexture
     {
         Texture2DDescription Description { get; }
-
-        int Height { get; }
-
-        int Width { get; }
     }
 }

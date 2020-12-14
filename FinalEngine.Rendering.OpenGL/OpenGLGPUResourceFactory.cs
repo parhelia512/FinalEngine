@@ -7,13 +7,17 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.InteropServices;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
+    using FinalEngine.Rendering.OpenGL.Textures;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
     using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
+    using PixelFormat = FinalEngine.Rendering.Textures.PixelFormat;
 
     public class OpenGLGPUResourceFactory : IGPUResourceFactory
     {
@@ -66,6 +70,23 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             return new OpenGLShaderProgram(this.invoker, shaders.Cast<IOpenGLShader>());
+        }
+
+        public ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[] data, PixelFormat format = PixelFormat.Rgba, PixelFormat internalFormat = PixelFormat.Rgba)
+        {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
+            }
+
+            var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+            IntPtr ptr = handle.AddrOfPinnedObject();
+
+            var result = new OpenGLTexture2D(this.invoker, this.mapper, description, format, internalFormat, ptr);
+
+            handle.Free();
+
+            return result;
         }
 
         public IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride)

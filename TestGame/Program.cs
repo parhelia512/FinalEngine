@@ -6,7 +6,6 @@ namespace TestGame
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
     using System.IO;
     using System.Numerics;
     using System.Runtime.InteropServices;
@@ -21,13 +20,41 @@ namespace TestGame
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
     using OpenTK.Graphics.OpenGL4;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
+    using SixLabors.ImageSharp.PixelFormats;
+    using Color = System.Drawing.Color;
+    using Image = SixLabors.ImageSharp.Image;
 
     internal static class Program
     {
+        private static ITexture2D LoadTextureFromFile(IGPUResourceFactory factory, string path)
+        {
+            var image = Image.Load<Rgba32>(path);
+
+            var description = new Texture2DDescription()
+            {
+                Width = image.Width,
+                Height = image.Height,
+            };
+
+            int[] data = new int[image.Width * image.Height];
+
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
+                {
+                    Rgba32 color = image[x, y];
+                    data[(y * image.Width) + x] = (color.A << 24) | (color.B << 16) | (color.G << 8) | (color.R << 0);
+                }
+            }
+
+            return factory.CreateTexture2D(description, data, FinalEngine.Rendering.Textures.PixelFormat.Rgba, FinalEngine.Rendering.Textures.PixelFormat.Rgba);
+        }
+
         private static void Main()
         {
             var settings = new NativeWindowSettings()
@@ -118,8 +145,11 @@ namespace TestGame
             inputAssembler.SetVertexBuffer(vertexBuffer);
             inputAssembler.SetIndexBuffer(indexBuffer);
 
-            pipeline.SetUniform("u_color", new Vector4(1.0f, 0.0f, 1.0f, 1.0f));
-            pipeline.SetUniform("u_color", new Vector4(1.0f, 1.0f, 0.0f, 1.0f));
+            ITexture2D texture = LoadTextureFromFile(factory, "Resources\\Textures\\test.png");
+
+            pipeline.SetTexture(texture, 0);
+
+            pipeline.SetUniform("u_texture", 0);
 
             Console.WriteLine(GL.GetError());
 

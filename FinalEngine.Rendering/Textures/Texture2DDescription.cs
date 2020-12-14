@@ -18,6 +18,8 @@ namespace FinalEngine.Rendering.Textures
 
         private TextureWrapMode? wrapT;
 
+        public int Height { get; set; }
+
         public TextureFilterMode MagFilter
         {
             get { return this.magFilter ?? TextureFilterMode.Linear; }
@@ -35,6 +37,8 @@ namespace FinalEngine.Rendering.Textures
             get { return this.pixelType ?? PixelType.Byte; }
             set { this.pixelType = value; }
         }
+
+        public int Width { get; set; }
 
         public TextureWrapMode WrapS
         {

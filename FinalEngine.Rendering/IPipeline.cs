@@ -6,10 +6,13 @@ namespace FinalEngine.Rendering
 {
     using System.Numerics;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
 
     public interface IPipeline
     {
         void SetShaderProgram(IShaderProgram? program);
+
+        void SetTexture(ITexture? texture, int slot = 0);
 
         void SetUniform(string name, int value);
 

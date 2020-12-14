@@ -9,7 +9,9 @@ namespace FinalEngine.Rendering.OpenGL
     using System.Numerics;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
+    using FinalEngine.Rendering.OpenGL.Textures;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
 
     public class OpenGLPipeline : IPipeline
     {
@@ -18,6 +20,8 @@ namespace FinalEngine.Rendering.OpenGL
         private readonly IDictionary<string, int> uniformLocations;
 
         private IOpenGLShaderProgram? boundProgram;
+
+        private IOpenGLTexture? boundTexture;
 
         public OpenGLPipeline(IOpenGLInvoker invoker)
         {
@@ -42,6 +46,27 @@ namespace FinalEngine.Rendering.OpenGL
 
             this.boundProgram = glProgram;
             this.boundProgram.Bind();
+        }
+
+        public void SetTexture(ITexture? texture, int slot = 0)
+        {
+            if (texture == null)
+            {
+                this.boundTexture = null;
+                this.boundTexture?.Unbind();
+
+                return;
+            }
+
+            if (texture is not IOpenGLTexture glTexture)
+            {
+                throw new ArgumentException($"The specified {nameof(texture)} parameter is not of type {nameof(IOpenGLTexture)}.");
+            }
+
+            this.boundTexture = glTexture;
+
+            this.boundTexture.Bind();
+            this.boundTexture.Slot(slot);
         }
 
         public void SetUniform(string name, int value)

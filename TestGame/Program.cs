@@ -7,6 +7,7 @@ namespace TestGame
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Numerics;
     using System.Runtime.InteropServices;
     using FinalEngine.Input.Keyboard;
@@ -28,6 +29,7 @@ namespace TestGame
     using SixLabors.ImageSharp.PixelFormats;
     using Color = System.Drawing.Color;
     using Image = SixLabors.ImageSharp.Image;
+    using MathHelper = OpenTK.Mathematics.MathHelper;
 
     internal static class Program
     {
@@ -101,10 +103,10 @@ namespace TestGame
             IPipeline pipeline = renderDevice.Pipeline;
             IGPUResourceFactory factory = renderDevice.Factory;
 
-            rasterizer.SetRasterState(default);
-            outputMerger.SetDepthState(default);
-            outputMerger.SetStencilState(default);
-            outputMerger.SetBlendState(default);
+            outputMerger.SetDepthState(new DepthStateDescription()
+            {
+                ReadEnabled = true,
+            });
 
             IEnumerable<IShader> shaders = new List<IShader>()
             {
@@ -115,12 +117,13 @@ namespace TestGame
             IShaderProgram program = factory.CreateShaderProgram(shaders);
             pipeline.SetShaderProgram(program);
 
+            /*
             Vertex[] vertices =
             {
-                new Vertex(new Vector3(0.5f, 0.5f, 0.0f), Vector4.One, new Vector2(1.0f, 1.0f)),
-                new Vertex(new Vector3(0.5f, -0.5f, 0.0f), Vector4.One, new Vector2(1.0f, 0.0f)),
-                new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), Vector4.One, new Vector2(0.0f, 0.0f)),
-                new Vertex(new Vector3(-0.5f, 0.5f, 0.0f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f,  0.5f, 0.0f),  new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f, 0.0f),  new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f,  0.5f, 0.0f), new Vector2(0.0f, 1.0f)),
             };
 
             int[] indices =
@@ -128,6 +131,54 @@ namespace TestGame
                 0, 1, 3,
                 1, 2, 3,
             };
+            */
+
+            Vertex[] vertices =
+            {
+                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 0.0f),
+                new Vertex(0.5f, -0.5f, -0.5f,  1.0f, 0.0f),
+                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
+                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
+                new Vertex(-0.5f,  0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 0.0f),
+
+                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
+                new Vertex(0.5f, -0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 1.0f),
+                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 1.0f),
+                new Vertex(-0.5f,  0.5f,  0.5f,  0.0f, 1.0f),
+                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
+
+                new Vertex(-0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(-0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
+                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
+                new Vertex(-0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
+
+                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
+                new Vertex(0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
+                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
+
+                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(0.5f, -0.5f, -0.5f,  1.0f, 1.0f),
+                new Vertex(0.5f, -0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(0.5f, -0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
+                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
+
+                new Vertex(-0.5f,  0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
+                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(-0.5f,  0.5f,  0.5f,  0.0f, 0.0f),
+                new Vertex(-0.5f,  0.5f, -0.5f,  0.0f, 1.0f),
+            };
+
+            int[] indices = Enumerable.Range(0, 36).ToArray();
 
             var inputElements = new List<InputElement>()
             {
@@ -145,20 +196,30 @@ namespace TestGame
             inputAssembler.SetVertexBuffer(vertexBuffer);
             inputAssembler.SetIndexBuffer(indexBuffer);
 
-            ITexture2D texture = LoadTextureFromFile(factory, "Resources\\Textures\\test.png");
+            ITexture2D texture = LoadTextureFromFile(factory, "Resources\\Textures\\default.png");
 
             pipeline.SetTexture(texture, 0);
 
-            pipeline.SetUniform("u_texture", 0);
-
             Console.WriteLine(GL.GetError());
+
+            float temp = 0.0f;
 
             while (!window.IsExiting)
             {
                 keyboard.Update();
                 mouse.Update();
 
-                renderDevice.Clear(Color.Coral);
+                temp += 0.02f;
+
+                var projection = Matrix4x4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), 1024 / 768, 0.1f, 100.0f);
+                var view = Matrix4x4.CreateTranslation(new Vector3(0, 0, -3.0f));
+                Matrix4x4 model = Matrix4x4.CreateRotationX(MathHelper.DegreesToRadians(temp)) * Matrix4x4.CreateRotationY(MathHelper.DegreesToRadians(temp)) * Matrix4x4.CreateRotationZ(MathHelper.DegreesToRadians(temp));
+
+                pipeline.SetUniform("u_projection", projection);
+                pipeline.SetUniform("u_view", view);
+                pipeline.SetUniform("u_model", model);
+
+                renderDevice.Clear(Color.Black);
                 renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
 
                 renderContext.SwapBuffers();

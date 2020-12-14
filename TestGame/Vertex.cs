@@ -22,6 +22,16 @@ namespace TestGame
         [FieldOffset(28)]
         private Vector2 textureCoordinate;
 
+        public Vertex(float x, float y, float z, float xt, float yt)
+            : this(new Vector3(x, y, z), new Vector2(xt, yt))
+        {
+        }
+
+        public Vertex(Vector3 position, Vector2 textureCoordinate)
+            : this(position, Vector4.One, textureCoordinate)
+        {
+        }
+
         public Vertex(Vector3 position, Vector4 color, Vector2 textureCoordinate)
         {
             this.position = position;

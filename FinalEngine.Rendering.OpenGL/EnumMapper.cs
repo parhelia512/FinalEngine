@@ -7,6 +7,8 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using System.Collections.Generic;
 
+    //// TODO: Move this to a utilities project?
+
     public class EnumMapper : IEnumMapper
     {
         private readonly IReadOnlyDictionary<Enum, Enum> forward;

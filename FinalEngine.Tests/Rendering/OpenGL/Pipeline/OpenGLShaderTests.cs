@@ -80,7 +80,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         public void ConstructorShouldInvokeReversePipelineTargetWhenInvoked()
         {
             // Assert
-            this.mapper.Verify(x => x.Forward<PipelineTarget>(ShaderType.VertexShader), Times.Once);
+            this.mapper.Verify(x => x.Reverse<PipelineTarget>(ShaderType.VertexShader), Times.Once);
         }
 
         [Test]

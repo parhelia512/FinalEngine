@@ -128,7 +128,7 @@ namespace TestGame
                 keyboard.Update();
                 mouse.Update();
 
-                renderDevice.Clear(Color.Black);
+                renderDevice.Clear(Color.Coral);
                 renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
 
                 renderContext.SwapBuffers();

@@ -17,11 +17,15 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
         private int id;
 
-        public OpenGLTextureBase(IOpenGLInvoker invoker, TextureTarget target)
+        public OpenGLTextureBase(IOpenGLInvoker invoker, TextureTarget target, PixelFormat format, PixelFormat internalFormat)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
             this.id = invoker.GenTexture();
+            this.target = target;
+
+            this.Format = format;
+            this.InternalForamt = internalFormat;
         }
 
         ~OpenGLTextureBase()
@@ -59,6 +63,16 @@ namespace FinalEngine.Rendering.OpenGL.Textures
             }
 
             this.invoker.ActiveTexture(TextureUnit.Texture0 + index);
+        }
+
+        public void Unbind()
+        {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(OpenGLTextureBase));
+            }
+
+            this.invoker.BindTexture(this.target, 0);
         }
 
         protected virtual void Dispose(bool disposing)

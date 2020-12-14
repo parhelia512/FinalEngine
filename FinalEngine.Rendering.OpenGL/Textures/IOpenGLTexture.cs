@@ -11,5 +11,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
         void Bind();
 
         void Slot(int index);
+
+        void Unbind();
     }
 }

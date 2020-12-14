@@ -7,6 +7,7 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using System.Drawing;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLRasterizer : IRasterizer

@@ -6,6 +6,7 @@ namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLOutputMerger : IOutputMerger

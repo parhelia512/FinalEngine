@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering", "Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering.OpenGL", "FinalEngine.Rendering.OpenGL\FinalEngine.Rendering.OpenGL.csproj", "{14B5098C-79C8-44BB-A485-6638873F10BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Utilities", "FinalEngine.Utilities\FinalEngine.Utilities.csproj", "{82A89B14-C583-4762-AAB1-F81E1C29E5D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{14B5098C-79C8-44BB-A485-6638873F10BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14B5098C-79C8-44BB-A485-6638873F10BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14B5098C-79C8-44BB-A485-6638873F10BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A89B14-C583-4762-AAB1-F81E1C29E5D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A89B14-C583-4762-AAB1-F81E1C29E5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A89B14-C583-4762-AAB1-F81E1C29E5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A89B14-C583-4762-AAB1-F81E1C29E5D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{533E347F-03B4-4C45-8F21-85EA20BF3448} = {198F3F27-340D-4617-86BB-AE9D9D5494A2}
 		{0A41C3A7-1881-43F8-BE83-8B35D6B04221} = {B2CD257E-E2BC-4259-A9B5-4DA90A7DE0B3}
 		{14B5098C-79C8-44BB-A485-6638873F10BC} = {B2CD257E-E2BC-4259-A9B5-4DA90A7DE0B3}
+		{82A89B14-C583-4762-AAB1-F81E1C29E5D8} = {198F3F27-340D-4617-86BB-AE9D9D5494A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A278B383-0D14-41B3-A71C-4505E1D503DF}

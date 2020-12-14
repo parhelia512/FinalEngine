@@ -12,6 +12,7 @@ namespace FinalEngine.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLGPUResourceFactory : IGPUResourceFactory

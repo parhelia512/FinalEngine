@@ -11,6 +11,7 @@ namespace FinalEngine.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
     using FinalEngine.Rendering.Textures;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
     using BlendEquationMode = FinalEngine.Rendering.BlendEquationMode;
     using TextureWrapMode = FinalEngine.Rendering.Textures.TextureWrapMode;

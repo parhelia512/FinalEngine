@@ -6,10 +6,10 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Utilities;
     using Moq;
     using NUnit.Framework;
     using OpenTK.Graphics.OpenGL4;

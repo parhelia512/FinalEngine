@@ -8,9 +8,9 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.Buffers;
-    using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using Moq;
     using NUnit.Framework;
     using OpenTK.Graphics.OpenGL4;

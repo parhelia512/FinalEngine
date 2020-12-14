@@ -8,6 +8,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
     using System.Collections.Generic;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLInputLayout : IOpenGLInputLayout

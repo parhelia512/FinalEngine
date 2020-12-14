@@ -86,7 +86,23 @@ namespace FinalEngine.Rendering.OpenGL
             };
 
             this.mapper = new EnumMapper(map);
+
+            this.Factory = new OpenGLGPUResourceFactory(invoker, this.mapper);
+            this.InputAssembler = new OpenGLInputAssembler(invoker);
+            this.OutputMerger = new OpenGLOutputMerger(invoker, this.mapper);
+            this.Pipeline = new OpenGLPipeline(invoker);
+            this.Rasterizer = new OpenGLRasterizer(invoker, this.mapper);
         }
+
+        public IGPUResourceFactory Factory { get; }
+
+        public IInputAssembler InputAssembler { get; }
+
+        public IOutputMerger OutputMerger { get; }
+
+        public IPipeline Pipeline { get; }
+
+        public IRasterizer Rasterizer { get; }
 
         public void Clear(Color color, float depth = 1, int stencil = 0)
         {

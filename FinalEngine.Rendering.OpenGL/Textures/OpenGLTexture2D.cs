@@ -26,7 +26,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
             if (data == IntPtr.Zero)
             {
-                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannto be null.");
+                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
             this.Description = description;

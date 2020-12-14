@@ -10,7 +10,9 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
+    using FinalEngine.Rendering.OpenGL.Textures;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
     using Moq;
     using NUnit.Framework;
 
@@ -59,6 +61,65 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 
             // Act and assert
             Assert.Throws<ArgumentException>(() => this.pipeline.SetShaderProgram(program.Object));
+        }
+
+        [Test]
+        public void SetTextureShouldInvokeBindWhenInvoked()
+        {
+            // Arrange
+            var texture = new Mock<IOpenGLTexture>();
+
+            // Act
+            this.pipeline.SetTexture(texture.Object);
+
+            // Assert
+            texture.Verify(x => x.Bind(), Times.Once);
+        }
+
+        [Test]
+        public void SetTextureShouldInvokeSlotWhenInvoked()
+        {
+            // Arrange
+            var texture = new Mock<IOpenGLTexture>();
+
+            // Act
+            this.pipeline.SetTexture(texture.Object, 24);
+
+            // Assert
+            texture.Verify(x => x.Slot(24), Times.Once);
+        }
+
+        [Test]
+        public void SetTextureShouldInvokeUnbindWhenTextureIsNullAndHasBeenPreviouslyBound()
+        {
+            // Arrange
+            var texture = new Mock<IOpenGLTexture>();
+            this.pipeline.SetTexture(texture.Object);
+
+            texture.Reset();
+
+            // Act
+            this.pipeline.SetTexture(null);
+
+            // Assert
+            texture.Verify(x => x.Unbind(), Times.Once);
+        }
+
+        [Test]
+        public void SetTextureShouldNotInvokeUnbindWhenTextureIsNullAndHasNotBeenPreviouslyBound()
+        {
+            // Act
+            this.pipeline.SetTexture(null);
+
+            // Assert
+            Assert.Pass();
+        }
+
+        [Test]
+        public void SetTextureShouldThrowArgumentExceptionWhenTextureIsNotIOpenGLTexture()
+        {
+            // Act and assert
+            Assert.Throws<ArgumentException>(() => this.pipeline.SetTexture(new Mock<ITexture>().Object));
         }
 
         [Test]

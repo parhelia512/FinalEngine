@@ -14,6 +14,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
     using PixelFormat = FinalEngine.Rendering.Textures.PixelFormat;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLTextureTests
     {
         private const int ID = 1045;

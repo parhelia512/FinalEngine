@@ -52,7 +52,6 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (texture == null)
             {
-                this.boundTexture = null;
                 this.boundTexture?.Unbind();
 
                 return;

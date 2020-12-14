@@ -12,6 +12,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
+    using FinalEngine.Rendering.OpenGL.Textures;
     using FinalEngine.Rendering.Pipeline;
     using FinalEngine.Utilities;
     using Moq;
@@ -120,6 +121,23 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         {
             // Act and assert
             Assert.Throws<ArgumentNullException>(() => this.factory.CreateShader(PipelineTarget.Vertex, "\r\n\t"));
+        }
+
+        [Test]
+        public void CreateTexture2DShouldReturnOpenGLTexture2DWhenInvoked()
+        {
+            // Act
+            FinalEngine.Rendering.Textures.ITexture2D actual = this.factory.CreateTexture2D<int>(default, Array.Empty<int>());
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLTexture2D), actual);
+        }
+
+        [Test]
+        public void CreateTexture2DShouldThrowArgumentNullExceptionWhenDataIsNull()
+        {
+            // Act and assert
+            Assert.Throws<ArgumentNullException>(() => this.factory.CreateTexture2D<int>(default, null));
         }
 
         [Test]

@@ -1,4 +1,4 @@
-﻿// <copyright file="OpenGLTextureBase.cs" company="Software Antics">
+﻿// <copyright file="OpenGLTexture.cs" company="Software Antics">
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
@@ -9,7 +9,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
     using OpenTK.Graphics.OpenGL4;
     using PixelFormat = FinalEngine.Rendering.Textures.PixelFormat;
 
-    public class OpenGLTextureBase : IOpenGLTexture
+    public class OpenGLTexture : IOpenGLTexture
     {
         private readonly IOpenGLInvoker invoker;
 
@@ -17,7 +17,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
         private int id;
 
-        public OpenGLTextureBase(IOpenGLInvoker invoker, TextureTarget target, PixelFormat format, PixelFormat internalFormat)
+        public OpenGLTexture(IOpenGLInvoker invoker, TextureTarget target, PixelFormat format, PixelFormat internalFormat)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
@@ -28,7 +28,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
             this.InternalForamt = internalFormat;
         }
 
-        ~OpenGLTextureBase()
+        ~OpenGLTexture()
         {
             this.Dispose(false);
         }
@@ -43,7 +43,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
         {
             if (this.IsDisposed)
             {
-                throw new ObjectDisposedException(nameof(OpenGLTextureBase));
+                throw new ObjectDisposedException(nameof(OpenGLTexture));
             }
 
             this.invoker.BindTexture(this.target, this.id);
@@ -59,7 +59,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
         {
             if (this.IsDisposed)
             {
-                throw new ObjectDisposedException(nameof(OpenGLTextureBase));
+                throw new ObjectDisposedException(nameof(OpenGLTexture));
             }
 
             this.invoker.ActiveTexture(TextureUnit.Texture0 + index);
@@ -69,7 +69,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
         {
             if (this.IsDisposed)
             {
-                throw new ObjectDisposedException(nameof(OpenGLTextureBase));
+                throw new ObjectDisposedException(nameof(OpenGLTexture));
             }
 
             this.invoker.BindTexture(this.target, 0);

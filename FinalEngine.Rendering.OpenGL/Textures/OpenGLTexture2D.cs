@@ -14,7 +14,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
     using TKPixelType = OpenTK.Graphics.OpenGL4.PixelType;
     using TKTextureWrapMode = OpenTK.Graphics.OpenGL4.TextureWrapMode;
 
-    public class OpenGLTexture2D : OpenGLTextureBase, ITexture2D
+    public class OpenGLTexture2D : OpenGLTexture, ITexture2D
     {
         public OpenGLTexture2D(IOpenGLInvoker invoker, IEnumMapper mapper, Texture2DDescription description, PixelFormat format, PixelFormat internalFormat, IntPtr data)
             : base(invoker, TextureTarget.Texture2D, format, internalFormat)

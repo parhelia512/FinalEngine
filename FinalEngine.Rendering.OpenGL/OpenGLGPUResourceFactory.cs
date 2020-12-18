@@ -6,6 +6,7 @@ namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Runtime.InteropServices;
     using FinalEngine.Rendering.Buffers;
@@ -72,6 +73,7 @@ namespace FinalEngine.Rendering.OpenGL
             return new OpenGLShaderProgram(this.invoker, shaders.Cast<IOpenGLShader>());
         }
 
+        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "Conflicting with SA1018")]
         public ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[]? data, PixelFormat format = PixelFormat.Rgba, PixelFormat internalFormat = PixelFormat.Rgba)
         {
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);

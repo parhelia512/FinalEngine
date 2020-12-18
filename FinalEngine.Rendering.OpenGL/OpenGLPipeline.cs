@@ -15,6 +15,8 @@ namespace FinalEngine.Rendering.OpenGL
 
     public class OpenGLPipeline : IPipeline
     {
+        private const int InitialSizeCapacity = 50;
+
         private readonly IOpenGLInvoker invoker;
 
         private readonly IDictionary<string, int> uniformLocations;
@@ -26,7 +28,7 @@ namespace FinalEngine.Rendering.OpenGL
         public OpenGLPipeline(IOpenGLInvoker invoker)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
-            this.uniformLocations = new Dictionary<string, int>();
+            this.uniformLocations = new Dictionary<string, int>(InitialSizeCapacity);
         }
 
         public void SetShaderProgram(IShaderProgram? program)

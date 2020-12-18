@@ -9,6 +9,8 @@ namespace FinalEngine.Rendering.OpenGL.Textures
     using OpenTK.Graphics.OpenGL4;
     using PixelFormat = FinalEngine.Rendering.Textures.PixelFormat;
 
+    //// TODO: Seriously, this should be abstract.
+
     public class OpenGLTexture : IOpenGLTexture
     {
         private readonly IOpenGLInvoker invoker;

@@ -20,7 +20,7 @@ namespace FinalEngine.Rendering
 
         IShaderProgram CreateShaderProgram(IEnumerable<IShader> shaders);
 
-        ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[] data, PixelFormat format = PixelFormat.Rgba, PixelFormat internalFormat = PixelFormat.Rgba);
+        ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[]? data, PixelFormat format = PixelFormat.Rgba, PixelFormat internalFormat = PixelFormat.Rgba);
 
         IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride)
                             where T : struct;

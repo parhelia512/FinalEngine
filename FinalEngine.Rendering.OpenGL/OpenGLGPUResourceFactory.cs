@@ -72,15 +72,10 @@ namespace FinalEngine.Rendering.OpenGL
             return new OpenGLShaderProgram(this.invoker, shaders.Cast<IOpenGLShader>());
         }
 
-        public ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[] data, PixelFormat format = PixelFormat.Rgba, PixelFormat internalFormat = PixelFormat.Rgba)
+        public ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[]? data, PixelFormat format = PixelFormat.Rgba, PixelFormat internalFormat = PixelFormat.Rgba)
         {
-            if (data == null)
-            {
-                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
-            }
-
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
-            IntPtr ptr = handle.AddrOfPinnedObject();
+            IntPtr ptr = data == null ? IntPtr.Zero : handle.AddrOfPinnedObject();
 
             var result = new OpenGLTexture2D(this.invoker, this.mapper, description, format, internalFormat, ptr);
 

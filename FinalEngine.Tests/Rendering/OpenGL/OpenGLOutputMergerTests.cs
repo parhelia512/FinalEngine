@@ -87,7 +87,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetBlendStateShouldInvokeSwitchBlendFalseWHenEnabledIsFalse()
+        public void SetBlendStateShouldInvokeSwitchBlendFalseWhenEnabledIsFalse()
         {
             // Arrange
             this.blendState.Enabled = false;
@@ -178,6 +178,21 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
+        public void SetStencilStateShouldInvokeStencilFuncWhenInvoked()
+        {
+            // Arrange
+            this.stencilState.ComparisonMode = ComparisonMode.Equal;
+            this.stencilState.ReferenceValue = 120;
+            this.stencilState.ReadMask = 567;
+
+            // Act
+            this.outputMerger.SetStencilState(this.stencilState);
+
+            // Assert
+            this.invoker.Verify(x => x.StencilFunc(this.mapper.Object.Forward<StencilFunction>(ComparisonMode.Equal), 120, 567), Times.Once);
+        }
+
+        [Test]
         public void SetStencilStateShouldInvokeStencilMaskWhenInvoked()
         {
             // Arrange
@@ -206,7 +221,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetStencilStateShouldInvokeSwitchStencilTestTrueWhenEnabledIsFalse()
+        public void SetStencilStateShouldInvokeSwitchStencilTestFalseWhenEnabledIsFalse()
         {
             // Arrange
             this.stencilState.Enabled = false;
@@ -229,21 +244,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 
             // Assert
             this.invoker.Verify(x => x.Switch(EnableCap.StencilTest, true), Times.Once);
-        }
-
-        [Test]
-        public void SetStencilStateShouldStencilFuncWhenInvoked()
-        {
-            // Arrange
-            this.stencilState.ComparisonMode = ComparisonMode.Equal;
-            this.stencilState.ReferenceValue = 120;
-            this.stencilState.ReadMask = 567;
-
-            // Act
-            this.outputMerger.SetStencilState(this.stencilState);
-
-            // Assert
-            this.invoker.Verify(x => x.StencilFunc(this.mapper.Object.Forward<StencilFunction>(ComparisonMode.Equal), 120, 567), Times.Once);
         }
 
         [SetUp]

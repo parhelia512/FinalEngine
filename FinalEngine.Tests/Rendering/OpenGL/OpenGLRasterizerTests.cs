@@ -147,6 +147,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.mapper = new Mock<IEnumMapper>();
             this.rasterizer = new OpenGLRasterizer(this.invoker.Object, this.mapper.Object);

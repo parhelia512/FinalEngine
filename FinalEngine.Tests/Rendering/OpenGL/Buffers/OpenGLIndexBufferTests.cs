@@ -109,6 +109,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
             this.indexBuffer = new OpenGLIndexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int));

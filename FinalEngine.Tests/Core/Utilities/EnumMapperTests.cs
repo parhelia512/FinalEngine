@@ -43,7 +43,7 @@ namespace FinalEngine.Tests.Core.Utilities
         }
 
         [Test]
-        public void ForwardShouldReturnCorrectMappedKey()
+        public void ForwardShouldReturnCorrectMappedKeyWhenInvoked()
         {
             // Act
             TestEnumerationB actual = this.mapper.Forward<TestEnumerationB>(TestEnumerationA.B);
@@ -67,7 +67,7 @@ namespace FinalEngine.Tests.Core.Utilities
         }
 
         [Test]
-        public void ReverseShouldReturnCorrectMappedKey()
+        public void ReverseShouldReturnCorrectMappedKeyWhenInvoked()
         {
             // Act
             TestEnumerationA actual = this.mapper.Reverse<TestEnumerationA>(TestEnumerationB.E);
@@ -93,6 +93,7 @@ namespace FinalEngine.Tests.Core.Utilities
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.forwardToReverseMap = new Dictionary<Enum, Enum>()
             {
                 { TestEnumerationA.B, TestEnumerationB.E },

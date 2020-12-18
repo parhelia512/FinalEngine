@@ -23,7 +23,7 @@ namespace FinalEngine.Tests.Rendering
         [Test]
         public void ComparisonModeShouldReturnNeverWhenSetToNever()
         {
-            // ACt
+            // Act
             this.description.ComparisonMode = ComparisonMode.Never;
 
             // Assert
@@ -384,6 +384,7 @@ namespace FinalEngine.Tests.Rendering
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.description = default;
         }
 

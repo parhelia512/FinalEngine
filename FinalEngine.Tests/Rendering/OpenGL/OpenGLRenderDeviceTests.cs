@@ -131,6 +131,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.renderDevice = new OpenGLRenderDevice(this.invoker.Object);
         }

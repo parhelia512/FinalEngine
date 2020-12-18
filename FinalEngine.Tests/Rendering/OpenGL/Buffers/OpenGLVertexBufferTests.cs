@@ -47,17 +47,17 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldBindBufferZeroWhenInvoked()
-        {
-            // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, 0), Times.Once);
-        }
-
-        [Test]
         public void ConstructorShouldInvokeBindBufferIdentifierWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, ID), Times.Once);
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeBindBufferZeroWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, 0), Times.Once);
         }
 
         [Test]
@@ -101,13 +101,14 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
             this.vertexBuffer = new OpenGLVertexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int), Stride);
         }
 
         [Test]
-        public void StrideShouldReturnSameAsStride()
+        public void StrideShouldReturnSameAsStrideWhenInvoked()
         {
             // Assert
             Assert.AreEqual(Stride, this.vertexBuffer.Stride);

@@ -159,6 +159,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.CreateProgram()).Returns(ID);
 

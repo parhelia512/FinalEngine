@@ -80,8 +80,8 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
-
             this.invoker.Setup(x => x.GenTexture()).Returns(ID);
 
             this.texture = new OpenGLTexture(this.invoker.Object, TextureTarget.Texture2D, PixelFormat.Rgba, PixelFormat.Rg);

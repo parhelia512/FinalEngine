@@ -90,7 +90,7 @@ namespace FinalEngine.Tests.Rendering.Buffers
         }
 
         [Test]
-        public void EqualsShouldReturnFalseWhenObjectIsNotBlendStateDescription()
+        public void EqualsShouldReturnFalseWhenObjectIsNotInputElement()
         {
             // Act
             bool actual = this.element.Equals(new object());

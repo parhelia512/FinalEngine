@@ -348,6 +348,7 @@ namespace FinalEngine.Tests.Rendering.Textures
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.description = default;
         }
 

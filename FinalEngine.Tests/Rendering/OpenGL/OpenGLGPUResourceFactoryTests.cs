@@ -5,6 +5,7 @@
 namespace FinalEngine.Tests.Rendering.OpenGL
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using FinalEngine.Rendering.Buffers;
@@ -14,9 +15,11 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL.Pipeline;
     using FinalEngine.Rendering.OpenGL.Textures;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
     using FinalEngine.Utilities;
     using Moq;
     using NUnit.Framework;
+    using OpenTK.Graphics.OpenGL4;
 
     [ExcludeFromCodeCoverage]
     public class OpenGLGPUResourceFactoryTests
@@ -93,6 +96,20 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
+        public void CreateShaderProgramShouldThrowInvalidCastExceptionWhenShadersContainsNotOpenGLShader()
+        {
+            // Arrange
+            IEnumerable<IShader> shaders = new List<IShader>()
+            {
+                new Mock<IShader>().Object,
+                new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, "test"),
+            };
+
+            // Act and assert
+            Assert.Throws<InvalidCastException>(() => this.factory.CreateShaderProgram(shaders));
+        }
+
+        [Test]
         public void CreateShaderShouldReturnOpenGLShaderWhenInvoked()
         {
             // Act
@@ -124,20 +141,20 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void CreateTexture2DShouldReturnOpenGLTexture2DWhenInvoked()
+        public void CreateTexture2DShouldNotThrowArgumentNullExceptionWhenDataIsNull()
         {
-            // Act
-            FinalEngine.Rendering.Textures.ITexture2D actual = this.factory.CreateTexture2D<int>(default, Array.Empty<int>());
-
-            // Assert
-            Assert.IsInstanceOf(typeof(OpenGLTexture2D), actual);
+            // Act and assert
+            Assert.DoesNotThrow(() => this.factory.CreateTexture2D<int>(default, null));
         }
 
         [Test]
-        public void CreateTexture2DShouldThrowArgumentNullExceptionWhenDataIsNull()
+        public void CreateTexture2DShouldReturnOpenGLTexture2DWhenInvoked()
         {
-            // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.factory.CreateTexture2D<int>(default, null));
+            // Act
+            ITexture2D actual = this.factory.CreateTexture2D<int>(default, Array.Empty<int>());
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLTexture2D), actual);
         }
 
         [Test]
@@ -160,6 +177,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.mapper = new Mock<IEnumMapper>();
 

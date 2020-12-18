@@ -85,7 +85,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ElementsShouldReturnSameAsElements()
+        public void ElementsShouldReturnSameAsElementsWhenInvoked()
         {
             // Assert
             Assert.AreEqual(this.elements, this.layout.Elements);
@@ -104,6 +104,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.mapper = new Mock<IEnumMapper>();
             this.layout = new OpenGLInputLayout(this.invoker.Object, this.mapper.Object, this.elements);

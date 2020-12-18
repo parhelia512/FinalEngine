@@ -49,20 +49,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         }
 
         [Test]
-        public void ConstructorShaderSourceWhenInvoked()
-        {
-            // Assert
-            this.invoker.Verify(x => x.ShaderSource(ID, this.sourceCode), Times.Once);
-        }
-
-        [Test]
-        public void ConstructorShouldGetShaderInfoLogWhenInvoked()
-        {
-            // Assert
-            this.invoker.Verify(x => x.GetShaderInfoLog(ID), Times.Once);
-        }
-
-        [Test]
         public void ConstructorShouldInvokeCompileShaderWhenInvoked()
         {
             // Assert
@@ -77,10 +63,24 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         }
 
         [Test]
+        public void ConstructorShouldInvokeGetShaderInfoLogWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.GetShaderInfoLog(ID), Times.Once);
+        }
+
+        [Test]
         public void ConstructorShouldInvokeReversePipelineTargetWhenInvoked()
         {
             // Assert
             this.mapper.Verify(x => x.Reverse<PipelineTarget>(ShaderType.VertexShader), Times.Once);
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeShaderSourceWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.ShaderSource(ID, this.sourceCode), Times.Once);
         }
 
         [Test]
@@ -151,6 +151,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.CreateShader(ShaderType.VertexShader)).Returns(ID);
 

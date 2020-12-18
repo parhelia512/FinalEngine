@@ -68,13 +68,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         }
 
         [Test]
-        public void ConstructorShouldThrowArgumentNullExceptionWhenDataIsIntPtrZero()
-        {
-            // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLTexture2D(this.invoker.Object, this.mapper.Object, this.description, PixelFormat.Rgba, PixelFormat.Rgba, IntPtr.Zero));
-        }
-
-        [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenMapperIsNull()
         {
             // Arrange, act and assert
@@ -88,12 +81,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
             Texture2DDescription actual = this.texture.Description;
 
             // Assert
-            Assert.AreSame(this.description, actual);
+            Assert.AreEqual(this.description, actual);
         }
 
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.mapper = new Mock<IEnumMapper>();
 

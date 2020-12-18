@@ -89,6 +89,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
 
             this.invoker.Setup(x => x.GenVertexArray()).Returns(VertexArrayID);

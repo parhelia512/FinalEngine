@@ -29,7 +29,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetIndexBufferShouldInvokeBindBufferBufferIsNull()
+        public void SetIndexBufferShouldInvokeBindBufferZeroWhenBufferIsNull()
         {
             // Act
             this.inputAssembler.SetIndexBuffer(null);
@@ -125,6 +125,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.inputAssembler = new OpenGLInputAssembler(this.invoker.Object);
         }

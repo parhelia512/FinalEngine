@@ -246,6 +246,7 @@ namespace FinalEngine.Tests.Rendering
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.description = default;
         }
 

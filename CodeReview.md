@@ -4,23 +4,23 @@
 
 - [ ] There are no warnings present in the project.
 - [ ] There are no errors present in the project.
-- [ ] There are no warnings that have been supressed.
+- [ ] There are no warnings that have been suppressed.
 - [ ] The entire solution can build and run locally on your machine.
 - [ ] The code works.
 
 ### Logging and Debugging
 
 - [ ] Logging, where applicable is used to display contextual information during runtime.
-- [ ] All debuging code is absent, where applicable see if an issue should be filed, instead.
+- [ ] All debugging code is absent, where applicable see if an issue should be filed, instead.
 - [ ] No Console.WriteLine or similar exists.
 
 ### Working and Extensibility
 
 - [ ] All class, variable, property and method modifiers are provided with the smallest scope possible.
 - [ ] There is no dead code (code that cannot be accessed during runtime, *don't* just rely on VS).
-- [ ] Code is not repeated on duplicated (use loops instead of repitition!).
+- [ ] Code is not repeated on duplicated (use loops instead of repetition!).
 - [ ] The ideal data structures are used where appropriate (i.e; `Stack` is used instead of `List`) where applicable.
-- [ ] Interfaces or abstract classes are passed as parameters to classes and methods instead of concrete implenentations.
+- [ ] Interfaces or abstract classes are passed as parameters to classes and methods instead of concrete implementations.
 
 ### Readability
 
@@ -36,13 +36,13 @@
 ### Other
 
 - [ ] There are no empty blocks of code or unused variables.
-- [ ] Collections are initialised with a specific estimated capacity, where appropriate (if you don't know the size, let it grow).
+- [ ] Collections are initialized with a specific estimated capacity, where appropriate (if you don't know the size, let it grow).
 - [ ] Arrays are checked for out of bounds conditions, just in case.
 - [ ] `StringBuilder` is used to concatenate large strings.
 - [ ] Floating point numbers are not compared for equality, except in the case where a data structure requires it, such as vector comparison.
 - [ ] Loops have a set length and correct termination conditions.
 - [ ] Blocks of code inside loops are as small as possible.
-- [ ] Order/index of a collection is not modified when it is being looped over, unless _absoutely_ neccessary.
+- [ ] Order/index of a collection is not modified when it is being looped over, unless _absoutely_ necessary.
 - [ ] No object exists longer than necessary
 - [ ] Law of Demeter is not violated
 - [ ] Do any of the changes assume anything about input? If so, is the assumption fairly accurate or should it be omitted?
@@ -73,7 +73,7 @@ A great tip for below is to include [Roslynator 2019](https://marketplace.visual
 		- StyleCop.Analysers
 		- Microsoft.CodeAnalysis.FxCopAnalyzers
 	4. Make sure the appropriate StyleCop JSON file is added as a link to the new project.
-	5. Make sure all StyleCop and FxCopAnalyzer warnings have been fixed and none have been supressed.
+	5. Make sure all StyleCop and FxCopAnalyzer warnings have been fixed and none have been suppressed.
 	6. Just to be sure, clean and build the solution.
 
 ## Documentation
@@ -118,4 +118,4 @@ A great tip for below is to include [Roslynator 2019](https://marketplace.visual
 
 - [ ] All personal data inputs are checked (for the correct type, length/size, format, and range).
 - [ ] Invalid parameter values are handled such that exceptions are not thrown (i.e; don't throw an exception if the user gives the wrong email and password combination).
-- [ ] No sensitive information is logged or visible in a stacktrace.
+- [ ] No sensitive information is logged or visible in a stack-trace.

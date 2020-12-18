@@ -40,7 +40,7 @@ namespace FinalEngine.Input.Keyboard
         ///   Specifies a <see cref="IKeyboardDevice"/> that represents the keyboard device to listen to.
         /// </param>
         /// <remarks>
-        ///   The <paramref name="device"/> parameter is nullable, when set to null the events are not hooked and therefore the object will not listen out for keyboard events. This can be useful in situtations where the end-user might not have a keyboard or require a keyboard on the underlying platform (for example, a mobile device).
+        ///   The <paramref name="device"/> parameter is nullable, when set to null the events are not hooked and therefore the object will not listen out for keyboard events. This can be useful in situations where the end-user might not have a keyboard or require a keyboard on the underlying platform (for example, a mobile device).
         /// </remarks>
         public Keyboard(IKeyboardDevice? device)
         {

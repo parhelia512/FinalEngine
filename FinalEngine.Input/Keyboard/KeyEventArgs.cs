@@ -62,7 +62,7 @@ namespace FinalEngine.Input.Keyboard
         public KeyModifiers Modifiers { get; init; }
 
         /// <summary>
-        ///   Gets a value indicating whether the num-lock key was locked when this event was rasied.
+        ///   Gets a value indicating whether the num-lock key was locked when this event was raised.
         /// </summary>
         /// <value>
         ///   <c>true</c> if the num-lock key is locked; otherwise, <c>false</c>.

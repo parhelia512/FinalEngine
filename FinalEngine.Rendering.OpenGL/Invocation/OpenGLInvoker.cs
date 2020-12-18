@@ -18,6 +18,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     public class OpenGLInvoker : IOpenGLInvoker
     {
         /// <inheritdoc/>
+        public void ActiveTexture(TextureUnit texture)
+        {
+            GL.ActiveTexture(texture);
+        }
+
+        /// <inheritdoc/>
         public void AttachShader(int program, int shader)
         {
             GL.AttachShader(program, shader);
@@ -30,6 +36,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void BindTexture(TextureTarget target, int texture)
+        {
+            GL.BindTexture(target, texture);
+        }
+
+        /// <inheritdoc/>
         public void BindVertexArray(int array)
         {
             GL.BindVertexArray(array);
@@ -39,6 +51,24 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride)
         {
             GL.BindVertexBuffer(bindingindex, buffer, offset, stride);
+        }
+
+        /// <inheritdoc/>
+        public void BlendColor(Color color)
+        {
+            GL.BlendColor(color);
+        }
+
+        /// <inheritdoc/>
+        public void BlendEquation(BlendEquationMode mode)
+        {
+            GL.BlendEquation(mode);
+        }
+
+        /// <inheritdoc/>
+        public void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor)
+        {
+            GL.BlendFunc(sfactor, dfactor);
         }
 
         /// <inheritdoc/>
@@ -115,9 +145,33 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
+        public void DeleteTexture(int textures)
+        {
+            GL.DeleteTexture(textures);
+        }
+
+        /// <inheritdoc/>
         public void DeleteVertexArray(int arrays)
         {
             GL.DeleteVertexArray(arrays);
+        }
+
+        /// <inheritdoc/>
+        public void DepthFunc(DepthFunction func)
+        {
+            GL.DepthFunc(func);
+        }
+
+        /// <inheritdoc/>
+        public void DepthMask(bool flag)
+        {
+            GL.DepthMask(flag);
+        }
+
+        /// <inheritdoc/>
+        public void DepthRange(float n, float f)
+        {
+            GL.DepthRange(n, f);
         }
 
         /// <inheritdoc/>
@@ -160,6 +214,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public int GenBuffer()
         {
             return GL.GenBuffer();
+        }
+
+        /// <inheritdoc/>
+        public int GenTexture()
+        {
+            return GL.GenTexture();
         }
 
         /// <inheritdoc/>
@@ -214,6 +274,49 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void ShaderSource(int shader, string @string)
         {
             GL.ShaderSource(shader, @string);
+        }
+
+        /// <inheritdoc/>
+        public void StencilFunc(StencilFunction func, int @ref, int mask)
+        {
+            GL.StencilFunc(func, @ref, mask);
+        }
+
+        /// <inheritdoc/>
+        public void StencilMask(int mask)
+        {
+            GL.StencilMask(mask);
+        }
+
+        /// <inheritdoc/>
+        public void StencilOp(StencilOp fail, StencilOp zfail, StencilOp zpass)
+        {
+            GL.StencilOp(fail, zfail, zpass);
+        }
+
+        /// <inheritdoc/>
+        public void Switch(EnableCap cap, bool value)
+        {
+            if (value)
+            {
+                this.Enable(cap);
+            }
+            else
+            {
+                this.Disable(cap);
+            }
+        }
+
+        /// <inheritdoc/>
+        public void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalForamt, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels)
+        {
+            GL.TexImage2D(target, level, internalForamt, width, height, border, format, type, pixels);
+        }
+
+        /// <inheritdoc/>
+        public void TexParameter(TextureTarget target, TextureParameterName name, int param)
+        {
+            GL.TexParameter(target, name, param);
         }
 
         /// <inheritdoc/>

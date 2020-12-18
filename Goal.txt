@@ -1,12 +1,12 @@
 - Windowing :)
 - Input :)
 - Rendering
-  - Render Context
+  - Render Context :)
   - Render Device
     - Input Assembler :)
     - Rasterizer :)
     - Pipeline :)
-    - Output Merger
+    - Output Merger :)
     - Resource Factory
       - Render Target 2D
       - Texture 2D
@@ -39,4 +39,105 @@ public void SetRasterState(RasterStateDescription description)
             this.invoker.Disable(EnableCap.CullFace);
         }
     }
+}
+
+// Just a few ideas I have in mind:
+
+public interface ITexture : IDisposable
+{
+}
+
+public interface ITexture2D : ITexture
+{
+	int Width { get; }
+	
+	int Height { get; }
+}
+
+public interface IOpenGLTexture : ITexture
+{
+	void Bind();
+}
+
+public class OpenGLTextureBase : IOpenGLTexture
+{
+	protected TextureTarget Target { get; }
+	
+	private int id;
+	
+	public OpenGLTextureBase(TextureTarget target, Data data)
+	{
+		this.Target = target;
+		
+		id = GL.GenTexture();
+		GL.BindTexture(this.Target, id);
+		GL.BufferData(id, data);
+	}
+}
+
+public interface IResource : IDisposable
+{
+}
+
+public interface IResourceLoader<T>
+	where T : IResource
+{
+	T LoadResource(string path);
+}
+
+public interface IResourceManager
+{
+	IResourceLoader<T> GetLoader<T>()
+		where T : IResource;
+
+	T GetResource<T>(string name)
+				where T : IResource;
+
+	void RegisterLoader<T>(IResourceLoader<T> loader)
+		where T : IResource;
+}
+
+public class ResourceManager : IResourceManager
+{
+	private readonly IDictionary<Type, object> loaders;
+
+	private readonly IDictionary<Type, Dictionary<string, object>> typeToResourceMap;
+
+	public ResourceManager(string resourcePath)
+	{
+		this.loaders = new Dictionary<Type, object>();
+		
+		// TODO: Register loaders here (texture loader, model loader, etc)
+		// TODO: Load resources from the resource path here.
+		
+		this.typeToResourceMap = new Dictionary<Type, Dictionary<string, object>>();
+	}
+
+	public IResourceLoader<T> GetLoader<T>()
+		where T : IResource
+	{
+		if (!this.loaders.TryGetValue(typeof(T), out object value))
+		{
+			throw new ArgumentException();
+		}
+
+		return value as IResourceLoader<T>;
+	}
+
+	public T GetResource<T>(string name)
+		where T : IResource
+	{
+		if (this.typeToResourceMap.TryGetValue(typeof(T), out Dictionary<string, object> resourceMap) && resourceMap.TryGetValue(name, out object resource))
+		{
+			return (T)resource;
+		}
+
+		throw new Exception();
+	}
+
+	public void RegisterLoader<T>(IResourceLoader<T> loader)
+		where T : IResource
+	{
+		this.loaders.Add(typeof(T), loader);
+	}
 }

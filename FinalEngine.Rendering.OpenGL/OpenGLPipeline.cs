@@ -5,20 +5,30 @@
 namespace FinalEngine.Rendering.OpenGL
 {
     using System;
+    using System.Collections.Generic;
     using System.Numerics;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
+    using FinalEngine.Rendering.OpenGL.Textures;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
 
     public class OpenGLPipeline : IPipeline
     {
+        private const int InitialSizeCapacity = 50;
+
         private readonly IOpenGLInvoker invoker;
 
+        private readonly IDictionary<string, int> uniformLocations;
+
         private IOpenGLShaderProgram? boundProgram;
+
+        private IOpenGLTexture? boundTexture;
 
         public OpenGLPipeline(IOpenGLInvoker invoker)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+            this.uniformLocations = new Dictionary<string, int>(InitialSizeCapacity);
         }
 
         public void SetShaderProgram(IShaderProgram? program)
@@ -33,11 +43,31 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (program is not IOpenGLShaderProgram glProgram)
             {
-                throw new ArgumentException($"The specified {nameof(program)} parameter is not of type {nameof(IOpenGLShaderProgram)}.");
+                throw new ArgumentException($"The specified {nameof(program)} parameter is not of type {nameof(IOpenGLShaderProgram)}.", nameof(program));
             }
 
             this.boundProgram = glProgram;
             this.boundProgram.Bind();
+        }
+
+        public void SetTexture(ITexture? texture, int slot = 0)
+        {
+            if (texture == null)
+            {
+                this.boundTexture?.Unbind();
+
+                return;
+            }
+
+            if (texture is not IOpenGLTexture glTexture)
+            {
+                throw new ArgumentException($"The specified {nameof(texture)} parameter is not of type {nameof(IOpenGLTexture)}.", nameof(texture));
+            }
+
+            this.boundTexture = glTexture;
+
+            this.boundTexture.Bind();
+            this.boundTexture.Slot(slot);
         }
 
         public void SetUniform(string name, int value)
@@ -176,12 +206,17 @@ namespace FinalEngine.Rendering.OpenGL
                 return false;
             }
 
-            location = this.boundProgram.GetUniformLocation(name);
-
-            if (location == -1)
+            if (!this.uniformLocations.TryGetValue(name, out location))
             {
-                // TODO: Use appropriate logging system.
-                throw new ArgumentException($"The specified uniform, {name} couldn't be located.", nameof(name));
+                int value = this.boundProgram.GetUniformLocation(name);
+
+                if (value == -1)
+                {
+                    // TODO: Use appropriate logging system.
+                    throw new ArgumentException($"The specified uniform, {name} couldn't be located.", nameof(name));
+                }
+
+                this.uniformLocations.Add(name, value);
             }
 
             return true;

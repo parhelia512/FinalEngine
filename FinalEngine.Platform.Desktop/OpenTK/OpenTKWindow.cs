@@ -49,7 +49,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
 
         /// <inheritdoc/>
         /// <exception cref="ObjectDisposedException">
-        ///   The underlying native window is dispsoed.
+        ///   The underlying native window is disposed.
         /// </exception>
         public string Title
         {
@@ -71,7 +71,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
 
         /// <inheritdoc/>
         /// <exception cref="ObjectDisposedException">
-        ///   The underlying native window is dispsoed.
+        ///   The underlying native window is disposed.
         /// </exception>
         public bool Visible
         {
@@ -101,7 +101,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
 
         /// <inheritdoc/>
         /// <exception cref="ObjectDisposedException">
-        ///   The underlying native window is dispsoed.
+        ///   The underlying native window is disposed.
         /// </exception>
         public void Close()
         {
@@ -125,7 +125,7 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         ///   This method is not thread safe and should only be executed on the main thread.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">
-        ///   The underlying native window is dispsoed.
+        ///   The underlying native window is disposed.
         /// </exception>
         public void ProcessEvents()
         {

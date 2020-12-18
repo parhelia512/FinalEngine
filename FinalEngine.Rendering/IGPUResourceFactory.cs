@@ -5,8 +5,10 @@
 namespace FinalEngine.Rendering
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
 
     public interface IGPUResourceFactory
     {
@@ -19,7 +21,10 @@ namespace FinalEngine.Rendering
 
         IShaderProgram CreateShaderProgram(IEnumerable<IShader> shaders);
 
+        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "Conflicting with SA1018")]
+        ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[]? data, PixelFormat format = PixelFormat.Rgba, PixelFormat internalFormat = PixelFormat.Rgba);
+
         IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride)
-            where T : struct;
+                            where T : struct;
     }
 }

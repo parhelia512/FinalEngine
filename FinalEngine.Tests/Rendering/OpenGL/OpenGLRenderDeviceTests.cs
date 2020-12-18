@@ -24,41 +24,38 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         [Test]
         public void ClearShouldInvokeClearColorWhenInvoked()
         {
-            // Arrange
-            Color color = Color.White;
-
             // Act
-            this.renderDevice.Clear(color);
+            this.renderDevice.Clear(Color.Cornsilk);
 
             // Assert
-            this.invoker.Verify(x => x.ClearColor(color), Times.Once);
+            this.invoker.Verify(x => x.ClearColor(Color.Cornsilk), Times.Once);
         }
 
         [Test]
         public void ClearShouldInvokeClearDepthWhenInvoked()
         {
             // Act
-            this.renderDevice.Clear(Color.White);
+            this.renderDevice.Clear(Color.Empty, 5, 0);
 
             // Assert
-            this.invoker.Verify(x => x.ClearDepth(1.0f), Times.Once);
+            this.invoker.Verify(x => x.ClearDepth(5), Times.Once);
         }
 
         [Test]
         public void ClearShouldInvokeClearStencilWhenInvoked()
         {
             // Act
-            this.renderDevice.Clear(Color.White);
+            this.renderDevice.Clear(Color.Empty, 0, 63);
 
             // Assert
-            this.invoker.Verify(x => x.ClearStencil(0), Times.Once);
+            this.invoker.Verify(x => x.ClearStencil(63), Times.Once);
         }
 
         [Test]
         public void ClearShouldInvokeClearWhenInvoked()
         {
             // Act
-            this.renderDevice.Clear(Color.White);
+            this.renderDevice.Clear(Color.Empty);
 
             // Assert
             this.invoker.Verify(x => x.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit), Times.Once);
@@ -72,47 +69,17 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void DrawIndicesShouldInvokeDrawElementsLineStripWhenInvoked()
+        public void DrawIndicesShouldInvokeDrawElementsWhenInvoked()
         {
             // Act
-            this.renderDevice.DrawIndices(PrimitiveTopology.LineStrip, 0, 10);
+            this.renderDevice.DrawIndices(PrimitiveTopology.TriangleStrip, 2, 5);
 
             // Assert
-            this.invoker.Verify(x => x.DrawElements(PrimitiveType.LineStrip, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
+            this.invoker.Verify(x => x.DrawElements(PrimitiveType.TriangleStrip, 5, DrawElementsType.UnsignedInt, 2), Times.Once);
         }
 
         [Test]
-        public void DrawIndicesShouldInvokeDrawElementsLineWhenInvoked()
-        {
-            // Act
-            this.renderDevice.DrawIndices(PrimitiveTopology.Line, 0, 10);
-
-            // Assert
-            this.invoker.Verify(x => x.DrawElements(PrimitiveType.Lines, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
-        }
-
-        [Test]
-        public void DrawIndicesShouldInvokeDrawElementsTriangleStripWhenInvoked()
-        {
-            // Act
-            this.renderDevice.DrawIndices(PrimitiveTopology.TriangleStrip, 0, 10);
-
-            // Assert
-            this.invoker.Verify(x => x.DrawElements(PrimitiveType.TriangleStrip, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
-        }
-
-        [Test]
-        public void DrawIndicesShouldInvokeDrawElementsTrianglesWhenInvoked()
-        {
-            // Act
-            this.renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, 10);
-
-            // Assert
-            this.invoker.Verify(x => x.DrawElements(PrimitiveType.Triangles, 10, DrawElementsType.UnsignedInt, 0), Times.Once);
-        }
-
-        [Test]
-        public void FactoryShouldReturnOpenGLGPUResourceFactory()
+        public void FactoryShouldReturnOpenGLGPUResourceFactoryWhenInvoked()
         {
             // Act
             IGPUResourceFactory actual = this.renderDevice.Factory;
@@ -122,7 +89,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void InputAssemblerShouldReturnOpenGLInputAssembler()
+        public void InputAssemblerShouldReturnOpenGLInputAssemblerWhenInvoked()
         {
             // Act
             IInputAssembler actual = this.renderDevice.InputAssembler;
@@ -132,7 +99,17 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void PipelineShouldReturnOpenGLPipeline()
+        public void OutputMergerShouldReturnOpenGLOutputMergerWhenInvoked()
+        {
+            // Act
+            IOutputMerger actual = this.renderDevice.OutputMerger;
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLOutputMerger), actual);
+        }
+
+        [Test]
+        public void PipelineShouldReturnOpenGLPipelineWhenInvoked()
         {
             // Act
             IPipeline actual = this.renderDevice.Pipeline;
@@ -142,7 +119,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void RasterizerShouldReturnOpenGLRasterizer()
+        public void RasterizerShouldReturnOpenGLRasterizerWhenInvoked()
         {
             // Act
             IRasterizer actual = this.renderDevice.Rasterizer;

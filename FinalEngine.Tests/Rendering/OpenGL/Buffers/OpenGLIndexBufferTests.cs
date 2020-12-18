@@ -16,16 +16,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLIndexBufferTests
     {
-        private const int ID = 306;
+        private const int ID = 10;
 
-        private readonly int[] data = { 3, 5, 7, 1, 3, 6, 7, 1, 5, 3, };
+        private readonly int[] data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
         private OpenGLIndexBuffer<int> indexBuffer;
 
         private Mock<IOpenGLInvoker> invoker;
 
         [Test]
-        public void BindShouldInvokeBindBufferIDWhenIndexBufferIsNotDisposed()
+        public void BindShouldInvokeBindBufferIdentifierWhenBufferIsNotDisposed()
         {
             // Arrange
             this.invoker.Reset();
@@ -38,7 +38,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void BindShouldThrowObjectDisposedExceptionWhenIndexBufferIsDisposed()
+        public void BindShouldThrowObjectDisposedExceptionWhenBufferIsDisposed()
         {
             // Arrange
             this.indexBuffer.Dispose();
@@ -48,21 +48,28 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldInvokeBindBufferIDWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBindBufferIdentifierWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, ID), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeBindBufferZeroWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBindBufferZeroWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, 0), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeGenBufferWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBufferDataWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.BufferData(BufferTarget.ElementArrayBuffer, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeGenBufferWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.GenBuffer(), Times.Once);
@@ -72,18 +79,18 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         public void ConstructorShouldThrowArgumentNullExceptionWhenDataIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(new Mock<IOpenGLInvoker>().Object, null, 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(this.invoker.Object, null, 0));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(null, Array.Empty<int>(), 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(null, this.data, 0));
         }
 
         [Test]
-        public void DisposeShouldInvokeDeleteBufferWhenInvoked()
+        public void DisposeShouldInvokeDeleteBufferIdentifierWhenBufferIsNotDisposed()
         {
             // Act
             this.indexBuffer.Dispose();
@@ -93,13 +100,10 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void LengthShouldReturnSameAsConstructorInputWhenInvoked()
+        public void LengthShouldReturnSameAsDataLength()
         {
-            // Act
-            int actual = this.indexBuffer.Length;
-
             // Assert
-            Assert.AreEqual(this.data.Length, actual);
+            Assert.AreEqual(this.data.Length, this.indexBuffer.Length);
         }
 
         [SetUp]
@@ -108,7 +112,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
-
             this.indexBuffer = new OpenGLIndexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int));
         }
 

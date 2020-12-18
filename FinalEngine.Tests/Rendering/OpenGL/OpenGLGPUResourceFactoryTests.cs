@@ -13,9 +13,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
+    using FinalEngine.Rendering.OpenGL.Textures;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
+    using FinalEngine.Utilities;
     using Moq;
     using NUnit.Framework;
+    using OpenTK.Graphics.OpenGL4;
 
     [ExcludeFromCodeCoverage]
     public class OpenGLGPUResourceFactoryTests
@@ -24,18 +28,27 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 
         private Mock<IOpenGLInvoker> invoker;
 
+        private Mock<IEnumMapper> mapper;
+
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLGPUResourceFactory(null));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLGPUResourceFactory(null, this.mapper.Object));
         }
 
         [Test]
-        public void CreateIndexBufferShouldReturnOpenGLIndexBufferWhenDataIsNotNull()
+        public void ConstructorShouldThrowArgumentNullExceptionWhenMapperIsNull()
+        {
+            // Arrange, act and assert
+            Assert.Throws<ArgumentNullException>(() => new OpenGLGPUResourceFactory(this.invoker.Object, null));
+        }
+
+        [Test]
+        public void CreateIndexBufferShouldReturnOpenGLIndexBufferWhenInvoked()
         {
             // Act
-            IIndexBuffer actual = this.factory.CreateIndexBuffer(Array.Empty<int>(), 0);
+            IIndexBuffer actual = this.factory.CreateIndexBuffer<int>(Array.Empty<int>(), 0);
 
             // Assert
             Assert.IsInstanceOf(typeof(OpenGLIndexBuffer<int>), actual);
@@ -49,7 +62,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void CreateInputLayoutShouldReturnOpenGLInputLayoutWhenElementsIsNotNull()
+        public void CreateInputLayoutShouldReturnOpenGLInputLayoutWhenInvoked()
         {
             // Act
             IInputLayout actual = this.factory.CreateInputLayout(Enumerable.Empty<InputElement>());
@@ -66,16 +79,10 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void CreateShaderProgramShouldReturnOpenGLShaderProgramWhenShadersIsNotNull()
+        public void CreateShaderProgramShouldReturnOpenGLShaderProgramWhenInvoked()
         {
-            // Arrange
-            IEnumerable<IShader> shaders = new List<IShader>()
-            {
-                new OpenGLShader(this.invoker.Object, PipelineTarget.Vertex, "test"),
-            };
-
             // Act
-            IShaderProgram actual = this.factory.CreateShaderProgram(shaders);
+            IShaderProgram actual = this.factory.CreateShaderProgram(Enumerable.Empty<IOpenGLShader>());
 
             // Assert
             Assert.IsInstanceOf(typeof(OpenGLShaderProgram), actual);
@@ -95,7 +102,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             IEnumerable<IShader> shaders = new List<IShader>()
             {
                 new Mock<IShader>().Object,
-                new OpenGLShader(this.invoker.Object, PipelineTarget.Vertex, "test"),
+                new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, "test"),
             };
 
             // Act and assert
@@ -103,10 +110,10 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void CreateShaderShouldReturnOpenGLShaderWhenSourceCodeIsNotNull()
+        public void CreateShaderShouldReturnOpenGLShaderWhenInvoked()
         {
             // Act
-            IShader actual = this.factory.CreateShader(PipelineTarget.Vertex, "source code");
+            IShader actual = this.factory.CreateShader(PipelineTarget.Vertex, "test");
 
             // Assert
             Assert.IsInstanceOf(typeof(OpenGLShader), actual);
@@ -130,11 +137,28 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateShaderShouldThrowArgumentNullExceptionWhenSourceCodeIsWhitespace()
         {
             // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.factory.CreateShader(PipelineTarget.Vertex, "\t\r\n"));
+            Assert.Throws<ArgumentNullException>(() => this.factory.CreateShader(PipelineTarget.Vertex, "\r\n\t"));
         }
 
         [Test]
-        public void CreateVertexBufferShouldReturnOpenGLVertexBufferWhenDataIsNotNull()
+        public void CreateTexture2DShouldNotThrowArgumentNullExceptionWhenDataIsNull()
+        {
+            // Act and assert
+            Assert.DoesNotThrow(() => this.factory.CreateTexture2D<int>(default, null));
+        }
+
+        [Test]
+        public void CreateTexture2DShouldReturnOpenGLTexture2DWhenInvoked()
+        {
+            // Act
+            ITexture2D actual = this.factory.CreateTexture2D<int>(default, Array.Empty<int>());
+
+            // Assert
+            Assert.IsInstanceOf(typeof(OpenGLTexture2D), actual);
+        }
+
+        [Test]
+        public void CreateVertexBufferShouldReturnOpenGLVertexBufferWhenInvoked()
         {
             // Act
             IVertexBuffer actual = this.factory.CreateVertexBuffer(Array.Empty<int>(), 0, 0);
@@ -155,7 +179,9 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
-            this.factory = new OpenGLGPUResourceFactory(this.invoker.Object);
+            this.mapper = new Mock<IEnumMapper>();
+
+            this.factory = new OpenGLGPUResourceFactory(this.invoker.Object, this.mapper.Object);
         }
     }
 }

@@ -15,17 +15,32 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     /// </summary>
     public interface IOpenGLInvoker
     {
+        /// <inheritdoc cref="GL.ActiveTexture(TextureUnit)">
+        void ActiveTexture(TextureUnit texture);
+
         /// <inheritdoc cref="GL.AttachShader(int, int)"/>
         void AttachShader(int program, int shader);
 
         /// <inheritdoc cref="GL.BindBuffer(BufferTarget, int)"/>
         void BindBuffer(BufferTarget target, int buffer);
 
+        /// <inheritdoc cref="GL.BindTexture(TextureTarget, int)"/>
+        void BindTexture(TextureTarget target, int texture);
+
         /// <inheritdoc cref="GL.BindVertexArray(int)"/>
         void BindVertexArray(int array);
 
         /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
         void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
+
+        /// <inheritdoc cref="GL.BlendColor(Color)"/>
+        void BlendColor(Color color);
+
+        /// <inheritdoc cref="GL.BlendEquation(BlendEquationMode)"/>
+        void BlendEquation(BlendEquationMode mode);
+
+        /// <inheritdoc cref="GL.BlendFunc(BlendingFactor, BlendingFactor)"/>
+        void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor);
 
         /// <inheritdoc cref="GL.BufferData{T2}(BufferTarget, int, T2[], BufferUsageHint)"/>
         void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
@@ -64,8 +79,20 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.DeleteShader(int)"/>
         void DeleteShader(int shader);
 
+        /// <inheritdoc cref="GL.DeleteTexture(int)"/>
+        void DeleteTexture(int textures);
+
         /// <inheritdoc cref="GL.DeleteVertexArray(int)"/>
         void DeleteVertexArray(int arrays);
+
+        /// <inheritdoc cref="GL.DepthFunc(DepthFunction)"/>
+        void DepthFunc(DepthFunction func);
+
+        /// <inheritdoc cref="GL.DepthMask(bool)"/>
+        void DepthMask(bool flag);
+
+        /// <inheritdoc cref="GL.DepthRange(float, float)"/>
+        void DepthRange(float n, float f);
 
         /// <inheritdoc cref="GL.Disable(EnableCap)"/>
         void Disable(EnableCap cap);
@@ -87,6 +114,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.GenBuffer"/>
         int GenBuffer();
+
+        /// <inheritdoc cref="GL.GenTexture"/>
+        int GenTexture();
 
         /// <inheritdoc cref="GL.GenVertexArray"/>
         int GenVertexArray();
@@ -116,6 +146,24 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Must Match API")]
         [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Must Much API")]
         void ShaderSource(int shader, string @string);
+
+        /// <inheritdoc cref="GL.StencilFunc(StencilFunction, int, int)"/>
+        [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Must Match API")]
+        void StencilFunc(StencilFunction func, int @ref, int mask);
+
+        /// <inheritdoc cref="GL.StencilMask(int)"/>
+        void StencilMask(int mask);
+
+        /// <inheritdoc cref="GL.StencilOp(StencilOp, StencilOp, StencilOp)"/>
+        void StencilOp(StencilOp fail, StencilOp zfail, StencilOp zpass);
+
+        void Switch(EnableCap cap, bool value);
+
+        /// <inheritdoc cref="GL.TexImage2D(TextureTarget, int, PixelInternalFormat, int, int, int, PixelFormat, PixelType, IntPtr)"/>
+        void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalForamt, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels);
+
+        /// <inheritdoc cref="GL.TexParameter(TextureTarget, TextureParameterName, int)"/>
+        void TexParameter(TextureTarget target, TextureParameterName name, int param);
 
         /// <inheritdoc cref="GL.Uniform1(int, int)"/>
         void Uniform1(int location, int x);

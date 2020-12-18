@@ -10,6 +10,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using Moq;
     using NUnit.Framework;
     using OpenTK.Graphics.OpenGL4;
@@ -19,174 +20,122 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     {
         private Mock<IOpenGLInvoker> invoker;
 
+        private Mock<IEnumMapper> mapper;
+
         private OpenGLRasterizer rasterizer;
+
+        private RasterStateDescription rasterState;
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLRasterizer(null));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLRasterizer(null, this.mapper.Object));
         }
 
         [Test]
-        public void SetRasterShouldInvokeDisableScissorTestWhenScissorEnabledFalse()
+        public void ConstructorShouldThrowArgumentNullExceptionWhenMapperIsNull()
         {
-            // Arrange
-            RasterStateDescription description = default;
-
-            // Act
-            this.rasterizer.SetRasterState(description);
-
-            // Assert
-            this.invoker.Verify(x => x.Disable(EnableCap.ScissorTest), Times.Once);
+            // Arrange, act and assert
+            Assert.Throws<ArgumentNullException>(() => new OpenGLRasterizer(this.invoker.Object, null));
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeCullFaceBackWhenCullModeBack()
+        public void SetRasterStateShouldInvokeCullFaceWhenInvoked()
         {
             // Arrange
-            var description = new RasterStateDescription()
-            {
-                CullMode = FaceCullMode.Back,
-            };
+            this.rasterState.CullMode = FaceCullMode.Front;
 
             // Act
-            this.rasterizer.SetRasterState(description);
+            this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.CullFace(CullFaceMode.Back), Times.Once);
+            this.invoker.Verify(x => x.CullFace(this.mapper.Object.Forward<CullFaceMode>(FaceCullMode.Front)), Times.Once);
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeCullFaceFrontWhenCullModeFront()
+        public void SetRasterStateShouldInvokeFrontFaceWhenInvoked()
         {
             // Arrange
-            var description = new RasterStateDescription()
-            {
-                CullMode = FaceCullMode.Front,
-            };
+            this.rasterState.WindingDirection = WindingDirection.CounterClockwise;
 
             // Act
-            this.rasterizer.SetRasterState(description);
+            this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.CullFace(CullFaceMode.Front), Times.Once);
+            this.invoker.Verify(x => x.FrontFace(this.mapper.Object.Forward<FrontFaceDirection>(WindingDirection.CounterClockwise)), Times.Once);
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeDisableCullFaceWhenCullEnabledFalse()
+        public void SetRasterStateShouldInvokePolygonModeWhenInvoked()
         {
             // Arrange
-            RasterStateDescription description = default;
+            this.rasterState.FillMode = RasterMode.Wireframe;
 
             // Act
-            this.rasterizer.SetRasterState(description);
+            this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.Disable(EnableCap.CullFace), Times.Once);
+            this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, this.mapper.Object.Forward<PolygonMode>(RasterMode.Wireframe)), Times.Once);
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeEnableCullFaceWhenCullEnabledTrue()
+        public void SetRasterStateShouldInvokeSwitchCullFaceFalseWhenCullEnabledIsFalse()
         {
             // Arrange
-            var description = new RasterStateDescription()
-            {
-                CullEnabled = true,
-            };
+            this.rasterState.CullEnabled = false;
 
             // Act
-            this.rasterizer.SetRasterState(description);
+            this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.Enable(EnableCap.CullFace), Times.Once);
+            this.invoker.Verify(x => x.Switch(EnableCap.CullFace, false), Times.Once);
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeEnableScissorTestWhenScissorEnabledTrue()
+        public void SetRasterStateShouldInvokeSwitchCullFaceTrueWhenCullEnabledIsTrue()
         {
             // Arrange
-            var description = new RasterStateDescription()
-            {
-                ScissorEnabled = true,
-            };
+            this.rasterState.CullEnabled = true;
 
             // Act
-            this.rasterizer.SetRasterState(description);
+            this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.Enable(EnableCap.ScissorTest), Times.Once);
+            this.invoker.Verify(x => x.Switch(EnableCap.CullFace, true), Times.Once);
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeFrontFaceClockwiseWhenDirectionClockwise()
+        public void SetRasterStateShouldInvokeSwitchScissorTestFalseWhenScissorEnabledIsFalse()
         {
             // Arrange
-            var description = new RasterStateDescription()
-            {
-                WindingDirection = WindingDirection.Clockwise,
-            };
+            this.rasterState.ScissorEnabled = false;
 
             // Act
-            this.rasterizer.SetRasterState(description);
+            this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.FrontFace(FrontFaceDirection.Cw), Times.Once);
+            this.invoker.Verify(x => x.Switch(EnableCap.ScissorTest, false), Times.Once);
         }
 
         [Test]
-        public void SetRasterStateShouldInvokeFrontFaceCounterClockwiseWhenDirectionCounterClockwise()
+        public void SetRasterStateShouldInvokeSwitchScissorTestTrueWhenScissorEnabledIsTrue()
         {
             // Arrange
-            var description = new RasterStateDescription()
-            {
-                WindingDirection = WindingDirection.CounterClockwise,
-            };
+            this.rasterState.ScissorEnabled = true;
 
             // Act
-            this.rasterizer.SetRasterState(description);
+            this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.FrontFace(FrontFaceDirection.Ccw), Times.Once);
-        }
-
-        [Test]
-        public void SetRasterStateShouldInvokePolygonModeFillWhenRasterModeSolid()
-        {
-            // Arrange
-            var description = new RasterStateDescription()
-            {
-                FillMode = RasterMode.Solid,
-            };
-
-            // Act
-            this.rasterizer.SetRasterState(description);
-
-            // Assert
-            this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill), Times.Once);
-        }
-
-        [Test]
-        public void SetRasterStateShouldInvokePolygonModeLineWhenRasterModeWireframe()
-        {
-            // Arrange
-            var description = new RasterStateDescription()
-            {
-                FillMode = RasterMode.Wireframe,
-            };
-
-            // Act
-            this.rasterizer.SetRasterState(description);
-
-            // Assert
-            this.invoker.Verify(x => x.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line), Times.Once);
+            this.invoker.Verify(x => x.Switch(EnableCap.ScissorTest, true), Times.Once);
         }
 
         [Test]
         public void SetScissorShouldInvokeScissorWhenInvoked()
         {
             // Arrange
-            var rectangle = new Rectangle(10, 10, 400, 632);
+            var rectangle = new Rectangle(10, 54, 364, 251);
 
             // Act
             this.rasterizer.SetScissor(rectangle);
@@ -200,20 +149,47 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
-            this.rasterizer = new OpenGLRasterizer(this.invoker.Object);
+            this.mapper = new Mock<IEnumMapper>();
+            this.rasterizer = new OpenGLRasterizer(this.invoker.Object, this.mapper.Object);
+
+            this.rasterState = default;
         }
 
         [Test]
-        public void SetViewportShouldnvokeInvokeSetViewportWhenInvoked()
+        public void SetViewportShouldInvokeDepthRangeNearZeroFarOneWhenInvoked()
+        {
+            // Act
+            this.rasterizer.SetViewport(Rectangle.Empty);
+
+            // Assert
+            this.invoker.Verify(x => x.DepthRange(0.0f, 1.0f), Times.Once);
+        }
+
+        [Test]
+        public void SetViewportShouldInvokeDepthRangeWhenInvoked()
         {
             // Arrange
-            var rectangle = new Rectangle(1, 2, 4, 6);
+            const float Near = 403.0f;
+            const float Far = 159.0f;
+
+            // Act
+            this.rasterizer.SetViewport(Rectangle.Empty, Near, Far);
+
+            // Assert
+            this.invoker.Verify(x => x.DepthRange(Near, Far), Times.Once);
+        }
+
+        [Test]
+        public void SetViewportShouldInvokeViewportWhenInvoked()
+        {
+            // Arrange
+            var rectangle = new Rectangle(124, 543, 5390, 3854);
 
             // Act
             this.rasterizer.SetViewport(rectangle);
 
             // Assert
-            this.invoker.Verify(x => x.Viewport(rectangle));
+            this.invoker.Verify(x => x.Viewport(rectangle), Times.Once);
         }
     }
 }

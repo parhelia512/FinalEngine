@@ -9,43 +9,57 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Buffers;
+    using FinalEngine.Rendering.OpenGL.Invocation;
     using Moq;
     using NUnit.Framework;
+    using OpenTK.Graphics.OpenGL4;
 
     [ExcludeFromCodeCoverage]
     public class OpenGLInputAssemblerTests
     {
         private OpenGLInputAssembler inputAssembler;
 
-        [Test]
-        public void SetIndexBufferShouldInvokeBindWhenBufferIsOpenGLIndexBuffer()
-        {
-            // Arrange
-            var buffer = new Mock<IOpenGLIndexBuffer>();
+        private Mock<IOpenGLInvoker> invoker;
 
+        [Test]
+        public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
+        {
+            // Arrange, act and assert
+            Assert.Throws<ArgumentNullException>(() => new OpenGLInputAssembler(null));
+        }
+
+        [Test]
+        public void SetIndexBufferShouldInvokeBindBufferZeroWhenBufferIsNull()
+        {
             // Act
-            this.inputAssembler.SetIndexBuffer(buffer.Object);
+            this.inputAssembler.SetIndexBuffer(null);
 
             // Assert
-            buffer.Verify(x => x.Bind(), Times.Once);
+            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, 0), Times.Once);
         }
 
         [Test]
-        public void SetIndexBufferShouldThrowArgumentExceptionWhenBufferIsNotOpenGLIndexBuffer()
+        public void SetIndexBufferShouldInvokeBindWhenInvoked()
+        {
+            // Arrange
+            var indexBuffer = new Mock<IOpenGLIndexBuffer>();
+
+            // Act
+            this.inputAssembler.SetIndexBuffer(indexBuffer.Object);
+
+            // Assert
+            indexBuffer.Verify(x => x.Bind(), Times.Once);
+        }
+
+        [Test]
+        public void SetIndexBufferShouldThrowArgumentExceptionWhenBufferIsNotIOpenGLIndexBuffer()
         {
             // Act and assert
-            Assert.Throws<ArgumentException>(() => this.inputAssembler.SetIndexBuffer(new Mock<IIndexBuffer>().Object));
+            Assert.Throws<ArgumentException>(() => this.inputAssembler.SetIndexBuffer(Mock.Of<IIndexBuffer>()));
         }
 
         [Test]
-        public void SetIndexBufferShouldThrowArgumentNullExceptionWhenBufferIsNull()
-        {
-            // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.inputAssembler.SetIndexBuffer(null));
-        }
-
-        [Test]
-        public void SetInputLayoutShouldInvokeBindWhenLayoutIsOpenGLInputLayout()
+        public void SetInputLayoutShouldInvokeBindWhenInvoked()
         {
             // Arrange
             var layout = new Mock<IOpenGLInputLayout>();
@@ -58,11 +72,14 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetInputLayoutShouldInvokeResetWhenSetInputLayoutPreviouslyCalled()
+        public void SetInputLayoutShouldInvokeBoundLayoutResetWhenInvokedAndLayoutHasBeenPreviouslyBound()
         {
             // Arrange
             var layout = new Mock<IOpenGLInputLayout>();
+
             this.inputAssembler.SetInputLayout(layout.Object);
+
+            layout.Reset();
 
             // Act
             this.inputAssembler.SetInputLayout(layout.Object);
@@ -72,51 +89,75 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetInputLayoutShouldThrowArgumentExceptionWhenBufferIsNotOpenGLInputLayout()
+        public void SetInputLayoutShouldInvokeBoundLayoutResetWhenLayoutIsNullAndLayoutHasPreviouslyBeenBound()
         {
-            // Act and assert
-            Assert.Throws<ArgumentException>(() => this.inputAssembler.SetInputLayout(new Mock<IInputLayout>().Object));
+            // Arrange
+            var layout = new Mock<IOpenGLInputLayout>();
+
+            this.inputAssembler.SetInputLayout(layout.Object);
+
+            layout.Reset();
+
+            // Act
+            this.inputAssembler.SetInputLayout(null);
+
+            // Assert
+            layout.Verify(x => x.Reset(), Times.Once);
         }
 
         [Test]
-        public void SetInputLayoutShouldThrowArgumentNullExceptionWhenBufferIsNull()
+        public void SetInputLayoutShouldNotInvokeBoundLayoutResetWhenLayoutIsNullAndLayoutHasNotBeenPreviouslyBound()
+        {
+            // Act
+            this.inputAssembler.SetInputLayout(null);
+
+            // Assert
+            Assert.Pass();
+        }
+
+        [Test]
+        public void SetInputLayoutShouldThrowArgumentExceptionWhenLayoutIsNotIOpenGLInputLayout()
         {
             // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.inputAssembler.SetInputLayout(null));
+            Assert.Throws<ArgumentException>(() => this.inputAssembler.SetInputLayout(Mock.Of<IInputLayout>()));
         }
 
         [SetUp]
         public void Setup()
         {
             // Arrange
-            this.inputAssembler = new OpenGLInputAssembler();
+            this.invoker = new Mock<IOpenGLInvoker>();
+            this.inputAssembler = new OpenGLInputAssembler(this.invoker.Object);
         }
 
         [Test]
-        public void SetVertexBufferShouldInvokeBindWhenBufferIsOpenGLVertexBuffer()
+        public void SetVertexBufferShouldInvokeBindVertexBufferWhenBufferIsNull()
         {
-            // Arrange
-            var buffer = new Mock<IOpenGLVertexBuffer>();
-
             // Act
-            this.inputAssembler.SetVertexBuffer(buffer.Object);
+            this.inputAssembler.SetVertexBuffer(null);
 
             // Assert
-            buffer.Verify(x => x.Bind(), Times.Once);
+            this.invoker.Verify(x => x.BindVertexBuffer(0, 0, IntPtr.Zero, 0), Times.Once);
         }
 
         [Test]
-        public void SetVertexBufferShouldThrowArgumentExceptionWhenBufferIsNotOpenGLVertexBuffer()
+        public void SetVertexBufferShouldInvokeBindWhenInvoked()
         {
-            // Act and assert
-            Assert.Throws<ArgumentException>(() => this.inputAssembler.SetVertexBuffer(new Mock<IVertexBuffer>().Object));
+            // Arrange
+            var vertexBuffer = new Mock<IOpenGLVertexBuffer>();
+
+            // Act
+            this.inputAssembler.SetVertexBuffer(vertexBuffer.Object);
+
+            // Assert
+            vertexBuffer.Verify(x => x.Bind(), Times.Once);
         }
 
         [Test]
-        public void SetVertexBufferShouldThrowArgumentNullExceptionWhenBufferIsNull()
+        public void SetVertexBufferShouldThrowArgumentExceptionWhenBufferIsNotIOpenGLVertexBuffer()
         {
             // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.inputAssembler.SetVertexBuffer(null));
+            Assert.Throws<ArgumentException>(() => this.inputAssembler.SetVertexBuffer(Mock.Of<IVertexBuffer>()));
         }
     }
 }

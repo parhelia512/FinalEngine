@@ -17,70 +17,63 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLRenderContextTests
     {
-        private const int ID = 10;
+        private const int VertexArrayID = 5094;
 
-        private Mock<IBindingsContext> bindings;
+        private Mock<IBindingsContext> bindingsContext;
 
-        private Mock<IGraphicsContext> context;
+        private Mock<IGraphicsContext> graphicsContext;
 
         private Mock<IOpenGLInvoker> invoker;
 
         private OpenGLRenderContext renderContext;
 
         [Test]
-        public void ConstructorShouldInvokeBindVertexArrayWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBindVertexArrayWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.BindVertexArray(ID), Times.Once);
+            this.invoker.Verify(x => x.BindVertexArray(VertexArrayID), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeContextMakeCurrentWhenParametersAreNotNull()
-        {
-            // Assert
-            this.context.Verify(x => x.MakeCurrent(), Times.Once);
-        }
-
-        [Test]
-        public void ConstructorShouldInvokeGenVertexArrayWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeGenVertexArrayWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.GenVertexArray(), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeLoadBindingsWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeLoadBindingsWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.LoadBindings(this.bindings.Object), Times.Once);
+            this.invoker.Verify(x => x.LoadBindings(this.bindingsContext.Object), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldNotThrowExceptionWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeMakeCurrentWhenInvoked()
         {
-            // Arrange, act and assert
-            Assert.DoesNotThrow(() => new OpenGLRenderContext(new Mock<IOpenGLInvoker>().Object, new Mock<IBindingsContext>().Object, new Mock<IGraphicsContext>().Object));
+            // Assert
+            this.graphicsContext.Verify(x => x.MakeCurrent(), Times.Once);
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenBindingsIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(new Mock<IOpenGLInvoker>().Object, null, new Mock<IGraphicsContext>().Object));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(this.invoker.Object, null, this.graphicsContext.Object));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenContextIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(new Mock<IOpenGLInvoker>().Object, new Mock<IBindingsContext>().Object, null));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(this.invoker.Object, this.bindingsContext.Object, null));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(null, new Mock<IBindingsContext>().Object, new Mock<IGraphicsContext>().Object));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLRenderContext(null, this.bindingsContext.Object, this.graphicsContext.Object));
         }
 
         [Test]
@@ -90,7 +83,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.renderContext.Dispose();
 
             // Assert
-            this.invoker.Verify(x => x.DeleteVertexArray(10), Times.Once);
+            this.invoker.Verify(x => x.DeleteVertexArray(VertexArrayID), Times.Once);
         }
 
         [SetUp]
@@ -99,37 +92,48 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
 
-            this.invoker.Setup(x => x.GenVertexArray()).Returns(ID);
+            this.invoker.Setup(x => x.GenVertexArray()).Returns(VertexArrayID);
 
-            this.bindings = new Mock<IBindingsContext>();
-            this.context = new Mock<IGraphicsContext>();
-            this.renderContext = new OpenGLRenderContext(this.invoker.Object, this.bindings.Object, this.context.Object);
+            this.bindingsContext = new Mock<IBindingsContext>();
+            this.graphicsContext = new Mock<IGraphicsContext>();
+
+            this.renderContext = new OpenGLRenderContext(this.invoker.Object, this.bindingsContext.Object, this.graphicsContext.Object);
         }
 
         [Test]
-        public void SwapBuffersShouldInvokeContextSwapBuffersWhenContextIsCurrent()
+        public void SwapBuffersShouldInvokeSwapBuffersWhenContextIsCurrent()
         {
             // Arrange
-            this.context.SetupGet(x => x.IsCurrent).Returns(true);
+            this.graphicsContext.SetupGet(x => x.IsCurrent).Returns(true);
 
             // Act
             this.renderContext.SwapBuffers();
 
             // Assert
-            this.context.Verify(x => x.SwapBuffers(), Times.Once);
+            this.graphicsContext.Verify(x => x.SwapBuffers(), Times.Once);
         }
 
         [Test]
-        public void SwapBuffersShouldNotInvokeContextSwapBuffersWhenContextIsNotCurrent()
+        public void SwapBuffersShouldNotInvokeSwapBuffersWhenContextIsNotCurrent()
         {
             // Arrange
-            this.context.SetupGet(x => x.IsCurrent).Returns(false);
+            this.graphicsContext.SetupGet(x => x.IsCurrent).Returns(false);
 
             // Act
             this.renderContext.SwapBuffers();
 
             // Assert
-            this.context.Verify(x => x.SwapBuffers(), Times.Never);
+            this.graphicsContext.Verify(x => x.SwapBuffers(), Times.Never);
+        }
+
+        [Test]
+        public void SwapBuffersShouldThrowObjectDisposedExceptionWhenRenderContextIsDisposed()
+        {
+            // Arrange
+            this.renderContext.Dispose();
+
+            // Act and assert
+            Assert.Throws<ObjectDisposedException>(() => this.renderContext.SwapBuffers());
         }
 
         [TearDown]

@@ -7,40 +7,28 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using System.Drawing;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLRasterizer : IRasterizer
     {
         private readonly IOpenGLInvoker invoker;
 
-        public OpenGLRasterizer(IOpenGLInvoker invoker)
+        private readonly IEnumMapper mapper;
+
+        public OpenGLRasterizer(IOpenGLInvoker invoker, IEnumMapper mapper)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
         }
 
         public void SetRasterState(RasterStateDescription description)
         {
-            if (description.CullEnabled)
-            {
-                this.invoker.Enable(EnableCap.CullFace);
-            }
-            else
-            {
-                this.invoker.Disable(EnableCap.CullFace);
-            }
-
-            if (description.ScissorEnabled)
-            {
-                this.invoker.Enable(EnableCap.ScissorTest);
-            }
-            else
-            {
-                this.invoker.Disable(EnableCap.ScissorTest);
-            }
-
-            this.invoker.CullFace(description.CullMode == FaceCullMode.Back ? CullFaceMode.Back : CullFaceMode.Front);
-            this.invoker.FrontFace(description.WindingDirection == WindingDirection.Clockwise ? FrontFaceDirection.Cw : FrontFaceDirection.Ccw);
-            this.invoker.PolygonMode(MaterialFace.FrontAndBack, description.FillMode == RasterMode.Solid ? PolygonMode.Fill : PolygonMode.Line);
+            this.invoker.Switch(EnableCap.CullFace, description.CullEnabled);
+            this.invoker.Switch(EnableCap.ScissorTest, description.ScissorEnabled);
+            this.invoker.CullFace(this.mapper.Forward<CullFaceMode>(description.CullMode));
+            this.invoker.FrontFace(this.mapper.Forward<FrontFaceDirection>(description.WindingDirection));
+            this.invoker.PolygonMode(MaterialFace.FrontAndBack, this.mapper.Forward<PolygonMode>(description.FillMode));
         }
 
         public void SetScissor(Rectangle rectangle)
@@ -48,9 +36,10 @@ namespace FinalEngine.Rendering.OpenGL
             this.invoker.Scissor(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
         }
 
-        public void SetViewport(Rectangle rectangle)
+        public void SetViewport(Rectangle rectangle, float near = 0.0f, float far = 1.0f)
         {
             this.invoker.Viewport(rectangle);
+            this.invoker.DepthRange(near, far);
         }
     }
 }

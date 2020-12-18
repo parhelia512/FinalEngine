@@ -50,6 +50,11 @@ namespace FinalEngine.Rendering.OpenGL
 
         public void SwapBuffers()
         {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(OpenGLRenderContext));
+            }
+
             if (!this.context.IsCurrent)
             {
                 return;

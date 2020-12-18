@@ -9,6 +9,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Utilities;
     using Moq;
     using NUnit.Framework;
     using OpenTK.Graphics.OpenGL4;
@@ -17,126 +18,128 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLShaderTests
     {
+        private const int ID = 34;
+
+        private readonly string sourceCode = "source code";
+
         private Mock<IOpenGLInvoker> invoker;
+
+        private Mock<IEnumMapper> mapper;
 
         private OpenGLShader shader;
 
         [Test]
-        public void AttachShouldInvokeAttachShaderWhenInvoked()
+        public void AttachShouldInvokeAttachShaderWhenShaderIsNotDisposed()
         {
             // Act
-            this.shader.Attach(1);
+            this.shader.Attach(17);
 
             // Assert
-            this.invoker.Verify(x => x.AttachShader(1, 0), Times.Once);
+            this.invoker.Verify(x => x.AttachShader(17, ID), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeCompileShaderWhenParametersAreNotNull()
+        public void AttachShouldThrowObjectDisposedExceptionWhenShaderIsDisposed()
+        {
+            // Arrange
+            this.shader.Dispose();
+
+            // Act and assert
+            Assert.Throws<ObjectDisposedException>(() => this.shader.Attach(0));
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeCompileShaderWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.CompileShader(0), Times.Once);
+            this.invoker.Verify(x => x.CompileShader(ID), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeCreateShaderWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeCreateShaderWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.CreateShader(ShaderType.VertexShader), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeGetShaderInfoLogWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeGetShaderInfoLogWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.GetShaderInfoLog(0), Times.Once);
+            this.invoker.Verify(x => x.GetShaderInfoLog(ID), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeShaderSourceWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeReversePipelineTargetWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.ShaderSource(0, "test"), Times.Once);
+            this.mapper.Verify(x => x.Reverse<PipelineTarget>(ShaderType.VertexShader), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldNotThrowExceptionWhenTargetIsFragment()
+        public void ConstructorShouldInvokeShaderSourceWhenInvoked()
         {
-            // Arrange, act and assert
-            Assert.DoesNotThrow(() => new OpenGLShader(new Mock<IOpenGLInvoker>().Object, PipelineTarget.Fragment, "test"));
-        }
-
-        [Test]
-        public void ConstructorShouldNotThrowExceptionWhenTargetIsVertex()
-        {
-            // Arrange, act and assert
-            Assert.DoesNotThrow(() => new OpenGLShader(new Mock<IOpenGLInvoker>().Object, PipelineTarget.Vertex, "test"));
+            // Assert
+            this.invoker.Verify(x => x.ShaderSource(ID, this.sourceCode), Times.Once);
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(null, PipelineTarget.Vertex, "test"));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(null, this.mapper.Object, ShaderType.VertexShader, this.sourceCode));
+        }
+
+        [Test]
+        public void ConstructorShouldThrowArgumentNullExceptionWhenMapperIsNull()
+        {
+            // Arrange, act and assert
+            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(this.invoker.Object, null, ShaderType.VertexShader, this.sourceCode));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenSourceCodeIsEmpty()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(new Mock<IOpenGLInvoker>().Object, PipelineTarget.Vertex, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, string.Empty));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenSourceCodeIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(new Mock<IOpenGLInvoker>().Object, PipelineTarget.Vertex, null));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, null));
         }
 
         [Test]
-        public void ConstructorShouldThrowArgumentNullExceptionWhenSourceCodeIsWhiteSpace()
+        public void ConstructorShouldThrowArgumentNullExceptionWhenSourceCodeIsWhitespace()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(new Mock<IOpenGLInvoker>().Object, PipelineTarget.Vertex, "\t\r\n"));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, "\t\r\n"));
         }
 
         [Test]
-        public void ConstructorShouldThrowExceptionWhenGetShaderInfoLogReturnsString()
+        public void ConstructorShouldThrowExceptionWhenGetShaderInfoLogReturnsNotNullEmptyOrWhitspace()
         {
             // Arrange
-            var invoker = new Mock<IOpenGLInvoker>();
-
-            invoker.Setup(x => x.GetShaderInfoLog(0)).Returns("test");
+            this.invoker.Setup(x => x.GetShaderInfoLog(ID)).Returns("test");
 
             // Act and assert
-            Assert.Throws<Exception>(() => new OpenGLShader(invoker.Object, PipelineTarget.Vertex, "test"));
+            Assert.Throws<Exception>(() => new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, this.sourceCode));
         }
 
         [Test]
-        public void ConstructorShouldThrowNotSupportedExceptionWhenShaderTypeIsNotDefined()
-        {
-            // Arrange
-            Assert.IsFalse(Enum.IsDefined(typeof(PipelineTarget), int.MaxValue));
-
-            var invoker = new Mock<IOpenGLInvoker>();
-
-            // Act and assert
-            Assert.Throws<NotSupportedException>(() => new OpenGLShader(invoker.Object, (PipelineTarget)int.MaxValue, "test"));
-        }
-
-        [Test]
-        public void DisposeShouldInvokeDeletShaderWhenInvoked()
+        public void DisposeShouldInvokeDeleteShaderWhenShaderIsNotDisposed()
         {
             // Act
             this.shader.Dispose();
 
             // Assert
-            this.invoker.Verify(x => x.DeleteShader(0), Times.Once);
+            this.invoker.Verify(x => x.DeleteShader(ID), Times.Once);
         }
 
         [Test]
-        public void EntryPointShouldReturnSameAsConstructorWhenRetrieved()
+        public void EntryPointShouldReturnVertexWhenInvoked()
         {
             // Act
             PipelineTarget actual = this.shader.EntryPoint;
@@ -150,7 +153,12 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
-            this.shader = new OpenGLShader(this.invoker.Object, PipelineTarget.Vertex, "test");
+            this.invoker.Setup(x => x.CreateShader(ShaderType.VertexShader)).Returns(ID);
+
+            this.mapper = new Mock<IEnumMapper>();
+            this.mapper.Setup(x => x.Forward<PipelineTarget>(ShaderType.VertexShader)).Returns(PipelineTarget.Vertex);
+
+            this.shader = new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, this.sourceCode);
         }
 
         [TearDown]

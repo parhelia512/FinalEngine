@@ -8,15 +8,19 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
     using System.Collections.Generic;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLInputLayout : IOpenGLInputLayout
     {
         private readonly IOpenGLInvoker invoker;
 
-        public OpenGLInputLayout(IOpenGLInvoker invoker, IEnumerable<InputElement> elements)
+        private readonly IEnumMapper mapper;
+
+        public OpenGLInputLayout(IOpenGLInvoker invoker, IEnumMapper mapper, IEnumerable<InputElement> elements)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
             this.Elements = elements ?? throw new ArgumentNullException(nameof(elements), $"The specified {nameof(elements)} parameter cannot be null.");
         }
 
@@ -26,7 +30,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         {
             foreach (InputElement element in this.Elements)
             {
-                this.invoker.VertexAttribFormat(element.Index, element.Size, GetVertexAttribType(element.Type), false, element.RelativeOffset);
+                this.invoker.VertexAttribFormat(element.Index, element.Size, this.mapper.Forward<VertexAttribType>(element.Type), false, element.RelativeOffset);
                 this.invoker.VertexAttribBinding(element.Index, 0);
                 this.invoker.EnableVertexAttribArray(element.Index);
             }
@@ -37,30 +41,6 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
             foreach (InputElement element in this.Elements)
             {
                 this.invoker.DisableVertexAttribArray(element.Index);
-            }
-        }
-
-        private static VertexAttribType GetVertexAttribType(InputElementType type)
-        {
-            switch (type)
-            {
-                case InputElementType.Byte:
-                    return VertexAttribType.Byte;
-
-                case InputElementType.Double:
-                    return VertexAttribType.Double;
-
-                case InputElementType.Float:
-                    return VertexAttribType.Float;
-
-                case InputElementType.Int:
-                    return VertexAttribType.Int;
-
-                case InputElementType.Short:
-                    return VertexAttribType.Short;
-
-                default:
-                    throw new NotSupportedException($"The specified {nameof(type)} is not supported by the OpenGL Backend.");
             }
         }
     }

@@ -19,10 +19,24 @@ namespace TestGame
         [FieldOffset(12)]
         private Vector4 color;
 
-        public Vertex(Vector3 position, Vector4 color)
+        [FieldOffset(28)]
+        private Vector2 textureCoordinate;
+
+        public Vertex(float x, float y, float z, float xt, float yt)
+            : this(new Vector3(x, y, z), new Vector2(xt, yt))
+        {
+        }
+
+        public Vertex(Vector3 position, Vector2 textureCoordinate)
+            : this(position, Vector4.One, textureCoordinate)
+        {
+        }
+
+        public Vertex(Vector3 position, Vector4 color, Vector2 textureCoordinate)
         {
             this.position = position;
             this.color = color;
+            this.textureCoordinate = textureCoordinate;
         }
 
         public Vector3 Position
@@ -33,6 +47,11 @@ namespace TestGame
         public Vector4 Color
         {
             get { return this.color; }
+        }
+
+        public Vector2 TextureCoordinate
+        {
+            get { return this.textureCoordinate; }
         }
 
         public static bool operator ==(Vertex left, Vertex right)

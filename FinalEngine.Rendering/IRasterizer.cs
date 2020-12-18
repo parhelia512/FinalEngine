@@ -12,6 +12,6 @@ namespace FinalEngine.Rendering
 
         void SetScissor(Rectangle rectangle);
 
-        void SetViewport(Rectangle rectangle);
+        void SetViewport(Rectangle rectangle, float near = 0.0f, float far = 1.0f);
     }
 }

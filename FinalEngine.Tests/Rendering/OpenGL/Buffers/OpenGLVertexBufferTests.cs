@@ -27,7 +27,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         private OpenGLVertexBuffer<int> vertexBuffer;
 
         [Test]
-        public void BindShouldInvokeBindVertexBufferIDWhenVertexBufferIsNotDisposed()
+        public void BindShouldInvokeBindVertexBufferWhenBufferIsNotDisposed()
         {
             // Act
             this.vertexBuffer.Bind();
@@ -37,7 +37,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void BindShouldThrowObjectDisposedExceptionWhenVertexBufferIsDisposed()
+        public void BindShouldThrowObjectDisposedExceptionWhenBufferIsDisposed()
         {
             // Arrange
             this.vertexBuffer.Dispose();
@@ -47,28 +47,28 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldInvokeBindBufferIDWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBindBufferIdentifierWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, ID), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeBindBufferZeroWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeBindBufferZeroWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.BindBuffer(BufferTarget.ArrayBuffer, 0), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeBufferDataWhenParametersAreNotNulL()
+        public void ConstructorShouldInvokeBufferDataWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.BufferData(BufferTarget.ArrayBuffer, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeGenBufferWhenParametersAreNotNull()
+        public void ConstructorShouldInvokeGenBufferWhenInvoked()
         {
             // Assert
             this.invoker.Verify(x => x.GenBuffer(), Times.Once);
@@ -78,18 +78,18 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         public void ConstructorShouldThrowArgumentNullExceptionWhenDataIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLVertexBuffer<int>(new Mock<IOpenGLInvoker>().Object, null, 0, 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLVertexBuffer<int>(this.invoker.Object, null, this.data.Length * sizeof(int), 0));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLVertexBuffer<int>(null, Array.Empty<int>(), 0, 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLVertexBuffer<int>(null, this.data, this.data.Length * sizeof(int), Stride));
         }
 
         [Test]
-        public void DisposeShouldInvokeDeleteBufferWhenInvoked()
+        public void DisposeShouldInvokeDeleteBufferWhenBufferIsNotDisposed()
         {
             // Act
             this.vertexBuffer.Dispose();
@@ -101,20 +101,17 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
-
             this.vertexBuffer = new OpenGLVertexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int), Stride);
         }
 
         [Test]
-        public void StrideShouldReturnSameAsConstructorInputWhenInvoked()
+        public void StrideShouldReturnSameAsStrideWhenInvoked()
         {
-            // Act
-            int actual = this.vertexBuffer.Stride;
-
             // Assert
-            Assert.AreEqual(Stride, actual);
+            Assert.AreEqual(Stride, this.vertexBuffer.Stride);
         }
 
         [TearDown]

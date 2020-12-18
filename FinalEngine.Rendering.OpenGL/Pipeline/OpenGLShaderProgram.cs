@@ -56,6 +56,11 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         public void Bind()
         {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(OpenGLShader));
+            }
+
             this.invoker.UseProgram(this.id);
         }
 
@@ -67,6 +72,11 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         public int GetUniformLocation(string name)
         {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(OpenGLShader));
+            }
+
             if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentNullException(nameof(name), $"The specified {nameof(name)} parameter cannot be null, empty or contain only whitespace.");
@@ -82,13 +92,10 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
                 return;
             }
 
-            if (disposing)
+            if (disposing && this.id != -1)
             {
-                if (this.id != -1)
-                {
-                    this.invoker.DeleteProgram(this.id);
-                    this.id = -1;
-                }
+                this.invoker.DeleteProgram(this.id);
+                this.id = -1;
             }
 
             this.IsDisposed = true;

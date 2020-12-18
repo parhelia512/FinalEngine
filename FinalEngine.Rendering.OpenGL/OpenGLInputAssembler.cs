@@ -7,54 +7,69 @@ namespace FinalEngine.Rendering.OpenGL
     using System;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Buffers;
+    using FinalEngine.Rendering.OpenGL.Invocation;
+    using OpenTK.Graphics.OpenGL4;
 
     public class OpenGLInputAssembler : IInputAssembler
     {
+        private readonly IOpenGLInvoker invoker;
+
         private IOpenGLInputLayout? boundLayout;
 
-        public void SetIndexBuffer(IIndexBuffer buffer)
+        public OpenGLInputAssembler(IOpenGLInvoker invoker)
+        {
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+        }
+
+        public void SetIndexBuffer(IIndexBuffer? buffer)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
+                this.invoker.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+
+                return;
             }
 
             if (buffer is not IOpenGLIndexBuffer glIndexBuffer)
             {
-                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLIndexBuffer)}.");
+                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLIndexBuffer)}.", nameof(buffer));
             }
 
             glIndexBuffer.Bind();
         }
 
-        public void SetInputLayout(IInputLayout layout)
+        public void SetInputLayout(IInputLayout? layout)
         {
             if (layout == null)
             {
-                throw new ArgumentNullException(nameof(layout), $"The specified {nameof(layout)} parameter cannot be null.");
+                this.boundLayout?.Reset();
+
+                return;
             }
 
             if (layout is not IOpenGLInputLayout glInputLayout)
             {
-                throw new ArgumentException($"The specified {nameof(layout)} parameter is not of type {nameof(IOpenGLInputLayout)}.");
+                throw new ArgumentException($"The specified {nameof(layout)} parameter is not of type {nameof(IOpenGLInputLayout)}.", nameof(layout));
             }
 
             this.boundLayout?.Reset();
-
             this.boundLayout = glInputLayout;
+
             this.boundLayout.Bind();
         }
 
-        public void SetVertexBuffer(IVertexBuffer buffer)
+        public void SetVertexBuffer(IVertexBuffer? buffer)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
+                this.invoker.BindVertexBuffer(0, 0, IntPtr.Zero, 0);
+
+                return;
             }
 
             if (buffer is not IOpenGLVertexBuffer glVertexBuffer)
             {
-                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLVertexBuffer)}.");
+                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLVertexBuffer)}.", nameof(buffer));
             }
 
             glVertexBuffer.Bind();

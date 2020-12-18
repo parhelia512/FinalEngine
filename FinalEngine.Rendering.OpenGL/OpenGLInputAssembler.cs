@@ -18,7 +18,7 @@ namespace FinalEngine.Rendering.OpenGL
 
         public OpenGLInputAssembler(IOpenGLInvoker invoker)
         {
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker));
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
         }
 
         public void SetIndexBuffer(IIndexBuffer? buffer)
@@ -32,7 +32,7 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (buffer is not IOpenGLIndexBuffer glIndexBuffer)
             {
-                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLIndexBuffer)}.");
+                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLIndexBuffer)}.", nameof(buffer));
             }
 
             glIndexBuffer.Bind();
@@ -49,7 +49,7 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (layout is not IOpenGLInputLayout glInputLayout)
             {
-                throw new ArgumentException($"The specified {nameof(layout)} parameter is not of type {nameof(IOpenGLInputLayout)}.");
+                throw new ArgumentException($"The specified {nameof(layout)} parameter is not of type {nameof(IOpenGLInputLayout)}.", nameof(layout));
             }
 
             this.boundLayout?.Reset();
@@ -69,7 +69,7 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (buffer is not IOpenGLVertexBuffer glVertexBuffer)
             {
-                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLVertexBuffer)}.");
+                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLVertexBuffer)}.", nameof(buffer));
             }
 
             glVertexBuffer.Bind();

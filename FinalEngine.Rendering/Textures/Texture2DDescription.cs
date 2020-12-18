@@ -68,7 +68,9 @@ namespace FinalEngine.Rendering.Textures
                    this.MagFilter == other.magFilter &&
                    this.WrapS == other.WrapS &&
                    this.WrapT == other.WrapT &&
-                   this.PixelType == other.PixelType;
+                   this.PixelType == other.PixelType &&
+                   this.Width == other.Width &&
+                   this.Height == other.Height;
         }
 
         public override bool Equals(object? obj)
@@ -84,7 +86,9 @@ namespace FinalEngine.Rendering.Textures
                    (this.MagFilter.GetHashCode() * Accumulator) +
                    (this.WrapS.GetHashCode() * Accumulator) +
                    (this.WrapT.GetHashCode() * Accumulator) +
-                   (this.PixelType.GetHashCode() * Accumulator);
+                   (this.PixelType.GetHashCode() * Accumulator) +
+                   (this.Width.GetHashCode() * Accumulator) +
+                   (this.Height.GetHashCode() * Accumulator);
         }
     }
 }

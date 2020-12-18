@@ -22,7 +22,7 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
             if (mapper == null)
             {
-                throw new ArgumentNullException(nameof(mapper));
+                throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
             }
 
             if (string.IsNullOrWhiteSpace(sourceCode))

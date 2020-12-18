@@ -41,7 +41,7 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (program is not IOpenGLShaderProgram glProgram)
             {
-                throw new ArgumentException($"The specified {nameof(program)} parameter is not of type {nameof(IOpenGLShaderProgram)}.");
+                throw new ArgumentException($"The specified {nameof(program)} parameter is not of type {nameof(IOpenGLShaderProgram)}.", nameof(program));
             }
 
             this.boundProgram = glProgram;
@@ -59,7 +59,7 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (texture is not IOpenGLTexture glTexture)
             {
-                throw new ArgumentException($"The specified {nameof(texture)} parameter is not of type {nameof(IOpenGLTexture)}.");
+                throw new ArgumentException($"The specified {nameof(texture)} parameter is not of type {nameof(IOpenGLTexture)}.", nameof(texture));
             }
 
             this.boundTexture = glTexture;

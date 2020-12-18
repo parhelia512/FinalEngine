@@ -24,11 +24,6 @@ namespace FinalEngine.Rendering.OpenGL.Textures
                 throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
             }
 
-            if (data == IntPtr.Zero)
-            {
-                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
-            }
-
             this.Description = description;
 
             this.Bind();

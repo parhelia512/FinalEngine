@@ -35,8 +35,8 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (program == null)
             {
-                this.boundProgram = null;
                 this.invoker.UseProgram(0);
+                this.boundProgram = null;
 
                 return;
             }
@@ -55,6 +55,7 @@ namespace FinalEngine.Rendering.OpenGL
             if (texture == null)
             {
                 this.boundTexture?.Unbind();
+                this.boundTexture = null;
 
                 return;
             }

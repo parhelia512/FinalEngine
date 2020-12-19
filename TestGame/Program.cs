@@ -54,7 +54,7 @@ namespace TestGame
                 }
             }
 
-            return factory.CreateTexture2D(description, data, FinalEngine.Rendering.Textures.PixelFormat.Rgba, FinalEngine.Rendering.Textures.PixelFormat.Rgba);
+            return factory.CreateTexture2D(description, data);
         }
 
         private static void Main()
@@ -213,6 +213,10 @@ namespace TestGame
             ITexture2D texture = LoadTextureFromFile(factory, "Resources\\Textures\\default.png");
 
             pipeline.SetTexture(texture, 0);
+
+            ITexture2D otherTex = LoadTextureFromFile(factory, "Resources\\Textures\\wood.png");
+
+            pipeline.SetTexture(otherTex, 0);
 
             Console.WriteLine(GL.GetError());
 

@@ -97,6 +97,10 @@ namespace FinalEngine.Rendering.OpenGL
                 { PixelFormat.Rgba, TKPixelForamt.Rgba },
                 { PixelFormat.Depth, TKPixelForamt.DepthComponent },
                 { PixelFormat.DepthAndStencil, TKPixelForamt.DepthStencil },
+                { SizedFormat.R8, SizedInternalFormat.R8 },
+                { SizedFormat.Rg8, SizedInternalFormat.Rg8 },
+                { SizedFormat.Rgb8, All.Rgb8 },
+                { SizedFormat.Rgba8, SizedInternalFormat.Rgba8 },
             };
 
             this.mapper = new EnumMapper(map);

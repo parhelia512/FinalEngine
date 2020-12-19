@@ -65,6 +65,8 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.CreateShader(ShaderType)"/>
         int CreateShader(ShaderType type);
 
+        int CreateTexture(TextureTarget target);
+
         /// <inheritdoc cref="GL.CullFace(CullFaceMode)"/>
         void CullFace(CullFaceMode mode);
 
@@ -109,9 +111,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.FrontFace(FrontFaceDirection)"/>
         void FrontFace(FrontFaceDirection mode);
-
-        /// <inheritdoc cref="GL.GenTexture"/>
-        int GenTexture();
 
         /// <inheritdoc cref="GL.GenVertexArray"/>
         int GenVertexArray();
@@ -158,11 +157,14 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         void Switch(EnableCap cap, bool value);
 
-        /// <inheritdoc cref="GL.TexImage2D(TextureTarget, int, PixelInternalFormat, int, int, int, PixelFormat, PixelType, IntPtr)"/>
-        void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalForamt, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels);
+        /// <inheritdoc cref="GL.TextureParameter(int, TextureParameterName, int)"/>
+        void TextureParameter(int texture, TextureParameterName pname, int param);
 
-        /// <inheritdoc cref="GL.TexParameter(TextureTarget, TextureParameterName, int)"/>
-        void TexParameter(TextureTarget target, TextureParameterName name, int param);
+        /// <inheritdoc cref="GL.TextureStorage2D(int, int, SizedInternalFormat, int, int)">
+        void TextureStorage2D(int texture, int levels, SizedInternalFormat internalFormat, int width, int height);
+
+        /// <inheritdoc cref="GL.TextureSubImage2D(int, int, int, int, int, int, PixelFormat, PixelType, IntPtr)"/>
+        void TextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, IntPtr pixels);
 
         /// <inheritdoc cref="GL.Uniform1(int, int)"/>
         void Uniform1(int location, int x);

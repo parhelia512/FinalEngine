@@ -18,4 +18,15 @@ namespace FinalEngine.Rendering.Textures
 
         DepthAndStencil,
     }
+
+    public enum SizedFormat
+    {
+        R8,
+
+        Rg8,
+
+        Rgb8,
+
+        Rgba8,
+    }
 }

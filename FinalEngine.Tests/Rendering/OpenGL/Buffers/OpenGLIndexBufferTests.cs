@@ -48,20 +48,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldInvokeBindBufferIdentifierWhenInvoked()
-        {
-            // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, ID), Times.Once);
-        }
-
-        [Test]
-        public void ConstructorShouldInvokeBindBufferZeroWhenInvoked()
-        {
-            // Assert
-            this.invoker.Verify(x => x.BindBuffer(BufferTarget.ElementArrayBuffer, 0), Times.Once);
-        }
-
-        [Test]
         public void ConstructorShouldInvokeCreateBufferWhenInvoked()
         {
             // Assert

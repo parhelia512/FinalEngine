@@ -120,6 +120,13 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             return GL.CreateShader(type);
         }
 
+        public int CreateTexture(TextureTarget target)
+        {
+            GL.CreateTextures(target, 1, out int result);
+
+            return result;
+        }
+
         /// <inheritdoc/>
         public void CullFace(CullFaceMode mode)
         {
@@ -208,12 +215,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void FrontFace(FrontFaceDirection mode)
         {
             GL.FrontFace(mode);
-        }
-
-        /// <inheritdoc/>
-        public int GenTexture()
-        {
-            return GL.GenTexture();
         }
 
         /// <inheritdoc/>
@@ -307,16 +308,19 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             }
         }
 
-        /// <inheritdoc/>
-        public void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalForamt, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels)
+        public void TextureParameter(int texture, TextureParameterName pname, int param)
         {
-            GL.TexImage2D(target, level, internalForamt, width, height, border, format, type, pixels);
+            GL.TextureParameter(texture, pname, param);
         }
 
-        /// <inheritdoc/>
-        public void TexParameter(TextureTarget target, TextureParameterName name, int param)
+        public void TextureStorage2D(int texture, int levels, SizedInternalFormat internalFormat, int width, int height)
         {
-            GL.TexParameter(target, name, param);
+            GL.TextureStorage2D(texture, levels, internalFormat, width, height);
+        }
+
+        public void TextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, IntPtr pixels)
+        {
+            GL.TextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
         }
 
         /// <inheritdoc/>

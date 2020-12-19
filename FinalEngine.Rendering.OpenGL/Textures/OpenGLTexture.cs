@@ -6,6 +6,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 {
     using System;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Rendering.Textures;
     using OpenTK.Graphics.OpenGL4;
     using PixelFormat = FinalEngine.Rendering.Textures.PixelFormat;
 
@@ -19,15 +20,15 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
         private int id;
 
-        public OpenGLTexture(IOpenGLInvoker invoker, TextureTarget target, PixelFormat format, PixelFormat internalFormat)
+        public OpenGLTexture(IOpenGLInvoker invoker, TextureTarget target, PixelFormat format, SizedFormat internalFormat)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
-            this.id = invoker.GenTexture();
+            this.id = invoker.CreateTexture(target);
             this.target = target;
 
             this.Format = format;
-            this.InternalForamt = internalFormat;
+            this.InternalFormat = internalFormat;
         }
 
         ~OpenGLTexture()
@@ -37,7 +38,20 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
         public PixelFormat Format { get; }
 
-        public PixelFormat InternalForamt { get; }
+        public SizedFormat InternalFormat { get; }
+
+        protected int ID
+        {
+            get
+            {
+                if (this.IsDisposed)
+                {
+                    throw new ObjectDisposedException(nameof(OpenGLTexture));
+                }
+
+                return this.id;
+            }
+        }
 
         protected bool IsDisposed { get; private set; }
 

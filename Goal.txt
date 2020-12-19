@@ -33,7 +33,6 @@ Sprinty Sprint:
 - Logging
 - File IO :)
 - Game Loop
-- Go through all documentation and really get GhostDocs working for you :)
 
 // Would this improve performance?
 public void SetRasterState(RasterStateDescription description)

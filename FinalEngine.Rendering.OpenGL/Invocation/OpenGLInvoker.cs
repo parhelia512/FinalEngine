@@ -72,13 +72,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
-        public void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
-            where T2 : struct
-        {
-            GL.BufferData(target, size, data, usage);
-        }
-
-        /// <inheritdoc/>
         public void Clear(ClearBufferMask mask)
         {
             GL.Clear(mask);
@@ -108,6 +101,13 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.CompileShader(shader);
         }
 
+        public int CreateBuffer()
+        {
+            GL.CreateBuffers(1, out int result);
+
+            return result;
+        }
+
         /// <inheritdoc/>
         public int CreateProgram()
         {
@@ -118,6 +118,13 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public int CreateShader(ShaderType type)
         {
             return GL.CreateShader(type);
+        }
+
+        public int CreateTexture(TextureTarget target)
+        {
+            GL.CreateTextures(target, 1, out int result);
+
+            return result;
         }
 
         /// <inheritdoc/>
@@ -211,18 +218,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
-        public int GenBuffer()
-        {
-            return GL.GenBuffer();
-        }
-
-        /// <inheritdoc/>
-        public int GenTexture()
-        {
-            return GL.GenTexture();
-        }
-
-        /// <inheritdoc/>
         public int GenVertexArray()
         {
             return GL.GenVertexArray();
@@ -256,6 +251,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void LoadBindings(IBindingsContext context)
         {
             GL.LoadBindings(context);
+        }
+
+        public void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct
+        {
+            GL.NamedBufferData(buffer, size, data, usage);
         }
 
         /// <inheritdoc/>
@@ -307,16 +308,19 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             }
         }
 
-        /// <inheritdoc/>
-        public void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalForamt, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels)
+        public void TextureParameter(int texture, TextureParameterName pname, int param)
         {
-            GL.TexImage2D(target, level, internalForamt, width, height, border, format, type, pixels);
+            GL.TextureParameter(texture, pname, param);
         }
 
-        /// <inheritdoc/>
-        public void TexParameter(TextureTarget target, TextureParameterName name, int param)
+        public void TextureStorage2D(int texture, int levels, SizedInternalFormat internalFormat, int width, int height)
         {
-            GL.TexParameter(target, name, param);
+            GL.TextureStorage2D(texture, levels, internalFormat, width, height);
+        }
+
+        public void TextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, IntPtr pixels)
+        {
+            GL.TextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
         }
 
         /// <inheritdoc/>

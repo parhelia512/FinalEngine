@@ -10,6 +10,6 @@ namespace FinalEngine.Rendering.Textures
     {
         PixelFormat Format { get; }
 
-        PixelFormat InternalForamt { get; }
+        SizedFormat InternalFormat { get; }
     }
 }

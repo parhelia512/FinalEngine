@@ -8,6 +8,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
     using System.Diagnostics.CodeAnalysis;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Textures;
+    using FinalEngine.Rendering.Textures;
     using Moq;
     using NUnit.Framework;
     using OpenTK.Graphics.OpenGL4;
@@ -47,14 +48,14 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         public void ConstructorShouldInvokeGenTextureWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.GenTexture(), Times.Once);
+            this.invoker.Verify(x => x.CreateTexture(TextureTarget.Texture2D), Times.Once);
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLTexture(null, TextureTarget.Texture2D, PixelFormat.Rgba, PixelFormat.Rgba));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLTexture(null, TextureTarget.Texture2D, PixelFormat.Rgba, SizedFormat.R8));
         }
 
         [Test]
@@ -71,10 +72,10 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         public void InternalFormatShouldReturnRgWhenInvoked()
         {
             // Act
-            PixelFormat actual = this.texture.InternalForamt;
+            SizedFormat actual = this.texture.InternalFormat;
 
             // Assert
-            Assert.AreEqual(PixelFormat.Rg, actual);
+            Assert.AreEqual(SizedFormat.R8, actual);
         }
 
         [SetUp]
@@ -82,9 +83,9 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
-            this.invoker.Setup(x => x.GenTexture()).Returns(ID);
+            this.invoker.Setup(x => x.CreateTexture(TextureTarget.Texture2D)).Returns(ID);
 
-            this.texture = new OpenGLTexture(this.invoker.Object, TextureTarget.Texture2D, PixelFormat.Rgba, PixelFormat.Rg);
+            this.texture = new OpenGLTexture(this.invoker.Object, TextureTarget.Texture2D, PixelFormat.Rgba, SizedFormat.R8);
         }
 
         [Test]

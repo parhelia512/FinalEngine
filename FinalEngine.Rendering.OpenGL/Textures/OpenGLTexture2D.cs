@@ -16,7 +16,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
     public class OpenGLTexture2D : OpenGLTexture, ITexture2D
     {
-        public OpenGLTexture2D(IOpenGLInvoker invoker, IEnumMapper mapper, Texture2DDescription description, PixelFormat format, PixelFormat internalFormat, IntPtr data)
+        public OpenGLTexture2D(IOpenGLInvoker invoker, IEnumMapper mapper, Texture2DDescription description, PixelFormat format, SizedFormat internalFormat, IntPtr data)
             : base(invoker, TextureTarget.Texture2D, format, internalFormat)
         {
             if (mapper == null)
@@ -26,25 +26,23 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
             this.Description = description;
 
-            this.Bind();
+            invoker.TextureStorage2D(this.ID, 1, mapper.Forward<SizedInternalFormat>(this.InternalFormat), description.Width, description.Height);
 
-            invoker.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)mapper.Forward<TextureMinFilter>(description.MinFilter));
-            invoker.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)mapper.Forward<TextureMagFilter>(description.MagFilter));
-            invoker.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)mapper.Forward<TKTextureWrapMode>(description.WrapS));
-            invoker.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)mapper.Forward<TKTextureWrapMode>(description.WrapT));
+            invoker.TextureParameter(this.ID, TextureParameterName.TextureMinFilter, (int)mapper.Forward<TextureMinFilter>(description.MinFilter));
+            invoker.TextureParameter(this.ID, TextureParameterName.TextureMagFilter, (int)mapper.Forward<TextureMagFilter>(description.MagFilter));
+            invoker.TextureParameter(this.ID, TextureParameterName.TextureWrapS, (int)mapper.Forward<TKTextureWrapMode>(description.WrapS));
+            invoker.TextureParameter(this.ID, TextureParameterName.TextureWrapT, (int)mapper.Forward<TKTextureWrapMode>(description.WrapT));
 
-            invoker.TexImage2D(
-                target: TextureTarget.Texture2D,
+            invoker.TextureSubImage2D(
+                texture: this.ID,
                 level: 0,
-                internalForamt: mapper.Forward<PixelInternalFormat>(internalFormat),
+                xoffset: 0,
+                yoffset: 0,
                 width: description.Width,
                 height: description.Height,
-                border: 0,
-                format: mapper.Forward<TKPixelForamt>(format),
+                format: mapper.Forward<TKPixelForamt>(this.Format),
                 type: mapper.Forward<TKPixelType>(description.PixelType),
                 pixels: data);
-
-            this.Unbind();
         }
 
         public Texture2DDescription Description { get; }

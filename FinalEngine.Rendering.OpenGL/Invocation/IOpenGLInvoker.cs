@@ -42,10 +42,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.BlendFunc(BlendingFactor, BlendingFactor)"/>
         void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor);
 
-        /// <inheritdoc cref="GL.BufferData{T2}(BufferTarget, int, T2[], BufferUsageHint)"/>
-        void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
-            where T2 : struct;
-
         /// <inheritdoc cref="GL.Clear(ClearBufferMask)"/>
         void Clear(ClearBufferMask mask);
 
@@ -61,11 +57,15 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.CompileShader(int)"/>
         void CompileShader(int shader);
 
+        int CreateBuffer();
+
         /// <inheritdoc cref="GL.CreateProgram"/>
         int CreateProgram();
 
         /// <inheritdoc cref="GL.CreateShader(ShaderType)"/>
         int CreateShader(ShaderType type);
+
+        int CreateTexture(TextureTarget target);
 
         /// <inheritdoc cref="GL.CullFace(CullFaceMode)"/>
         void CullFace(CullFaceMode mode);
@@ -112,12 +112,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.FrontFace(FrontFaceDirection)"/>
         void FrontFace(FrontFaceDirection mode);
 
-        /// <inheritdoc cref="GL.GenBuffer"/>
-        int GenBuffer();
-
-        /// <inheritdoc cref="GL.GenTexture"/>
-        int GenTexture();
-
         /// <inheritdoc cref="GL.GenVertexArray"/>
         int GenVertexArray();
 
@@ -135,6 +129,10 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.LoadBindings(IBindingsContext)"/>
         void LoadBindings(IBindingsContext context);
+
+        /// <inheritdoc cref="GL.NamedBufferData{T2}(int, int, T2[], BufferUsageHint)"/>
+        void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct;
 
         /// <inheritdoc cref="GL.PolygonMode(MaterialFace, PolygonMode)"/>
         void PolygonMode(MaterialFace face, PolygonMode mode);
@@ -159,11 +157,14 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         void Switch(EnableCap cap, bool value);
 
-        /// <inheritdoc cref="GL.TexImage2D(TextureTarget, int, PixelInternalFormat, int, int, int, PixelFormat, PixelType, IntPtr)"/>
-        void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalForamt, int width, int height, int border, PixelFormat format, PixelType type, IntPtr pixels);
+        /// <inheritdoc cref="GL.TextureParameter(int, TextureParameterName, int)"/>
+        void TextureParameter(int texture, TextureParameterName pname, int param);
 
-        /// <inheritdoc cref="GL.TexParameter(TextureTarget, TextureParameterName, int)"/>
-        void TexParameter(TextureTarget target, TextureParameterName name, int param);
+        /// <inheritdoc cref="GL.TextureStorage2D(int, int, SizedInternalFormat, int, int)">
+        void TextureStorage2D(int texture, int levels, SizedInternalFormat internalFormat, int width, int height);
+
+        /// <inheritdoc cref="GL.TextureSubImage2D(int, int, int, int, int, int, PixelFormat, PixelType, IntPtr)"/>
+        void TextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, IntPtr pixels);
 
         /// <inheritdoc cref="GL.Uniform1(int, int)"/>
         void Uniform1(int location, int x);

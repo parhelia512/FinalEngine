@@ -24,6 +24,8 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
     [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class OpenGLTexture2DTests
     {
+        private const int ID = 104;
+
         private Texture2DDescription description;
 
         private Mock<IOpenGLInvoker> invoker;
@@ -33,45 +35,52 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         private OpenGLTexture2D texture;
 
         [Test]
-        public void ConstructorShouldInvokeTexImage2DWhenInvoked()
+        public void ConstructorShouldInvokeTextureParameterMagFilterWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.TexImage2D(TextureTarget.Texture2D, 0, this.mapper.Object.Forward<PixelInternalFormat>(this.texture.InternalForamt), 20, 30, 0, this.mapper.Object.Forward<TKPixelFormat>(this.texture.Format), this.mapper.Object.Forward<TKPixelType>(this.description.PixelType), new IntPtr(1)), Times.Once);
+            this.invoker.Verify(x => x.TextureParameter(ID, TextureParameterName.TextureMagFilter, (int)this.mapper.Object.Forward<TextureMagFilter>(this.description.MagFilter)), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeTexParameterMagFilterWhenInvoked()
+        public void ConstructorShouldInvokeTextureParameterMinFilterWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)this.mapper.Object.Forward<TextureMagFilter>(this.description.MagFilter)), Times.Once);
+            this.invoker.Verify(x => x.TextureParameter(ID, TextureParameterName.TextureMinFilter, (int)this.mapper.Object.Forward<TextureMinFilter>(this.description.MinFilter)), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeTexParameterMinFilterWhenInvoked()
+        public void ConstructorShouldInvokeTextureParameterWrapSWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)this.mapper.Object.Forward<TextureMinFilter>(this.description.MinFilter)), Times.Once);
+            this.invoker.Verify(x => x.TextureParameter(ID, TextureParameterName.TextureWrapS, (int)this.mapper.Object.Forward<TKTextureWrapMode>(this.description.WrapS)), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeTexParameterWrapSWhenInvoked()
+        public void ConstructorShouldInvokeTextureParameterWrapTWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)this.mapper.Object.Forward<TKTextureWrapMode>(this.description.WrapS)), Times.Once);
+            this.invoker.Verify(x => x.TextureParameter(ID, TextureParameterName.TextureWrapT, (int)this.mapper.Object.Forward<TKTextureWrapMode>(this.description.WrapT)), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeTexParameterWrapTWhenInvoked()
+        public void ConstructorShouldInvokeTextureStorage2DWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)this.mapper.Object.Forward<TKTextureWrapMode>(this.description.WrapT)), Times.Once);
+            this.invoker.Verify(x => x.TextureStorage2D(ID, 1, this.mapper.Object.Forward<SizedInternalFormat>(this.texture.InternalFormat), this.description.Width, this.description.Height));
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeTextureSubImage2DWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.TextureSubImage2D(ID, 0, 0, 0, this.description.Width, this.description.Height, this.mapper.Object.Forward<TKPixelFormat>(this.texture.Format), this.mapper.Object.Forward<TKPixelType>(this.description.PixelType), new IntPtr(1)));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenMapperIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLTexture2D(this.invoker.Object, null, default, PixelFormat.Depth, PixelFormat.Depth, new IntPtr(1)));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLTexture2D(this.invoker.Object, null, default, PixelFormat.Depth, SizedFormat.R8, new IntPtr(1)));
         }
 
         [Test]
@@ -89,6 +98,8 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
+            this.invoker.Setup(x => x.CreateTexture(TextureTarget.Texture2D)).Returns(ID);
+
             this.mapper = new Mock<IEnumMapper>();
 
             this.description = new Texture2DDescription()
@@ -102,7 +113,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
                 WrapT = TextureWrapMode.Repeat,
             };
 
-            this.texture = new OpenGLTexture2D(this.invoker.Object, this.mapper.Object, this.description, PixelFormat.Rgba, PixelFormat.Rgb, new IntPtr(1));
+            this.texture = new OpenGLTexture2D(this.invoker.Object, this.mapper.Object, this.description, PixelFormat.Rgba, SizedFormat.R8, new IntPtr(1));
         }
 
         [TearDown]

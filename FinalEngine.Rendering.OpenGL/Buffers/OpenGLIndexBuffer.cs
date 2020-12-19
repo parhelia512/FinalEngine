@@ -26,11 +26,8 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
 
             this.Length = data.Length;
 
-            this.id = invoker.GenBuffer();
-
-            invoker.BindBuffer(BufferTarget.ElementArrayBuffer, this.id);
-            invoker.BufferData(BufferTarget.ElementArrayBuffer, sizeInBytes, data, BufferUsageHint.StaticDraw);
-            invoker.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+            this.id = invoker.CreateBuffer();
+            invoker.NamedBufferData(this.id, sizeInBytes, data, BufferUsageHint.StaticDraw);
         }
 
         ~OpenGLIndexBuffer()

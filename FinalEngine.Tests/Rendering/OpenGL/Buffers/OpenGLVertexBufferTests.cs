@@ -61,17 +61,17 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         }
 
         [Test]
-        public void ConstructorShouldInvokeBufferDataWhenInvoked()
+        public void ConstructorShouldInvokeCreateBufferWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.BufferData(BufferTarget.ArrayBuffer, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
+            this.invoker.Verify(x => x.CreateBuffer(), Times.Once);
         }
 
         [Test]
-        public void ConstructorShouldInvokeGenBufferWhenInvoked()
+        public void ConstructorShouldInvokeNamedBufferDataWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.GenBuffer(), Times.Once);
+            this.invoker.Verify(x => x.NamedBufferData(ID, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         {
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
-            this.invoker.Setup(x => x.GenBuffer()).Returns(ID);
+            this.invoker.Setup(x => x.CreateBuffer()).Returns(ID);
             this.vertexBuffer = new OpenGLVertexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int), Stride);
         }
 

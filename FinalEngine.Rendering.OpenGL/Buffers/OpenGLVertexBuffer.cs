@@ -26,11 +26,8 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
 
             this.Stride = stride;
 
-            this.id = invoker.GenBuffer();
-
-            invoker.BindBuffer(BufferTarget.ArrayBuffer, this.id);
-            invoker.BufferData(BufferTarget.ArrayBuffer, sizeInBytes, data, BufferUsageHint.StaticDraw);
-            invoker.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            this.id = invoker.CreateBuffer();
+            invoker.NamedBufferData(this.id, sizeInBytes, data, BufferUsageHint.StaticDraw);
         }
 
         ~OpenGLVertexBuffer()

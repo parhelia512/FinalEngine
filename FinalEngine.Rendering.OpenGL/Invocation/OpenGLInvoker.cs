@@ -72,13 +72,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
-        public void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
-            where T2 : struct
-        {
-            GL.BufferData(target, size, data, usage);
-        }
-
-        /// <inheritdoc/>
         public void Clear(ClearBufferMask mask)
         {
             GL.Clear(mask);
@@ -106,6 +99,13 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void CompileShader(int shader)
         {
             GL.CompileShader(shader);
+        }
+
+        public int CreateBuffer()
+        {
+            GL.CreateBuffers(1, out int result);
+
+            return result;
         }
 
         /// <inheritdoc/>
@@ -211,12 +211,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
-        public int GenBuffer()
-        {
-            return GL.GenBuffer();
-        }
-
-        /// <inheritdoc/>
         public int GenTexture()
         {
             return GL.GenTexture();
@@ -256,6 +250,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void LoadBindings(IBindingsContext context)
         {
             GL.LoadBindings(context);
+        }
+
+        public void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct
+        {
+            GL.NamedBufferData(buffer, size, data, usage);
         }
 
         /// <inheritdoc/>

@@ -42,10 +42,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.BlendFunc(BlendingFactor, BlendingFactor)"/>
         void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor);
 
-        /// <inheritdoc cref="GL.BufferData{T2}(BufferTarget, int, T2[], BufferUsageHint)"/>
-        void BufferData<T2>(BufferTarget target, int size, T2[] data, BufferUsageHint usage)
-            where T2 : struct;
-
         /// <inheritdoc cref="GL.Clear(ClearBufferMask)"/>
         void Clear(ClearBufferMask mask);
 
@@ -60,6 +56,8 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.CompileShader(int)"/>
         void CompileShader(int shader);
+
+        int CreateBuffer();
 
         /// <inheritdoc cref="GL.CreateProgram"/>
         int CreateProgram();
@@ -112,9 +110,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.FrontFace(FrontFaceDirection)"/>
         void FrontFace(FrontFaceDirection mode);
 
-        /// <inheritdoc cref="GL.GenBuffer"/>
-        int GenBuffer();
-
         /// <inheritdoc cref="GL.GenTexture"/>
         int GenTexture();
 
@@ -135,6 +130,10 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.LoadBindings(IBindingsContext)"/>
         void LoadBindings(IBindingsContext context);
+
+        /// <inheritdoc cref="GL.NamedBufferData{T2}(int, int, T2[], BufferUsageHint)"/>
+        void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
+            where T2 : struct;
 
         /// <inheritdoc cref="GL.PolygonMode(MaterialFace, PolygonMode)"/>
         void PolygonMode(MaterialFace face, PolygonMode mode);

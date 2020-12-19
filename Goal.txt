@@ -2,7 +2,7 @@ Sprinty Sprint:
 
 19/12/2020 - 19/01/2021
 
-- #64 - [BUG] GPU Resources are unbound when new ones are created
+!- #64 - [BUG] GPU Resources are unbound when new ones are created
 - #59 - [BUG] OpenGL Back-end not checking for error or warning status
 - #73 - [FEATURE REQUEST] Logging Framework
 - #67 - [DOCUMENTATION] Rendering API Documentation

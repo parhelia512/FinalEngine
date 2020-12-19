@@ -18,13 +18,11 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
         private readonly TextureTarget target;
 
-        private int id;
-
         public OpenGLTexture(IOpenGLInvoker invoker, TextureTarget target, PixelFormat format, SizedFormat internalFormat)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
-            this.id = invoker.CreateTexture(target);
+            this.ID = invoker.CreateTexture(target);
             this.target = target;
 
             this.Format = format;
@@ -40,18 +38,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
 
         public SizedFormat InternalFormat { get; }
 
-        protected int ID
-        {
-            get
-            {
-                if (this.IsDisposed)
-                {
-                    throw new ObjectDisposedException(nameof(OpenGLTexture));
-                }
-
-                return this.id;
-            }
-        }
+        protected int ID { get; private set; }
 
         protected bool IsDisposed { get; private set; }
 
@@ -62,7 +49,7 @@ namespace FinalEngine.Rendering.OpenGL.Textures
                 throw new ObjectDisposedException(nameof(OpenGLTexture));
             }
 
-            this.invoker.BindTexture(this.target, this.id);
+            this.invoker.BindTexture(this.target, this.ID);
         }
 
         public void Dispose()
@@ -98,10 +85,10 @@ namespace FinalEngine.Rendering.OpenGL.Textures
                 return;
             }
 
-            if (disposing && this.id != -1)
+            if (disposing && this.ID != -1)
             {
-                this.invoker.DeleteTexture(this.id);
-                this.id = -1;
+                this.invoker.DeleteTexture(this.ID);
+                this.ID = -1;
             }
 
             this.IsDisposed = true;

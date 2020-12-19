@@ -63,6 +63,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         }
 
         [Test]
+        public void ConstructorShouldInvokeTextureStorage2DWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.TextureStorage2D(ID, 1, this.mapper.Object.Forward<SizedInternalFormat>(this.texture.InternalFormat), this.description.Width, this.description.Height));
+        }
+
+        [Test]
         public void ConstructorShouldInvokeTextureSubImage2DWhenInvoked()
         {
             // Assert

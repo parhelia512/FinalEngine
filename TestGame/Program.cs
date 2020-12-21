@@ -18,6 +18,7 @@ namespace TestGame
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.Buffers;
+    using FinalEngine.Rendering.Loading;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
@@ -25,37 +26,11 @@ namespace TestGame
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
-    using SixLabors.ImageSharp.PixelFormats;
     using Color = System.Drawing.Color;
-    using Image = SixLabors.ImageSharp.Image;
     using MathHelper = OpenTK.Mathematics.MathHelper;
 
     internal static class Program
     {
-        private static ITexture2D LoadTextureFromFile(IGPUResourceFactory factory, string path)
-        {
-            var image = Image.Load<Rgba32>(path);
-
-            var description = new Texture2DDescription()
-            {
-                Width = image.Width,
-                Height = image.Height,
-            };
-
-            int[] data = new int[image.Width * image.Height];
-
-            for (int x = 0; x < image.Width; x++)
-            {
-                for (int y = 0; y < image.Height; y++)
-                {
-                    Rgba32 color = image[x, y];
-                    data[(y * image.Width) + x] = (color.A << 24) | (color.B << 16) | (color.G << 8) | (color.R << 0);
-                }
-            }
-
-            return factory.CreateTexture2D(description, data);
-        }
-
         private static void Main()
         {
             var settings = new NativeWindowSettings()
@@ -101,6 +76,8 @@ namespace TestGame
             IOutputMerger outputMerger = renderDevice.OutputMerger;
             IPipeline pipeline = renderDevice.Pipeline;
             IGPUResourceFactory factory = renderDevice.Factory;
+
+            var textureLoader = new ImageSharpTexture2DLoader(factory, fileSystem);
 
             outputMerger.SetDepthState(new DepthStateDescription()
             {
@@ -209,13 +186,9 @@ namespace TestGame
             inputAssembler.SetVertexBuffer(vertexBuffer);
             inputAssembler.SetIndexBuffer(indexBuffer);
 
-            ITexture2D texture = LoadTextureFromFile(factory, "Resources\\Textures\\default.png");
+            ITexture2D texture = textureLoader.LoadTexture2D("Resources\\Textures\\default.png");
 
             pipeline.SetTexture(texture, 0);
-
-            ITexture2D otherTex = LoadTextureFromFile(factory, "Resources\\Textures\\wood.png");
-
-            pipeline.SetTexture(otherTex, 0);
 
             float temp = 0.0f;
             var random = new Random();
@@ -253,6 +226,8 @@ namespace TestGame
                 renderContext.SwapBuffers();
                 window.ProcessEvents();
             }
+
+            texture.Dispose();
 
             program.Dispose();
 

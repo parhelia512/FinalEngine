@@ -86,6 +86,7 @@ namespace FinalEngine.Tests.Rendering.Loading
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.factory = new Mock<IGPUResourceFactory>();
             this.fileSystem = new Mock<IFileSystem>();
 

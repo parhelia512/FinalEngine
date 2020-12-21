@@ -257,7 +257,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         {
             GL.LoadBindings(context);
 
-            this.Initialize();
+            Initialize();
         }
 
         public void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
@@ -413,11 +413,10 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         {
             string messageString = Marshal.PtrToStringAnsi(message, length);
 
-            // TODO: Use logger here.
-            Console.WriteLine($"{severity} {type} | {messageString}");
+            throw new Exception($"{severity} {type} | {messageString}");
         }
 
-        private void Initialize()
+        private static void Initialize()
         {
             debugProcCallbackHandle = GCHandle.Alloc(DebugProcCallback);
 

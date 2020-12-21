@@ -32,11 +32,11 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
             this.EntryPoint = mapper.Reverse<PipelineTarget>(type);
 
-            this.id = this.invoker.CreateShader(type);
-            this.invoker.ShaderSource(this.id, sourceCode);
-            this.invoker.CompileShader(this.id);
+            this.id = invoker.CreateShader(type);
+            invoker.ShaderSource(this.id, sourceCode);
+            invoker.CompileShader(this.id);
 
-            string? log = this.invoker.GetShaderInfoLog(this.id);
+            string? log = invoker.GetShaderInfoLog(this.id);
 
             if (!string.IsNullOrWhiteSpace(log))
             {

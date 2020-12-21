@@ -22,7 +22,6 @@ namespace TestGame
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
     using FinalEngine.Rendering.Textures;
-    using OpenTK.Graphics.OpenGL4;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -217,8 +216,6 @@ namespace TestGame
             ITexture2D otherTex = LoadTextureFromFile(factory, "Resources\\Textures\\wood.png");
 
             pipeline.SetTexture(otherTex, 0);
-
-            Console.WriteLine(GL.GetError());
 
             float temp = 0.0f;
             var random = new Random();

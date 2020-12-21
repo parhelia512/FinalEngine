@@ -7,6 +7,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Runtime.InteropServices;
     using OpenTK;
     using OpenTK.Graphics.OpenGL4;
 
@@ -17,6 +18,10 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     [ExcludeFromCodeCoverage]
     public class OpenGLInvoker : IOpenGLInvoker
     {
+        private static readonly DebugProc DebugProcCallback = DebugCallback;
+
+        private static GCHandle debugProcCallbackHandle;
+
         /// <inheritdoc/>
         public void ActiveTexture(TextureUnit texture)
         {
@@ -251,6 +256,8 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void LoadBindings(IBindingsContext context)
         {
             GL.LoadBindings(context);
+
+            this.Initialize();
         }
 
         public void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
@@ -393,6 +400,31 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void Viewport(Rectangle rectangle)
         {
             GL.Viewport(rectangle);
+        }
+
+        private static void DebugCallback(
+            DebugSource source,
+            DebugType type,
+            int id,
+            DebugSeverity severity,
+            int length,
+            IntPtr message,
+            IntPtr userParam)
+        {
+            string messageString = Marshal.PtrToStringAnsi(message, length);
+
+            // TODO: Use logger here.
+            Console.WriteLine($"{severity} {type} | {messageString}");
+        }
+
+        private void Initialize()
+        {
+            debugProcCallbackHandle = GCHandle.Alloc(DebugProcCallback);
+
+            GL.DebugMessageCallback(DebugProcCallback, IntPtr.Zero);
+
+            GL.Enable(EnableCap.DebugOutput);
+            GL.Enable(EnableCap.DebugOutputSynchronous);
         }
     }
 }

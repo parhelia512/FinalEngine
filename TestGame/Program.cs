@@ -77,7 +77,7 @@ namespace TestGame
             IPipeline pipeline = renderDevice.Pipeline;
             IGPUResourceFactory factory = renderDevice.Factory;
 
-            var textureLoader = new Texture2DLoader(factory, fileSystem);
+            var textureLoader = new ImageSharpTexture2DLoader(factory, fileSystem);
 
             outputMerger.SetDepthState(new DepthStateDescription()
             {
@@ -190,10 +190,6 @@ namespace TestGame
 
             pipeline.SetTexture(texture, 0);
 
-            ITexture2D otherTex = textureLoader.LoadTexture2D("Resources\\Textures\\wood.png");
-
-            pipeline.SetTexture(otherTex, 0);
-
             float temp = 0.0f;
             var random = new Random();
 
@@ -231,7 +227,6 @@ namespace TestGame
                 window.ProcessEvents();
             }
 
-            otherTex.Dispose();
             texture.Dispose();
 
             program.Dispose();

@@ -1,4 +1,4 @@
-﻿// <copyright file="Texture2DLoader.cs" company="Software Antics">
+﻿// <copyright file="ImageSharpTexture2DLoader.cs" company="Software Antics">
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
@@ -11,13 +11,13 @@ namespace FinalEngine.Rendering.Loading
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
 
-    public sealed class Texture2DLoader : ITexture2DLoader
+    public sealed class ImageSharpTexture2DLoader : ITexture2DLoader
     {
         private readonly IGPUResourceFactory factory;
 
         private readonly IFileSystem fileSystem;
 
-        public Texture2DLoader(IGPUResourceFactory factory, IFileSystem fileSystem)
+        public ImageSharpTexture2DLoader(IGPUResourceFactory factory, IFileSystem fileSystem)
         {
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory), $"The specified {nameof(factory)} parameter cannot be null.");
             this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem), $"The specified {nameof(fileSystem)} parameter cannot be null.");

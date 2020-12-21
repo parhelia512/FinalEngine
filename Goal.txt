@@ -2,9 +2,12 @@
 
 !- #64 - [BUG] GPU Resources are unbound when new ones are created
 !- #59 - [BUG] OpenGL Back-end not checking for error or warning status
+!- #68 - [FEATURE REQUEST] Texture Loader
+- #70 - [FEATURE REQUEST] Meshs and Materials
+- #72 - [DISCUSSION] Should OpenGLTexture be an abstract class?
 - #73 - [FEATURE REQUEST] Logging Framework
 - #67 - [DOCUMENTATION] Rendering API Documentation
-- #68 - [FEATURE REQUEST] Texture Loader
+
 
 - Windowing :)
 - Input :)
@@ -24,7 +27,7 @@
   - Mesh
   - Material
   - Model Loader
-  - Texture Loader
+  - Texture Loader :)
 - Audio
 - Physics
 - Scene & Entity Management

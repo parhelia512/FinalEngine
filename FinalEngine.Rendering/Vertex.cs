@@ -31,16 +31,19 @@ namespace FinalEngine.Rendering
         public Vector3 Position
         {
             get { return this.position; }
+            set { this.position = value; }
         }
 
         public Vector4 Color
         {
             get { return this.color; }
+            set { this.color = value; }
         }
 
         public Vector2 TextureCoordinate
         {
             get { return this.textureCoordinate; }
+            set { this.textureCoordinate = value; }
         }
     }
 }

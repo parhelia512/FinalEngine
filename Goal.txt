@@ -24,7 +24,7 @@
       - Input Layout :)
       - Shader :)
       - Shader Program :)
-  - Mesh
+  - Mesh :)
   - Material
   - Model Loader
   - Texture Loader :)

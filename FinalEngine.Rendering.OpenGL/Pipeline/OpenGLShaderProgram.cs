@@ -14,7 +14,7 @@ namespace FinalEngine.Rendering.OpenGL.Pipeline
 
         private int id;
 
-        public OpenGLShaderProgram(IOpenGLInvoker invoker, IEnumerable<IOpenGLShader> shaders)
+        public OpenGLShaderProgram(IOpenGLInvoker invoker, IReadOnlyCollection<IOpenGLShader> shaders)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 

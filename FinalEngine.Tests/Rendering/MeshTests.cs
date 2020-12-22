@@ -19,7 +19,7 @@ namespace FinalEngine.Tests.Rendering
     {
         private const int Length = 465;
 
-        private readonly IEnumerable<InputElement> inputElements = new List<InputElement>()
+        private readonly IReadOnlyCollection<InputElement> inputElements = new List<InputElement>()
             {
                 new InputElement(0, 3, InputElementType.Float, Marshal.OffsetOf<Vertex>("position").ToInt32()),
                 new InputElement(1, 4, InputElementType.Float, Marshal.OffsetOf<Vertex>("color").ToInt32()),

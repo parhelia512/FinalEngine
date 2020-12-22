@@ -82,7 +82,7 @@ namespace TestGame
                 ReadEnabled = true,
             });
 
-            IEnumerable<IShader> shaders = new List<IShader>()
+            IReadOnlyCollection<IShader> shaders = new List<IShader>()
             {
                 factory.CreateShader(PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert")),
                 factory.CreateShader(PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag")),

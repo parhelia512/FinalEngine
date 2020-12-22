@@ -134,50 +134,50 @@ namespace FinalEngine.Tests.Rendering
         }
 
         [Test]
-        public void SetShouldInvokeSetIndexBufferWhenInvoked()
+        public void SetBuffersShouldInvokeSetIndexBufferWhenInvoked()
         {
             // Act
-            this.mesh.Set(this.inputAssembler.Object);
+            this.mesh.SetBuffers(this.inputAssembler.Object);
 
             // Assert
             this.inputAssembler.Verify(x => x.SetIndexBuffer(this.indexBuffer.Object), Times.Once);
         }
 
         [Test]
-        public void SetShouldInvokeSetInputLayoutWhenInvoked()
+        public void SetBuffersShouldInvokeSetInputLayoutWhenInvoked()
         {
             // Act
-            this.mesh.Set(this.inputAssembler.Object);
+            this.mesh.SetBuffers(this.inputAssembler.Object);
 
             // Assert
             this.inputAssembler.Verify(x => x.SetInputLayout(this.inputLayout.Object), Times.Once);
         }
 
         [Test]
-        public void SetShouldInvokeSetVertexBufferWhenInvoked()
+        public void SetBuffersShouldInvokeSetVertexBufferWhenInvoked()
         {
             // Act
-            this.mesh.Set(this.inputAssembler.Object);
+            this.mesh.SetBuffers(this.inputAssembler.Object);
 
             // Assert
             this.inputAssembler.Verify(x => x.SetVertexBuffer(this.vertexBuffer.Object), Times.Once);
         }
 
         [Test]
-        public void SetShouldThrowArgumentNullExceptionWhenInputAssemblerIsNull()
+        public void SetBuffersShouldThrowArgumentNullExceptionWhenInputAssemblerIsNull()
         {
             // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.mesh.Set(null));
+            Assert.Throws<ArgumentNullException>(() => this.mesh.SetBuffers(null));
         }
 
         [Test]
-        public void SetShouldThrowObjectDisposedExceptionWhenMeshIsDisposed()
+        public void SetBuffersShouldThrowObjectDisposedExceptionWhenMeshIsDisposed()
         {
             // Arrange
             this.mesh.Dispose();
 
             // Act and assert
-            Assert.Throws<ObjectDisposedException>(() => this.mesh.Set(this.inputAssembler.Object));
+            Assert.Throws<ObjectDisposedException>(() => this.mesh.SetBuffers(this.inputAssembler.Object));
         }
 
         [SetUp]

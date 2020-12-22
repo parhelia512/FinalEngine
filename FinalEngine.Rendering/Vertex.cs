@@ -4,11 +4,12 @@
 
 namespace FinalEngine.Rendering
 {
+    using System;
     using System.Numerics;
     using System.Runtime.InteropServices;
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct Vertex
+    public struct Vertex : IEquatable<Vertex>
     {
         public static readonly int SizeInBytes = Marshal.SizeOf<Vertex>();
 
@@ -44,6 +45,37 @@ namespace FinalEngine.Rendering
         {
             get { return this.textureCoordinate; }
             set { this.textureCoordinate = value; }
+        }
+
+        public static bool operator !=(Vertex left, Vertex right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(Vertex left, Vertex right)
+        {
+            return left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Vertex vertex && this.Equals(vertex);
+        }
+
+        public override int GetHashCode()
+        {
+            const int Accumulator = 17;
+
+            return (this.Position.GetHashCode() * Accumulator) +
+                   (this.Color.GetHashCode() * Accumulator) +
+                   (this.TextureCoordinate.GetHashCode() * Accumulator);
+        }
+
+        public bool Equals(Vertex other)
+        {
+            return this.Position == other.Position &&
+                   this.Color == other.Color &&
+                   this.TextureCoordinate == other.TextureCoordinate;
         }
     }
 }

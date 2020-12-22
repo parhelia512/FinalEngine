@@ -153,7 +153,7 @@ namespace TestGame
             };
 
             var mesh = new Mesh(factory, vertices, indices);
-            mesh.Set(inputAssembler);
+            mesh.SetBuffers(inputAssembler);
 
             ITexture2D texture = textureLoader.LoadTexture2D("Resources\\Textures\\default.png");
             pipeline.SetTexture(texture, 0);

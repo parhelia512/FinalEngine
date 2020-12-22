@@ -74,7 +74,7 @@ namespace FinalEngine.Rendering
             renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, this.indexBuffer.Length);
         }
 
-        public void Set(IInputAssembler inputAssembler)
+        public void SetBuffers(IInputAssembler inputAssembler)
         {
             if (inputAssembler == null)
             {

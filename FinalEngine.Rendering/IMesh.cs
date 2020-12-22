@@ -10,6 +10,6 @@ namespace FinalEngine.Rendering
     {
         void Draw(IRenderDevice renderDevice);
 
-        void Set(IInputAssembler inputAssembler);
+        void SetBuffers(IInputAssembler inputAssembler);
     }
 }

@@ -65,6 +65,202 @@ namespace FinalEngine.Tests.Rendering
         }
 
         [Test]
+        public void EqualityOperatorShouldReturnFalseWhenPropertiesDontMatch()
+        {
+            // Arrange
+            var left = new Vertex()
+            {
+                Position = Vector3.Zero,
+                TextureCoordinate = Vector2.One,
+                Color = new Vector4(1, 2, 3, 4),
+            };
+
+            var right = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            // Act
+            bool actual = left == right;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualityOperatorShouldReturnTrueWhenPropertiesMatch()
+        {
+            // Arrange
+            var left = new Vertex()
+            {
+                Position = Vector3.Zero,
+                TextureCoordinate = Vector2.One,
+                Color = new Vector4(1, 2, 3, 4),
+            };
+
+            var right = new Vertex()
+            {
+                Position = Vector3.Zero,
+                TextureCoordinate = Vector2.One,
+                Color = new Vector4(1, 2, 3, 4),
+            };
+
+            // Act
+            bool actual = left == right;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnFalseWhenObjectIsNotVertex()
+        {
+            // Act
+            bool actual = this.vertex.Equals(new object());
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnFalseWhenObjectIsNull()
+        {
+            // Act
+            bool actual = this.vertex.Equals(null);
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnFalseWhenPropertiesDontMatch()
+        {
+            // Arrange
+            var left = new Vertex()
+            {
+                Position = Vector3.Zero,
+                TextureCoordinate = Vector2.One,
+                Color = new Vector4(1, 2, 3, 4),
+            };
+
+            var right = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            // Act
+            bool actual = left.Equals(right);
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsShouldReturnTrueWhenObjectIsVertexAndHasSameProperties()
+        {
+            // Arrange
+            var left = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            object right = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            // Act
+            bool actual = left.Equals(right);
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void GetHashCodeShouldReturnSameAsOtherObjectWhenPropertiesAreEqual()
+        {
+            // Arrange
+            var left = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            var right = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            // Act
+            int leftHashCode = left.GetHashCode();
+            int rightHashCode = right.GetHashCode();
+
+            // Assert
+            Assert.AreEqual(leftHashCode, rightHashCode);
+        }
+
+        [Test]
+        public void InEqualityOperatorShouldReturnFalseWhenPropertiesMatch()
+        {
+            // Arrange
+            var left = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            var right = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            // Act
+            bool actual = left != right;
+
+            // Assert
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void InEqualityOperatorShouldReturnTrueWhenPropertiesDontMatch()
+        {
+            // Arrange
+            var left = new Vertex()
+            {
+                Position = Vector3.One,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(3, 2, 4, 1),
+            };
+
+            var right = new Vertex()
+            {
+                Position = Vector3.UnitX,
+                TextureCoordinate = Vector2.Zero,
+                Color = new Vector4(2, 6, 5, 7),
+            };
+
+            // Act
+            bool actual = left != right;
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Test]
         public void PositionShouldReturnUnitYWhenSetToUnitY()
         {
             // Act

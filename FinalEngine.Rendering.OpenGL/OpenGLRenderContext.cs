@@ -57,7 +57,7 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (!this.context.IsCurrent)
             {
-                return;
+                throw new Exception($"This {nameof(OpenGLRenderContext)} is not current on the calling thread.");
             }
 
             this.context.SwapBuffers();

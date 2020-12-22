@@ -2,7 +2,7 @@
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace TestGame
+namespace FinalEngine.Rendering
 {
     using System;
     using System.Numerics;
@@ -13,24 +13,20 @@ namespace TestGame
     {
         public static readonly int SizeInBytes = Marshal.SizeOf<Vertex>();
 
-        [FieldOffset(0)]
+        internal const int PositionRelativeOffset = 0;
+
+        internal const int ColorRelativeOffset = 12;
+
+        internal const int TextureCoordinateRelativeOffset = 28;
+
+        [FieldOffset(PositionRelativeOffset)]
         private Vector3 position;
 
-        [FieldOffset(12)]
+        [FieldOffset(ColorRelativeOffset)]
         private Vector4 color;
 
-        [FieldOffset(28)]
+        [FieldOffset(TextureCoordinateRelativeOffset)]
         private Vector2 textureCoordinate;
-
-        public Vertex(float x, float y, float z, float xt, float yt)
-            : this(new Vector3(x, y, z), new Vector2(xt, yt))
-        {
-        }
-
-        public Vertex(Vector3 position, Vector2 textureCoordinate)
-            : this(position, Vector4.One, textureCoordinate)
-        {
-        }
 
         public Vertex(Vector3 position, Vector4 color, Vector2 textureCoordinate)
         {
@@ -42,26 +38,29 @@ namespace TestGame
         public Vector3 Position
         {
             get { return this.position; }
+            set { this.position = value; }
         }
 
         public Vector4 Color
         {
             get { return this.color; }
+            set { this.color = value; }
         }
 
         public Vector2 TextureCoordinate
         {
             get { return this.textureCoordinate; }
-        }
-
-        public static bool operator ==(Vertex left, Vertex right)
-        {
-            return left.Equals(right);
+            set { this.textureCoordinate = value; }
         }
 
         public static bool operator !=(Vertex left, Vertex right)
         {
             return !(left == right);
+        }
+
+        public static bool operator ==(Vertex left, Vertex right)
+        {
+            return left.Equals(right);
         }
 
         public override bool Equals(object? obj)
@@ -71,12 +70,18 @@ namespace TestGame
 
         public override int GetHashCode()
         {
-            return (this.position.GetHashCode() * 17) + this.color.GetHashCode();
+            const int Accumulator = 17;
+
+            return (this.Position.GetHashCode() * Accumulator) +
+                   (this.Color.GetHashCode() * Accumulator) +
+                   (this.TextureCoordinate.GetHashCode() * Accumulator);
         }
 
         public bool Equals(Vertex other)
         {
-            return this.position == other.position && this.color == other.color;
+            return this.Position == other.Position &&
+                   this.Color == other.Color &&
+                   this.TextureCoordinate == other.TextureCoordinate;
         }
     }
 }

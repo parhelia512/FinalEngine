@@ -22,6 +22,11 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         private static GCHandle debugProcCallbackHandle;
 
+        ~OpenGLInvoker()
+        {
+            debugProcCallbackHandle.Free();
+        }
+
         /// <inheritdoc/>
         public void ActiveTexture(TextureUnit texture)
         {

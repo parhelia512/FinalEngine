@@ -9,7 +9,6 @@ namespace TestGame
     using System.IO;
     using System.Linq;
     using System.Numerics;
-    using System.Runtime.InteropServices;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.IO;
@@ -17,7 +16,6 @@ namespace TestGame
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using FinalEngine.Rendering;
-    using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.Loading;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
@@ -93,65 +91,49 @@ namespace TestGame
             IShaderProgram program = factory.CreateShaderProgram(shaders);
             pipeline.SetShaderProgram(program);
 
-            /*
             Vertex[] vertices =
             {
-                new Vertex(new Vector3(0.5f,  0.5f, 0.0f),  new Vector2(1.0f, 1.0f)),
-                new Vertex(new Vector3(0.5f, -0.5f, 0.0f),  new Vector2(1.0f, 0.0f)),
-                new Vertex(new Vector3(-0.5f, -0.5f, 0.0f), new Vector2(0.0f, 0.0f)),
-                new Vertex(new Vector3(-0.5f,  0.5f, 0.0f), new Vector2(0.0f, 1.0f)),
-            };
+                new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
 
-            int[] indices =
-            {
-                0, 1, 3,
-                1, 2, 3,
-            };
-            */
+                new Vertex(new Vector3(-0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(-0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
 
-            Vertex[] vertices =
-            {
-                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 0.0f),
-                new Vertex(0.5f, -0.5f, -0.5f,  1.0f, 0.0f),
-                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
-                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
-                new Vertex(-0.5f,  0.5f, -0.5f,  0.0f, 1.0f),
-                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 0.0f),
+                new Vertex(new Vector3(-0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f,  0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
 
-                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
-                new Vertex(0.5f, -0.5f,  0.5f,  1.0f, 0.0f),
-                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 1.0f),
-                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 1.0f),
-                new Vertex(-0.5f,  0.5f,  0.5f,  0.0f, 1.0f),
-                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
+                new Vertex(new Vector3(0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
 
-                new Vertex(-0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
-                new Vertex(-0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
-                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
-                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
-                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
-                new Vertex(-0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
+                new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f,  0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, -0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
 
-                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
-                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
-                new Vertex(0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
-                new Vertex(0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
-                new Vertex(0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
-                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
-
-                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
-                new Vertex(0.5f, -0.5f, -0.5f,  1.0f, 1.0f),
-                new Vertex(0.5f, -0.5f,  0.5f,  1.0f, 0.0f),
-                new Vertex(0.5f, -0.5f,  0.5f,  1.0f, 0.0f),
-                new Vertex(-0.5f, -0.5f,  0.5f,  0.0f, 0.0f),
-                new Vertex(-0.5f, -0.5f, -0.5f,  0.0f, 1.0f),
-
-                new Vertex(-0.5f,  0.5f, -0.5f,  0.0f, 1.0f),
-                new Vertex(0.5f,  0.5f, -0.5f,  1.0f, 1.0f),
-                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
-                new Vertex(0.5f,  0.5f,  0.5f,  1.0f, 0.0f),
-                new Vertex(-0.5f,  0.5f,  0.5f,  0.0f, 0.0f),
-                new Vertex(-0.5f,  0.5f, -0.5f,  0.0f, 1.0f),
+                new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(1.0f, 1.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(1.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, 0.5f,  0.5f), Vector4.One, new Vector2(0.0f, 0.0f)),
+                new Vertex(new Vector3(-0.5f, 0.5f, -0.5f), Vector4.One, new Vector2(0.0f, 1.0f)),
             };
 
             int[] indices = Enumerable.Range(0, 36).ToArray();
@@ -170,24 +152,10 @@ namespace TestGame
                 new Vector3(-1.3f,  1.0f, -1.5f),
             };
 
-            var inputElements = new List<InputElement>()
-            {
-                new InputElement(0, 3, InputElementType.Float, Marshal.OffsetOf<Vertex>("position").ToInt32()),
-                new InputElement(1, 4, InputElementType.Float, Marshal.OffsetOf<Vertex>("color").ToInt32()),
-                new InputElement(2, 2, InputElementType.Float, Marshal.OffsetOf<Vertex>("textureCoordinate").ToInt32()),
-            };
-
-            IInputLayout inputLayout = factory.CreateInputLayout(inputElements);
-            inputAssembler.SetInputLayout(inputLayout);
-
-            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(vertices, vertices.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
-            IIndexBuffer indexBuffer = factory.CreateIndexBuffer(indices, indices.Length * sizeof(int));
-
-            inputAssembler.SetVertexBuffer(vertexBuffer);
-            inputAssembler.SetIndexBuffer(indexBuffer);
+            var mesh = new Mesh(factory, vertices, indices);
+            mesh.SetBuffers(inputAssembler);
 
             ITexture2D texture = textureLoader.LoadTexture2D("Resources\\Textures\\default.png");
-
             pipeline.SetTexture(texture, 0);
 
             float temp = 0.0f;
@@ -220,13 +188,14 @@ namespace TestGame
 
                     pipeline.SetUniform("u_model", model);
 
-                    renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indices.Length);
+                    mesh.Draw(renderDevice);
                 }
 
                 renderContext.SwapBuffers();
                 window.ProcessEvents();
             }
 
+            mesh.Dispose();
             texture.Dispose();
 
             program.Dispose();

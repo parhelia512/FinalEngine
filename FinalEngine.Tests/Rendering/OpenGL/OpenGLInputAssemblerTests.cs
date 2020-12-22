@@ -131,13 +131,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SetVertexBufferShouldInvokeBindVertexBufferWhenBufferIsNull()
+        public void SetVertexBufferShouldInvokeBindVertexBuffersWhenBufferIsNull()
         {
             // Act
             this.inputAssembler.SetVertexBuffer(null);
 
             // Assert
-            this.invoker.Verify(x => x.BindVertexBuffer(0, 0, IntPtr.Zero, 0), Times.Once);
+            this.invoker.Verify(x => x.BindVertexBuffers(0, 1, new int[] { 0 }, new IntPtr[] { IntPtr.Zero }, new int[] { 0 }), Times.Once);
         }
 
         [Test]

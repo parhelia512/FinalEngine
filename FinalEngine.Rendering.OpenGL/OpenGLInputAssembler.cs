@@ -62,7 +62,11 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (buffer == null)
             {
-                this.invoker.BindVertexBuffer(0, 0, IntPtr.Zero, 0);
+                int[] buffers = new int[] { 0 };
+                int[] strides = new int[] { 0 };
+                var offsets = new IntPtr[] { IntPtr.Zero };
+
+                this.invoker.BindVertexBuffers(0, 1, buffers, offsets, strides);
 
                 return;
             }

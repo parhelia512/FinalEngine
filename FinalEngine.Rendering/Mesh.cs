@@ -23,7 +23,7 @@ namespace FinalEngine.Rendering
 
         private readonly IVertexBuffer vertexBuffer;
 
-        public Mesh(IGPUResourceFactory factory, Vertex[] vertices, IReadOnlyCollection<int> indices)
+        public Mesh(IGPUResourceFactory factory, IReadOnlyCollection<Vertex> vertices, IReadOnlyCollection<int> indices)
         {
             if (factory == null)
             {
@@ -41,7 +41,7 @@ namespace FinalEngine.Rendering
             }
 
             this.inputLayout = factory.CreateInputLayout(InputElements);
-            this.vertexBuffer = factory.CreateVertexBuffer(vertices, vertices.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
+            this.vertexBuffer = factory.CreateVertexBuffer(vertices, vertices.Count * Vertex.SizeInBytes, Vertex.SizeInBytes);
             this.indexBuffer = factory.CreateIndexBuffer(indices, indices.Count * sizeof(int));
         }
 

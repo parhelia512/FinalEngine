@@ -114,16 +114,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SwapBuffersShouldNotInvokeSwapBuffersWhenContextIsNotCurrent()
+        public void SwapBuffersShouldThrowExceptionWhenContextIsNotCurrent()
         {
             // Arrange
             this.graphicsContext.SetupGet(x => x.IsCurrent).Returns(false);
 
-            // Act
-            this.renderContext.SwapBuffers();
-
-            // Assert
-            this.graphicsContext.Verify(x => x.SwapBuffers(), Times.Never);
+            // Act and assert
+            Assert.Throws<Exception>(() => this.renderContext.SwapBuffers());
         }
 
         [Test]

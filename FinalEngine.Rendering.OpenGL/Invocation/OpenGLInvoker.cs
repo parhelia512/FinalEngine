@@ -63,6 +63,11 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.BindVertexBuffer(bindingindex, buffer, offset, stride);
         }
 
+        public void BindVertexBuffers(int first, int count, int[] buffers, IntPtr[] offsets, int[] strides)
+        {
+            GL.BindVertexBuffers(first, count, buffers, offsets, strides);
+        }
+
         /// <inheritdoc/>
         public void BlendColor(Color color)
         {

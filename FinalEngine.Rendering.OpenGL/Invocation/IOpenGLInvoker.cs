@@ -33,6 +33,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
         void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
 
+        /// <inheritdoc cref="GL.BindVertexBuffers(int, int, int[], IntPtr[], int[])">
+        void BindVertexBuffers(int first, int count, int[] buffers, IntPtr[] offsets, int[] strides);
+
         /// <inheritdoc cref="GL.BlendColor(Color)"/>
         void BlendColor(Color color);
 

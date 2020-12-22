@@ -76,18 +76,18 @@ namespace FinalEngine.Tests.Rendering
         public void ConstructorShouldThrowArgumentNullExceptionWhenIndicesIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new Mesh(Mock.Of<IGPUResourceFactory>(), Array.Empty<Vertex>(), null));
+            Assert.Throws<ArgumentNullException>(() => new Mesh(this.factory.Object, Array.Empty<Vertex>(), null));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenVerticesIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new Mesh(Mock.Of<IGPUResourceFactory>(), null, Array.Empty<int>()));
+            Assert.Throws<ArgumentNullException>(() => new Mesh(this.factory.Object, null, Array.Empty<int>()));
         }
 
         [Test]
-        public void DisposeShouldInvokeIndexBufferDisposeWheNotDisposed()
+        public void DisposeShouldInvokeIndexBufferDisposeWhenNotDisposed()
         {
             // Act
             this.mesh.Dispose();
@@ -130,7 +130,7 @@ namespace FinalEngine.Tests.Rendering
             this.mesh.Dispose();
 
             // Act and assert
-            Assert.Throws<ObjectDisposedException>(() => this.mesh.Draw(Mock.Of<IRenderDevice>()));
+            Assert.Throws<ObjectDisposedException>(() => this.mesh.Draw(this.renderDevice.Object));
         }
 
         [Test]
@@ -183,6 +183,7 @@ namespace FinalEngine.Tests.Rendering
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.factory = new Mock<IGPUResourceFactory>();
 
             this.vertices = Array.Empty<Vertex>();

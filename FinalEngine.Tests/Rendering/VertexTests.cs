@@ -6,6 +6,7 @@ namespace FinalEngine.Tests.Rendering
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Numerics;
+    using System.Runtime.InteropServices;
     using FinalEngine.Rendering;
     using NUnit.Framework;
 
@@ -13,6 +14,16 @@ namespace FinalEngine.Tests.Rendering
     public class VertexTests
     {
         private Vertex vertex;
+
+        [Test]
+        public void ColorRelativeOffsetShouldReturnTwelveWhenInvoked()
+        {
+            // Act
+            const int Actual = Vertex.ColorRelativeOffset;
+
+            // Assert
+            Assert.AreEqual(12, Actual);
+        }
 
         [Test]
         public void ColorShouldReturnUnitWWhenSetToUnitW()
@@ -261,6 +272,16 @@ namespace FinalEngine.Tests.Rendering
         }
 
         [Test]
+        public void PositionRelativeOffsetShouldReturnZeroWhenInvoked()
+        {
+            // Act
+            const int Actual = Vertex.PositionRelativeOffset;
+
+            // Assert
+            Assert.Zero(Actual);
+        }
+
+        [Test]
         public void PositionShouldReturnUnitYWhenSetToUnitY()
         {
             // Act
@@ -283,6 +304,7 @@ namespace FinalEngine.Tests.Rendering
         [SetUp]
         public void Setup()
         {
+            // Arrange
             this.vertex = default;
         }
 
@@ -290,7 +312,17 @@ namespace FinalEngine.Tests.Rendering
         public void SizeInBytesShouldReturnCorrectSize()
         {
             // Assert
-            Assert.AreEqual(36, Vertex.SizeInBytes);
+            Assert.AreEqual(Marshal.SizeOf<Vertex>(), Vertex.SizeInBytes);
+        }
+
+        [Test]
+        public void TextureCoordinateRelativeOffsetShouldReturnTwentyEightWhenInvoked()
+        {
+            // Act
+            const int Actual = Vertex.TextureCoordinateRelativeOffset;
+
+            // Assert
+            Assert.AreEqual(28, Actual);
         }
 
         [Test]

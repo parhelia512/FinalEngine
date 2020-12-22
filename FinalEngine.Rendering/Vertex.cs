@@ -13,13 +13,19 @@ namespace FinalEngine.Rendering
     {
         public static readonly int SizeInBytes = Marshal.SizeOf<Vertex>();
 
-        [FieldOffset(0)]
+        internal const int PositionRelativeOffset = 0;
+
+        internal const int ColorRelativeOffset = 12;
+
+        internal const int TextureCoordinateRelativeOffset = 28;
+
+        [FieldOffset(PositionRelativeOffset)]
         private Vector3 position;
 
-        [FieldOffset(12)]
+        [FieldOffset(ColorRelativeOffset)]
         private Vector4 color;
 
-        [FieldOffset(28)]
+        [FieldOffset(TextureCoordinateRelativeOffset)]
         private Vector2 textureCoordinate;
 
         public Vertex(Vector3 position, Vector4 color, Vector2 textureCoordinate)

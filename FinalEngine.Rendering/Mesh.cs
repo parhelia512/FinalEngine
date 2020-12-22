@@ -6,11 +6,17 @@ namespace FinalEngine.Rendering
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.InteropServices;
     using FinalEngine.Rendering.Buffers;
 
     public class Mesh : IMesh
     {
+        private static readonly IEnumerable<InputElement> InputElements = new List<InputElement>()
+        {
+            new InputElement(0, 3, InputElementType.Float, Vertex.PositionRelativeOffset),
+            new InputElement(1, 4, InputElementType.Float, Vertex.ColorRelativeOffset),
+            new InputElement(2, 2, InputElementType.Float, Vertex.TextureCoordinateRelativeOffset),
+        };
+
         private readonly IIndexBuffer indexBuffer;
 
         private readonly IInputLayout inputLayout;
@@ -34,14 +40,7 @@ namespace FinalEngine.Rendering
                 throw new ArgumentNullException(nameof(indices), $"The specified {nameof(indices)} parameter cannot be null.");
             }
 
-            IEnumerable<InputElement> inputElements = new List<InputElement>()
-            {
-                new InputElement(0, 3, InputElementType.Float, Marshal.OffsetOf<Vertex>("position").ToInt32()),
-                new InputElement(1, 4, InputElementType.Float, Marshal.OffsetOf<Vertex>("color").ToInt32()),
-                new InputElement(2, 2, InputElementType.Float, Marshal.OffsetOf<Vertex>("textureCoordinate").ToInt32()),
-            };
-
-            this.inputLayout = factory.CreateInputLayout(inputElements);
+            this.inputLayout = factory.CreateInputLayout(InputElements);
             this.vertexBuffer = factory.CreateVertexBuffer(vertices, vertices.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
             this.indexBuffer = factory.CreateIndexBuffer(indices, indices.Length * sizeof(int));
         }

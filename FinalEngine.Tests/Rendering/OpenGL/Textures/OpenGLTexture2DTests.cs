@@ -35,6 +35,33 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         private OpenGLTexture2D texture;
 
         [Test]
+        public void BindShouldInvokeBindTextureWhenTextureIsNotDisposed()
+        {
+            // Act
+            this.texture.Bind();
+
+            // Assert
+            this.invoker.Verify(x => x.BindTexture(TextureTarget.Texture2D, ID), Times.Once);
+        }
+
+        [Test]
+        public void BindShouldThrowObjectDisposedExceptionWhenTextureIsDisposed()
+        {
+            // Arrange
+            this.texture.Dispose();
+
+            // Act and assert
+            Assert.Throws<ObjectDisposedException>(() => this.texture.Bind());
+        }
+
+        [Test]
+        public void ConstructorShouldInvokeGenTextureWhenInvoked()
+        {
+            // Assert
+            this.invoker.Verify(x => x.CreateTexture(TextureTarget.Texture2D), Times.Once);
+        }
+
+        [Test]
         public void ConstructorShouldInvokeTextureParameterMagFilterWhenInvoked()
         {
             // Assert
@@ -77,6 +104,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
         }
 
         [Test]
+        public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
+        {
+            // Arrange, act and assert
+            Assert.Throws<ArgumentNullException>(() => new OpenGLTexture2D(null, this.mapper.Object, default, PixelFormat.Rgba, SizedFormat.R8, new IntPtr(1)));
+        }
+
+        [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenMapperIsNull()
         {
             // Arrange, act and assert
@@ -91,6 +125,26 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
 
             // Assert
             Assert.AreEqual(this.description, actual);
+        }
+
+        [Test]
+        public void FormatShouldReturnRgbaWhenInvoked()
+        {
+            // Act
+            PixelFormat actual = this.texture.Format;
+
+            // Assert
+            Assert.AreEqual(PixelFormat.Rgba, actual);
+        }
+
+        [Test]
+        public void InternalFormatShouldReturnRgWhenInvoked()
+        {
+            // Act
+            SizedFormat actual = this.texture.InternalFormat;
+
+            // Assert
+            Assert.AreEqual(SizedFormat.R8, actual);
         }
 
         [SetUp]
@@ -116,10 +170,50 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Textures
             this.texture = new OpenGLTexture2D(this.invoker.Object, this.mapper.Object, this.description, PixelFormat.Rgba, SizedFormat.R8, new IntPtr(1));
         }
 
+        [Test]
+        public void SlotShouldInvokeActiveTextureWhenTextureIsNotDisposed()
+        {
+            // Act
+            this.texture.Slot(15);
+
+            // Assert
+            this.invoker.Verify(x => x.ActiveTexture(TextureUnit.Texture0 + 15));
+        }
+
+        [Test]
+        public void SlotShouldThrowObjectDisposedExceptionWhenTextureIsDisposed()
+        {
+            // Arrange
+            this.texture.Dispose();
+
+            // Act and assert
+            Assert.Throws<ObjectDisposedException>(() => this.texture.Slot(3));
+        }
+
         [TearDown]
         public void Teardown()
         {
             this.texture.Dispose();
+        }
+
+        [Test]
+        public void UnbindShouldInvokeBindTextureWhenTextureIsNotDisposed()
+        {
+            // Act
+            this.texture.Unbind();
+
+            // Assert
+            this.invoker.Verify(x => x.BindTexture(TextureTarget.Texture2D, 0), Times.Once);
+        }
+
+        [Test]
+        public void UnbindShouldThrowObjectDisposedExceptionWhenTextureIsDisposed()
+        {
+            // Arrange
+            this.texture.Dispose();
+
+            // Act and assert
+            Assert.Throws<ObjectDisposedException>(() => this.texture.Unbind());
         }
     }
 }

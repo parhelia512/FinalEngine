@@ -18,7 +18,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
     [ExcludeFromCodeCoverage]
     public class OpenGLInputLayoutTests
     {
-        private readonly IList<InputElement> elements = new List<InputElement>()
+        private readonly IReadOnlyCollection<InputElement> elements = new List<InputElement>()
         {
             new InputElement(0, 3, InputElementType.Float, 0),
             new InputElement(1, 4, InputElementType.Byte, 12),

@@ -24,7 +24,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
 
         private Mock<IOpenGLShader> shader;
 
-        private IEnumerable<IOpenGLShader> shaders;
+        private IReadOnlyCollection<IOpenGLShader> shaders;
 
         [Test]
         public void BindShouldInvokeUseProgramWhenProgramIsNotDisposed()

@@ -5,6 +5,8 @@
 namespace FinalEngine.Rendering.OpenGL.Buffers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using OpenTK.Graphics.OpenGL4;
 
@@ -15,7 +17,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
 
         private int id;
 
-        public OpenGLVertexBuffer(IOpenGLInvoker invoker, T[] data, int sizeInBytes, int stride)
+        public OpenGLVertexBuffer(IOpenGLInvoker invoker, IReadOnlyCollection<T> data, int sizeInBytes, int stride)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
 
@@ -27,7 +29,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
             this.Stride = stride;
 
             this.id = invoker.CreateBuffer();
-            invoker.NamedBufferData(this.id, sizeInBytes, data, BufferUsageHint.StaticDraw);
+            invoker.NamedBufferData(this.id, sizeInBytes, data.ToArray(), BufferUsageHint.StaticDraw);
         }
 
         ~OpenGLVertexBuffer()

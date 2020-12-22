@@ -7,7 +7,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Buffers;
@@ -65,7 +64,8 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateInputLayoutShouldReturnOpenGLInputLayoutWhenInvoked()
         {
             // Act
-            IInputLayout actual = this.factory.CreateInputLayout(Enumerable.Empty<InputElement>());
+            IReadOnlyCollection<InputElement> elements = new List<InputElement>();
+            IInputLayout actual = this.factory.CreateInputLayout(elements);
 
             // Assert
             Assert.IsInstanceOf(typeof(OpenGLInputLayout), actual);
@@ -82,7 +82,8 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateShaderProgramShouldReturnOpenGLShaderProgramWhenInvoked()
         {
             // Act
-            IShaderProgram actual = this.factory.CreateShaderProgram(Enumerable.Empty<IOpenGLShader>());
+            IReadOnlyCollection<IOpenGLShader> shaders = new List<IOpenGLShader>();
+            IShaderProgram actual = this.factory.CreateShaderProgram(shaders);
 
             // Assert
             Assert.IsInstanceOf(typeof(OpenGLShaderProgram), actual);
@@ -99,7 +100,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateShaderProgramShouldThrowInvalidCastExceptionWhenShadersContainsNotOpenGLShader()
         {
             // Arrange
-            IEnumerable<IShader> shaders = new List<IShader>()
+            IReadOnlyCollection<IShader> shaders = new List<IShader>()
             {
                 new Mock<IShader>().Object,
                 new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, "test"),

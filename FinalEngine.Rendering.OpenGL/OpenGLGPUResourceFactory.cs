@@ -6,7 +6,6 @@ namespace FinalEngine.Rendering.OpenGL
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Runtime.InteropServices;
     using FinalEngine.Rendering.Buffers;
@@ -32,7 +31,7 @@ namespace FinalEngine.Rendering.OpenGL
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
         }
 
-        public IIndexBuffer CreateIndexBuffer<T>(T[] data, int sizeInBytes)
+        public IIndexBuffer CreateIndexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes)
             where T : struct
         {
             if (data == null)
@@ -43,7 +42,7 @@ namespace FinalEngine.Rendering.OpenGL
             return new OpenGLIndexBuffer<T>(this.invoker, data, sizeInBytes);
         }
 
-        public IInputLayout CreateInputLayout(IEnumerable<InputElement> elements)
+        public IInputLayout CreateInputLayout(IReadOnlyCollection<InputElement> elements)
         {
             if (elements == null)
             {
@@ -63,18 +62,17 @@ namespace FinalEngine.Rendering.OpenGL
             return new OpenGLShader(this.invoker, this.mapper, this.mapper.Forward<ShaderType>(target), sourceCode);
         }
 
-        public IShaderProgram CreateShaderProgram(IEnumerable<IShader> shaders)
+        public IShaderProgram CreateShaderProgram(IReadOnlyCollection<IShader> shaders)
         {
             if (shaders == null)
             {
                 throw new ArgumentNullException(nameof(shaders), $"The specified {nameof(shaders)} parameter cannot be null.");
             }
 
-            return new OpenGLShaderProgram(this.invoker, shaders.Cast<IOpenGLShader>());
+            return new OpenGLShaderProgram(this.invoker, shaders.Cast<IOpenGLShader>().ToList().AsReadOnly());
         }
 
-        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "Conflicting with SA1018")]
-        public ITexture2D CreateTexture2D<T>(Texture2DDescription description, T[]? data, PixelFormat format = PixelFormat.Rgba, SizedFormat internalFormat = SizedFormat.Rgba8)
+        public ITexture2D CreateTexture2D<T>(Texture2DDescription description, IReadOnlyCollection<T>? data, PixelFormat format = PixelFormat.Rgba, SizedFormat internalFormat = SizedFormat.Rgba8)
         {
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
             IntPtr ptr = data == null ? IntPtr.Zero : handle.AddrOfPinnedObject();
@@ -86,7 +84,7 @@ namespace FinalEngine.Rendering.OpenGL
             return result;
         }
 
-        public IVertexBuffer CreateVertexBuffer<T>(T[] data, int sizeInBytes, int stride)
+        public IVertexBuffer CreateVertexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes, int stride)
             where T : struct
         {
             if (data == null)

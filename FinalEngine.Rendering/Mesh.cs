@@ -10,7 +10,7 @@ namespace FinalEngine.Rendering
 
     public class Mesh : IMesh
     {
-        private static readonly IEnumerable<InputElement> InputElements = new List<InputElement>()
+        private static readonly IReadOnlyCollection<InputElement> InputElements = new List<InputElement>()
         {
             new InputElement(0, 3, InputElementType.Float, Vertex.PositionRelativeOffset),
             new InputElement(1, 4, InputElementType.Float, Vertex.ColorRelativeOffset),
@@ -23,7 +23,7 @@ namespace FinalEngine.Rendering
 
         private readonly IVertexBuffer vertexBuffer;
 
-        public Mesh(IGPUResourceFactory factory, Vertex[] vertices, int[] indices)
+        public Mesh(IGPUResourceFactory factory, Vertex[] vertices, IReadOnlyCollection<int> indices)
         {
             if (factory == null)
             {
@@ -42,7 +42,7 @@ namespace FinalEngine.Rendering
 
             this.inputLayout = factory.CreateInputLayout(InputElements);
             this.vertexBuffer = factory.CreateVertexBuffer(vertices, vertices.Length * Vertex.SizeInBytes, Vertex.SizeInBytes);
-            this.indexBuffer = factory.CreateIndexBuffer(indices, indices.Length * sizeof(int));
+            this.indexBuffer = factory.CreateIndexBuffer(indices, indices.Count * sizeof(int));
         }
 
         ~Mesh()

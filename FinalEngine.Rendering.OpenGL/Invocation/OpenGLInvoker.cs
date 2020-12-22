@@ -413,7 +413,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         {
             string messageString = Marshal.PtrToStringAnsi(message, length);
 
-            throw new Exception($"{severity} {type} | {messageString}");
+            Console.WriteLine($"{severity} {type} | {messageString}");
+
+            if (type == DebugType.DebugTypeError)
+            {
+                throw new Exception($"{severity} {type} | {messageString}");
+            }
         }
 
         private static void Initialize()

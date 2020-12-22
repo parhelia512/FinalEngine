@@ -4,7 +4,9 @@
 
 namespace FinalEngine.Rendering
 {
-    public interface IMesh
+    using System;
+
+    public interface IMesh : IDisposable
     {
         void Draw(IRenderDevice renderDevice);
 

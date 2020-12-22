@@ -4,7 +4,7 @@
 !- #59 - [BUG] OpenGL Back-end not checking for error or warning status
 !- #68 - [FEATURE REQUEST] Texture Loader
 !- #70 - [FEATURE REQUEST] Meshs and Materials
-- #72 - [DISCUSSION] Should OpenGLTexture be an abstract class?
+!- #72 - [DISCUSSION] Should OpenGLTexture be an abstract class?
 - #73 - [FEATURE REQUEST] Logging Framework
 - #67 - [DOCUMENTATION] Rendering API Documentation
 

@@ -15,7 +15,10 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     /// </summary>
     public interface IOpenGLInvoker
     {
-        /// <inheritdoc cref="GL.ActiveTexture(TextureUnit)">
+        /// <inheritdoc cref="GL.ActiveTexture(TextureUnit)"/>
+        /// <paramref name="texture">
+        ///   Specifies a <see cref="TextureUnit"/> that represents which texture unit to make active.
+        /// </paramref>
         void ActiveTexture(TextureUnit texture);
 
         /// <inheritdoc cref="GL.AttachShader(int, int)"/>
@@ -33,7 +36,18 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
         void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
 
-        /// <inheritdoc cref="GL.BindVertexBuffers(int, int, int[], IntPtr[], int[])">
+        /// <inheritdoc cref="GL.BindVertexBuffers(int, int, int[], IntPtr[], int[])"/>
+        /// <param name="first">
+        ///   // TODO:
+        /// </param>
+        /// <param name="count">
+        /// </param>
+        /// <param name="buffers">
+        /// </param>
+        /// <param name="offsets">
+        /// </param>
+        /// <param name="strides">
+        /// </param>
         void BindVertexBuffers(int first, int count, int[] buffers, IntPtr[] offsets, int[] strides);
 
         /// <inheritdoc cref="GL.BlendColor(Color)"/>
@@ -44,6 +58,17 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
         /// <inheritdoc cref="GL.BlendFunc(BlendingFactor, BlendingFactor)"/>
         void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor);
+
+        /// <summary>
+        ///   Enables or disables the specified <paramref name="cap"/> based on the specified <paramref name="value"/>.
+        /// </summary>
+        /// <param name="cap">
+        ///   Specifies a <see cref="EnableCap"/> that represents the cap to change.
+        /// </param>
+        /// <param name="value">
+        ///   if set to <c>true</c> the cap will be enabled; otherwise <c>disabled</c>.
+        /// </param>
+        void Cap(EnableCap cap, bool value);
 
         /// <inheritdoc cref="GL.Clear(ClearBufferMask)"/>
         void Clear(ClearBufferMask mask);
@@ -60,6 +85,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.CompileShader(int)"/>
         void CompileShader(int shader);
 
+        /// <inheritdoc cref="GL.CreateBuffers(int, out int)"/>
         int CreateBuffer();
 
         /// <inheritdoc cref="GL.CreateProgram"/>
@@ -68,6 +94,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.CreateShader(ShaderType)"/>
         int CreateShader(ShaderType type);
 
+        /// <inheritdoc cref="GL.CreateTextures(TextureTarget, int, out int)"/>
         int CreateTexture(TextureTarget target);
 
         /// <inheritdoc cref="GL.CullFace(CullFaceMode)"/>
@@ -158,12 +185,21 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.StencilOp(StencilOp, StencilOp, StencilOp)"/>
         void StencilOp(StencilOp fail, StencilOp zfail, StencilOp zpass);
 
-        void Switch(EnableCap cap, bool value);
-
         /// <inheritdoc cref="GL.TextureParameter(int, TextureParameterName, int)"/>
         void TextureParameter(int texture, TextureParameterName pname, int param);
 
-        /// <inheritdoc cref="GL.TextureStorage2D(int, int, SizedInternalFormat, int, int)">
+        /// <inheritdoc cref="GL.TextureStorage2D(int, int, SizedInternalFormat, int, int)"/>
+        /// <param name="texture">
+        /// </param>
+        /// <param name="levels">
+        /// </param>
+        /// <param name="internalFormat">
+        /// </param>
+        /// <param name="width">
+        /// </param>
+        /// <param name="height">
+        ///   // TODO:
+        /// </param>
         void TextureStorage2D(int texture, int levels, SizedInternalFormat internalFormat, int width, int height);
 
         /// <inheritdoc cref="GL.TextureSubImage2D(int, int, int, int, int, int, PixelFormat, PixelType, IntPtr)"/>

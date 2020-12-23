@@ -8,6 +8,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Runtime.InteropServices;
+    using FinalEngine.Rendering.Exceptions;
     using OpenTK;
     using OpenTK.Graphics.OpenGL4;
 
@@ -18,10 +19,19 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     [ExcludeFromCodeCoverage]
     public class OpenGLInvoker : IOpenGLInvoker
     {
+        /// <summary>
+        ///   The debug signature callback.
+        /// </summary>
         private static readonly DebugProc DebugProcCallback = DebugCallback;
 
+        /// <summary>
+        ///   The debug callback handle.
+        /// </summary>
         private static GCHandle debugProcCallbackHandle;
 
+        /// <summary>
+        ///   Finalizes an instance of the <see cref="OpenGLInvoker"/> class.
+        /// </summary>
         ~OpenGLInvoker()
         {
             debugProcCallbackHandle.Free();
@@ -63,6 +73,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.BindVertexBuffer(bindingindex, buffer, offset, stride);
         }
 
+        /// <inheritdoc/>
         public void BindVertexBuffers(int first, int count, int[] buffers, IntPtr[] offsets, int[] strides)
         {
             GL.BindVertexBuffers(first, count, buffers, offsets, strides);
@@ -84,6 +95,19 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         public void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor)
         {
             GL.BlendFunc(sfactor, dfactor);
+        }
+
+        /// <inheritdoc/>
+        public void Cap(EnableCap cap, bool value)
+        {
+            if (value)
+            {
+                this.Enable(cap);
+            }
+            else
+            {
+                this.Disable(cap);
+            }
         }
 
         /// <inheritdoc/>
@@ -116,6 +140,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.CompileShader(shader);
         }
 
+        /// <inheritdoc/>
         public int CreateBuffer()
         {
             GL.CreateBuffers(1, out int result);
@@ -135,6 +160,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             return GL.CreateShader(type);
         }
 
+        /// <inheritdoc/>
         public int CreateTexture(TextureTarget target)
         {
             GL.CreateTextures(target, 1, out int result);
@@ -267,9 +293,15 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         {
             GL.LoadBindings(context);
 
-            Initialize();
+            debugProcCallbackHandle = GCHandle.Alloc(DebugProcCallback);
+
+            GL.DebugMessageCallback(DebugProcCallback, IntPtr.Zero);
+
+            GL.Enable(EnableCap.DebugOutput);
+            GL.Enable(EnableCap.DebugOutputSynchronous);
         }
 
+        /// <inheritdoc/>
         public void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
             where T2 : struct
         {
@@ -313,28 +345,18 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         }
 
         /// <inheritdoc/>
-        public void Switch(EnableCap cap, bool value)
-        {
-            if (value)
-            {
-                this.Enable(cap);
-            }
-            else
-            {
-                this.Disable(cap);
-            }
-        }
-
         public void TextureParameter(int texture, TextureParameterName pname, int param)
         {
             GL.TextureParameter(texture, pname, param);
         }
 
+        /// <inheritdoc/>
         public void TextureStorage2D(int texture, int levels, SizedInternalFormat internalFormat, int width, int height)
         {
             GL.TextureStorage2D(texture, levels, internalFormat, width, height);
         }
 
+        /// <inheritdoc/>
         public void TextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, IntPtr pixels)
         {
             GL.TextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
@@ -412,6 +434,33 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.Viewport(rectangle);
         }
 
+        /// <summary>
+        ///   Handles the debug callback.
+        /// </summary>
+        /// <param name="source">
+        ///   Specifies a <see cref="DebugSource"/> that represents the debug source of the message.
+        /// </param>
+        /// <param name="type">
+        ///   Specifies a <see cref="DebugType"/> that represents the debug type of the message.
+        /// </param>
+        /// <param name="id">
+        ///   Specifies a <see cref="int"/> that represents The identifier of the message.
+        /// </param>
+        /// <param name="severity">
+        ///   Specifies a <see cref="DebugSeverity"/> that represents the severity of the message.
+        /// </param>
+        /// <param name="length">
+        ///   Specifies a <see cref="int"/> that represents the length of the message.
+        /// </param>
+        /// <param name="message">
+        ///   Specifies a <see cref="IntPtr"/> that represents a pointer to a null-terminated ASCII C string, representing the content of the message.
+        /// </param>
+        /// <param name="userParam">
+        ///   Specifies a <see cref="IntPtr"/> that represents a pointer to a user-specified parameter.
+        /// </param>
+        /// <exception cref="RenderContextException">
+        ///   The specified <paramref name="type"/> is <see cref="DebugType.DebugTypeError"/>.
+        /// </exception>
         private static void DebugCallback(
             DebugSource source,
             DebugType type,
@@ -427,18 +476,8 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
 
             if (type == DebugType.DebugTypeError)
             {
-                throw new Exception($"{severity} {type} | {messageString}");
+                throw new RenderContextException($"{severity} {type} | {messageString}");
             }
-        }
-
-        private static void Initialize()
-        {
-            debugProcCallbackHandle = GCHandle.Alloc(DebugProcCallback);
-
-            GL.DebugMessageCallback(DebugProcCallback, IntPtr.Zero);
-
-            GL.Enable(EnableCap.DebugOutput);
-            GL.Enable(EnableCap.DebugOutputSynchronous);
         }
     }
 }

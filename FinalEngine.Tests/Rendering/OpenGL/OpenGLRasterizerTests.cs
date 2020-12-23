@@ -89,7 +89,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.CullFace, false), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.CullFace, false), Times.Once);
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.CullFace, true), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.CullFace, true), Times.Once);
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.ScissorTest, false), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.ScissorTest, false), Times.Once);
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.rasterizer.SetRasterState(this.rasterState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.ScissorTest, true), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.ScissorTest, true), Times.Once);
         }
 
         [Test]

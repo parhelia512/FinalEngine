@@ -55,8 +55,8 @@ namespace FinalEngine.Rendering.OpenGL
         /// </param>
         public void SetRasterState(RasterStateDescription description)
         {
-            this.invoker.Switch(EnableCap.CullFace, description.CullEnabled);
-            this.invoker.Switch(EnableCap.ScissorTest, description.ScissorEnabled);
+            this.invoker.Cap(EnableCap.CullFace, description.CullEnabled);
+            this.invoker.Cap(EnableCap.ScissorTest, description.ScissorEnabled);
             this.invoker.CullFace(this.mapper.Forward<CullFaceMode>(description.CullMode));
             this.invoker.FrontFace(this.mapper.Forward<FrontFaceDirection>(description.WindingDirection));
             this.invoker.PolygonMode(MaterialFace.FrontAndBack, this.mapper.Forward<PolygonMode>(description.FillMode));

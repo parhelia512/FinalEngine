@@ -96,7 +96,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.outputMerger.SetBlendState(this.blendState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.Blend, false), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.Blend, false), Times.Once);
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.outputMerger.SetBlendState(this.blendState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.Blend, true), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.Blend, true), Times.Once);
         }
 
         [Test]
@@ -161,7 +161,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.outputMerger.SetDepthState(this.depthState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.DepthTest, false), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.DepthTest, false), Times.Once);
         }
 
         [Test]
@@ -174,7 +174,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.outputMerger.SetDepthState(this.depthState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.DepthTest, true), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.DepthTest, true), Times.Once);
         }
 
         [Test]
@@ -230,7 +230,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.outputMerger.SetStencilState(this.stencilState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.StencilTest, false), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.StencilTest, false), Times.Once);
         }
 
         [Test]
@@ -243,7 +243,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.outputMerger.SetStencilState(this.stencilState);
 
             // Assert
-            this.invoker.Verify(x => x.Switch(EnableCap.StencilTest, true), Times.Once);
+            this.invoker.Verify(x => x.Cap(EnableCap.StencilTest, true), Times.Once);
         }
 
         [SetUp]

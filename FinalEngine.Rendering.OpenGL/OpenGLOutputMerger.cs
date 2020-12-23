@@ -54,7 +54,7 @@ namespace FinalEngine.Rendering.OpenGL
         /// </param>
         public void SetBlendState(BlendStateDescription description)
         {
-            this.invoker.Switch(EnableCap.Blend, description.Enabled);
+            this.invoker.Cap(EnableCap.Blend, description.Enabled);
             this.invoker.BlendColor(description.Color);
             this.invoker.BlendEquation(this.mapper.Forward<BlendEquationMode>(description.EquationMode));
             this.invoker.BlendFunc(this.mapper.Forward<BlendingFactor>(description.SourceMode), this.mapper.Forward<BlendingFactor>(description.DestinationMode));
@@ -68,7 +68,7 @@ namespace FinalEngine.Rendering.OpenGL
         /// </param>
         public void SetDepthState(DepthStateDescription description)
         {
-            this.invoker.Switch(EnableCap.DepthTest, description.ReadEnabled);
+            this.invoker.Cap(EnableCap.DepthTest, description.ReadEnabled);
             this.invoker.DepthMask(description.WriteEnabled);
             this.invoker.DepthFunc(this.mapper.Forward<DepthFunction>(description.ComparisonMode));
         }
@@ -81,7 +81,7 @@ namespace FinalEngine.Rendering.OpenGL
         /// </param>
         public void SetStencilState(StencilStateDescription description)
         {
-            this.invoker.Switch(EnableCap.StencilTest, description.Enabled);
+            this.invoker.Cap(EnableCap.StencilTest, description.Enabled);
             this.invoker.StencilMask(description.WriteMask);
             this.invoker.StencilFunc(this.mapper.Forward<StencilFunction>(description.ComparisonMode), description.ReferenceValue, description.ReadMask);
             this.invoker.StencilOp(this.mapper.Forward<StencilOp>(description.StencilFail), this.mapper.Forward<StencilOp>(description.DepthFail), this.mapper.Forward<StencilOp>(description.Pass));

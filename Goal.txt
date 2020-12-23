@@ -35,6 +35,21 @@
 - File IO :)
 - Game Loop
 
+============================================
+
+Just some people and things I want to mention in the README if I ever post it publicly:
+
+Credits:
+
+- Learn OpenGL
+- DirectX Tutorials
+- TheBennyBox
+- ThinMatrix
+- TheCherno
+- Veldrid
+- OpenTK Discord
+- KinsonDigital
+
 // Would this improve performance?
 public void SetRasterState(RasterStateDescription description)
 {

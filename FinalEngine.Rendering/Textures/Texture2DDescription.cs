@@ -52,16 +52,49 @@ namespace FinalEngine.Rendering.Textures
             set { this.wrapT = value; }
         }
 
+        /// <summary>
+        ///   Implements the operator !=.
+        /// </summary>
+        /// <param name="left">
+        ///   Specifies a <see cref="Texture2DDescription"/> that represents the left operand.
+        /// </param>
+        /// <param name="right">
+        ///   Specifies a <see cref="Texture2DDescription"/> that represents the right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static bool operator !=(Texture2DDescription left, Texture2DDescription right)
         {
             return !(left == right);
         }
 
+        /// <summary>
+        ///   Implements the operator ==.
+        /// </summary>
+        /// <param name="left">
+        ///   Specifies a <see cref="Texture2DDescription"/> that represents the left operand.
+        /// </param>
+        /// <param name="right">
+        ///   Specifies a <see cref="Texture2DDescription"/> that represents the right operand.
+        /// </param>
+        /// <returns>
+        ///   The result of the operator.
+        /// </returns>
         public static bool operator ==(Texture2DDescription left, Texture2DDescription right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>
+        ///   Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">
+        ///   An object to compare with this object.
+        /// </param>
+        /// <returns>
+        ///   <see langword="true"/> if the current object is equal to the <paramref name="other"/> parameter; otherwise, <see langword="false"/>.
+        /// </returns>
         public bool Equals(Texture2DDescription other)
         {
             return this.MinFilter == other.MinFilter &&
@@ -73,11 +106,26 @@ namespace FinalEngine.Rendering.Textures
                    this.Height == other.Height;
         }
 
+        /// <summary>
+        ///   Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <param name="obj">
+        ///   The object to compare with the current instance.
+        /// </param>
+        /// <returns>
+        ///   <see langword="true"/> if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, <see langword="false"/>.
+        /// </returns>
         public override bool Equals(object? obj)
         {
             return obj is Texture2DDescription description && this.Equals(description);
         }
 
+        /// <summary>
+        ///   Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        ///   A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
         public override int GetHashCode()
         {
             const int Accumulator = 17;

@@ -55,7 +55,7 @@ namespace FinalEngine.Rendering.OpenGL
         ///   Initializes a new instance of the <see cref="OpenGLPipeline"/> class.
         /// </summary>
         /// <param name="invoker">
-        ///   Specifies an <see cref="IOpenGLInvoker"/> that represents the OpenGL invoker to use.
+        ///   Specifies an <see cref="IOpenGLInvoker"/> that represents the invoker used to invoke OpenGL calls.
         /// </param>
         /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="invoker"/> parameter is null.

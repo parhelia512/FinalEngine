@@ -6,15 +6,34 @@ namespace FinalEngine.Rendering.Pipeline
 {
     using System;
 
+    /// <summary>
+    ///   Enumerates the available entry point for a shader.
+    /// </summary>
     public enum PipelineTarget
     {
+        /// <summary>
+        ///   The entry point is defined as a vertex shader.
+        /// </summary>
         Vertex,
 
+        /// <summary>
+        ///   The entry point is defined as a fragment shader.
+        /// </summary>
         Fragment,
     }
 
+    /// <summary>
+    ///   Defines an interface that represents a shader.
+    /// </summary>
+    /// <seealso cref="System.IDisposable"/>
     public interface IShader : IDisposable
     {
+        /// <summary>
+        ///   Gets the entry point of this <see cref="IShader"/>.
+        /// </summary>
+        /// <value>
+        ///   The entry point of this <see cref="IShader"/>.
+        /// </value>
         PipelineTarget EntryPoint { get; }
     }
 }

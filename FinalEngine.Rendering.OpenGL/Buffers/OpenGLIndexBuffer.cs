@@ -37,7 +37,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         ///   Specifies an <see cref="IOpenGLInvoker"/> that represents the invoker used to invoke OpenGL calls.
         /// </param>
         /// <param name="data">
-        ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data the <see cref="OpenGLIndexBuffer{T}"/> will contain.
+        ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data this <see cref="OpenGLIndexBuffer{T}"/> will contain.
         /// </param>
         /// <param name="sizeInBytes">
         ///   Specifies an <see cref="int"/> that represents the size in bytes of the specified <paramref name="data"/>.

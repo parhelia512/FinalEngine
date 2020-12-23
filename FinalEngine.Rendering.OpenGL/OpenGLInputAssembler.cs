@@ -10,17 +10,51 @@ namespace FinalEngine.Rendering.OpenGL
     using FinalEngine.Rendering.OpenGL.Invocation;
     using OpenTK.Graphics.OpenGL4;
 
+    /// <summary>
+    ///   Provides an OpenGL implementation of an <see cref="IInputAssembler"/>.
+    /// </summary>
+    /// <seealso cref="FinalEngine.Rendering.IInputAssembler"/>
     public class OpenGLInputAssembler : IInputAssembler
     {
+        /// <summary>
+        ///   The OpenGL invoker.
+        /// </summary>
         private readonly IOpenGLInvoker invoker;
 
+        /// <summary>
+        ///   The currently bound input layout.
+        /// </summary>
+        /// <remarks>
+        ///   This is used to call <see cref="IOpenGLInputLayout.Unbind"/> when the user calls <see cref="SetInputLayout(IInputLayout?)"/> and passes <c>null</c> as the parameter.
+        /// </remarks>
         private IOpenGLInputLayout? boundLayout;
 
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="OpenGLInputAssembler"/> class.
+        /// </summary>
+        /// <param name="invoker">
+        ///   Specifies an <see cref="IOpenGLInvoker"/> that represents the invoker used to invoke OpenGL calls.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        ///   The specified <paramref name="invoker"/> parameter is null.
+        /// </exception>
         public OpenGLInputAssembler(IOpenGLInvoker invoker)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
         }
 
+        /// <summary>
+        ///   Sets the specified <paramref name="buffer"/>, binding it to the GPU.
+        /// </summary>
+        /// <param name="buffer">
+        ///   Specifies a <see cref="Nullable{IIndexBuffer}"/> that represents the index buffer to bind.
+        /// </param>
+        /// <remarks>
+        ///   Passing <c>null</c> to the <paramref name="buffer"/> parameter will unbind the previously bound index buffer.
+        /// </remarks>
+        /// <exception cref="ArgumentException">
+        ///   The specified <paramref name="buffer"/> is not the correct implementation. If this exception occurs, you're attempting to bind an index buffer that does not implement <see cref="IOpenGLIndexBuffer"/>.
+        /// </exception>
         public void SetIndexBuffer(IIndexBuffer? buffer)
         {
             if (buffer == null)
@@ -38,6 +72,18 @@ namespace FinalEngine.Rendering.OpenGL
             glIndexBuffer.Bind();
         }
 
+        /// <summary>
+        ///   Sets the specified <paramref name="layout"/>, binding it to the GPU.
+        /// </summary>
+        /// <param name="layout">
+        ///   Specifies an <see cref="IInputLayout"/> that represents the layout to bind.
+        /// </param>
+        /// <remarks>
+        ///   Passing <c>null</c> to the <paramref name="layout"/> parameter will unbind the previously bound input layout.
+        /// </remarks>
+        /// <exception cref="ArgumentException">
+        ///   The specified <paramref name="layout"/> is not the correct implementation. If this exception occurs, you're attempting to bind an input layout that does not implement <see cref="IOpenGLInputLayout"/>.
+        /// </exception>
         public void SetInputLayout(IInputLayout? layout)
         {
             if (layout == null)
@@ -58,6 +104,18 @@ namespace FinalEngine.Rendering.OpenGL
             this.boundLayout.Bind();
         }
 
+        /// <summary>
+        ///   Sets the specified <paramref name="buffer"/>, binding it to the GPU.
+        /// </summary>
+        /// <param name="buffer">
+        ///   Specifies a <see cref="Nullable{IVertexBuffer}"/> that represents the vertex buffer to bind.
+        /// </param>
+        /// <remarks>
+        ///   Passing <c>null</c> to the <paramref name="buffer"/> parameter will unbind the previously bound vertex buffer.
+        /// </remarks>
+        /// <exception cref="ArgumentException">
+        ///   The specified <paramref name="buffer"/> is not the correct implementation. If this exception occurs, you're attempting to bind an vertex buffer that does not implement <see cref="IOpenGLVertexBuffer"/>.
+        /// </exception>
         public void SetVertexBuffer(IVertexBuffer? buffer)
         {
             if (buffer == null)

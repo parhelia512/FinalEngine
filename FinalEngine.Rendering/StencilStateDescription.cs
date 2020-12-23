@@ -6,22 +6,49 @@ namespace FinalEngine.Rendering
 {
     using System;
 
+    /// <summary>
+    ///   Enumerates the available stencil operations that identify an action taken on samples that pass or fail a stencil test.
+    /// </summary>
     public enum StencilOperation
     {
+        /// <summary>
+        ///   Specifies the value is kept.
+        /// </summary>
         Keep,
 
+        /// <summary>
+        ///   Specifies the value is set to zero.
+        /// </summary>
         Zero,
 
+        /// <summary>
+        ///   Specifies the existing value is replaced with <see cref="StencilStateDescription.ReferenceValue"/>.
+        /// </summary>
         Replace,
 
+        /// <summary>
+        ///   Specifies the existing value is incremented and clamped to the maximum representable unsigned value.
+        /// </summary>
         Increment,
 
+        /// <summary>
+        ///   Specifies the existing value is incremented wrapped to zero when it exceeds the maximum representable unsigned value.
+        /// </summary>
         IncrementWrap,
 
+        /// <summary>
+        ///   Specifies the existing value is decremented and clamped to zero.
+        /// </summary>
         Decrement,
 
+        /// <summary>
+        ///   Specifies the existing value is decremented and wrapped to the maximum representable unsigned value if it would be reduced below zero.
+        /// </summary>
         DecrementWrap,
 
+        /// <summary>
+        ///   Specifies bitwise-inversion of the existing value.
+        /// </summary>
         Invert,
     }
 

@@ -76,14 +76,14 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void SetBlendStateShouldInvokeBlendFuncWhenInvoked()
         {
             // Arrange
-            this.blendState.SourceMode = BlendMode.ConstantAlpha;
+            this.blendState.SourceMode = BlendMode.DestinationAlpha;
             this.blendState.DestinationMode = BlendMode.One;
 
             // Act
             this.outputMerger.SetBlendState(this.blendState);
 
             // Assert
-            this.invoker.Verify(x => x.BlendFunc(this.mapper.Object.Forward<BlendingFactor>(BlendMode.ConstantAlpha), this.mapper.Object.Forward<BlendingFactor>(BlendMode.One)), Times.Once);
+            this.invoker.Verify(x => x.BlendFunc(this.mapper.Object.Forward<BlendingFactor>(BlendMode.DestinationAlpha), this.mapper.Object.Forward<BlendingFactor>(BlendMode.One)), Times.Once);
         }
 
         [Test]

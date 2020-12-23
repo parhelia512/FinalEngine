@@ -32,18 +32,18 @@ namespace FinalEngine.Tests.Rendering
         }
 
         [Test]
-        public void DestinationModeShouldReturnConstantAlphaWhenSetToConstantAlpha()
+        public void DestinationModeShouldReturnZeroWhenDefault()
         {
-            // Act
-            this.description.DestinationMode = BlendMode.ConstantAlpha;
-
             // Assert
-            Assert.AreEqual(BlendMode.ConstantAlpha, this.description.DestinationMode);
+            Assert.AreEqual(BlendMode.Zero, this.description.DestinationMode);
         }
 
         [Test]
-        public void DestinationModeShouldReturnZeroWhenDefault()
+        public void DestinationModeShouldReturnZeroWhenSetToZero()
         {
+            // Act
+            this.description.DestinationMode = BlendMode.Zero;
+
             // Assert
             Assert.AreEqual(BlendMode.Zero, this.description.DestinationMode);
         }
@@ -71,9 +71,9 @@ namespace FinalEngine.Tests.Rendering
             // Arrange
             var left = new BlendStateDescription()
             {
-                SourceMode = BlendMode.ConstantAlpha,
+                SourceMode = BlendMode.Zero,
                 Color = Color.Green,
-                DestinationMode = BlendMode.OneMinusConstantAlpha,
+                DestinationMode = BlendMode.DestinationColor,
                 Enabled = false,
                 EquationMode = BlendEquationMode.Min,
             };
@@ -100,18 +100,18 @@ namespace FinalEngine.Tests.Rendering
             // Arrange
             var left = new BlendStateDescription()
             {
-                SourceMode = BlendMode.ConstantAlpha,
+                SourceMode = BlendMode.Zero,
                 Color = Color.Green,
-                DestinationMode = BlendMode.OneMinusConstantAlpha,
+                DestinationMode = BlendMode.DestinationColor,
                 Enabled = false,
                 EquationMode = BlendEquationMode.Min,
             };
 
             var right = new BlendStateDescription()
             {
-                SourceMode = BlendMode.ConstantAlpha,
+                SourceMode = BlendMode.Zero,
                 Color = Color.Green,
-                DestinationMode = BlendMode.OneMinusConstantAlpha,
+                DestinationMode = BlendMode.DestinationColor,
                 Enabled = false,
                 EquationMode = BlendEquationMode.Min,
             };
@@ -149,9 +149,9 @@ namespace FinalEngine.Tests.Rendering
             // Arrange
             var left = new BlendStateDescription()
             {
-                SourceMode = BlendMode.ConstantAlpha,
+                SourceMode = BlendMode.Zero,
                 Color = Color.Green,
-                DestinationMode = BlendMode.OneMinusConstantAlpha,
+                DestinationMode = BlendMode.DestinationColor,
                 Enabled = false,
                 EquationMode = BlendEquationMode.Min,
             };
@@ -212,10 +212,10 @@ namespace FinalEngine.Tests.Rendering
         public void EquationModeShouldReturnReverseSubtractWhenSetToReverseSubtract()
         {
             // Act
-            this.description.EquationMode = BlendEquationMode.ReverseSubstract;
+            this.description.EquationMode = BlendEquationMode.ReverseSubtract;
 
             // Assert
-            Assert.AreEqual(BlendEquationMode.ReverseSubstract, this.description.EquationMode);
+            Assert.AreEqual(BlendEquationMode.ReverseSubtract, this.description.EquationMode);
         }
 
         [Test]
@@ -254,18 +254,18 @@ namespace FinalEngine.Tests.Rendering
             // Arrange
             var left = new BlendStateDescription()
             {
-                SourceMode = BlendMode.ConstantAlpha,
+                SourceMode = BlendMode.Zero,
                 Color = Color.Green,
-                DestinationMode = BlendMode.OneMinusConstantAlpha,
+                DestinationMode = BlendMode.DestinationColor,
                 Enabled = false,
                 EquationMode = BlendEquationMode.Min,
             };
 
             var right = new BlendStateDescription()
             {
-                SourceMode = BlendMode.ConstantAlpha,
+                SourceMode = BlendMode.Zero,
                 Color = Color.Green,
-                DestinationMode = BlendMode.OneMinusConstantAlpha,
+                DestinationMode = BlendMode.DestinationColor,
                 Enabled = false,
                 EquationMode = BlendEquationMode.Min,
             };
@@ -283,9 +283,9 @@ namespace FinalEngine.Tests.Rendering
             // Arrange
             var left = new BlendStateDescription()
             {
-                SourceMode = BlendMode.ConstantAlpha,
+                SourceMode = BlendMode.DestinationAlpha,
                 Color = Color.Green,
-                DestinationMode = BlendMode.OneMinusConstantAlpha,
+                DestinationMode = BlendMode.DestinationColor,
                 Enabled = false,
                 EquationMode = BlendEquationMode.Min,
             };

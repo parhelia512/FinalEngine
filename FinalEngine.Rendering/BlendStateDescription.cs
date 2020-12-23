@@ -7,48 +7,91 @@ namespace FinalEngine.Rendering
     using System;
     using System.Drawing;
 
+    /// <summary>
+    ///   Specifies the Enumerates the available blend equation modes that determine how the source and destination factors are combined in a blend operation.
+    /// </summary>
     public enum BlendEquationMode
     {
+        /// <summary>
+        ///   Specifies the source and destination are added.
+        /// </summary>
         Add,
 
+        /// <summary>
+        ///   Specifies the destination is subtracted from source.
+        /// </summary>
         Subtract,
 
-        ReverseSubstract,
+        /// <summary>
+        ///   Specifies the source is subtracted from destination.
+        /// </summary>
+        ReverseSubtract,
 
+        /// <summary>
+        ///   Specifies the minimum of source and destination is selected.
+        /// </summary>
         Min,
 
+        /// <summary>
+        ///   Specifies the maximum of source and destination is selected.
+        /// </summary>
         Max,
     }
 
+    /// <summary>
+    ///   Enumerates the available blend modes that determine the influence of components in a blend operation.
+    /// </summary>
     public enum BlendMode
     {
+        /// <summary>
+        ///   Specifies each component is multiplied by zero.
+        /// </summary>
         Zero,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by one.
+        /// </summary>
         One,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by the matching component of the source color.
+        /// </summary>
         SourceColor,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by (1 - the matching component of the source color).
+        /// </summary>
         OneMinusSourceColor,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by the matching component of the destination color.
+        /// </summary>
         DestinationColor,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by (1 - the matching component of the destination color).
+        /// </summary>
         OneMinusDestinationColor,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by the source alpha component.
+        /// </summary>
         SourceAlpha,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by (1 - source alpha).
+        /// </summary>
         OneMinusSourceAlpha,
 
+        /// <summary>
+        ///   Specifies each component is multiplied by the destination alpha component.
+        /// </summary>
         DestinationAlpha,
 
+        /// <summary>
+        ///   Specifies the component is multiplied by (1 - destination alpha).
+        /// </summary>
         OneMinusDestinationAlpha,
-
-        OneMinusConstantColor,
-
-        ConstantAlpha,
-
-        OneMinusConstantAlpha,
-
-        SourceAlphaSaturate,
     }
 
     public struct BlendStateDescription : IEquatable<BlendStateDescription>

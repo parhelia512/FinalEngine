@@ -54,30 +54,73 @@ namespace FinalEngine.Rendering
         CounterClockwise,
     }
 
+    /// <summary>
+    ///   Represents the rasterization state used in a call to <see cref="IRasterizer.SetRasterState(RasterStateDescription)"/>.
+    /// </summary>
+    /// <seealso cref="System.IEquatable{FinalEngine.Rendering.RasterStateDescription}"/>
     public struct RasterStateDescription : IEquatable<RasterStateDescription>
     {
+        /// <summary>
+        ///   The cull mode that determines which faces will be culled.
+        /// </summary>
         private FaceCullMode? cullMode;
 
+        /// <summary>
+        ///   The fill mode that specifies how the rasterizer will fill polygons.
+        /// </summary>
         private RasterMode? fillMode;
 
+        /// <summary>
+        ///   The winding direction specifies the direction in which primitives are drawn.
+        /// </summary>
         private WindingDirection? windingDirection;
 
+        /// <summary>
+        ///   Gets or sets a value indicating whether culling is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if culling is enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool CullEnabled { get; set; }
 
+        /// <summary>
+        ///   Gets or sets a <see cref="FaceCullMode"/> that represents the cull mode that determines which faces will be culled.
+        /// </summary>
+        /// <value>
+        ///   The cull mode that determines which faces will be culled.
+        /// </value>
         public FaceCullMode CullMode
         {
             get { return this.cullMode ?? FaceCullMode.Back; }
             set { this.cullMode = value; }
         }
 
+        /// <summary>
+        ///   Gets or sets a <see cref="RasterMode"/> that represents the fill mode that specifies how the rasterizer will fill polygons.
+        /// </summary>
+        /// <value>
+        ///   The fill mode that specifies how the rasterizer will fill polygons.
+        /// </value>
         public RasterMode FillMode
         {
             get { return this.fillMode ?? RasterMode.Solid; }
             set { this.fillMode = value; }
         }
 
+        /// <summary>
+        ///   Gets or sets a value indicating whether scissoring is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if scissoring is enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool ScissorEnabled { get; set; }
 
+        /// <summary>
+        ///   Gets or sets a <see cref="WindingDirection"/> that represents the winding direction specifies the direction in which primitives are drawn.
+        /// </summary>
+        /// <value>
+        ///   The winding direction specifies the direction in which primitives are drawn.
+        /// </value>
         public WindingDirection WindingDirection
         {
             get { return this.windingDirection ?? WindingDirection.CounterClockwise; }

@@ -145,10 +145,10 @@ namespace FinalEngine.Rendering
         }
 
         /// <summary>
-        ///   Gets or sets a value indicating whether this <see cref="BlendStateDescription"/> is enabled.
+        ///   Gets or sets a value indicating whether blending is enabled.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this <see cref="BlendStateDescription"/> is enabled; otherwise, <c>false</c>.
+        ///   <c>true</c> if blending is enabled; otherwise, <c>false</c>.
         /// </value>
         public bool Enabled { get; set; }
 

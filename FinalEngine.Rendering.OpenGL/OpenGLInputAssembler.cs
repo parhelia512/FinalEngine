@@ -42,7 +42,7 @@ namespace FinalEngine.Rendering.OpenGL
         {
             if (layout == null)
             {
-                this.boundLayout?.Reset();
+                this.boundLayout?.Unbind();
 
                 return;
             }
@@ -52,7 +52,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentException($"The specified {nameof(layout)} parameter is not of type {nameof(IOpenGLInputLayout)}.", nameof(layout));
             }
 
-            this.boundLayout?.Reset();
+            this.boundLayout?.Unbind();
             this.boundLayout = glInputLayout;
 
             this.boundLayout.Bind();

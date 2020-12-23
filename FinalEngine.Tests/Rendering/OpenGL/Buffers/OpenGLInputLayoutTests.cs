@@ -91,16 +91,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             Assert.AreEqual(this.elements, this.layout.Elements);
         }
 
-        [Test]
-        public void ResetShouldInvokeDisableVertexAttribArrayWhenInvoked()
-        {
-            // Act
-            this.layout.Reset();
-
-            // Assert
-            this.invoker.Verify(x => x.DisableVertexAttribArray(It.IsAny<int>()), Times.Exactly(this.elements.Count));
-        }
-
         [SetUp]
         public void Setup()
         {
@@ -108,6 +98,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             this.invoker = new Mock<IOpenGLInvoker>();
             this.mapper = new Mock<IEnumMapper>();
             this.layout = new OpenGLInputLayout(this.invoker.Object, this.mapper.Object, this.elements);
+        }
+
+        [Test]
+        public void UnbindShouldInvokeDisableVertexAttribArrayWhenInvoked()
+        {
+            // Act
+            this.layout.Unbind();
+
+            // Assert
+            this.invoker.Verify(x => x.DisableVertexAttribArray(It.IsAny<int>()), Times.Exactly(this.elements.Count));
         }
     }
 }

@@ -85,7 +85,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.inputAssembler.SetInputLayout(layout.Object);
 
             // Assert
-            layout.Verify(x => x.Reset(), Times.Once);
+            layout.Verify(x => x.Unbind(), Times.Once);
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
             this.inputAssembler.SetInputLayout(null);
 
             // Assert
-            layout.Verify(x => x.Reset(), Times.Once);
+            layout.Verify(x => x.Unbind(), Times.Once);
         }
 
         [Test]

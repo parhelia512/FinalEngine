@@ -34,7 +34,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering", "Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Rendering.OpenGL", "FinalEngine.Rendering.OpenGL\FinalEngine.Rendering.OpenGL.csproj", "{14B5098C-79C8-44BB-A485-6638873F10BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Utilities", "FinalEngine.Utilities\FinalEngine.Utilities.csproj", "{82A89B14-C583-4762-AAB1-F81E1C29E5D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalEngine.Utilities", "FinalEngine.Utilities\FinalEngine.Utilities.csproj", "{82A89B14-C583-4762-AAB1-F81E1C29E5D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{74C594F2-596B-4EF1-9E18-A04C82B1380F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Editor.Views", "FinalEngine.Editor.Views\FinalEngine.Editor.Views.csproj", "{79EB49F7-E807-4D49-8C5E-4E1E990280FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Editor.Models", "FinalEngine.Editor.Models\FinalEngine.Editor.Models.csproj", "{88A0D9A5-0A0F-4372-8B34-B01DB5438539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Editor.Presenters", "FinalEngine.Editor.Presenters\FinalEngine.Editor.Presenters.csproj", "{7434C6B2-4929-4C11-8C9D-6CBE8C03297F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalEngine.Editor.Windows", "FinalEngine.Editor.Windows\FinalEngine.Editor.Windows.csproj", "{061B16EE-C668-471F-A2B9-670D42073D0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +88,22 @@ Global
 		{82A89B14-C583-4762-AAB1-F81E1C29E5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82A89B14-C583-4762-AAB1-F81E1C29E5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A89B14-C583-4762-AAB1-F81E1C29E5D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79EB49F7-E807-4D49-8C5E-4E1E990280FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79EB49F7-E807-4D49-8C5E-4E1E990280FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79EB49F7-E807-4D49-8C5E-4E1E990280FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79EB49F7-E807-4D49-8C5E-4E1E990280FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A0D9A5-0A0F-4372-8B34-B01DB5438539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A0D9A5-0A0F-4372-8B34-B01DB5438539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A0D9A5-0A0F-4372-8B34-B01DB5438539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A0D9A5-0A0F-4372-8B34-B01DB5438539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7434C6B2-4929-4C11-8C9D-6CBE8C03297F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7434C6B2-4929-4C11-8C9D-6CBE8C03297F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7434C6B2-4929-4C11-8C9D-6CBE8C03297F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7434C6B2-4929-4C11-8C9D-6CBE8C03297F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{061B16EE-C668-471F-A2B9-670D42073D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{061B16EE-C668-471F-A2B9-670D42073D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{061B16EE-C668-471F-A2B9-670D42073D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{061B16EE-C668-471F-A2B9-670D42073D0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +117,10 @@ Global
 		{0A41C3A7-1881-43F8-BE83-8B35D6B04221} = {B2CD257E-E2BC-4259-A9B5-4DA90A7DE0B3}
 		{14B5098C-79C8-44BB-A485-6638873F10BC} = {B2CD257E-E2BC-4259-A9B5-4DA90A7DE0B3}
 		{82A89B14-C583-4762-AAB1-F81E1C29E5D8} = {198F3F27-340D-4617-86BB-AE9D9D5494A2}
+		{79EB49F7-E807-4D49-8C5E-4E1E990280FA} = {74C594F2-596B-4EF1-9E18-A04C82B1380F}
+		{88A0D9A5-0A0F-4372-8B34-B01DB5438539} = {74C594F2-596B-4EF1-9E18-A04C82B1380F}
+		{7434C6B2-4929-4C11-8C9D-6CBE8C03297F} = {74C594F2-596B-4EF1-9E18-A04C82B1380F}
+		{061B16EE-C668-471F-A2B9-670D42073D0E} = {74C594F2-596B-4EF1-9E18-A04C82B1380F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A278B383-0D14-41B3-A71C-4505E1D503DF}

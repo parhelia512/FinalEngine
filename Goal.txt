@@ -15,9 +15,13 @@
       - Shader Program :)
   - Texture Loader
   - Sprite Batching
+    - Sprites
+  - Camera abstraction
 - Audio
 - Physics
 - Scene & Entity Management
+  - ECS
+  - Some sort of scene management
 - Logging
 - File IO :)
 - Game Loop

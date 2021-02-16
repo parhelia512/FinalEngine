@@ -6,46 +6,107 @@ namespace FinalEngine.Rendering.Textures
 {
     using System;
 
+    /// <summary>
+    ///   Represents the description of a 2D texture used in a call to <see cref="IGPUResourceFactory.CreateTexture2D{T}(Texture2DDescription, System.Collections.Generic.IReadOnlyCollection{T}?, PixelFormat, SizedFormat)"/>.
+    /// </summary>
+    /// <seealso cref="System.IEquatable{FinalEngine.Rendering.Textures.Texture2DDescription}"/>
     public struct Texture2DDescription : IEquatable<Texture2DDescription>
     {
+        /// <summary>
+        ///   The texture magnification filter used when sampling from the texture determines that the texture should be magnified.
+        /// </summary>
         private TextureFilterMode? magFilter;
 
+        /// <summary>
+        ///   The texture minifying filter used when sampling from the texture determines that the texture should be minified.
+        /// </summary>
         private TextureFilterMode? minFilter;
 
+        /// <summary>
+        ///   The data type of the pixel data.
+        /// </summary>
         private PixelType? pixelType;
 
+        /// <summary>
+        ///   The texture wrap mode for the S/X direction.
+        /// </summary>
         private TextureWrapMode? wrapS;
 
+        /// <summary>
+        ///   The texture wrap mode for the T/Y direction.
+        /// </summary>
         private TextureWrapMode? wrapT;
 
+        /// <summary>
+        ///   Gets or sets the height of the texture.
+        /// </summary>
+        /// <value>
+        ///   The height of the texture.
+        /// </value>
         public int Height { get; set; }
 
+        /// <summary>
+        ///   Gets or sets the texture magnification filter used when sampling from the texture determines that the texture should be magnified.
+        /// </summary>
+        /// <value>
+        ///   The texture magnification filter used when sampling from the texture determines that the texture should be magnified.
+        /// </value>
         public TextureFilterMode MagFilter
         {
             get { return this.magFilter ?? TextureFilterMode.Linear; }
             set { this.magFilter = value; }
         }
 
+        /// <summary>
+        ///   Gets or sets the texture minifying filter used when sampling from the texture determines that the texture should be minified.
+        /// </summary>
+        /// <value>
+        ///   The texture minifying filter used when sampling from the texture determines that the texture should be minified.
+        /// </value>
         public TextureFilterMode MinFilter
         {
             get { return this.minFilter ?? TextureFilterMode.Linear; }
             set { this.minFilter = value; }
         }
 
+        /// <summary>
+        ///   Gets or sets the data type of the pixel data.
+        /// </summary>
+        /// <value>
+        ///   The data type of the pixel data.
+        /// </value>
         public PixelType PixelType
         {
             get { return this.pixelType ?? PixelType.Byte; }
             set { this.pixelType = value; }
         }
 
+        /// <summary>
+        ///   Gets or sets the width of the texture.
+        /// </summary>
+        /// <value>
+        ///   The width of the texture.
+        /// </value>
         public int Width { get; set; }
 
+        /// <summary>
+        ///   Gets or sets the texture wrap mode for the S/X direction.
+        /// </summary>
+        /// <value>
+        ///   The texture wrap mode for the S/X direction.
+        /// </value>
         public TextureWrapMode WrapS
         {
             get { return this.wrapS ?? TextureWrapMode.Repeat; }
             set { this.wrapS = value; }
         }
 
+        /// <summary>
+        ///   Gets or sets the texture wrap mode for the T/Y direction.
+        /// </summary>
+        /// <value>
+        ///   The texture wrap mode for the T/Y direction.
+        /// </value>
         public TextureWrapMode WrapT
         {
             get { return this.wrapT ?? TextureWrapMode.Repeat; }

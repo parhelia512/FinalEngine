@@ -16,9 +16,6 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     public interface IOpenGLInvoker
     {
         /// <inheritdoc cref="GL.ActiveTexture(TextureUnit)"/>
-        /// <paramref name="texture">
-        ///   Specifies a <see cref="TextureUnit"/> that represents which texture unit to make active.
-        /// </paramref>
         void ActiveTexture(TextureUnit texture);
 
         /// <inheritdoc cref="GL.AttachShader(int, int)"/>
@@ -36,6 +33,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.BindVertexBuffer(int, int, IntPtr, int)"/>
         void BindVertexBuffer(int bindingindex, int buffer, IntPtr offset, int stride);
 
+        /// <inheritdoc cref="GL.BindVertexBuffers(int, int, int*, IntPtr*, int*)"/>
         void BindVertexBuffers(int first, int count, int[] buffers, IntPtr[] offsets, int[] strides);
 
         /// <inheritdoc cref="GL.BlendColor(Color)"/>
@@ -176,6 +174,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.TextureParameter(int, TextureParameterName, int)"/>
         void TextureParameter(int texture, TextureParameterName pname, int param);
 
+        /// <inheritdoc cref="GL.TextureStorage2D(int, int, SizedInternalFormat, int, int)"/>
         void TextureStorage2D(int texture, int levels, SizedInternalFormat internalFormat, int width, int height);
 
         /// <inheritdoc cref="GL.TextureSubImage2D(int, int, int, int, int, int, PixelFormat, PixelType, IntPtr)"/>

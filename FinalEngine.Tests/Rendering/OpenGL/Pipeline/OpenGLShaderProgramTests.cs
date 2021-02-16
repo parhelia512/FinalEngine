@@ -7,6 +7,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using FinalEngine.Rendering.Exceptions;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
     using Moq;
@@ -96,13 +97,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         }
 
         [Test]
-        public void ConstructorShouldThrowExceptionWhenGetProgramInfoLogReturnsNotNullEmptyOrWhitspace()
+        public void ConstructorShouldThrowProgramLinkingErrorExceptionWhenGetProgramInfoLogReturnsNotNullEmptyOrWhitspace()
         {
             // Arrange
             this.invoker.Setup(x => x.GetProgramInfoLog(ID)).Returns("test");
 
             // Act and assert
-            Assert.Throws<Exception>(() => new OpenGLShaderProgram(this.invoker.Object, this.shaders));
+            Assert.Throws<ProgramLinkingErrorException>(() => new OpenGLShaderProgram(this.invoker.Object, this.shaders));
         }
 
         [Test]

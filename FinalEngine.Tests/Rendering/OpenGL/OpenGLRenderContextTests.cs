@@ -6,6 +6,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using FinalEngine.Rendering.Exceptions;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using Moq;
@@ -114,16 +115,6 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         }
 
         [Test]
-        public void SwapBuffersShouldThrowExceptionWhenContextIsNotCurrent()
-        {
-            // Arrange
-            this.graphicsContext.SetupGet(x => x.IsCurrent).Returns(false);
-
-            // Act and assert
-            Assert.Throws<Exception>(() => this.renderContext.SwapBuffers());
-        }
-
-        [Test]
         public void SwapBuffersShouldThrowObjectDisposedExceptionWhenRenderContextIsDisposed()
         {
             // Arrange
@@ -131,6 +122,16 @@ namespace FinalEngine.Tests.Rendering.OpenGL
 
             // Act and assert
             Assert.Throws<ObjectDisposedException>(() => this.renderContext.SwapBuffers());
+        }
+
+        [Test]
+        public void SwapBuffersShouldThrowRenderContextExceptionWhenContextIsNotCurrent()
+        {
+            // Arrange
+            this.graphicsContext.SetupGet(x => x.IsCurrent).Returns(false);
+
+            // Act and assert
+            Assert.Throws<RenderContextException>(() => this.renderContext.SwapBuffers());
         }
 
         [TearDown]

@@ -6,6 +6,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using FinalEngine.Rendering.Exceptions;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.OpenGL.Pipeline;
     using FinalEngine.Rendering.Pipeline;
@@ -119,13 +120,13 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Pipeline
         }
 
         [Test]
-        public void ConstructorShouldThrowExceptionWhenGetShaderInfoLogReturnsNotNullEmptyOrWhitspace()
+        public void ConstructorShouldThrowShaderCompilationErrorExceptionWhenGetShaderInfoLogReturnsNotNullEmptyOrWhitspace()
         {
             // Arrange
             this.invoker.Setup(x => x.GetShaderInfoLog(ID)).Returns("test");
 
             // Act and assert
-            Assert.Throws<Exception>(() => new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, this.sourceCode));
+            Assert.Throws<ShaderCompilationErrorException>(() => new OpenGLShader(this.invoker.Object, this.mapper.Object, ShaderType.VertexShader, this.sourceCode));
         }
 
         [Test]

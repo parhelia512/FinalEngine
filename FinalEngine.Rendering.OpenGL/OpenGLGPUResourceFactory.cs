@@ -208,7 +208,7 @@ namespace FinalEngine.Rendering.OpenGL
         /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="data"/> parameter is null.
         /// </exception>
-        public IVertexBuffer CreateVertexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes, int stride)
+        public IVertexBuffer CreateVertexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes, int stride)
             where T : struct
         {
             if (data == null)
@@ -216,7 +216,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
-            return new OpenGLVertexBuffer<T>(this.invoker, data, sizeInBytes, stride);
+            return new OpenGLVertexBuffer<T>(this.invoker, this.mapper, this.mapper.Forward<BufferUsageHint>(type), data, sizeInBytes, stride);
         }
     }
 }

@@ -118,6 +118,8 @@ namespace FinalEngine.Rendering.OpenGL
                 { SizedFormat.Rg8, SizedInternalFormat.Rg8 },
                 { SizedFormat.Rgb8, All.Rgb8 },
                 { SizedFormat.Rgba8, SizedInternalFormat.Rgba8 },
+                { BufferUsageType.Static, BufferUsageHint.StaticDraw },
+                { BufferUsageType.Dynamic, BufferUsageHint.DynamicDraw },
             };
 
             this.mapper = new EnumMapper(map);

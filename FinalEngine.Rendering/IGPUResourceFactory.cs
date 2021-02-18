@@ -125,7 +125,7 @@ namespace FinalEngine.Rendering
         /// <returns>
         ///   The newly created <see cref="IVertexBuffer"/>.
         /// </returns>
-        IVertexBuffer CreateVertexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes, int stride)
-                            where T : struct;
+        IVertexBuffer CreateVertexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes, int stride)
+            where T : struct;
     }
 }

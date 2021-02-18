@@ -5,6 +5,8 @@
 namespace TestGame
 {
     using System;
+    using System.Collections.Generic;
+    using System.IO;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.IO;
@@ -12,8 +14,10 @@ namespace TestGame
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using FinalEngine.Rendering;
+    using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Rendering.Pipeline;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -65,6 +69,26 @@ namespace TestGame
             IOutputMerger outputMerger = renderDevice.OutputMerger;
             IPipeline pipeline = renderDevice.Pipeline;
             IGPUResourceFactory factory = renderDevice.Factory;
+
+            IShaderProgram? program = factory.CreateShaderProgram(
+                new List<IShader>()
+                {
+                    factory.CreateShader(PipelineTarget.Vertex, File.ReadAllText("Resources\\Shaders\\shader.vert")),
+                    factory.CreateShader(PipelineTarget.Fragment, File.ReadAllText("Resources\\Shaders\\shader.frag")),
+                });
+
+            pipeline.SetShaderProgram(program);
+
+            IInputLayout? inputLayout = factory.CreateInputLayout(
+                new List<InputElement>()
+                {
+                    new InputElement(0, 3, InputElementType.Float, 0),
+                    new InputElement(1, 3, InputElementType.Float, 3 * sizeof(float)),
+                });
+
+            inputAssembler.SetInputLayout(inputLayout);
+
+            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 6 * sizeof(float));
 
             while (!window.IsExiting)
             {

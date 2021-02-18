@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering
 {
     using System;
+    using System.Collections.Generic;
     using FinalEngine.Rendering.Buffers;
 
     /// <summary>
@@ -53,5 +54,8 @@ namespace FinalEngine.Rendering
         ///   The specified <paramref name="buffer"/> is not the correct implementation. If this exception occurs, you're attempting to bind an vertex buffer that was created with a different rendering API than the one that's currently in use.
         /// </exception>
         void SetVertexBuffer(IVertexBuffer? buffer);
+
+        void UpdateVertexBuffer<T>(IVertexBuffer buffer, IReadOnlyCollection<T> data)
+            where T : struct;
     }
 }

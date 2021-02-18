@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering.OpenGL
 {
     using System;
+    using System.Collections.Generic;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
@@ -135,6 +136,22 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             glVertexBuffer.Bind();
+        }
+
+        public void UpdateVertexBuffer<T>(IVertexBuffer buffer, IReadOnlyCollection<T> data)
+            where T : struct
+        {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
+            }
+
+            if (buffer is not IOpenGLVertexBuffer glVertexBuffer)
+            {
+                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLVertexBuffer)}.", nameof(buffer));
+            }
+
+            glVertexBuffer.Update(data);
         }
     }
 }

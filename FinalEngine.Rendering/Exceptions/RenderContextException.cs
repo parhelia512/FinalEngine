@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering.Exceptions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     /// <summary>
@@ -12,6 +13,7 @@ namespace FinalEngine.Rendering.Exceptions
     /// </summary>
     /// <seealso cref="Exception"/>
     [Serializable]
+    [ExcludeFromCodeCoverage]
     public class RenderContextException : Exception
     {
         /// <summary>

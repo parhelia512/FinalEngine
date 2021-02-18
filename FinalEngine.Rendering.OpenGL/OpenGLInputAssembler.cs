@@ -138,7 +138,7 @@ namespace FinalEngine.Rendering.OpenGL
             glVertexBuffer.Bind();
         }
 
-        public void UpdateVertexBuffer<T>(IVertexBuffer buffer, IReadOnlyCollection<T> data)
+        public void UpdateIndexBuffer<T>(IIndexBuffer buffer, IReadOnlyCollection<T> data)
             where T : struct
         {
             if (buffer == null)
@@ -146,12 +146,38 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
             }
 
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
+            }
+
+            if (buffer is not IOpenGLIndexBuffer glIndexBuffer)
+            {
+                throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLVertexBuffer)}.", nameof(buffer));
+            }
+
+            glIndexBuffer.Update(data);
+        }
+
+        public void UpdateVertexBuffer<T>(IVertexBuffer buffer, IReadOnlyCollection<T> data, int stride)
+            where T : struct
+        {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException(nameof(buffer), $"The specified {nameof(buffer)} parameter cannot be null.");
+            }
+
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
+            }
+
             if (buffer is not IOpenGLVertexBuffer glVertexBuffer)
             {
                 throw new ArgumentException($"The specified {nameof(buffer)} parameter is not of type {nameof(IOpenGLVertexBuffer)}.", nameof(buffer));
             }
 
-            glVertexBuffer.Update(data);
+            glVertexBuffer.Update(data, stride);
         }
     }
 }

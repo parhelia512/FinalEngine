@@ -7,7 +7,10 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.InteropServices;
+    using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     /// <summary>
@@ -45,19 +48,25 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="invoker"/> or <paramref name="data"/> parameter is null.
         /// </exception>
-        public OpenGLIndexBuffer(IOpenGLInvoker invoker, IReadOnlyCollection<T> data, int sizeInBytes)
+        public OpenGLIndexBuffer(IOpenGLInvoker invoker, IEnumMapper mapper, BufferUsageHint usage, IReadOnlyCollection<T> data, int sizeInBytes)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
+            }
 
             if (data == null)
             {
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
+            this.Type = mapper.Reverse<BufferUsageType>(usage);
             this.Length = data.Count;
 
             this.rendererID = invoker.CreateBuffer();
-            invoker.NamedBufferData(this.rendererID, sizeInBytes, data.ToArray(), BufferUsageHint.StaticDraw);
+            invoker.NamedBufferData(this.rendererID, sizeInBytes, data.ToArray(), usage);
         }
 
         /// <summary>
@@ -74,7 +83,9 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// <value>
         ///   The total amount of indices contained in this <see cref="OpenGLIndexBuffer{T}"/>.
         /// </value>
-        public int Length { get; }
+        public int Length { get; private set; }
+
+        public BufferUsageType Type { get; }
 
         /// <summary>
         ///   Gets a value indicating whether this <see cref="OpenGLIndexBuffer{T}"/> is disposed.
@@ -107,6 +118,23 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public void Update<TData>(IReadOnlyCollection<TData> data)
+            where TData : struct
+        {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(OpenGLIndexBuffer<T>));
+            }
+
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
+            }
+
+            this.Length = data.Count * Marshal.SizeOf<TData>();
+            this.invoker.NamedBufferSubData(this.rendererID, IntPtr.Zero, this.Length, data.ToArray());
         }
 
         /// <summary>

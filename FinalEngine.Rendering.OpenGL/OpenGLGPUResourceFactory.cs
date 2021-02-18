@@ -74,7 +74,7 @@ namespace FinalEngine.Rendering.OpenGL
         /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="data"/> parameter is null.
         /// </exception>
-        public IIndexBuffer CreateIndexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes)
+        public IIndexBuffer CreateIndexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes)
             where T : struct
         {
             if (data == null)
@@ -82,7 +82,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
-            return new OpenGLIndexBuffer<T>(this.invoker, data, sizeInBytes);
+            return new OpenGLIndexBuffer<T>(this.invoker, this.mapper, this.mapper.Forward<BufferUsageHint>(type), data, sizeInBytes);
         }
 
         /// <summary>

@@ -19,5 +19,7 @@ namespace FinalEngine.Rendering.Buffers
         ///   The total amount of indices contained in this <see cref="IIndexBuffer"/>.
         /// </value>
         int Length { get; }
+
+        BufferUsageType Type { get; }
     }
 }

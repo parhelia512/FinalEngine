@@ -55,7 +55,10 @@ namespace FinalEngine.Rendering
         /// </exception>
         void SetVertexBuffer(IVertexBuffer? buffer);
 
-        void UpdateVertexBuffer<T>(IVertexBuffer buffer, IReadOnlyCollection<T> data)
+        void UpdateIndexBuffer<T>(IIndexBuffer buffer, IReadOnlyCollection<T> data)
+            where T : struct;
+
+        void UpdateVertexBuffer<T>(IVertexBuffer buffer, IReadOnlyCollection<T> data, int stride)
             where T : struct;
     }
 }

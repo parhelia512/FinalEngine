@@ -308,6 +308,12 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.NamedBufferData(buffer, size, data, usage);
         }
 
+        public void NamedBufferSubData<T3>(int buffer, IntPtr offset, int size, T3[] data)
+            where T3 : struct
+        {
+            GL.NamedBufferSubData(buffer, offset, size, data);
+        }
+
         /// <inheritdoc/>
         public void PolygonMode(MaterialFace face, PolygonMode mode)
         {

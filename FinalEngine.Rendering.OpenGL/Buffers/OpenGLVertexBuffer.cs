@@ -86,7 +86,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// <value>
         ///   The total number of bytes for a single vertex contained in this <see cref="OpenGLVertexBuffer{T}"/>.
         /// </value>
-        public int Stride { get; }
+        public int Stride { get; private set; }
 
         public BufferUsageType Type { get; }
 
@@ -123,7 +123,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
             GC.SuppressFinalize(this);
         }
 
-        public void Update<TData>(IReadOnlyCollection<TData> data)
+        public void Update<TData>(IReadOnlyCollection<TData> data, int stride)
             where TData : struct
         {
             if (this.IsDisposed)
@@ -135,6 +135,8 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
             {
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
+
+            this.Stride = stride;
 
             this.invoker.NamedBufferSubData(this.rendererID, IntPtr.Zero, data.Count * Marshal.SizeOf<TData>(), data.ToArray());
         }

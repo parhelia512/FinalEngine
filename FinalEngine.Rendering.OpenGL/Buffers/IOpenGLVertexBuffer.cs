@@ -21,7 +21,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// </exception>
         void Bind();
 
-        void Update<TData>(IReadOnlyCollection<TData> data)
+        void Update<TData>(IReadOnlyCollection<TData> data, int stride)
             where TData : struct;
     }
 }

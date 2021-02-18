@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering.OpenGL.Buffers
 {
     using System;
+    using System.Collections.Generic;
     using FinalEngine.Rendering.Buffers;
 
     /// <summary>
@@ -20,5 +21,8 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         ///   The <see cref="IOpenGLIndexBuffer"/> has been disposed.
         /// </exception>
         void Bind();
+
+        void Update<TData>(IReadOnlyCollection<TData> data)
+            where TData : struct;
     }
 }

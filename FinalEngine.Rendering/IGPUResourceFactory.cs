@@ -33,7 +33,7 @@ namespace FinalEngine.Rendering
         /// <returns>
         ///   The newly created <see cref="IIndexBuffer"/>.
         /// </returns>
-        IIndexBuffer CreateIndexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes)
+        IIndexBuffer CreateIndexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes)
             where T : struct;
 
         /// <summary>

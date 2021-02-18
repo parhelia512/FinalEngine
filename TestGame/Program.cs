@@ -6,6 +6,7 @@ namespace TestGame
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.IO;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
@@ -83,17 +84,40 @@ namespace TestGame
                 new List<InputElement>()
                 {
                     new InputElement(0, 3, InputElementType.Float, 0),
-                    new InputElement(1, 3, InputElementType.Float, 3 * sizeof(float)),
+                    new InputElement(1, 4, InputElementType.Float, 3 * sizeof(float)),
                 });
 
             inputAssembler.SetInputLayout(inputLayout);
 
-            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 6 * sizeof(float));
+            float[] vertices =
+            {
+                -0.5f, -0.5f, 0.0f, 1, 0, 0, 1,
+                0.5f, -0.5f, 0.0f, 0, 1, 0, 1,
+                0.0f, 0.5f, 0.0f, 0, 0, 1, 1,
+            };
+
+            int[] indices =
+            {
+                0, 1, 2,
+            };
+
+            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 7 * sizeof(float));
+            IIndexBuffer indexBuffer = factory.CreateIndexBuffer(BufferUsageType.Dynamic, Array.Empty<int>(), 3 * sizeof(int));
 
             while (!window.IsExiting)
             {
                 keyboard.Update();
                 mouse.Update();
+
+                inputAssembler.UpdateVertexBuffer(vertexBuffer, vertices, 7 * sizeof(float));
+                inputAssembler.UpdateIndexBuffer(indexBuffer, indices);
+
+                inputAssembler.SetVertexBuffer(vertexBuffer);
+                inputAssembler.SetIndexBuffer(indexBuffer);
+
+                renderDevice.Clear(Color.CornflowerBlue);
+                renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indexBuffer.Length);
+
                 renderContext.SwapBuffers();
                 window.ProcessEvents();
             }

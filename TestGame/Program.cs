@@ -22,6 +22,7 @@ namespace TestGame
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
+    using MouseButton = FinalEngine.Input.Mouse.MouseButton;
 
     internal static class Program
     {
@@ -89,31 +90,56 @@ namespace TestGame
 
             inputAssembler.SetInputLayout(inputLayout);
 
-            float[] vertices =
-            {
-                -0.5f, -0.5f, 0.0f, 1, 0, 0, 1,
-                0.5f, -0.5f, 0.0f, 0, 1, 0, 1,
-                0.0f, 0.5f, 0.0f, 0, 0, 1, 1,
-            };
-
-            int[] indices =
-            {
-                0, 1, 2,
-            };
-
             IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 7 * sizeof(float));
             IIndexBuffer indexBuffer = factory.CreateIndexBuffer(BufferUsageType.Dynamic, Array.Empty<int>(), 3 * sizeof(int));
 
+            inputAssembler.SetVertexBuffer(vertexBuffer);
+            inputAssembler.SetIndexBuffer(indexBuffer);
+
+            float r = 1.0f;
+            float g = 1.0f;
+            float b = 1.0f;
+
             while (!window.IsExiting)
             {
+                if (mouse.IsButtonReleased(MouseButton.Left))
+                {
+                    r = 0.2f;
+                    g = 1.0f;
+                    b = 0.5f;
+                }
+
+                if (mouse.IsButtonReleased(MouseButton.Right))
+                {
+                    r = 0.67f;
+                    g = 0.4f;
+                    b = 0.82f;
+                }
+
+                if (mouse.IsButtonReleased(MouseButton.Middle))
+                {
+                    r = 0.27f;
+                    g = 0.2f;
+                    b = 0.62f;
+                }
+
                 keyboard.Update();
                 mouse.Update();
 
+                float[] vertices =
+                {
+                    -0.5f, -0.5f, 0.0f, r, g, b, 1,
+                    0.5f, -0.5f, 0.0f, g, b, r, 1,
+                    0.0f, 0.5f, 0.0f, g, r, b, 1,
+                };
+
+                int[] indices =
+                {
+                    0, 1, 2,
+                };
+
                 inputAssembler.UpdateVertexBuffer(vertexBuffer, vertices, 7 * sizeof(float));
                 inputAssembler.UpdateIndexBuffer(indexBuffer, indices);
-
-                inputAssembler.SetVertexBuffer(vertexBuffer);
-                inputAssembler.SetIndexBuffer(indexBuffer);
 
                 renderDevice.Clear(Color.CornflowerBlue);
                 renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indexBuffer.Length);

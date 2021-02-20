@@ -133,8 +133,8 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
-            this.Length = data.Count * Marshal.SizeOf<TData>();
-            this.invoker.NamedBufferSubData(this.rendererID, IntPtr.Zero, this.Length, data.ToArray());
+            this.Length = data.Count;
+            this.invoker.NamedBufferSubData(this.rendererID, IntPtr.Zero, this.Length * Marshal.SizeOf<TData>(), data.ToArray());
         }
 
         /// <summary>

@@ -47,7 +47,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateIndexBufferShouldReturnOpenGLIndexBufferWhenInvoked()
         {
             // Act
-            IIndexBuffer actual = this.factory.CreateIndexBuffer<int>(Array.Empty<int>(), 0);
+            IIndexBuffer actual = this.factory.CreateIndexBuffer<int>(BufferUsageType.Static, Array.Empty<int>(), 0);
 
             // Assert
             Assert.IsInstanceOf(typeof(OpenGLIndexBuffer<int>), actual);
@@ -57,7 +57,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateIndexBufferShouldThrowArgumentNullExceptionWhenDataIsNull()
         {
             // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.factory.CreateIndexBuffer<int>(null, 0));
+            Assert.Throws<ArgumentNullException>(() => this.factory.CreateIndexBuffer<int>(BufferUsageType.Dynamic, null, 0));
         }
 
         [Test]
@@ -162,7 +162,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateVertexBufferShouldReturnOpenGLVertexBufferWhenInvoked()
         {
             // Act
-            IVertexBuffer actual = this.factory.CreateVertexBuffer(Array.Empty<int>(), 0, 0);
+            IVertexBuffer actual = this.factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<int>(), 0, 0);
 
             // Assert
             Assert.IsInstanceOf(typeof(OpenGLVertexBuffer<int>), actual);
@@ -172,7 +172,7 @@ namespace FinalEngine.Tests.Rendering.OpenGL
         public void CreateVertexBufferShouldThrowArgumentNullExceptionWhenDataIsNull()
         {
             // Act and assert
-            Assert.Throws<ArgumentNullException>(() => this.factory.CreateVertexBuffer<int>(null, 0, 0));
+            Assert.Throws<ArgumentNullException>(() => this.factory.CreateVertexBuffer<int>(BufferUsageType.Static, null, 0, 0));
         }
 
         [SetUp]

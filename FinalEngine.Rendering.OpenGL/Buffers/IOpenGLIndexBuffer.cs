@@ -5,6 +5,7 @@
 namespace FinalEngine.Rendering.OpenGL.Buffers
 {
     using System;
+    using System.Collections.Generic;
     using FinalEngine.Rendering.Buffers;
 
     /// <summary>
@@ -20,5 +21,17 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         ///   The <see cref="IOpenGLIndexBuffer"/> has been disposed.
         /// </exception>
         void Bind();
+
+        /// <summary>
+        ///   Updates the vertex buffer by filling it with the specified <paramref name="data"/>.
+        /// </summary>
+        /// <typeparam name="TData">
+        ///   The type of data to fill the buffer with.
+        /// </typeparam>
+        /// <param name="data">
+        ///   The data to fill with the buffer with.
+        /// </param>
+        void Update<TData>(IReadOnlyCollection<TData> data)
+            where TData : struct;
     }
 }

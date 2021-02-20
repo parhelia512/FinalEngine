@@ -150,6 +150,10 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         void NamedBufferData<T2>(int buffer, int size, T2[] data, BufferUsageHint usage)
             where T2 : struct;
 
+        /// <inheritdoc cref="GL.NamedBufferSubData{T3}(int, IntPtr, int, T3[])"/>
+        void NamedBufferSubData<T3>(int buffer, IntPtr offset, int size, T3[] data)
+            where T3 : struct;
+
         /// <inheritdoc cref="GL.PolygonMode(MaterialFace, PolygonMode)"/>
         void PolygonMode(MaterialFace face, PolygonMode mode);
 

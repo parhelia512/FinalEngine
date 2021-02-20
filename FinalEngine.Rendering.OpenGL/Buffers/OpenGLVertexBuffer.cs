@@ -7,7 +7,10 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.InteropServices;
+    using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using OpenTK.Graphics.OpenGL4;
 
     /// <summary>
@@ -36,6 +39,12 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// <param name="invoker">
         ///   Specifies an <see cref="IOpenGLInvoker"/> that represents the invoker used to invoke OpenGL calls.
         /// </param>
+        /// <param name="mapper">
+        ///   Specifies an <see cref="IEnumMapper"/> that represents the enumeration mapper used to map OpenGL enumerations to the rendering APIs equivalent.
+        /// </param>
+        /// <param name="usage">
+        ///   Specifies a <see cref="BufferUsageHint"/> that represents how the index buffer will be used.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data this <see cref="OpenGLVertexBuffer{T}"/> will contain.
         /// </param>
@@ -46,21 +55,27 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         ///   Specifies an <see cref="int"/> that represents the total number of bytes a single vertex contains.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        ///   The specified <paramref name="invoker"/> or <paramref name="data"/> parameter is null.
+        ///   The specified <paramref name="invoker"/>, <paramref name="mapper"/> or <paramref name="data"/> parameter is null.
         /// </exception>
-        public OpenGLVertexBuffer(IOpenGLInvoker invoker, IReadOnlyCollection<T> data, int sizeInBytes, int stride)
+        public OpenGLVertexBuffer(IOpenGLInvoker invoker, IEnumMapper mapper, BufferUsageHint usage, IReadOnlyCollection<T> data, int sizeInBytes, int stride)
         {
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper), $"The specified {nameof(mapper)} parameter cannot be null.");
+            }
 
             if (data == null)
             {
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
+            this.Type = mapper.Reverse<BufferUsageType>(usage);
             this.Stride = stride;
 
             this.rendererID = invoker.CreateBuffer();
-            invoker.NamedBufferData(this.rendererID, sizeInBytes, data.ToArray(), BufferUsageHint.StaticDraw);
+            invoker.NamedBufferData(this.rendererID, sizeInBytes, data.ToArray(), usage);
         }
 
         /// <summary>
@@ -77,7 +92,15 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// <value>
         ///   The total number of bytes for a single vertex contained in this <see cref="OpenGLVertexBuffer{T}"/>.
         /// </value>
-        public int Stride { get; }
+        public int Stride { get; private set; }
+
+        /// <summary>
+        ///   Gets the usage type for this <see cref="OpenGLVertexBuffer{T}"/>.
+        /// </summary>
+        /// <value>
+        ///   The usage type for this <see cref="OpenGLVertexBuffer{T}"/>.
+        /// </value>
+        public BufferUsageType Type { get; }
 
         /// <summary>
         ///   Gets a value indicating whether this <see cref="OpenGLVertexBuffer{T}"/> is disposed.
@@ -110,6 +133,42 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        ///   Updates the vertex buffer by filling it with the specified <paramref name="data"/>.
+        /// </summary>
+        /// <typeparam name="TData">
+        ///   The type of data to fill the buffer with.
+        /// </typeparam>
+        /// <param name="data">
+        ///   The data to fill with the buffer with.
+        /// </param>
+        /// <param name="stride">
+        ///   The total number of bytes a single vertex contains.
+        /// </param>
+        /// <exception cref="ObjectDisposedException">
+        ///   The <see cref="OpenGLVertexBuffer{T}"/> has been disposed.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///   The specified <paramref name="data"/> parameter is null.
+        /// </exception>
+        public void Update<TData>(IReadOnlyCollection<TData> data, int stride)
+            where TData : struct
+        {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(OpenGLVertexBuffer<T>));
+            }
+
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
+            }
+
+            this.Stride = stride;
+
+            this.invoker.NamedBufferSubData(this.rendererID, IntPtr.Zero, data.Count * Marshal.SizeOf<TData>(), data.ToArray());
         }
 
         /// <summary>

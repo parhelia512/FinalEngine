@@ -62,6 +62,9 @@ namespace FinalEngine.Rendering.OpenGL
         /// <typeparam name="T">
         ///   Specifies the type of data the <see cref="IIndexBuffer"/> will contain.
         /// </typeparam>
+        /// <param name="type">
+        ///   Specifies a <see cref="BufferUsageType"/> that represents the buffer usage type.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data the buffer will contain.
         /// </param>
@@ -74,7 +77,7 @@ namespace FinalEngine.Rendering.OpenGL
         /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="data"/> parameter is null.
         /// </exception>
-        public IIndexBuffer CreateIndexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes)
+        public IIndexBuffer CreateIndexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes)
             where T : struct
         {
             if (data == null)
@@ -82,7 +85,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
-            return new OpenGLIndexBuffer<T>(this.invoker, data, sizeInBytes);
+            return new OpenGLIndexBuffer<T>(this.invoker, this.mapper, this.mapper.Forward<BufferUsageHint>(type), data, sizeInBytes);
         }
 
         /// <summary>
@@ -193,6 +196,9 @@ namespace FinalEngine.Rendering.OpenGL
         /// <typeparam name="T">
         ///   The type of data the buffer will contain.
         /// </typeparam>
+        /// <param name="type">
+        ///   Specifies a <see cref="BufferUsageType"/> that represents the buffer usage type.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data the buffer will contain.
         /// </param>
@@ -208,7 +214,7 @@ namespace FinalEngine.Rendering.OpenGL
         /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="data"/> parameter is null.
         /// </exception>
-        public IVertexBuffer CreateVertexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes, int stride)
+        public IVertexBuffer CreateVertexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes, int stride)
             where T : struct
         {
             if (data == null)
@@ -216,7 +222,7 @@ namespace FinalEngine.Rendering.OpenGL
                 throw new ArgumentNullException(nameof(data), $"The specified {nameof(data)} parameter cannot be null.");
             }
 
-            return new OpenGLVertexBuffer<T>(this.invoker, data, sizeInBytes, stride);
+            return new OpenGLVertexBuffer<T>(this.invoker, this.mapper, this.mapper.Forward<BufferUsageHint>(type), data, sizeInBytes, stride);
         }
     }
 }

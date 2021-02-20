@@ -21,6 +21,9 @@ namespace FinalEngine.Rendering
         /// <typeparam name="T">
         ///   Specifies the type of data the <see cref="IIndexBuffer"/> will contain.
         /// </typeparam>
+        /// <param name="type">
+        ///   Specifies a <see cref="BufferUsageType"/> that represents the buffer usage type.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data the buffer will contain.
         /// </param>
@@ -33,7 +36,7 @@ namespace FinalEngine.Rendering
         /// <returns>
         ///   The newly created <see cref="IIndexBuffer"/>.
         /// </returns>
-        IIndexBuffer CreateIndexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes)
+        IIndexBuffer CreateIndexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes)
             where T : struct;
 
         /// <summary>
@@ -110,6 +113,9 @@ namespace FinalEngine.Rendering
         /// <typeparam name="T">
         ///   Specifies the type of data the buffer will contain.
         /// </typeparam>
+        /// <param name="type">
+        ///   Specifies a <see cref="BufferUsageType"/> that represents the buffer usage type.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data the buffer will contain.
         /// </param>
@@ -125,7 +131,7 @@ namespace FinalEngine.Rendering
         /// <returns>
         ///   The newly created <see cref="IVertexBuffer"/>.
         /// </returns>
-        IVertexBuffer CreateVertexBuffer<T>(IReadOnlyCollection<T> data, int sizeInBytes, int stride)
-                            where T : struct;
+        IVertexBuffer CreateVertexBuffer<T>(BufferUsageType type, IReadOnlyCollection<T> data, int sizeInBytes, int stride)
+            where T : struct;
     }
 }

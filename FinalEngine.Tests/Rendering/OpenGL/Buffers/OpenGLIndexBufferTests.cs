@@ -6,8 +6,11 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.InteropServices;
+    using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.OpenGL.Buffers;
     using FinalEngine.Rendering.OpenGL.Invocation;
+    using FinalEngine.Utilities;
     using Moq;
     using NUnit.Framework;
     using OpenTK.Graphics.OpenGL4;
@@ -23,6 +26,8 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         private OpenGLIndexBuffer<int> indexBuffer;
 
         private Mock<IOpenGLInvoker> invoker;
+
+        private Mock<IEnumMapper> mapper;
 
         [Test]
         public void BindShouldInvokeBindBufferIdentifierWhenBufferIsNotDisposed()
@@ -58,21 +63,28 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
         public void ConstructorShouldInvokeNamedBufferDataWhenInvoked()
         {
             // Assert
-            this.invoker.Verify(x => x.NamedBufferData(ID, this.data.Length * sizeof(int), this.data, BufferUsageHint.StaticDraw), Times.Once);
+            this.invoker.Verify(x => x.NamedBufferData(ID, this.data.Length * sizeof(int), this.data, BufferUsageHint.DynamicRead), Times.Once);
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenDataIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(this.invoker.Object, null, 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(this.invoker.Object, this.mapper.Object, BufferUsageHint.DynamicCopy, null, 0));
         }
 
         [Test]
         public void ConstructorShouldThrowArgumentNullExceptionWhenInvokerIsNull()
         {
             // Arrange, act and assert
-            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(null, this.data, 0));
+            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(null, this.mapper.Object, BufferUsageHint.StreamDraw, this.data, 0));
+        }
+
+        [Test]
+        public void ConstructorShouldThrowArgumentNullExceptionWhenMapperIsNull()
+        {
+            // Arrange, act and assert
+            Assert.Throws<ArgumentNullException>(() => new OpenGLIndexBuffer<int>(this.invoker.Object, null, BufferUsageHint.StaticRead, this.data, this.data.Length * sizeof(int)));
         }
 
         [Test]
@@ -98,13 +110,74 @@ namespace FinalEngine.Tests.Rendering.OpenGL.Buffers
             // Arrange
             this.invoker = new Mock<IOpenGLInvoker>();
             this.invoker.Setup(x => x.CreateBuffer()).Returns(ID);
-            this.indexBuffer = new OpenGLIndexBuffer<int>(this.invoker.Object, this.data, this.data.Length * sizeof(int));
+
+            this.mapper = new Mock<IEnumMapper>();
+            this.mapper.Setup(x => x.Reverse<BufferUsageType>(It.IsAny<BufferUsageHint>())).Returns(BufferUsageType.Dynamic);
+
+            this.indexBuffer = new OpenGLIndexBuffer<int>(this.invoker.Object, this.mapper.Object, BufferUsageHint.DynamicRead, this.data, this.data.Length * sizeof(int));
         }
 
         [TearDown]
         public void Teardown()
         {
             this.indexBuffer.Dispose();
+        }
+
+        [Test]
+        public void TypeShouldReturnDynamicWhenInvoked()
+        {
+            // Arrange
+            const BufferUsageType Expected = BufferUsageType.Dynamic;
+
+            // Act
+            BufferUsageType actual = this.indexBuffer.Type;
+
+            // Assert
+            Assert.AreEqual(Expected, actual);
+        }
+
+        [Test]
+        public void UpdateShouldInvokeNamedBufferSubDataWhenInvoked()
+        {
+            // Arrange
+            int[] array = new int[12];
+
+            // Act
+            this.indexBuffer.Update(array);
+
+            // Assert
+            this.invoker.Verify(x => x.NamedBufferSubData(ID, IntPtr.Zero, array.Length * Marshal.SizeOf<int>(), array));
+        }
+
+        [Test]
+        public void UpdateShouldSetLengthPropertyToTwelveWhenInvoked()
+        {
+            // Arrange
+            const int Expected = 12;
+            int[] array = new int[12];
+
+            // Act
+            this.indexBuffer.Update(array);
+
+            // Assert
+            Assert.AreEqual(Expected, this.indexBuffer.Length);
+        }
+
+        [Test]
+        public void UpdateShouldThrowArgumentNullExceptionWhenDataIsNull()
+        {
+            // Act and assert
+            Assert.Throws<ArgumentNullException>(() => this.indexBuffer.Update<int>(null));
+        }
+
+        [Test]
+        public void UpdateShouldThrowObjectDisposedExceptionWhenDisposed()
+        {
+            // Arrange
+            this.indexBuffer.Dispose();
+
+            // Act and assert
+            Assert.Throws<ObjectDisposedException>(() => this.indexBuffer.Update(Array.Empty<int>()));
         }
     }
 }

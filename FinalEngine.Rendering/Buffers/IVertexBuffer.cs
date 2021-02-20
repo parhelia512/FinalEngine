@@ -19,5 +19,13 @@ namespace FinalEngine.Rendering.Buffers
         ///   The total number of bytes for a single vertex contained in this <see cref="IVertexBuffer"/>.
         /// </value>
         int Stride { get; }
+
+        /// <summary>
+        ///   Gets the usage type for this <see cref="IVertexBuffer"/>.
+        /// </summary>
+        /// <value>
+        ///   The usage type for this <see cref="IVertexBuffer"/>.
+        /// </value>
+        BufferUsageType Type { get; }
     }
 }

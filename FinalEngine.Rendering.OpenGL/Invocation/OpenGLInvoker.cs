@@ -308,6 +308,7 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             GL.NamedBufferData(buffer, size, data, usage);
         }
 
+        /// <inheritdoc/>
         public void NamedBufferSubData<T3>(int buffer, IntPtr offset, int size, T3[] data)
             where T3 : struct
         {

@@ -20,6 +20,12 @@ namespace FinalEngine.Rendering.Buffers
         /// </value>
         int Length { get; }
 
+        /// <summary>
+        ///   Gets the usage type for this <see cref="IIndexBuffer"/>.
+        /// </summary>
+        /// <value>
+        ///   The usage type for this <see cref="IIndexBuffer"/>.
+        /// </value>
         BufferUsageType Type { get; }
     }
 }

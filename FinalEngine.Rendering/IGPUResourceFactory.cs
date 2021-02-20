@@ -21,6 +21,9 @@ namespace FinalEngine.Rendering
         /// <typeparam name="T">
         ///   Specifies the type of data the <see cref="IIndexBuffer"/> will contain.
         /// </typeparam>
+        /// <param name="type">
+        ///   Specifies a <see cref="BufferUsageType"/> that represents the buffer usage type.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data the buffer will contain.
         /// </param>
@@ -110,6 +113,9 @@ namespace FinalEngine.Rendering
         /// <typeparam name="T">
         ///   Specifies the type of data the buffer will contain.
         /// </typeparam>
+        /// <param name="type">
+        ///   Specifies a <see cref="BufferUsageType"/> that represents the buffer usage type.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data the buffer will contain.
         /// </param>

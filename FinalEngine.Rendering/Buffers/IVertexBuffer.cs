@@ -20,6 +20,12 @@ namespace FinalEngine.Rendering.Buffers
         /// </value>
         int Stride { get; }
 
+        /// <summary>
+        ///   Gets the usage type for this <see cref="IVertexBuffer"/>.
+        /// </summary>
+        /// <value>
+        ///   The usage type for this <see cref="IVertexBuffer"/>.
+        /// </value>
         BufferUsageType Type { get; }
     }
 }

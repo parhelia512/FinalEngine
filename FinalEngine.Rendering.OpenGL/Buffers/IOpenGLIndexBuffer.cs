@@ -22,6 +22,15 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// </exception>
         void Bind();
 
+        /// <summary>
+        ///   Updates the vertex buffer by filling it with the specified <paramref name="data"/>.
+        /// </summary>
+        /// <typeparam name="TData">
+        ///   The type of data to fill the buffer with.
+        /// </typeparam>
+        /// <param name="data">
+        ///   The data to fill with the buffer with.
+        /// </param>
         void Update<TData>(IReadOnlyCollection<TData> data)
             where TData : struct;
     }

@@ -55,9 +55,36 @@ namespace FinalEngine.Rendering
         /// </exception>
         void SetVertexBuffer(IVertexBuffer? buffer);
 
+        /// <summary>
+        ///   Updates the specified index <paramref name="buffer"/> and fills it with the specified <paramref name="data"/>.
+        /// </summary>
+        /// <typeparam name="T">
+        ///   The type of data to fill with the buffer with.
+        /// </typeparam>
+        /// <param name="buffer">
+        ///   The buffer to fill.
+        /// </param>
+        /// <param name="data">
+        ///   The data to fill the buffer with.
+        /// </param>
         void UpdateIndexBuffer<T>(IIndexBuffer buffer, IReadOnlyCollection<T> data)
             where T : struct;
 
+        /// <summary>
+        ///   Updates the specified vertex <paramref name="buffer"/> and fills it with the specified <paramref name="data"/>.
+        /// </summary>
+        /// <typeparam name="T">
+        ///   The type of data to fill with the buffer with.
+        /// </typeparam>
+        /// <param name="buffer">
+        ///   The buffer to fill.
+        /// </param>
+        /// <param name="data">
+        ///   The data to fill the buffer with.
+        /// </param>
+        /// <param name="stride">
+        ///   The total number of bytes for a single vertex.
+        /// </param>
         void UpdateVertexBuffer<T>(IVertexBuffer buffer, IReadOnlyCollection<T> data, int stride)
             where T : struct;
     }

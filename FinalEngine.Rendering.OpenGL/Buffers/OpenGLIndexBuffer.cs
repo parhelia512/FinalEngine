@@ -39,6 +39,12 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// <param name="invoker">
         ///   Specifies an <see cref="IOpenGLInvoker"/> that represents the invoker used to invoke OpenGL calls.
         /// </param>
+        /// <param name="mapper">
+        ///   Specifies an <see cref="IEnumMapper"/> that represents the enumeration mapper used to map OpenGL enumerations to the rendering APIs equivalent.
+        /// </param>
+        /// <param name="usage">
+        ///   Specifies a <see cref="BufferUsageHint"/> that represents how the index buffer will be used.
+        /// </param>
         /// <param name="data">
         ///   Specifies an <see cref="IReadOnlyCollection{T}"/> that represents the data this <see cref="OpenGLIndexBuffer{T}"/> will contain.
         /// </param>
@@ -46,7 +52,7 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         ///   Specifies an <see cref="int"/> that represents the size in bytes of the specified <paramref name="data"/>.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        ///   The specified <paramref name="invoker"/> or <paramref name="data"/> parameter is null.
+        ///   The specified <paramref name="invoker"/>, <paramref name="mapper"/> or <paramref name="data"/> parameter is null.
         /// </exception>
         public OpenGLIndexBuffer(IOpenGLInvoker invoker, IEnumMapper mapper, BufferUsageHint usage, IReadOnlyCollection<T> data, int sizeInBytes)
         {
@@ -85,6 +91,12 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
         /// </value>
         public int Length { get; private set; }
 
+        /// <summary>
+        ///   Gets the usage type for this <see cref="OpenGLIndexBuffer{T}"/>.
+        /// </summary>
+        /// <value>
+        ///   The usage type for this <see cref="OpenGLIndexBuffer{T}"/>.
+        /// </value>
         public BufferUsageType Type { get; }
 
         /// <summary>
@@ -120,6 +132,21 @@ namespace FinalEngine.Rendering.OpenGL.Buffers
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        ///   Updates the vertex buffer by filling it with the specified <paramref name="data"/>.
+        /// </summary>
+        /// <typeparam name="TData">
+        ///   The type of data to fill the buffer with.
+        /// </typeparam>
+        /// <param name="data">
+        ///   The data to fill with the buffer with.
+        /// </param>
+        /// <exception cref="ObjectDisposedException">
+        ///   The <see cref="OpenGLIndexBuffer{T}"/> has been disposed.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///   The specified <paramref name="data"/> parameter is null.
+        /// </exception>
         public void Update<TData>(IReadOnlyCollection<TData> data)
             where TData : struct
         {

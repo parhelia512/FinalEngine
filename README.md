@@ -15,7 +15,7 @@ Below is a list of prerequisites and build instructions.
 1. Download or clone the repository.
 2. Open `FinalEngine.sln` your favourite IDE.
 3. Build the solution (or `dotnet build`).
-4. Run the appropriate *Launcher* (or `dotnet run`).
+4. Run the *TestGame* project (or `dotnet run`).
 
 ## Download
 

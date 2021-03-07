@@ -1,5 +1,7 @@
 # Final Engine
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter)](https://hits.seeyoufarm.com)                    
+
 Final Engine is a *WIP* cross-platform Game Engine developed in C#, .NET 5.0.
 
 ## Build Instructions

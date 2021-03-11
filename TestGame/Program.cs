@@ -17,7 +17,6 @@ namespace TestGame
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.Invocation;
-    using FinalEngine.Rendering.Loading;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
@@ -74,8 +73,8 @@ namespace TestGame
             IPipeline pipeline = renderDevice.Pipeline;
             IGPUResourceFactory factory = renderDevice.Factory;
 
-            var imageSharp = new ImageSharpInvoker();
-            var textureLoader = new ImageSharpTexture2DLoader(fileSystem, imageSharp, factory);
+            var image = new ImageInvoker();
+            var textureLoader = new Texture2DLoader(fileSystem, factory, image);
 
             ITexture2D texture = textureLoader.LoadTexture("Resources\\Textures\\default.png");
 

@@ -1,33 +1,32 @@
-﻿// <copyright file="ImageSharpTexture2DLoader.cs" company="Software Antics">
+﻿// <copyright file="Texture2DLoader.cs" company="Software Antics">
 //     Copyright (c) Software Antics. All rights reserved.
 // </copyright>
 
-namespace FinalEngine.Rendering.Loading
+namespace FinalEngine.Rendering.Textures
 {
     using System;
     using System.IO;
     using FinalEngine.IO;
     using FinalEngine.Rendering.Invocation;
-    using FinalEngine.Rendering.Textures;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
 
-    public class ImageSharpTexture2DLoader : ITexture2DLoader
+    public class Texture2DLoader : ITexture2DLoader
     {
         private readonly IGPUResourceFactory factory;
 
         private readonly IFileSystem fileSystem;
 
-        private readonly IImageSharpInvoker invoker;
+        private readonly IImageInvoker invoker;
 
-        public ImageSharpTexture2DLoader(IFileSystem fileSystem, IImageSharpInvoker invoker, IGPUResourceFactory factory)
+        public Texture2DLoader(IFileSystem fileSystem, IGPUResourceFactory factory, IImageInvoker invoker)
         {
             this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem), $"The specified {nameof(fileSystem)} parameter cannot be null.");
-            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory), $"The specified {nameof(factory)} parameter cannot be null.");
+            this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
         }
 
-        public unsafe ITexture2D LoadTexture(string filePath)
+        public ITexture2D LoadTexture(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
             {

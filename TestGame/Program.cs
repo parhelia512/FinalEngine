@@ -16,13 +16,14 @@ namespace TestGame
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using FinalEngine.Rendering;
     using FinalEngine.Rendering.Buffers;
+    using FinalEngine.Rendering.Invocation;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
     using FinalEngine.Rendering.Pipeline;
+    using FinalEngine.Rendering.Textures;
     using OpenTK.Windowing.Common;
     using OpenTK.Windowing.Desktop;
     using OpenTK.Windowing.GraphicsLibraryFramework;
-    using MouseButton = FinalEngine.Input.Mouse.MouseButton;
 
     internal static class Program
     {
@@ -72,6 +73,11 @@ namespace TestGame
             IPipeline pipeline = renderDevice.Pipeline;
             IGPUResourceFactory factory = renderDevice.Factory;
 
+            var image = new ImageInvoker();
+            var textureLoader = new Texture2DLoader(fileSystem, factory, image);
+
+            ITexture2D texture = textureLoader.LoadTexture("Resources\\Textures\\default.png");
+
             IShaderProgram? program = factory.CreateShaderProgram(
                 new List<IShader>()
                 {
@@ -80,57 +86,34 @@ namespace TestGame
                 });
 
             pipeline.SetShaderProgram(program);
+            pipeline.SetTexture(texture);
 
             IInputLayout? inputLayout = factory.CreateInputLayout(
                 new List<InputElement>()
                 {
                     new InputElement(0, 3, InputElementType.Float, 0),
                     new InputElement(1, 4, InputElementType.Float, 3 * sizeof(float)),
+                    new InputElement(2, 2, InputElementType.Float, 7 * sizeof(float)),
                 });
 
             inputAssembler.SetInputLayout(inputLayout);
 
-            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 7 * sizeof(float));
+            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 9 * sizeof(float));
             IIndexBuffer indexBuffer = factory.CreateIndexBuffer(BufferUsageType.Dynamic, Array.Empty<int>(), 3 * sizeof(int));
 
             inputAssembler.SetVertexBuffer(vertexBuffer);
             inputAssembler.SetIndexBuffer(indexBuffer);
 
-            float r = 1.0f;
-            float g = 1.0f;
-            float b = 1.0f;
-
             while (!window.IsExiting)
             {
-                if (mouse.IsButtonReleased(MouseButton.Left))
-                {
-                    r = 0.2f;
-                    g = 1.0f;
-                    b = 0.5f;
-                }
-
-                if (mouse.IsButtonReleased(MouseButton.Right))
-                {
-                    r = 0.67f;
-                    g = 0.4f;
-                    b = 0.82f;
-                }
-
-                if (mouse.IsButtonReleased(MouseButton.Middle))
-                {
-                    r = 0.27f;
-                    g = 0.2f;
-                    b = 0.62f;
-                }
-
                 keyboard.Update();
                 mouse.Update();
 
                 float[] vertices =
                 {
-                    -0.5f, -0.5f, 0.0f, r, g, b, 1,
-                    0.5f, -0.5f, 0.0f, g, b, r, 1,
-                    0.0f, 0.5f, 0.0f, g, r, b, 1,
+                    -0.5f, -0.5f, 0.0f, 1, 1, 1, 1, 0, 0,
+                    0.5f, -0.5f, 0.0f, 1, 1, 1, 1, 1, 0,
+                    0.0f, 0.5f, 0.0f, 1, 1, 1, 1, 0.5f, 1,
                 };
 
                 int[] indices =
@@ -138,7 +121,7 @@ namespace TestGame
                     0, 1, 2,
                 };
 
-                inputAssembler.UpdateVertexBuffer(vertexBuffer, vertices, 7 * sizeof(float));
+                inputAssembler.UpdateVertexBuffer(vertexBuffer, vertices, 9 * sizeof(float));
                 inputAssembler.UpdateIndexBuffer(indexBuffer, indices);
 
                 renderDevice.Clear(Color.CornflowerBlue);

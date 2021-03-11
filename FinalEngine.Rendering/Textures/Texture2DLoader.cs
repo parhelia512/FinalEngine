@@ -11,14 +11,42 @@ namespace FinalEngine.Rendering.Textures
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
 
+    /// <summary>
+    ///   Provides a standard <see cref="Image"/> implementation of an <see cref="ITexture2DLoader"/>.
+    /// </summary>
+    /// <seealso cref="FinalEngine.Rendering.Textures.ITexture2DLoader"/>
     public class Texture2DLoader : ITexture2DLoader
     {
+        /// <summary>
+        ///   The GPU resource factory.
+        /// </summary>
         private readonly IGPUResourceFactory factory;
 
+        /// <summary>
+        ///   The file system.
+        /// </summary>
         private readonly IFileSystem fileSystem;
 
+        /// <summary>
+        ///   The image invoker.
+        /// </summary>
         private readonly IImageInvoker invoker;
 
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="Texture2DLoader"/> class.
+        /// </summary>
+        /// <param name="fileSystem">
+        ///   The file system used to open textures to load.
+        /// </param>
+        /// <param name="factory">
+        ///   The GPU resource factory used to create a texture once it's been loaded.
+        /// </param>
+        /// <param name="invoker">
+        ///   The image invoker used to handle ImageSharp texture manipulation.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        ///   The specified <paramref name="fileSystem"/>, <paramref name="factory"/> or <paramref name="invoker"/> parameter is null.
+        /// </exception>
         public Texture2DLoader(IFileSystem fileSystem, IGPUResourceFactory factory, IImageInvoker invoker)
         {
             this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem), $"The specified {nameof(fileSystem)} parameter cannot be null.");
@@ -26,6 +54,21 @@ namespace FinalEngine.Rendering.Textures
             this.invoker = invoker ?? throw new ArgumentNullException(nameof(invoker), $"The specified {nameof(invoker)} parameter cannot be null.");
         }
 
+        /// <summary>
+        ///   Loads the texture from the specified <paramref name="filePath"/>.
+        /// </summary>
+        /// <param name="filePath">
+        ///   The file path of texture to load.
+        /// </param>
+        /// <returns>
+        ///   The newly loaded texture resource.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///   The specified <paramref name="filePath"/> parameter is null.
+        /// </exception>
+        /// <exception cref="FileNotFoundException">
+        ///   The specified <paramref name="filePath"/> parameter cannot be located by the file system.
+        /// </exception>
         public ITexture2D LoadTexture(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))

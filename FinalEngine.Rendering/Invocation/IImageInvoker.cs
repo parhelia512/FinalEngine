@@ -8,8 +8,12 @@ namespace FinalEngine.Rendering.Invocation
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
 
+    /// <summary>
+    ///   Defines an interface that provides methods for invocation of the <see cref="Image"/> functions.
+    /// </summary>
     public interface IImageInvoker
     {
+        /// <inheritdoc cref="Image.Load{TPixel}(Stream)"/>
         Image<TPixel> Load<TPixel>(Stream stream)
             where TPixel : unmanaged, IPixel<TPixel>;
     }

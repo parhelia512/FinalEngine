@@ -17,6 +17,7 @@ namespace FinalEngine.Tests.Rendering.Textures
     using SixLabors.ImageSharp.PixelFormats;
 
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is done in TearDown.")]
     public class Texture2DLoaderTests
     {
         private Mock<IGPUResourceFactory> factory;
@@ -153,6 +154,12 @@ namespace FinalEngine.Tests.Rendering.Textures
                 SizedFormat.Rgba8)).Returns(this.texture.Object);
 
             this.loader = new Texture2DLoader(this.fileSystem.Object, this.factory.Object, this.invoker.Object);
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            this.image.Dispose();
         }
     }
 }

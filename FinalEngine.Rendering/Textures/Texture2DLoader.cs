@@ -89,6 +89,7 @@ namespace FinalEngine.Rendering.Textures
 
             int[] data = new int[width * height];
 
+            // Just simple bit manipulation to convert RGBA to ABGR.
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)

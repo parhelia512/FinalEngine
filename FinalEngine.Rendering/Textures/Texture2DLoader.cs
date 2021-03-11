@@ -12,7 +12,7 @@ namespace FinalEngine.Rendering.Textures
     using SixLabors.ImageSharp.PixelFormats;
 
     /// <summary>
-    ///   Provides a standard <see cref="Image"/> implementation of an <see cref="ITexture2DLoader"/>.
+    ///   Provides a standard implementation of an <see cref="ITexture2DLoader"/>.
     /// </summary>
     /// <seealso cref="FinalEngine.Rendering.Textures.ITexture2DLoader"/>
     public class Texture2DLoader : ITexture2DLoader
@@ -42,7 +42,7 @@ namespace FinalEngine.Rendering.Textures
         ///   The GPU resource factory used to create a texture once it's been loaded.
         /// </param>
         /// <param name="invoker">
-        ///   The image invoker used to handle ImageSharp texture manipulation.
+        ///   The image invoker used to handle <see cref="Image"/> manipulation.
         /// </param>
         /// <exception cref="ArgumentNullException">
         ///   The specified <paramref name="fileSystem"/>, <paramref name="factory"/> or <paramref name="invoker"/> parameter is null.
@@ -58,7 +58,7 @@ namespace FinalEngine.Rendering.Textures
         ///   Loads the texture from the specified <paramref name="filePath"/>.
         /// </summary>
         /// <param name="filePath">
-        ///   The file path of texture to load.
+        ///   The file path of the texture to load.
         /// </param>
         /// <returns>
         ///   The newly loaded texture resource.
@@ -82,38 +82,40 @@ namespace FinalEngine.Rendering.Textures
             }
 
             Stream stream = this.fileSystem.OpenFile(filePath, FileAccessMode.Read);
-            Image<Rgba32> image = this.invoker.Load<Rgba32>(stream);
 
-            int width = image.Width;
-            int height = image.Height;
-
-            int[] data = new int[width * height];
-
-            // Just simple bit manipulation to convert RGBA to ABGR.
-            for (int x = 0; x < width; x++)
+            using (Image<Rgba32> image = this.invoker.Load<Rgba32>(stream))
             {
-                for (int y = 0; y < height; y++)
+                int width = image.Width;
+                int height = image.Height;
+
+                int[] data = new int[width * height];
+
+                // Just simple bit manipulation to convert RGBA to ABGR.
+                for (int x = 0; x < width; x++)
                 {
-                    Rgba32 color = image[x, y];
-                    data[(y * width) + x] = (color.A << 24) | (color.B << 16) | (color.G << 8) | (color.R << 0);
+                    for (int y = 0; y < height; y++)
+                    {
+                        Rgba32 color = image[x, y];
+                        data[(y * width) + x] = (color.A << 24) | (color.B << 16) | (color.G << 8) | (color.R << 0);
+                    }
                 }
+
+                return this.factory.CreateTexture2D(
+                    new Texture2DDescription()
+                    {
+                        Width = width,
+                        Height = height,
+
+                        MinFilter = TextureFilterMode.Nearest,
+                        MagFilter = TextureFilterMode.Linear,
+
+                        WrapS = TextureWrapMode.Repeat,
+                        WrapT = TextureWrapMode.Repeat,
+
+                        PixelType = PixelType.Byte,
+                    },
+                    data);
             }
-
-            return this.factory.CreateTexture2D(
-                new Texture2DDescription()
-                {
-                    Width = width,
-                    Height = height,
-
-                    MinFilter = TextureFilterMode.Nearest,
-                    MagFilter = TextureFilterMode.Linear,
-
-                    WrapS = TextureWrapMode.Repeat,
-                    WrapT = TextureWrapMode.Repeat,
-
-                    PixelType = PixelType.Byte,
-                },
-                data);
         }
     }
 }

@@ -4,6 +4,7 @@
 
 namespace FinalEngine.Rendering.Invocation
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
@@ -11,6 +12,7 @@ namespace FinalEngine.Rendering.Invocation
     /// <summary>
     ///   Defines an interface that provides methods for invocation of the <see cref="Image"/> functions.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ImageInvoker : IImageInvoker
     {
         /// <inheritdoc cref="Image.Load{TPixel}(Stream)"/>

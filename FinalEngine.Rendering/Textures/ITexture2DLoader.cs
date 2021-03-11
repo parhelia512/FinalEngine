@@ -13,7 +13,7 @@ namespace FinalEngine.Rendering.Textures
         ///   Loads the texture from the specified <paramref name="filePath"/>.
         /// </summary>
         /// <param name="filePath">
-        ///   The file path of texture to load.
+        ///   The file path of the texture to load.
         /// </param>
         /// <returns>
         ///   The newly loaded texture resource.

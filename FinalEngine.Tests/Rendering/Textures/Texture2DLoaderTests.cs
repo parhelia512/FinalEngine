@@ -56,7 +56,7 @@ namespace FinalEngine.Tests.Rendering.Textures
         }
 
         [Test]
-        public void LoadTextureShouldInvokeCreateTexture2DWhenInvoked()
+        public void LoadTextureShouldInvokeCreateTexture2DWhenLoaded()
         {
             // Act
             this.loader.LoadTexture("texture");
@@ -133,6 +133,7 @@ namespace FinalEngine.Tests.Rendering.Textures
         [SetUp]
         public void Setup()
         {
+            // Setup
             this.fileSystem = new Mock<IFileSystem>();
             this.stream = new Mock<Stream>();
 

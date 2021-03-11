@@ -13,10 +13,11 @@
       - Input Layout :)
       - Shader :)
       - Shader Program :)
-  - Texture Loader
+  - Texture Loader :)
   - Sprite Batching
     - Sprites
   - Camera abstraction
+  - Model Loader
 - Audio
 - Physics
 - Scene & Entity Management

@@ -16,7 +16,6 @@ namespace TestGame
     using FinalEngine.Platform.Desktop.OpenTK;
     using FinalEngine.Platform.Desktop.OpenTK.Invocation;
     using FinalEngine.Rendering;
-    using FinalEngine.Rendering.Buffers;
     using FinalEngine.Rendering.Invocation;
     using FinalEngine.Rendering.OpenGL;
     using FinalEngine.Rendering.OpenGL.Invocation;
@@ -81,8 +80,6 @@ namespace TestGame
             var image = new ImageInvoker();
             var textureLoader = new Texture2DLoader(fileSystem, factory, image);
 
-            ITexture2D texture = textureLoader.LoadTexture("Resources\\Textures\\default.png");
-
             IShaderProgram? program = factory.CreateShaderProgram(
                 new List<IShader>()
                 {
@@ -91,23 +88,28 @@ namespace TestGame
                 });
 
             pipeline.SetShaderProgram(program);
-            pipeline.SetTexture(texture);
 
-            IInputLayout? inputLayout = factory.CreateInputLayout(
-                new List<InputElement>()
-                {
-                    new InputElement(0, 3, InputElementType.Float, 0),
-                    new InputElement(1, 4, InputElementType.Float, 3 * sizeof(float)),
-                    new InputElement(2, 2, InputElementType.Float, 7 * sizeof(float)),
-                });
+            const float fieldDepth = 30.0f;
+            const float fieldWidth = 30.0f;
 
-            inputAssembler.SetInputLayout(inputLayout);
+            Vertex[] vertices =
+            {
+                new Vertex(new Vector3(-fieldWidth, 0.0f, -fieldDepth), new Vector4(1, 0, 0, 1), new Vector2(0, 0)),
+                new Vertex(new Vector3(-fieldWidth, 0.0f, fieldDepth * 3), new Vector4(0, 1, 0, 1), new Vector2(0, 1)),
+                new Vertex(new Vector3(fieldWidth * 3, 0.0f, -fieldDepth), new Vector4(0, 0, 1, 1), new Vector2(1, 0)),
+                new Vertex(new Vector3(fieldWidth * 3, 0.0f, fieldDepth * 3), new Vector4(1, 1, 0, 1), new Vector2(1, 1)),
+            };
 
-            IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 9 * sizeof(float));
-            IIndexBuffer indexBuffer = factory.CreateIndexBuffer(BufferUsageType.Dynamic, Array.Empty<int>(), 6 * sizeof(int));
+            int[] indices =
+            {
+                0, 1, 2,
+                2, 1, 3,
+            };
 
-            inputAssembler.SetVertexBuffer(vertexBuffer);
-            inputAssembler.SetIndexBuffer(indexBuffer);
+            ITexture2D texture = textureLoader.LoadTexture("Resources\\Textures\\default.png");
+
+            var material = new Material(texture);
+            var mesh = new Mesh(factory, vertices, indices, material);
 
             var camera = new Camera(
                 new Vector3(0, 3.0f, -3.0f),
@@ -157,33 +159,15 @@ namespace TestGame
                 pipeline.SetUniform("u_view", camera.View);
                 pipeline.SetUniform("u_model", Matrix4x4.CreateTranslation(Vector3.Zero));
 
-                const float fieldDepth = 30.0f;
-                const float fieldWidth = 30.0f;
-
-                float[] vertices =
-                {
-                    -fieldWidth, 0.0f, -fieldDepth, 1, 1, 1, 1, 0, 0,
-                    -fieldWidth, 0.0f, fieldDepth * 3, 1, 1, 1, 1, 0, 1,
-                    fieldWidth * 3, 0.0f, -fieldDepth, 1, 1, 1, 1, 1, 0,
-                    fieldWidth * 3, 0.0f, fieldDepth * 3, 1, 1, 1, 1, 1, 1,
-                };
-
-                int[] indices =
-                {
-                    0, 1, 2,
-                    2, 1, 3,
-                };
-
-                inputAssembler.UpdateVertexBuffer(vertexBuffer, vertices, 9 * sizeof(float));
-                inputAssembler.UpdateIndexBuffer(indexBuffer, indices);
-
                 renderDevice.Clear(Color.CornflowerBlue);
-                renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, indexBuffer.Length);
+
+                mesh.Draw(renderDevice);
 
                 renderContext.SwapBuffers();
                 window.ProcessEvents();
             }
 
+            mesh.Dispose();
             renderContext.Dispose();
             window.Dispose();
             nativeWindow.Dispose();

@@ -406,14 +406,14 @@ namespace FinalEngine.Rendering.OpenGL
 
             if (!this.uniformLocations.TryGetValue(name, out location))
             {
-                int value = this.boundProgram.GetUniformLocation(name);
+                location = this.boundProgram.GetUniformLocation(name);
 
-                if (value == -1)
+                if (location == -1)
                 {
                     throw new UniformNotLocatedException($"The specified uniform, {name} couldn't be located.", nameof(name));
                 }
 
-                this.uniformLocations.Add(name, value);
+                this.uniformLocations.Add(name, location);
             }
 
             return true;

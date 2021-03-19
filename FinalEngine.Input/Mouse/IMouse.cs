@@ -12,6 +12,14 @@ namespace FinalEngine.Input.Mouse
     public interface IMouse
     {
         /// <summary>
+        ///   Gets the location of the cursor during the previous frame.
+        /// </summary>
+        /// <value>
+        ///   The location of cursor during the previous frame.
+        /// </value>
+        PointF Delta { get; }
+
+        /// <summary>
         ///   Gets or sets the location of the cursor in window pixel coordinates.
         /// </summary>
         /// <value>

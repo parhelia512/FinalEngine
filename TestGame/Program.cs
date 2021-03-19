@@ -8,6 +8,7 @@ namespace TestGame
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
+    using System.Numerics;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.IO;
@@ -47,7 +48,11 @@ namespace TestGame
                 StartVisible = true,
             };
 
-            var nativeWindow = new NativeWindowInvoker(settings);
+            var nativeWindow = new NativeWindowInvoker(settings)
+            {
+                CursorGrabbed = true,
+            };
+
             var window = new OpenTKWindow(nativeWindow);
 
             var keyboardDevice = new OpenTKKeyboardDevice(nativeWindow);
@@ -99,26 +104,74 @@ namespace TestGame
             inputAssembler.SetInputLayout(inputLayout);
 
             IVertexBuffer vertexBuffer = factory.CreateVertexBuffer(BufferUsageType.Dynamic, Array.Empty<float>(), 1000 * sizeof(float), 9 * sizeof(float));
-            IIndexBuffer indexBuffer = factory.CreateIndexBuffer(BufferUsageType.Dynamic, Array.Empty<int>(), 3 * sizeof(int));
+            IIndexBuffer indexBuffer = factory.CreateIndexBuffer(BufferUsageType.Dynamic, Array.Empty<int>(), 6 * sizeof(int));
 
             inputAssembler.SetVertexBuffer(vertexBuffer);
             inputAssembler.SetIndexBuffer(indexBuffer);
 
+            var camera = new Camera(
+                new Vector3(0, 3.0f, -3.0f),
+                Vector3.Zero,
+                OpenTK.Mathematics.MathHelper.DegreesToRadians(70.0f),
+                nativeWindow.ClientSize.X / nativeWindow.ClientSize.Y,
+                0.02f);
+
             while (!window.IsExiting)
             {
+                if (keyboard.IsKeyReleased(Key.Escape))
+                {
+                    break;
+                }
+
+                if (keyboard.IsKeyDown(Key.W))
+                {
+                    camera.Move(0, 1, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.S))
+                {
+                    camera.Move(0, -1, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.A))
+                {
+                    camera.Move(-1, 0, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.D))
+                {
+                    camera.Move(1, 0, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.Q))
+                {
+                    camera.Move(0, 0, 1);
+                }
+                else if (keyboard.IsKeyDown(Key.E))
+                {
+                    camera.Move(0, 0, -1);
+                }
+
                 keyboard.Update();
                 mouse.Update();
 
+                camera.Rotate(-mouse.Delta.X, -mouse.Delta.Y);
+
+                pipeline.SetUniform("u_projection", camera.Projection);
+                pipeline.SetUniform("u_view", camera.View);
+                pipeline.SetUniform("u_model", Matrix4x4.CreateTranslation(Vector3.Zero));
+
+                const float fieldDepth = 30.0f;
+                const float fieldWidth = 30.0f;
+
                 float[] vertices =
                 {
-                    -0.5f, -0.5f, 0.0f, 1, 1, 1, 1, 0, 0,
-                    0.5f, -0.5f, 0.0f, 1, 1, 1, 1, 1, 0,
-                    0.0f, 0.5f, 0.0f, 1, 1, 1, 1, 0.5f, 1,
+                    -fieldWidth, 0.0f, -fieldDepth, 1, 1, 1, 1, 0, 0,
+                    -fieldWidth, 0.0f, fieldDepth * 3, 1, 1, 1, 1, 0, 1,
+                    fieldWidth * 3, 0.0f, -fieldDepth, 1, 1, 1, 1, 1, 0,
+                    fieldWidth * 3, 0.0f, fieldDepth * 3, 1, 1, 1, 1, 1, 1,
                 };
 
                 int[] indices =
                 {
                     0, 1, 2,
+                    2, 1, 3,
                 };
 
                 inputAssembler.UpdateVertexBuffer(vertexBuffer, vertices, 9 * sizeof(float));

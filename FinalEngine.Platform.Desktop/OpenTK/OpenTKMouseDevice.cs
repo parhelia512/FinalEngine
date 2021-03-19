@@ -56,6 +56,12 @@ namespace FinalEngine.Platform.Desktop.OpenTK
         public event EventHandler<MouseScrollEventArgs>? Scroll;
 
         /// <inheritdoc/>
+        public PointF LocationDelta
+        {
+            get { return new PointF(this.nativeWindow.MouseState.Delta.X, this.nativeWindow.MouseState.Delta.Y); }
+        }
+
+        /// <inheritdoc/>
         public void SetCursorLocation(PointF location)
         {
             this.nativeWindow.MousePosition = new Vector2(location.X, location.Y);

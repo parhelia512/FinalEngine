@@ -33,6 +33,14 @@ namespace FinalEngine.Input.Mouse
         event EventHandler<MouseScrollEventArgs>? Scroll;
 
         /// <summary>
+        ///   Gets the last known location of the mouse.
+        /// </summary>
+        /// <value>
+        ///   The last known location of the mouse.
+        /// </value>
+        public PointF LocationDelta { get; }
+
+        /// <summary>
         ///   Sets the cursor location (in window pixel coordinates).
         /// </summary>
         /// <param name="location">

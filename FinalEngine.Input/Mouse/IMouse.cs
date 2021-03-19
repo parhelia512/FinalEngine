@@ -11,6 +11,8 @@ namespace FinalEngine.Input.Mouse
     /// </summary>
     public interface IMouse
     {
+        PointF Delta { get; }
+
         /// <summary>
         ///   Gets or sets the location of the cursor in window pixel coordinates.
         /// </summary>

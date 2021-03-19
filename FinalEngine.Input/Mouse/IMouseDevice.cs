@@ -32,6 +32,8 @@ namespace FinalEngine.Input.Mouse
         /// </summary>
         event EventHandler<MouseScrollEventArgs>? Scroll;
 
+        public PointF LocationDelta { get; }
+
         /// <summary>
         ///   Sets the cursor location (in window pixel coordinates).
         /// </summary>

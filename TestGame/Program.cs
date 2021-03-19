@@ -8,6 +8,7 @@ namespace TestGame
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
+    using System.Numerics;
     using FinalEngine.Input.Keyboard;
     using FinalEngine.Input.Mouse;
     using FinalEngine.IO;
@@ -104,10 +105,49 @@ namespace TestGame
             inputAssembler.SetVertexBuffer(vertexBuffer);
             inputAssembler.SetIndexBuffer(indexBuffer);
 
+            var camera = new Camera(
+                new Vector3(0, 0, 3.0f),
+                Vector3.Zero,
+                OpenTK.Mathematics.MathHelper.DegreesToRadians(70.0f),
+                nativeWindow.ClientSize.X / nativeWindow.ClientSize.Y);
+
             while (!window.IsExiting)
             {
+                if (keyboard.IsKeyDown(Key.W))
+                {
+                    camera.Move(0, 1, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.S))
+                {
+                    camera.Move(0, -1, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.A))
+                {
+                    camera.Move(-1, 0, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.D))
+                {
+                    camera.Move(1, 0, 0);
+                }
+                else if (keyboard.IsKeyDown(Key.Q))
+                {
+                    camera.Move(0, 0, 1);
+                }
+                else if (keyboard.IsKeyDown(Key.E))
+                {
+                    camera.Move(0, 0, -1);
+                }
+
                 keyboard.Update();
                 mouse.Update();
+
+                PointF delta = mouse.Delta;
+
+                camera.Rotate(-delta.X, -delta.Y);
+
+                pipeline.SetUniform("u_projection", camera.Projection);
+                pipeline.SetUniform("u_view", camera.View);
+                pipeline.SetUniform("u_model", Matrix4x4.CreateTranslation(Vector3.Zero));
 
                 float[] vertices =
                 {

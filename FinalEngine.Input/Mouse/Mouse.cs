@@ -62,6 +62,12 @@ namespace FinalEngine.Input.Mouse
         }
 
         /// <inheritdoc/>
+        public PointF Delta
+        {
+            get { return this.device == null ? PointF.Empty : this.device.LocationDelta; }
+        }
+
+        /// <inheritdoc/>
         public PointF Location
         {
             get

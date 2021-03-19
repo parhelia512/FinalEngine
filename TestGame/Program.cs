@@ -48,7 +48,11 @@ namespace TestGame
                 StartVisible = true,
             };
 
-            var nativeWindow = new NativeWindowInvoker(settings);
+            var nativeWindow = new NativeWindowInvoker(settings)
+            {
+                CursorGrabbed = true,
+            };
+
             var window = new OpenTKWindow(nativeWindow);
 
             var keyboardDevice = new OpenTKKeyboardDevice(nativeWindow);
@@ -106,13 +110,18 @@ namespace TestGame
             inputAssembler.SetIndexBuffer(indexBuffer);
 
             var camera = new Camera(
-                new Vector3(0, 0, 3.0f),
+                new Vector3(0, 0, -3.0f),
                 Vector3.Zero,
                 OpenTK.Mathematics.MathHelper.DegreesToRadians(70.0f),
                 nativeWindow.ClientSize.X / nativeWindow.ClientSize.Y);
 
             while (!window.IsExiting)
             {
+                if (keyboard.IsKeyReleased(Key.Escape))
+                {
+                    break;
+                }
+
                 if (keyboard.IsKeyDown(Key.W))
                 {
                     camera.Move(0, 1, 0);
@@ -141,9 +150,7 @@ namespace TestGame
                 keyboard.Update();
                 mouse.Update();
 
-                PointF delta = mouse.Delta;
-
-                camera.Rotate(-delta.X, -delta.Y);
+                camera.Rotate(-mouse.Delta.X, -mouse.Delta.Y);
 
                 pipeline.SetUniform("u_projection", camera.Projection);
                 pipeline.SetUniform("u_view", camera.View);

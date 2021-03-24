@@ -17,7 +17,6 @@
   - Sprite Batching
     - Sprites
   - Camera abstraction
-  - Model Loader
 - Audio
 - Physics
 - Scene & Entity Management
@@ -41,22 +40,6 @@ Credits:
 - Veldrid
 - OpenTK Discord
 - KinsonDigital
-
-// Would this improve performance?
-public void SetRasterState(RasterStateDescription description)
-{
-    if (lastState.CullEnabled != description.CullEnabled)
-    {
-        if (description.CullEnabled)
-        {
-            this.invoker.Enable(EnableCap.CullFace);
-        }
-        else
-        {
-            this.invoker.Disable(EnableCap.CullFace);
-        }
-    }
-}
 
 public class ResourceManager : IResourceManager
 {

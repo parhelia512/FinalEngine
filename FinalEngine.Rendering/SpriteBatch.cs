@@ -42,14 +42,14 @@ namespace FinalEngine.Rendering
             this.vertexBuffer = renderDevice.Factory.CreateVertexBuffer(
                 BufferUsageType.Dynamic,
                 Array.Empty<Vertex>(),
-                batcher.MaxCapacity * 4 * Vertex.SizeInBytes,
+                batcher.MaxVertexCount * Vertex.SizeInBytes,
                 Vertex.SizeInBytes);
 
-            int[] indices = new int[batcher.MaxCapacity * 6];
+            int[] indices = new int[batcher.MaxIndexCount];
 
             int offset = 0;
 
-            for (int i = 0; i < batcher.MaxCapacity * 6; i += 6)
+            for (int i = 0; i < batcher.MaxIndexCount; i += 6)
             {
                 indices[i] = offset;
                 indices[i + 1] = 1 + offset;
@@ -77,6 +77,11 @@ namespace FinalEngine.Rendering
 
         public void Begin()
         {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(SpriteBatch));
+            }
+
             this.batcher.Reset();
             this.binder.Reset();
         }
@@ -89,6 +94,11 @@ namespace FinalEngine.Rendering
 
         public void Draw(ITexture2D texture, Color color, Vector2 origin, Vector2 position, float rotation, Vector2 scale)
         {
+            if (this.IsDisposed)
+            {
+                throw new ObjectDisposedException(nameof(SpriteBatch));
+            }
+
             if (texture == null)
             {
                 throw new ArgumentNullException(nameof(texture), $"The specified {nameof(texture)} parameter cannot be null.");
@@ -126,7 +136,7 @@ namespace FinalEngine.Rendering
             this.renderDevice.InputAssembler.SetVertexBuffer(this.vertexBuffer);
             this.renderDevice.InputAssembler.SetIndexBuffer(this.indexBuffer);
 
-            this.renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, this.indexBuffer?.Length ?? 0);
+            this.renderDevice.DrawIndices(PrimitiveTopology.Triangle, 0, this.indexBuffer.Length);
         }
 
         protected virtual void Dispose(bool disposing)

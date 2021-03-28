@@ -43,19 +43,6 @@ namespace FinalEngine.Tests.Rendering
         }
 
         [Test]
-        public void MaxCapacityShouldReturnTwelve()
-        {
-            // Arrange
-            const int Expected = 12;
-
-            // Act
-            int actual = this.batcher.MaxCapacity;
-
-            // Assert
-            Assert.AreEqual(Expected, actual);
-        }
-
-        [Test]
         public void ProcessBatchShouldInvokeUpdateVertexBufferWhenInvoked()
         {
             // Arrange

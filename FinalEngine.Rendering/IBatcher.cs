@@ -14,13 +14,9 @@ namespace FinalEngine.Rendering
     /// <seealso cref="FinalEngine.Rendering.IResetable"/>
     public interface IBatcher : IResetable
     {
-        /// <summary>
-        ///   Gets the maximum capacity of vertices that can be batched before <see cref="IResetable.Reset"/> should be called.
-        /// </summary>
-        /// <value>
-        ///   The maximum capacity of vertices that can be batched.
-        /// </value>
-        int MaxCapacity { get; }
+        int MaxIndexCount { get; }
+
+        int MaxVertexCount { get; }
 
         /// <summary>
         ///   Batches a rendering call.

@@ -98,8 +98,6 @@ namespace TestGame
 
             float rot = 0;
 
-            var camera = new Camera2D(Vector2.Zero, nativeWindow.ClientSize.X, nativeWindow.ClientSize.Y, 4);
-
             while (!window.IsExiting)
             {
                 if (keyboard.IsKeyReleased(Key.Escape))
@@ -109,30 +107,13 @@ namespace TestGame
 
                 rot += 0.01f;
 
-                if (keyboard.IsKeyDown(Key.W))
-                {
-                    camera.Move(-Vector2.UnitY);
-                }
-                else if (keyboard.IsKeyDown(Key.S))
-                {
-                    camera.Move(Vector2.UnitY);
-                }
-                else if (keyboard.IsKeyDown(Key.A))
-                {
-                    camera.Move(Vector2.UnitX);
-                }
-                else if (keyboard.IsKeyDown(Key.D))
-                {
-                    camera.Move(-Vector2.UnitX);
-                }
-
                 keyboard.Update();
                 mouse.Update();
 
                 renderDevice.Clear(Color.Black);
 
-                pipeline.SetUniform("u_projection", camera.Projection);
-                pipeline.SetUniform("u_view", camera.View);
+                pipeline.SetUniform("u_projection", Matrix4x4.CreateOrthographic(nativeWindow.ClientSize.X, nativeWindow.ClientSize.Y, -1, 1));
+                pipeline.SetUniform("u_view", Matrix4x4.CreateTranslation(Vector3.Zero));
 
                 spriteBatch.Begin();
 

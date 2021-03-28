@@ -25,15 +25,19 @@ namespace FinalEngine.Rendering
                 throw new ArgumentOutOfRangeException(nameof(maxCapacity), $"The specified {nameof(maxCapacity)} parameter must be greater than zero.");
             }
 
-            this.MaxCapacity = maxCapacity;
+            this.MaxVertexCount = maxCapacity * 4;
+            this.MaxIndexCount = maxCapacity * 6;
+
             this.vertices = new List<Vertex>();
         }
 
-        public int MaxCapacity { get; }
+        public int MaxIndexCount { get; }
+
+        public int MaxVertexCount { get; }
 
         public bool ShouldReset
         {
-            get { return this.vertices.Count >= this.MaxCapacity * 4; }
+            get { return this.vertices.Count >= this.MaxVertexCount; }
         }
 
         public void Batch(float textureID, Color color, Vector2 origin, Vector2 position, float rotation, Vector2 scale)

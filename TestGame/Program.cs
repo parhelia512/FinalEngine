@@ -89,34 +89,16 @@ namespace TestGame
 
             pipeline.SetShaderProgram(program);
 
-            const float fieldDepth = 30.0f;
-            const float fieldWidth = 30.0f;
-
-            Vertex[] vertices =
-            {
-                new Vertex(new Vector3(-fieldWidth, 0.0f, -fieldDepth), new Vector4(1, 0, 0, 1), new Vector2(0, 0)),
-                new Vertex(new Vector3(-fieldWidth, 0.0f, fieldDepth * 3), new Vector4(0, 1, 0, 1), new Vector2(0, 1)),
-                new Vertex(new Vector3(fieldWidth * 3, 0.0f, -fieldDepth), new Vector4(0, 0, 1, 1), new Vector2(1, 0)),
-                new Vertex(new Vector3(fieldWidth * 3, 0.0f, fieldDepth * 3), new Vector4(1, 1, 0, 1), new Vector2(1, 1)),
-            };
-
-            int[] indices =
-            {
-                0, 1, 2,
-                2, 1, 3,
-            };
-
             ITexture2D texture = textureLoader.LoadTexture("Resources\\Textures\\default.png");
+            ITexture2D texture2 = textureLoader.LoadTexture("Resources\\Textures\\wood.png");
 
-            var material = new Material(texture);
-            var mesh = new Mesh(factory, vertices, indices, material);
+            var batcher = new Batcher(inputAssembler, 1000);
+            var binder = new TextureBinder(pipeline);
+            var spriteBatch = new SpriteBatch(renderDevice, batcher, binder);
 
-            var camera = new Camera(
-                new Vector3(0, 3.0f, -3.0f),
-                Vector3.Zero,
-                OpenTK.Mathematics.MathHelper.DegreesToRadians(70.0f),
-                nativeWindow.ClientSize.X / nativeWindow.ClientSize.Y,
-                0.02f);
+            float rot = 0;
+
+            var camera = new Camera2D(Vector2.Zero, nativeWindow.ClientSize.X, nativeWindow.ClientSize.Y, 4);
 
             while (!window.IsExiting)
             {
@@ -125,49 +107,53 @@ namespace TestGame
                     break;
                 }
 
+                rot += 0.001f;
+
                 if (keyboard.IsKeyDown(Key.W))
                 {
-                    camera.Move(0, 1, 0);
+                    camera.Move(-Vector2.UnitY);
                 }
                 else if (keyboard.IsKeyDown(Key.S))
                 {
-                    camera.Move(0, -1, 0);
+                    camera.Move(Vector2.UnitY);
                 }
                 else if (keyboard.IsKeyDown(Key.A))
                 {
-                    camera.Move(-1, 0, 0);
+                    camera.Move(Vector2.UnitX);
                 }
                 else if (keyboard.IsKeyDown(Key.D))
                 {
-                    camera.Move(1, 0, 0);
-                }
-                else if (keyboard.IsKeyDown(Key.Q))
-                {
-                    camera.Move(0, 0, 1);
-                }
-                else if (keyboard.IsKeyDown(Key.E))
-                {
-                    camera.Move(0, 0, -1);
+                    camera.Move(-Vector2.UnitX);
                 }
 
                 keyboard.Update();
                 mouse.Update();
 
-                camera.Rotate(-mouse.Delta.X, -mouse.Delta.Y);
+                renderDevice.Clear(Color.Black);
 
                 pipeline.SetUniform("u_projection", camera.Projection);
                 pipeline.SetUniform("u_view", camera.View);
-                pipeline.SetUniform("u_model", Matrix4x4.CreateTranslation(Vector3.Zero));
 
-                renderDevice.Clear(Color.CornflowerBlue);
+                spriteBatch.Begin();
 
-                mesh.Draw(renderDevice);
+                for (int i = 0; i < 100; i++)
+                {
+                    for (int j = 0; j < 100; j++)
+                    {
+                        ITexture2D tex = (j + i) % 2 == 0 ? texture : texture2;
+
+                        spriteBatch.Draw(tex, Color.CornflowerBlue, new Vector2(128, 128), new Vector2(i * 256, j * 256), rot, new Vector2(256, 256));
+                    }
+                }
+
+                spriteBatch.End();
+                spriteBatch.Flush();
 
                 renderContext.SwapBuffers();
                 window.ProcessEvents();
             }
 
-            mesh.Dispose();
+            spriteBatch.Dispose();
             renderContext.Dispose();
             window.Dispose();
             nativeWindow.Dispose();

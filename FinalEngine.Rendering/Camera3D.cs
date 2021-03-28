@@ -7,7 +7,7 @@ namespace FinalEngine.Rendering
     using System;
     using System.Numerics;
 
-    public class Camera : ICamera
+    public class Camera3D : ICamera
     {
         private readonly float aspectRatio;
 
@@ -21,7 +21,7 @@ namespace FinalEngine.Rendering
 
         private Vector3 position;
 
-        public Camera(Vector3 position, Vector3 orientation, float fov, float aspectRatio, float speed = 0.002f, float sensitivity = 0.0010f)
+        public Camera3D(Vector3 position, Vector3 orientation, float fov, float aspectRatio, float speed = 0.002f, float sensitivity = 0.0010f)
         {
             this.position = position;
             this.orientation = orientation;

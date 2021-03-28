@@ -12,17 +12,20 @@ namespace FinalEngine.Rendering
     {
         public static readonly int SizeInBytes = Marshal.SizeOf<Vertex>();
 
-        public Vertex(Vector3 position, Vector4 color, Vector2 textureCoordinate)
+        public Vertex(Vector2 position, Vector4 color, Vector2 textureCoordinate, float textureIdentifier)
         {
             this.Position = position;
             this.Color = color;
             this.TextureCoordinate = textureCoordinate;
+            this.TextureIdentifier = textureIdentifier;
         }
 
-        public Vector3 Position { get; set; }
+        public Vector2 Position { get; set; }
 
         public Vector4 Color { get; set; }
 
         public Vector2 TextureCoordinate { get; set; }
+
+        public float TextureIdentifier { get; set; }
     }
 }

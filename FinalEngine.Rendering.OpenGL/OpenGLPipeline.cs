@@ -141,8 +141,8 @@ namespace FinalEngine.Rendering.OpenGL
 
             this.boundTexture = glTexture;
 
-            this.boundTexture.Bind();
             this.boundTexture.Slot(slot);
+            this.boundTexture.Bind();
         }
 
         /// <summary>

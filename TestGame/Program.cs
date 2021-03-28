@@ -91,12 +91,17 @@ namespace TestGame
 
             ITexture2D texture = textureLoader.LoadTexture("Resources\\Textures\\default.png");
             ITexture2D texture2 = textureLoader.LoadTexture("Resources\\Textures\\wood.png");
+            ITexture2D jediTexture = textureLoader.LoadTexture("Resources\\Textures\\jedi.jpg");
+            ITexture2D cheeseTexture = textureLoader.LoadTexture("Resources\\Textures\\cheese.jpg");
 
             var batcher = new Batcher(inputAssembler, 1000);
             var binder = new TextureBinder(pipeline);
             var spriteBatch = new SpriteBatch(renderDevice, batcher, binder);
 
             float rot = 0;
+            float x = 0;
+            float y = 0;
+            float speed = 4;
 
             while (!window.IsExiting)
             {
@@ -107,13 +112,30 @@ namespace TestGame
 
                 rot += 0.01f;
 
+                if (keyboard.IsKeyDown(Key.W))
+                {
+                    y -= speed;
+                }
+                else if (keyboard.IsKeyDown(Key.S))
+                {
+                    y += speed;
+                }
+                else if (keyboard.IsKeyDown(Key.A))
+                {
+                    x += speed;
+                }
+                else if (keyboard.IsKeyDown(Key.D))
+                {
+                    x -= speed;
+                }
+
                 keyboard.Update();
                 mouse.Update();
 
                 renderDevice.Clear(Color.Black);
 
                 pipeline.SetUniform("u_projection", Matrix4x4.CreateOrthographic(nativeWindow.ClientSize.X, nativeWindow.ClientSize.Y, -1, 1));
-                pipeline.SetUniform("u_view", Matrix4x4.CreateTranslation(Vector3.Zero));
+                pipeline.SetUniform("u_view", Matrix4x4.CreateTranslation(x, y, 0));
 
                 spriteBatch.Begin();
 
@@ -123,9 +145,13 @@ namespace TestGame
                     {
                         ITexture2D tex = (j + i) % 2 == 0 ? texture : texture2;
 
-                        spriteBatch.Draw(tex, Color.CornflowerBlue, new Vector2(32, 32), new Vector2(i * 64, j * 64), rot, new Vector2(64, 64));
+                        spriteBatch.Draw(tex, Color.White, new Vector2(32, 32), new Vector2(i * 64, j * 64), rot, new Vector2(64, 64));
                     }
                 }
+
+                spriteBatch.Draw(jediTexture, Color.Red, new Vector2(256, 256), new Vector2(1000, 1000), -rot, new Vector2(512, 512));
+
+                spriteBatch.Draw(cheeseTexture, Color.LightBlue, Vector2.Zero, new Vector2(-x, -y), rot, new Vector2(256, 256));
 
                 spriteBatch.End();
                 spriteBatch.Flush();

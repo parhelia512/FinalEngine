@@ -264,6 +264,11 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
             return GL.GenVertexArray();
         }
 
+        public int GetInteger(GetPName pname)
+        {
+            return GL.GetInteger(pname);
+        }
+
         /// <inheritdoc/>
         public string GetProgramInfoLog(int program)
         {

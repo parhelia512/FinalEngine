@@ -15,6 +15,14 @@ namespace FinalEngine.Rendering
     public interface IPipeline
     {
         /// <summary>
+        ///   Gets the maximum texture slots the underlying GPU can utilize.
+        /// </summary>
+        /// <value>
+        ///   The maximum texture slots the underlying GPU can utilize.
+        /// </value>
+        int MaxTextureSlots { get; }
+
+        /// <summary>
         ///   Sets the specified <paramref name="program"/>, binding it to the GPU.
         /// </summary>
         /// <param name="program">

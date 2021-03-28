@@ -131,6 +131,9 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
         /// <inheritdoc cref="GL.GenVertexArray"/>
         int GenVertexArray();
 
+        /// <inheritdoc cref="GL.GetInteger(GetPName)"/>
+        int GetInteger(GetPName pname);
+
         /// <inheritdoc cref="GL.GetProgramInfoLog(int)"/>
         string GetProgramInfoLog(int program);
 

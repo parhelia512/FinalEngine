@@ -19,6 +19,12 @@ namespace FinalEngine.Rendering
         public Batcher(IInputAssembler inputAssembler, int maxCapacity)
         {
             this.inputAssembler = inputAssembler ?? throw new ArgumentNullException(nameof(inputAssembler), $"The specified {nameof(inputAssembler)} parameter cannot be null.");
+
+            if (maxCapacity <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(maxCapacity), $"The specified {nameof(maxCapacity)} parameter must be greater than zero.");
+            }
+
             this.MaxCapacity = maxCapacity;
             this.vertices = new List<Vertex>();
         }
@@ -94,6 +100,11 @@ namespace FinalEngine.Rendering
 
         public void ProcessBatch(IVertexBuffer vertexBuffer)
         {
+            if (vertexBuffer == null)
+            {
+                throw new ArgumentNullException(nameof(vertexBuffer), $"The specified {nameof(vertexBuffer)} parameter cannot be null.");
+            }
+
             this.inputAssembler.UpdateVertexBuffer(vertexBuffer, (IReadOnlyCollection<Vertex>)this.vertices, Vertex.SizeInBytes);
         }
 

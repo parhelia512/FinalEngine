@@ -107,7 +107,7 @@ namespace TestGame
                     break;
                 }
 
-                rot += 0.001f;
+                rot += 0.01f;
 
                 if (keyboard.IsKeyDown(Key.W))
                 {
@@ -142,7 +142,7 @@ namespace TestGame
                     {
                         ITexture2D tex = (j + i) % 2 == 0 ? texture : texture2;
 
-                        spriteBatch.Draw(tex, Color.CornflowerBlue, new Vector2(128, 128), new Vector2(i * 256, j * 256), rot, new Vector2(256, 256));
+                        spriteBatch.Draw(tex, Color.CornflowerBlue, new Vector2(32, 32), new Vector2(i * 64, j * 64), rot, new Vector2(64, 64));
                     }
                 }
 

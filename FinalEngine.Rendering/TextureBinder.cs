@@ -43,7 +43,6 @@ namespace FinalEngine.Rendering
             }
 
             int textureID = this.textureToIdentifierMap.Count;
-
             this.pipeline.SetTexture(texture, textureID);
             this.textureToIdentifierMap.Add(texture, textureID);
 

@@ -136,14 +136,14 @@ namespace FinalEngine.Rendering.OpenGL.Textures
         /// <exception cref="ObjectDisposedException">
         ///   The <see cref="OpenGLTexture2D"/> has been disposed.
         /// </exception>
-        public void Bind()
+        public void Bind(int slot)
         {
             if (this.IsDisposed)
             {
                 throw new ObjectDisposedException(nameof(OpenGLTexture2D));
             }
 
-            this.invoker.BindTexture(TextureTarget.Texture2D, this.rendererID);
+            this.invoker.BindTextureUnit(slot, this.rendererID);
         }
 
         /// <summary>
@@ -153,41 +153,6 @@ namespace FinalEngine.Rendering.OpenGL.Textures
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        ///   Activates the specified <paramref name="index"/> to a texture slot.
-        /// </summary>
-        /// <param name="index">
-        ///   Specifies an <see cref="int"/> that represents which texture slot to activate.
-        /// </param>
-        /// <exception cref="ObjectDisposedException">
-        ///   The <see cref="OpenGLTexture2D"/> has been disposed.
-        /// </exception>
-        public void Slot(int index)
-        {
-            if (this.IsDisposed)
-            {
-                throw new ObjectDisposedException(nameof(OpenGLTexture2D));
-            }
-
-            this.invoker.ActiveTexture(TextureUnit.Texture0 + index);
-        }
-
-        /// <summary>
-        ///   Unbinds this <see cref="OpenGLTexture2D"/> from the graphics processing unit.
-        /// </summary>
-        /// <exception cref="ObjectDisposedException">
-        ///   The <see cref="OpenGLTexture2D"/> has been disposed.
-        /// </exception>
-        public void Unbind()
-        {
-            if (this.IsDisposed)
-            {
-                throw new ObjectDisposedException(nameof(OpenGLTexture2D));
-            }
-
-            this.invoker.BindTexture(TextureTarget.Texture2D, 0);
         }
 
         /// <summary>

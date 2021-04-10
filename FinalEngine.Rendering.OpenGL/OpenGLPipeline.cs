@@ -124,14 +124,11 @@ namespace FinalEngine.Rendering.OpenGL
         /// <exception cref="ArgumentException">
         ///   The specified <paramref name="texture"/> is not the correct implementation. If this exception occurs, you're attempting to bind an texture that does not implement <see cref="IOpenGLTexture"/>.
         /// </exception>
-        public void SetTexture(ITexture? texture, int slot = 0)
+        public void SetTexture(ITexture texture, int slot = 0)
         {
             if (texture == null)
             {
-                this.boundTexture?.Unbind();
-                this.boundTexture = null;
-
-                return;
+                throw new ArgumentNullException(nameof(texture), $"The specified {nameof(texture)} parameter cannot be null.");
             }
 
             if (texture is not IOpenGLTexture glTexture)
@@ -140,9 +137,7 @@ namespace FinalEngine.Rendering.OpenGL
             }
 
             this.boundTexture = glTexture;
-
-            this.boundTexture.Slot(slot);
-            this.boundTexture.Bind();
+            this.boundTexture.Bind(slot);
         }
 
         /// <summary>

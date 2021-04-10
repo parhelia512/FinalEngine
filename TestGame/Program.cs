@@ -34,7 +34,7 @@ namespace TestGame
                 API = ContextAPI.OpenGL,
                 APIVersion = new Version(4, 6),
 
-                Flags = ContextFlags.ForwardCompatible,
+                Flags = ContextFlags.Debug,
                 Profile = ContextProfile.Core,
 
                 AutoLoadBindings = false,
@@ -94,7 +94,7 @@ namespace TestGame
             ITexture2D jediTexture = textureLoader.LoadTexture("Resources\\Textures\\jedi.jpg");
             ITexture2D cheeseTexture = textureLoader.LoadTexture("Resources\\Textures\\cheese.jpg");
 
-            var batcher = new Batcher(inputAssembler, 1000);
+            var batcher = new Batcher(inputAssembler, 10);
             var binder = new TextureBinder(pipeline);
             var spriteBatch = new SpriteBatch(renderDevice, batcher, binder);
 
@@ -139,19 +139,14 @@ namespace TestGame
 
                 spriteBatch.Begin();
 
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    for (int j = 0; j < 100; j++)
-                    {
-                        ITexture2D tex = (j + i) % 2 == 0 ? texture : texture2;
-
-                        spriteBatch.Draw(tex, Color.White, new Vector2(32, 32), new Vector2(i * 64, j * 64), rot, new Vector2(64, 64));
-                    }
+                    spriteBatch.Draw(texture, Color.White, new Vector2(0, 0), new Vector2(0, 0), 0, new Vector2(512, 512));
                 }
 
-                spriteBatch.Draw(jediTexture, Color.Red, new Vector2(256, 256), new Vector2(1000, 1000), -rot, new Vector2(512, 512));
-
-                spriteBatch.Draw(cheeseTexture, Color.LightBlue, Vector2.Zero, new Vector2(-x, -y), rot, new Vector2(256, 256));
+                spriteBatch.Draw(texture2, Color.White, new Vector2(0, 0), new Vector2(512, 0), 0, new Vector2(512, 512));
+                spriteBatch.Draw(jediTexture, Color.White, new Vector2(0, 0), new Vector2(1024, 0), 0, new Vector2(512, 512));
+                spriteBatch.Draw(cheeseTexture, Color.White, new Vector2(0, 0), new Vector2(1536, 0), 0, new Vector2(512, 512));
 
                 spriteBatch.End();
                 spriteBatch.Flush();

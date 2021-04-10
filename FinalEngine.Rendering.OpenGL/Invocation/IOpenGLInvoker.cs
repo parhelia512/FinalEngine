@@ -15,17 +15,14 @@ namespace FinalEngine.Rendering.OpenGL.Invocation
     /// </summary>
     public interface IOpenGLInvoker
     {
-        /// <inheritdoc cref="GL.ActiveTexture(TextureUnit)"/>
-        void ActiveTexture(TextureUnit texture);
-
         /// <inheritdoc cref="GL.AttachShader(int, int)"/>
         void AttachShader(int program, int shader);
 
         /// <inheritdoc cref="GL.BindBuffer(BufferTarget, int)"/>
         void BindBuffer(BufferTarget target, int buffer);
 
-        /// <inheritdoc cref="GL.BindTexture(TextureTarget, int)"/>
-        void BindTexture(TextureTarget target, int texture);
+        /// <inheritdoc cref="GL.BindTextureUnit(int, int)"/>
+        void BindTextureUnit(int unit, int texture);
 
         /// <inheritdoc cref="GL.BindVertexArray(int)"/>
         void BindVertexArray(int array);

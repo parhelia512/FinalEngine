@@ -18,6 +18,11 @@ namespace FinalEngine.Rendering
         {
             this.pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline), $"The specified {nameof(pipeline)} parameter cannot be null.");
             this.textureToIdentifierMap = new Dictionary<ITexture2D, int>(this.pipeline.MaxTextureSlots);
+
+            for (int i = 0; i < this.pipeline.MaxTextureSlots; i++)
+            {
+                this.pipeline.SetUniform($"u_textures[{i}]", i);
+            }
         }
 
         public bool ShouldReset
@@ -32,11 +37,6 @@ namespace FinalEngine.Rendering
                 throw new ArgumentNullException(nameof(texture), $"The specified {nameof(texture)} parameter cannot be null.");
             }
 
-            if (this.ShouldReset)
-            {
-                this.Reset();
-            }
-
             if (this.textureToIdentifierMap.ContainsKey(texture))
             {
                 return this.textureToIdentifierMap[texture];
@@ -45,7 +45,6 @@ namespace FinalEngine.Rendering
             int textureID = this.textureToIdentifierMap.Count;
 
             this.pipeline.SetTexture(texture, textureID);
-            this.pipeline.SetUniform($"u_textures[{textureID}]", textureID);
             this.textureToIdentifierMap.Add(texture, textureID);
 
             return textureID;

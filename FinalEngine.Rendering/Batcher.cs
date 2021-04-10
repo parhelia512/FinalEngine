@@ -42,11 +42,6 @@ namespace FinalEngine.Rendering
 
         public void Batch(float textureID, Color color, Vector2 origin, Vector2 position, float rotation, Vector2 scale)
         {
-            if (this.ShouldReset)
-            {
-                this.Reset();
-            }
-
             float x = position.X;
             float y = position.Y;
 
